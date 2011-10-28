@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2006-10-10
-// RCS-ID:      
+// RCS-ID:
 // Copyright:   (C) Copyright 2006-2009, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -13,7 +13,7 @@
 #ifndef __WXWEBCONNECT_NSBASE_H
 #define __WXWEBCONNECT_NSBASE_H
 
-    
+
 #ifdef WIN32
 #define XP_WIN
 #endif
@@ -204,14 +204,14 @@ public:
             *result = static_cast<void*>(static_cast<iface*>(this)); \
             return NS_OK; \
         }
-             
+
 #define NS_INTERFACE_MAP_ENTRY_AMBIGUOUS(iface1, iface2) \
         if (iid.Equals(NS_GET_IID(iface1))) { \
             this->AddRef(); \
             *result = static_cast<void*>(static_cast<iface1*>(static_cast<iface2*>(this))); \
             return NS_OK; \
         }
-        
+
 #define NS_INTERFACE_MAP_END \
         return NS_ERROR_NO_INTERFACE; \
     }
@@ -249,7 +249,7 @@ public:
         return nsiid; \
     }
 #endif
-    
+
 #define NS_DEFINE_STATIC_IID_ACCESSOR(iid) NS_DECLARE_STATIC_IID_ACCESSOR(iid)
 //#define NS_DEFINE_STATIC_IID_ACCESSOR(iface, iid)
 

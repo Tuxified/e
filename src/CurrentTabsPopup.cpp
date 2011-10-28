@@ -47,7 +47,7 @@ void ListEventHandler::OnKeyDown(wxKeyEvent& event) {
 
 		return;
 	}
-	 
+
 	event.Skip();
 }
 
@@ -112,7 +112,7 @@ void CurrentTabsPopup::OnShow(wxShowEvent& event) {
 	if (!event.GetShow()) return; // avoid double-captures
 
 	m_list->SetFocus();
-	
+
 	if (m_selectedTabIndex != -1 && m_selectedTabIndex < (int)m_list->GetItemCount())
 		m_list->SetSelectedRow(m_selectedTabIndex);
 

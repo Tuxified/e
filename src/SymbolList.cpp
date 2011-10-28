@@ -38,7 +38,7 @@ END_EVENT_TABLE()
 
 SymbolList::SymbolList(IFrameSymbolService& services, bool keepOpen):
 	wxPanel(dynamic_cast<wxWindow*>(&services), wxID_ANY),
-	m_parentFrame(services), 
+	m_parentFrame(services),
 	m_editorSymbols(NULL),
 	m_keepOpen(keepOpen)
 {
@@ -164,7 +164,7 @@ BEGIN_EVENT_TABLE(SymbolList::ActionList, SearchListBox)
 END_EVENT_TABLE()
 
 SymbolList::ActionList::ActionList(wxWindow* parent, wxWindowID id, const wxArrayString& actions):
-	SearchListBox(parent, id), 
+	SearchListBox(parent, id),
 	m_actions(actions)
 {
 	SetAllItems();

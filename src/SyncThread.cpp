@@ -10,7 +10,7 @@ DEFINE_EVENT_TYPE(syncEVT_CONNECT_FAILED)
 IMPLEMENT_DYNAMIC_CLASS(SyncEvent, wxEvent)
 
 SyncThread::SyncThread(cxSyncType type, CatalystWrapper cat, wxSocketBase* socket, wxEvtHandler& evtH)
-: m_type(cxSYNC_SERVER), m_catalyst(cat), m_socket(socket), m_evtHandler(evtH), 
+: m_type(cxSYNC_SERVER), m_catalyst(cat), m_socket(socket), m_evtHandler(evtH),
   m_userId(0), m_isConnected(false), m_isDone(false), m_isRecieverDone(false) {
 	wxASSERT(type == cxSYNC_SERVER);
 
@@ -59,7 +59,7 @@ void* SyncThread::Entry()
 		if (sock->IsConnected()) m_socket = sock;
 		else {
 			wxLogDebug(wxT("Connect Failed: %s:%d"), m_addr.IPAddress(), m_addr.Service());
-			
+
 			// Notify caller that the connection failed
 			SyncEvent event(syncEVT_CONNECT_FAILED, 1);
 			event.SetUserId(m_userId);
@@ -76,7 +76,7 @@ void* SyncThread::Entry()
 		wxASSERT(m_socket && m_socket->IsConnected());
 		m_socket->GetPeer(m_addr);
 	}
-	
+
 	// If we can't write anything for 10 seconds, assume a timeout
     m_socket->SetTimeout(10);
 
@@ -102,7 +102,7 @@ void* SyncThread::Entry()
 			cxENDLOCK
 			m_out->Write("\n", 1);
 
-			// First line recieved has to be acknowledgement 
+			// First line recieved has to be acknowledgement
 			wxString buf;
 			if (!ReadLine(buf)) goto error;
 			wxStringTokenizer tokens(buf ,wxT(' '));
@@ -147,7 +147,7 @@ void* SyncThread::Entry()
 		{
 			m_out->Write("CONNECT_USERS\n", 14);
 
-			// First line recieved has to be acknowledgement 
+			// First line recieved has to be acknowledgement
 			// and count of users
 			wxString buf;
 			if (!ReadLine(buf)) break;
@@ -155,7 +155,7 @@ void* SyncThread::Entry()
 
 			wxString command = tokens.GetNextToken();
 			if (command != wxT("ACK_USERS")) break;
-			
+
 			const wxString users_count_str = tokens.GetNextToken();
 			if (users_count_str.empty()) break;
 			const int users_count = wxAtoi(users_count_str);
@@ -187,7 +187,7 @@ void* SyncThread::Entry()
 			wxPostEvent(&m_evtHandler, event); // send in a thread-safe way
 		}
 		break;
-	
+
 	default:
 		wxASSERT(false); // Unknown type
 	}
@@ -239,7 +239,7 @@ bool SyncThread::Receive() {
 	// First line recieved has to be a connect request
 	if (!ReadLine(buf)) return false;
 	wxStringTokenizer tokens(buf ,wxT(' '));
-	
+
 	const wxString command = tokens.GetNextToken();
 
 	if (command == wxT("CONNECT")) {
@@ -301,7 +301,7 @@ bool SyncThread::Receive() {
 
 		// Transmit full user profile (profile zero is our profile)
 		m_out->Write("USER ", 5);
-		
+
 		cxLOCK_READ(m_catalyst)
 			catalyst.WriteUserId(*m_out, 0);
 			m_out->Write("\n", 1);
@@ -336,7 +336,7 @@ bool SyncThread::Process(bool doWait, cxProcessMode mode) {
 	// we return as soon as there are no more data
 	const long ws = doWait ? -1 : 0;
 	const long wm = doWait ?  0 : 1;
-	
+
 	// Handle incomming requests
 	wxString request;
 	while (m_socket->WaitForRead(ws, wm)) {
@@ -345,7 +345,7 @@ bool SyncThread::Process(bool doWait, cxProcessMode mode) {
 		if (m_socket->IsDisconnected()) {
 			wxLogDebug(wxT("Lost connection"));
 			// do not return yet, there might be data in the buffer
-			//return false; 
+			//return false;
 		}
 
 		if (!ReadLine(request)) return false;
@@ -633,7 +633,7 @@ bool SyncThread::HandleUpdate(unsigned int docId, cxProcessMode mode) {
 			// Reply that we have the revision
 			if (mode == cxACTIVE) {
 				wxLogDebug(wxT("  -> HAVE_REV %d %d"), docId, revId);
-				
+
 				m_out->Write("HAVE_REV ", 9);
 				cxLOCK_READ(m_catalyst)
 					catalyst.WriteDocRevId(*m_out, di);
@@ -682,7 +682,7 @@ bool SyncThread::UpdateDoc(unsigned int docId) {
 
 	// First we have to establish which revisions (if any) the
 	// receiver already has.
-	// 
+	//
 	// To do this we do a depth-first traversal of the history
 	// tree, sending the id's of the revision as we back out of
 	// them. Whenever we receive a confirmation that the
@@ -714,7 +714,7 @@ bool SyncThread::SendRevIdTraversal(const doc_id& di) {
 	//   o cxSTATE_NEW: Reciever does not have any part of doc.
 	//   o cxSTATE_UNSUBSCRIBED: Reciever no longer wants the doc.
 	if (m_stateDocs.find(di.document_id) != m_stateDocs.end()) return true;
-	
+
 	// Recurse into children
 	vector<unsigned int> revList;
 	cxLOCK_READ(m_catalyst)
@@ -766,11 +766,11 @@ bool SyncThread::SendRevisionTraversal(const doc_id& di) {
 
 	// Check if there is any feedback (async)
 	if (!Process(false)) return false;
-	
+
 	// Check if we need to proceed with the transfer
 	cxDocStateMap::const_iterator p = m_stateDocs.find(di.document_id);
 	if (p != m_stateDocs.end() && p->second == cxSHARE_UNSUBSCRIBED) return true;
-		
+
 	// Only send revision if receiver does not already have it
 	const set<unsigned int>& revSet = m_stateRevs[di.document_id];
 	if (revSet.find(di.version_id) == revSet.end()) {
@@ -805,17 +805,17 @@ bool SyncThread::SendRevision(const doc_id& di) const {
 			out_file.Write("\n", 1);
 			catalyst.WriteRevision(out_file, di);
 		cxENDLOCK
-		
+
 		out_file.Write("END_REV\n", 8);
 	}*/
-	
+
 	m_out->Write("REV ", 4);
 	cxLOCK_READ(m_catalyst)
 		catalyst.WriteDocRevId(*m_out, di);
 		m_out->Write("\n", 1);
 		catalyst.WriteRevision(*m_out, di);
 	cxENDLOCK
-	
+
 	m_out->Write("END_REV\n", 8);
 
 	return true;
@@ -835,12 +835,12 @@ bool SyncThread::GetUser(c4_Row& rUser) {
 		if (!ParseHex64(date, llDate)) return false;
 
 		pDate(rUser) = llDate.GetValue();
-		
+
 		if (!ReadLine(buf)) return false;
 		tokens.SetString(buf ,wxT(' '));
 		type = tokens.GetNextToken();
 	} else return false; // mandatory
-	
+
 	// Name
 	if (type == wxT("N")) {
 		// The name is everything after the first space
@@ -884,7 +884,7 @@ int SyncThread::GetRevision(c4_Row& rRev, cxProcessMode mode) {
 	wxStringTokenizer tokens(buf ,wxT(' '));
 
 	wxString type = tokens.GetNextToken();
-	
+
 	// DocumentID (often ommited since it is known from context)
 	if (type == wxT("D")) {
 		const wxString doc = tokens.GetNextToken();
@@ -895,7 +895,7 @@ int SyncThread::GetRevision(c4_Row& rRev, cxProcessMode mode) {
 		}
 
 		if (pDocBytes(rRev) != docBytes) return 3;
-		
+
 		if (!ReadLine(buf)) return 4;
 		tokens.SetString(buf ,wxT(' '));
 		type = tokens.GetNextToken();
@@ -922,7 +922,7 @@ int SyncThread::GetRevision(c4_Row& rRev, cxProcessMode mode) {
 		if (!ParseHex64(date, llDate)) return 8;
 
 		pDate(rRev) = llDate.GetValue();
-		
+
 		if (!ReadLine(buf)) return 9;
 		tokens.SetString(buf ,wxT(' '));
 		type = tokens.GetNextToken();
@@ -932,7 +932,7 @@ int SyncThread::GetRevision(c4_Row& rRev, cxProcessMode mode) {
 	if (type == wxT("Z")) {
 		const wxString timezone = tokens.GetNextToken();
 		pTimezone(rRev) = wxAtol(timezone);
-		
+
 		if (!ReadLine(buf)) return 11;
 		tokens.SetString(buf ,wxT(' '));
 		type = tokens.GetNextToken();
@@ -946,7 +946,7 @@ int SyncThread::GetRevision(c4_Row& rRev, cxProcessMode mode) {
 
 		// Archive parent
 		pParentBytes(rRev) = parentBytes;
-		
+
 		if (!ReadLine(buf)) return 14;
 		tokens.SetString(buf ,wxT(' '));
 		type = tokens.GetNextToken();
@@ -956,7 +956,7 @@ int SyncThread::GetRevision(c4_Row& rRev, cxProcessMode mode) {
 	if (type == wxT("L")) {
 		const wxString labelNode = tokens.GetNextToken();
 		pLabelNode(rRev) = wxAtoi(labelNode);
-		
+
 		if (!ReadLine(buf)) return 15;
 		tokens.SetString(buf ,wxT(' '));
 		type = tokens.GetNextToken();
@@ -966,7 +966,7 @@ int SyncThread::GetRevision(c4_Row& rRev, cxProcessMode mode) {
 	if (type == wxT("C")) {
 		const wxString descNode = tokens.GetNextToken();
 		pDescNode(rRev) = wxAtoi(descNode);
-		
+
 		if (!ReadLine(buf)) return 16;
 		tokens.SetString(buf ,wxT(' '));
 		type = tokens.GetNextToken();
@@ -975,13 +975,13 @@ int SyncThread::GetRevision(c4_Row& rRev, cxProcessMode mode) {
 	// Properties
 	if (type == wxT("R")) {
 		const wxString str_propNode = tokens.GetNextToken();
-		
+
 		c4_Bytes revBytes;
 		int node_id;
 		if (!ParseNodeid(str_propNode, revBytes, node_id)) return 17;
 		pPropBytes(rRev) = revBytes;
 		pPropnode(rRev) = node_id;
-		
+
 		if (!ReadLine(buf)) return 18;
 		tokens.SetString(buf ,wxT(' '));
 		type = tokens.GetNextToken();
@@ -993,13 +993,13 @@ int SyncThread::GetRevision(c4_Row& rRev, cxProcessMode mode) {
 	// Data
 	if (type == wxT("X")) {
 		const wxString str_headNode = tokens.GetNextToken();
-		
+
 		c4_Bytes revBytes;
 		int node_id;
 		if (!ParseNodeid(str_headNode, revBytes, node_id)) return 19;
 		pHeadBytes(rRev) = revBytes;
 		pHeadnode(rRev) = node_id;
-		
+
 		if (!ReadLine(buf)) return 20;
 		tokens.SetString(buf ,wxT(' '));
 		type = tokens.GetNextToken();
@@ -1091,7 +1091,7 @@ int SyncThread::GetRevision(c4_Row& rRev, cxProcessMode mode) {
 				c4_Bytes revBytes;
 				int node_id;
 				if (!ParseNodeid(nodeRef, revBytes, node_id)) return 32;
-				
+
 				c4_RowRef rNref = vNoderefs[i];
 				pVerBytes(rNref) = revBytes;
 				pNodeid(rNref) = node_id;
@@ -1099,7 +1099,7 @@ int SyncThread::GetRevision(c4_Row& rRev, cxProcessMode mode) {
 				if (nodeType == TYPE_NODE) {
 					const wxString maxStr = tokens.GetNextToken();
 					const int max = wxAtoi(maxStr);
-				
+
 					pMax(rNref) = max;
 				}
 			}
@@ -1155,18 +1155,18 @@ bool SyncThread::ReadBytes(c4_Bytes& bytes, unsigned int len) {
 		m_socket->Read(data, len-count);
 		if (m_socket->Error()) {
 			const wxSocketError err =  m_socket->LastError();
-			
+
 			if (err != wxSOCKET_WOULDBLOCK) {
 				wxLogDebug(wxT("ReadBytes error: %d\n"), err);
 				return false;
 			}
 		}
 
-		const unsigned int lastCount = m_socket->LastCount(); 
+		const unsigned int lastCount = m_socket->LastCount();
 		count += lastCount;
 		data += lastCount;
 	}
-	
+
 	return (count == len);
 }
 
@@ -1190,7 +1190,7 @@ bool SyncThread::ReadLine(wxString& result)
         size_t nRead = m_socket->LastCount();
         if ( !nRead && m_socket->Error() ) {
 			const wxSocketError err =  m_socket->LastError();
-			
+
 			if (err != wxSOCKET_WOULDBLOCK) {
 				wxLogDebug(wxT("Readline error: %d\n"), err);
 				return false;
@@ -1250,7 +1250,7 @@ bool SyncThread::ParseUserId(const wxString& in, c4_Bytes& userBytes, cxProcessM
 			else return true;
 		}
 	cxENDLOCK
-	
+
 	// If the user is unknown or has been modified we have
 	// to get the full profile
 	if (mode == cxACTIVE) {
@@ -1276,7 +1276,7 @@ bool SyncThread::ParseDocRev(const wxString& in, c4_Bytes& docBytes, c4_Bytes& r
 	if (!doc.empty()) {
 		if (!ParseHex(doc, docBytes)) return false;
 
-		// Parse the node id 
+		// Parse the node id
 		const wxString rev = in.AfterLast(wxT('/'));
 		if (!ParseHex(rev, revBytes)) return false;
 	}
@@ -1293,7 +1293,7 @@ bool SyncThread::ParseNodeid(const wxString& in, c4_Bytes& revBytes, int& node_i
 	if (!rev.empty()) {
 		if (!ParseHex(rev, revBytes)) return false;
 
-		// Parse the node id 
+		// Parse the node id
 		const wxString nodeid = in.AfterLast(wxT('/'));
 		node_id = wxAtoi(nodeid);
 	}
@@ -1306,7 +1306,7 @@ bool SyncThread::ParseHex(const wxString& in, c4_Bytes& bytes) { // static
 	const unsigned int len = in.size();
 	if (len % 2 != 0) {
 		wxASSERT(false);
-		return false; 
+		return false;
 	}
 
 	unsigned char* buf = bytes.SetBuffer(len / 2);
@@ -1333,7 +1333,7 @@ bool SyncThread::ParseHex64(wxString in, wxLongLong& ll) { // static
 	if (in.size() < 16) in.Pad(16 - in.size(), wxChar('0'), false);
 
 	wxLongLong_t ll_t;
-	unsigned char* pll_t = (unsigned char*)&ll_t; 
+	unsigned char* pll_t = (unsigned char*)&ll_t;
 
 	unsigned int in_ndx = 0;
 	while (in_ndx < 16) {

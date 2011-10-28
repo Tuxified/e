@@ -14,7 +14,7 @@ _download()
   # Only download files we don't already have.
   # This lets us delete files to redownload, or get
   # new versions automatically.
-  
+
   for url in \
     http://curl.haxx.se/download/curl-7.18.2.tar.gz \
     http://libtomcrypt.com/files/crypt-1.11.tar.bz2 \
@@ -39,8 +39,8 @@ _backup_existing_patches()
   echo "Backing up patched externals..."
   for dir in  curl libtomcrypt libtommath metakit prce tinyxml wxwidgets
   do
-    if [[ -e $dir ]]; then 
-      mv $dir $tempdir/$dir; 
+    if [[ -e $dir ]]; then
+      mv $dir $tempdir/$dir;
     fi
   done
 }

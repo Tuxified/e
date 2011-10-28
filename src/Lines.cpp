@@ -119,9 +119,9 @@ void Lines::SetLine(unsigned int lineId) {
 
 	const unsigned int linesize = line.SetLine(ll->offset(lineId), ll->end(lineId));
 	/*
-	 The size we have for this line may have been an approximation so we 
-	 update to the real size here. Calculating the extent of a line can be an 
-	 expensive operation so generally we use quick approximations, 
+	 The size we have for this line may have been an approximation so we
+	 update to the real size here. Calculating the extent of a line can be an
+	 expensive operation so generally we use quick approximations,
 	 and then correct them when we need to parse the line anyway
 	 (for instance,  drawing it or getting caret pos).
 	*/
@@ -228,7 +228,7 @@ void Lines::SetPos(unsigned int newpos, bool update_lastpos) {
 
 	if (update_lastpos) lastpos = pos;
 	pos = newpos;
-	
+
 	// Only set caret if line is valid
 	if (line.GetDisplayWidth()) SetCaretPos();
 
@@ -450,7 +450,7 @@ bool Lines::IsBeforeNewline(unsigned int pos) const {
 
 unsigned int Lines::GetLineEndFromPos(unsigned int pos) const {
 	wxASSERT(pos <= GetLength());
-	
+
 	const unsigned int endPos = ll->EndFromPos(pos);
 	return endPos;
 }
@@ -527,7 +527,7 @@ int Lines::PrepareYPos(int folded_ypos) {
 
 	if (approxDiff) {
 		const unsigned int new_ypos = ypos + approxDiff;
-		const unsigned int adj_ypos = FoldedYPos(new_ypos); 
+		const unsigned int adj_ypos = FoldedYPos(new_ypos);
 		return adj_ypos - folded_ypos; // diff adjusted for folding
 	}
 
@@ -634,8 +634,8 @@ int Lines::UpdateSelection(unsigned int sel_id, unsigned int start, unsigned int
 }
 
 void Lines::RemoveSelection(unsigned int sel_id) {
-	// FS#393 Quickly pressing and releasing CTRL and ALT while making a 
-	// selection can cause this function to be called in a way that violates this 
+	// FS#393 Quickly pressing and releasing CTRL and ALT while making a
+	// selection can cause this function to be called in a way that violates this
 	// assertion. In that case, we don't want to blow up here.
 	if (selections.empty()) return;
 
@@ -1288,7 +1288,7 @@ vector<cxLineChange> Lines::ChangesToFullLines(const vector<cxChange>& changes) 
 
 		if (p->type == cxINSERTION) {
 			offset += len;
-			
+
 			change_line_start = wxMin(GetLineStartFromPos(p->start), change_line_start);
 			change_line_end = GetLineEndFromPos(p->end);
 			change_diff += len;

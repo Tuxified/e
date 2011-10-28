@@ -126,8 +126,8 @@ bool projectpane_is_dir_empty(const wxString& path) {
 }
 
 ProjectPane::ProjectPane(IFrameProjectService& projectServce, wxWindow*parent, wxWindowID id):
-	wxPanel(parent, id), 
-	m_projectService(projectServce), 
+	wxPanel(parent, id),
+	m_projectService(projectServce),
 	m_imageList(16,16), m_dirWatchHandle(NULL),
 	m_isRemote(false), m_isDestroying(false),  m_remoteThread(m_projectService.GetRemoteThread()),
 	m_remoteProfile(NULL), m_busyCount(0), m_newIconsCond(m_iconMutex)
@@ -562,7 +562,7 @@ wxTreeItemId ProjectPane::GetItemFromPath(const wxString& path) const {
 	const wxString prjPath = m_prjPath.GetPath();
 	if (!path.StartsWith(prjPath, &relativePath)) return wxTreeItemId();
 	if (relativePath.empty()) return m_prjTree->GetRootItem();
-	
+
 	//const wxFileName changedFile(relativePath);
 	//if (!changedFile.IsOk()) return wxTreeItemId();
 
@@ -674,10 +674,10 @@ void ProjectPane::ExpandDir(wxTreeItemId parentId, DirItemData *data, const wxAr
 
 	// Prepare path for adding file/dirname
 	if (!m_isRemote) {
-		if(!wxEndsWithPathSeparator(dirName)) 
+		if(!wxEndsWithPathSeparator(dirName))
 			dirName += wxFILE_SEP_PATH;
 	}
-	else if (dirName.Last() != wxT('/')) 
+	else if (dirName.Last() != wxT('/'))
 		dirName += wxT('/');
 
 
@@ -1212,7 +1212,7 @@ void ProjectPane::OnTreeKeyDown(wxTreeEvent& event) {
 		const bool allowUndo = !wxGetKeyState(WXK_SHIFT);
 		DeleteItems(allowUndo);
 	}
-	
+
 	// F2 (rename) & F5 (refresh) are caught as accelerators
 	// to avoid conflicts with menu item shortcuts.
 }
@@ -1342,12 +1342,12 @@ void ProjectPane::OnDirChanged(wxDirWatcherEvent& event) {
 	wxString path = event.GetChangedFile();
 	const wxString prjPath = m_prjPath.GetPath();
 	const int changeType = event.GetChangeType();
-	
+
 	wxLogDebug(wxT("%s Changed (%d)"), path.c_str(), changeType);
 
 	//const wxString msg = wxString::Format(wxT("%s Changed (%d)\n"), path.c_str(), changeType);
 	//OutputDebugString(msg);
-	
+
 	// On atomic saves we just ignore any changes
 	if (path.EndsWith(wxT(".etmp"))) {
 		if (changeType == DIRWATCHER_FILE_ADDED) {
@@ -1357,7 +1357,7 @@ void ProjectPane::OnDirChanged(wxDirWatcherEvent& event) {
 		else if (changeType == DIRWATCHER_FILE_RENAMED) m_atomicPath.clear(); // atomic save done
 	}
 	if (changeType == DIRWATCHER_FILE_REMOVED && path == m_atomicPath) return;
-	
+
 	// Make path relative to project
 	wxString relativePath;
 	if (!path.StartsWith(prjPath, &relativePath)) return;
@@ -1797,7 +1797,7 @@ int ProjectPane::AddFileIcon(const wxString& path, bool isDir) {
 		SHGFI_ICON|SHGFI_SMALLICON|SHGFI_USEFILEATTRIBUTES);
 
 		if (result == 0) return wxNOT_FOUND;
-		
+
 		icon.SetHICON(shfi.hIcon);
 #else
 		if (false == GetIconFromFilePath(path, icon)) {
@@ -1849,7 +1849,7 @@ bool ProjectPane::GetIconFromFilePath(const wxString& path, wxIcon &icon) {
 //	if (wxFileName(path).IsDir()) {
 	if (wxFileName::DirExists(path)) {
 //	if (dir.Open(path)) {
-		// get icon for directory 
+		// get icon for directory
 		icon = wxArtProvider::GetIcon(wxART_FOLDER, wxART_OTHER, wxSize(16, 16));
 		return icon.IsOk();
 	}
@@ -1879,7 +1879,7 @@ bool ProjectPane::GetIconFromFilePath(const wxString& path, wxIcon &icon) {
 		wxLogDebug(wxT("ProjectPane::%s() Icon is not OK"), wxString(__FUNCTION__, wxConvUTF8).c_str());
 		return GetDefaultIcon(icon);
 	}
-	
+
 	icon.CopyFromBitmap(newIcon.ConvertToImage().Rescale(16, 16, wxIMAGE_QUALITY_HIGH));
 	return true;
 }
@@ -2058,7 +2058,7 @@ wxDragResult ProjectPane::DropTarget::OnData(wxCoord x, wxCoord y, wxDragResult 
 		}
 		else if (def == wxDragMove) {
 			// Dragging in tree get easily triggered, so we want confirmation
-			const wxString msg = (filenames.GetCount() == 1) 
+			const wxString msg = (filenames.GetCount() == 1)
 				? wxT("Are you sure you want to move this item?")
 				: wxString::Format(wxT("Are you sure you want to move these %d items?"), filenames.GetCount());
 

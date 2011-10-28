@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2006-09-22
-// RCS-ID:      
+// RCS-ID:
 // Copyright:   (C) Copyright 2006-2009, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -69,7 +69,7 @@ struct EmbeddingPtrs
     ns_smartptr<nsIWebNavigation> m_web_navigation;
     ns_smartptr<nsIDOMEventTarget> m_event_target;
     ns_smartptr<nsIClipboardCommands> m_clipboard_commands;
-    
+
     ns_smartptr<nsIPrintSettings> m_print_settings;
 };
 
@@ -92,21 +92,21 @@ public:
 
     GeckoEngine();
     ~GeckoEngine();
-    
+
     void SetEnginePath(const wxString& path);
     void SetStoragePath(const wxString& path);
-    
+
     bool Init();
     bool IsOk() const;
-    
+
     void AddContentListener(ContentListener* l);
     ContentListenerPtrArray& GetContentListeners();
 
     void AddPluginPath(const wxString& path);
-    
+
     // xulrunner versions 1.8 will return true, 1.9 will return false
     bool IsVersion18() const { return m_is18; }
-    
+
 private:
 
     wxString m_gecko_path;
@@ -114,7 +114,7 @@ private:
     wxString m_history_filename;
     bool m_ok;
     bool m_is18;
-    
+
     ContentListenerPtrArray m_content_listeners;
     ns_smartptr<nsIAppShell> m_appshell;
     PluginListProvider* m_plugin_provider;
@@ -139,11 +139,11 @@ GeckoEngine g_gecko_engine;
 #define NS_ICHROMEINTERNAL_IID \
   {0x7fe3c660, 0x376c, 0x43e9, \
   { 0x9f, 0xdd, 0x69, 0x85, 0x4a, 0xfe, 0xc9, 0x46 }}
-  
+
 
 class NS_NO_VTABLE nsIChromeInternal : public nsISupports
 {
-public: 
+public:
 
     NS_DEFINE_STATIC_IID_ACCESSOR(NS_ICHROMEINTERNAL_IID)
 
@@ -177,12 +177,12 @@ public:
 
     BrowserChrome(wxWebControl* wnd);
     virtual ~BrowserChrome();
-    
+
     void ChromeInit();
     void ChromeUninit();
-    
+
     wxWebControl* GetWebControl() { return m_wnd; }
-    
+
 public:
     ns_smartptr<nsIWebBrowser> m_web_browser;
     wxWebControl* m_wnd;
@@ -258,7 +258,7 @@ void BrowserChrome::ChromeInit()
                                             NS_LITERAL_STRING("mouseup"),
                                             this,
                                             PR_TRUE);
-                                                   
+
     res = m_wnd->m_ptrs->m_event_target->AddEventListener(
                                             NS_LITERAL_STRING("dblclick"),
                                             this,
@@ -268,13 +268,13 @@ void BrowserChrome::ChromeInit()
                                             NS_LITERAL_STRING("dragdrop"),
                                             this,
                                             PR_FALSE);
-                                 
+
     // these two event types are used to capture favicon information
     res = m_wnd->m_ptrs->m_event_target->AddEventListener(
                                             NS_LITERAL_STRING("DOMLinkAdded"),
                                             this,
                                             PR_FALSE);
-                                            
+
     res = m_wnd->m_ptrs->m_event_target->AddEventListener(
                                             NS_LITERAL_STRING("DOMContentLoaded"),
                                             this,
@@ -284,7 +284,7 @@ void BrowserChrome::ChromeInit()
 void BrowserChrome::ChromeUninit()
 {
     nsresult res;
-    
+
     res = m_wnd->m_ptrs->m_event_target->RemoveEventListener(
                                             NS_LITERAL_STRING("mousedown"),
                                             this,
@@ -294,27 +294,27 @@ void BrowserChrome::ChromeUninit()
                                             NS_LITERAL_STRING("mouseup"),
                                             this,
                                             PR_TRUE);
-                                                   
+
     res = m_wnd->m_ptrs->m_event_target->RemoveEventListener(
                                             NS_LITERAL_STRING("dblclick"),
                                             this,
                                             PR_TRUE);
-                                            
+
     res = m_wnd->m_ptrs->m_event_target->RemoveEventListener(
                                             NS_LITERAL_STRING("dragdrop"),
                                             this,
                                             PR_TRUE);
-                                            
+
     res = m_wnd->m_ptrs->m_event_target->RemoveEventListener(
                                             NS_LITERAL_STRING("DOMLinkAdded"),
                                             this,
                                             PR_FALSE);
-                                            
+
     res = m_wnd->m_ptrs->m_event_target->RemoveEventListener(
                                             NS_LITERAL_STRING("DOMContentLoaded"),
                                             this,
                                             PR_FALSE);
-    
+
     m_wnd = NULL;
 }
 
@@ -365,7 +365,7 @@ NS_IMETHODIMP BrowserChrome::ShowAsModal()
 {
     if (!m_wnd)
         return NS_OK;
-  
+
     wxWindow* parent = m_wnd->GetParent();
     wxDialog* dialog = NULL;
     while (parent)
@@ -375,13 +375,13 @@ NS_IMETHODIMP BrowserChrome::ShowAsModal()
             dialog = (wxDialog*)parent;
             break;
         }
-        
+
         parent = parent->GetParent();
     }
-    
+
     if (!dialog)
         return NS_OK;
- 
+
     m_dialog = dialog;
     m_dialog->ShowModal();
     m_dialog = NULL;
@@ -421,19 +421,19 @@ NS_IMETHODIMP BrowserChrome::SetTitle(const PRUnichar* title)
         return NS_OK;
 
     m_title = ns2wx(title);
-    
+
     if (m_dialog)
     {
         // modal dialogs we do ourself
         m_dialog->SetTitle(ns2wx(title));
         return NS_OK;
     }
-      
+
     wxWebEvent evt(wxEVT_WEB_TITLECHANGE, m_wnd->GetId());
     evt.SetEventObject(m_wnd);
     evt.SetString(m_title);
     m_wnd->GetEventHandler()->ProcessEvent(evt);
-    
+
     return NS_OK;
 }
 
@@ -465,7 +465,7 @@ NS_IMETHODIMP BrowserChrome::SetStatus(PRUint32 type, const PRUnichar* status)
         evt.SetString(ns2wx(status));
         m_wnd->GetEventHandler()->ProcessEvent(evt);
     }
-      
+
     return NS_OK;
 }
 
@@ -550,10 +550,10 @@ NS_IMETHODIMP BrowserChrome::OnStateChange(nsIWebProgress* progress,
 
     wxWebEvent evt(wxEVT_WEB_STATECHANGE, m_wnd->GetId());
     evt.SetEventObject(m_wnd);
-    
+
     int state = wxWEB_STATE_NONE;
     int res = wxWEB_RESULT_NONE;
-    
+
     if (progress_state_flags & STATE_STOP)
         state |= wxWEB_STATE_STOP;
     if (progress_state_flags & STATE_START)
@@ -573,7 +573,7 @@ NS_IMETHODIMP BrowserChrome::OnStateChange(nsIWebProgress* progress,
         state |= wxWEB_STATE_IS_NETWORK;
     if (progress_state_flags & STATE_IS_WINDOW)
         state |= wxWEB_STATE_IS_WINDOW;
-    
+
     /*
     if (status == NS_OK)
         res = wxWEB_RESULT_SUCCESS;
@@ -608,11 +608,11 @@ NS_IMETHODIMP BrowserChrome::OnStateChange(nsIWebProgress* progress,
      else if (status == NS_ERROR_PROXY_CONNECTION_REFUSED)
         res = wxWEB_RESULT_PROXY_CONNECTION_REFUSED;
     */
-        
+
     evt.SetState(state);
     evt.SetResult(res);
     m_wnd->GetEventHandler()->ProcessEvent(evt);
-    
+
     return NS_OK;
 }
 
@@ -631,7 +631,7 @@ NS_IMETHODIMP BrowserChrome::OnLocationChange(nsIWebProgress* progress,
     evt.SetEventObject(m_wnd);
     evt.SetString(ns2wx(url));
     m_wnd->GetEventHandler()->ProcessEvent(evt);
-    
+
     return NS_OK;
 }
 
@@ -667,15 +667,15 @@ NS_IMETHODIMP BrowserChrome::OnShowContextMenu(PRUint32 context_flags,
         return NS_OK;
 
     wxWebEvent evt(wxEVT_WEB_SHOWCONTEXTMENU, m_wnd->GetId());
-    
+
     ns_smartptr<nsIDOMEvent> mouse_event;
     info->GetMouseEvent(&mouse_event.p);
-    
+
     if (mouse_event)
     {
         ns_smartptr<nsIDOMEventTarget> target;
         mouse_event->GetTarget(&target.p);
-        
+
         evt.m_target_node.m_data->setNode(target);
 
         // note: following parallels code in mouse event; see if the target
@@ -688,7 +688,7 @@ NS_IMETHODIMP BrowserChrome::OnShowContextMenu(PRUint32 context_flags,
         ns_smartptr<nsIDOMNode> node;
         node = target;
         node.p = GetAnchor(node.p);
-        
+
         ns_smartptr<nsIDOMHTMLAnchorElement> anchor;
         anchor = node;
 
@@ -702,7 +702,7 @@ NS_IMETHODIMP BrowserChrome::OnShowContextMenu(PRUint32 context_flags,
 
     evt.SetEventObject(m_wnd);
     m_wnd->GetEventHandler()->ProcessEvent(evt);
-    
+
     return NS_OK;
 }
 
@@ -736,17 +736,17 @@ NS_IMETHODIMP BrowserChrome::HandleEvent(nsIDOMEvent* evt)
     {
 
     }
-    
-    
+
+
     if (type == wxT("DOMContentLoaded"))
     {
         m_wnd->OnDOMContentLoaded();
-        
+
         ns_smartptr<nsIURI> uri, uri2;
         m_wnd->m_ptrs->m_web_navigation->GetCurrentURI(&uri.p);
         if (!uri)
             return NS_OK;
-    
+
         // skip https
         PRBool b = PR_FALSE;
         uri->SchemeIs("https", &b);
@@ -755,77 +755,77 @@ NS_IMETHODIMP BrowserChrome::HandleEvent(nsIDOMEvent* evt)
         uri->SchemeIs("file", &b);
         if (b)
             return NS_OK;
-            
+
         nsEmbedCString url_str;
         uri->Resolve(NS_LITERAL_CSTRING("/favicon.ico"), url_str);
-        
+
         uri2 = nsNewURI(ns2wx(url_str));
         if (!uri2)
             return NS_OK;
-            
+
         // let main control know that we should have a favicon
         // by now.  If we don't, load a default /favicon.ico
         m_wnd->FetchFavIcon((void*)uri2.p);
-        
+
     }
-    
+
     if (type == wxT("DOMLinkAdded"))
     {
         ns_smartptr<nsIDOMEventTarget> target;
         evt->GetTarget(&target.p);
-        
+
         ns_smartptr<nsIDOMElement> element = target;
         if (!element)
             return NS_OK;
-        
+
         // make sure we're dealing with a link tag
         nsEmbedString value;
         wxString tagname, rel, href, spec;
-        
+
         element->GetTagName(value);
         tagname = ns2wx(value);
         tagname.MakeLower();
         if (tagname != wxT("link"))
             return NS_OK;
-            
+
         // make sure it has a rel attribute
         element->GetAttribute(NS_LITERAL_STRING("rel"), value);
         rel = ns2wx(value);
         rel.MakeLower();
-        
+
         if (rel != wxT("shortcut icon") &&
             rel != wxT("icon"))
         {
             return NS_OK;
         }
-        
+
         // get the href attribute
         element->GetAttribute(NS_LITERAL_STRING("href"), value);
         href = ns2wx(value);
-       
+
         // now get the dom document
         ns_smartptr<nsIDOMDocument> dom_doc;
         element->GetOwnerDocument(&dom_doc.p);
         ns_smartptr<nsIDOM3Document> dom3_doc = dom_doc;
         if (!dom3_doc)
             return NS_OK;
-        
+
         dom3_doc->GetDocumentURI(value);
         spec = ns2wx(value);
-        
+
         nsEmbedCString chref;
         nsEmbedCString cvalue;
         wx2ns(href, chref);
         ns_smartptr<nsIURI> doc_uri = nsNewURI(spec);
         doc_uri->Resolve(chref, cvalue);
-        
+
         wxString favicon_url = ns2wx(cvalue);
         ns_smartptr<nsIURI> result_uri = nsNewURI(favicon_url);
-        
+
         m_wnd->FetchFavIcon((void*)result_uri.p);
         return NS_OK;
     }
-    
+
 
     if (type == wxT("mousedown") ||
         type == wxT("mouseup") ||
@@ -837,19 +837,19 @@ NS_IMETHODIMP BrowserChrome::HandleEvent(nsIDOMEvent* evt)
             if (wxWindow::FindFocus() != m_wnd)
                 m_wnd->SetFocus();
         }
-        
+
         ns_smartptr<nsIDOMEventTarget> target;
         evt->GetTarget(&target.p);
-        
+
         ns_smartptr<nsIDOMMouseEvent> mouse_evt = nsToSmart(evt);
         if (!mouse_evt)
             return NS_ERROR_NOT_IMPLEMENTED;
-        
+
         int evtid;
         PRUint16 ns_button = 0;
-        
+
         mouse_evt->GetButton(&ns_button);
-        
+
         if (type == wxT("mousedown"))
         {
             switch (ns_button)
@@ -882,8 +882,8 @@ NS_IMETHODIMP BrowserChrome::HandleEvent(nsIDOMEvent* evt)
         {
             wxFAIL_MSG(wxT("NS event type needs to be mapped to wxWebConnect event type"));
         }
-         
-        
+
+
         // see if the target or any of its parent nodes are anchors and
         // if so, set the event href; note: the reason we have to look
         // through the parents of the target is because the target may
@@ -893,7 +893,7 @@ NS_IMETHODIMP BrowserChrome::HandleEvent(nsIDOMEvent* evt)
         ns_smartptr<nsIDOMNode> node;
         node = target;
         node.p = GetAnchor(node.p);
-        
+
         ns_smartptr<nsIDOMHTMLAnchorElement> anchor;
         anchor = node;
 
@@ -906,14 +906,14 @@ NS_IMETHODIMP BrowserChrome::HandleEvent(nsIDOMEvent* evt)
             nsEmbedString nss;
             anchor->GetHref(nss);
             evt.SetHref(ns2wx(nss));
-            
+
             // also, we can handle this here:  if a link was clicked, clear out
             // our favicon stuff to prepare for the next load
             m_wnd->ResetFavicon();
-            
+
         }
         m_wnd->GetEventHandler()->ProcessEvent(evt);
-    
+
         return NS_OK;
     }
 
@@ -926,7 +926,7 @@ wxWebControl* GetWebControlFromBrowserChrome(nsIWebBrowserChrome* chrome)
         return NULL;
 
     ns_smartptr<nsIChromeInternal> chrome_int = ns_smartptr<nsIWebBrowserChrome>(chrome);
-    
+
     if (chrome_int.empty())
         return NULL;
 
@@ -956,14 +956,14 @@ public:
     ContentListener(wxWebContentHandler* handler)
     {
         NS_INIT_ISUPPORTS();
-        
+
         m_handler = handler;
     }
-    
+
     virtual ~ContentListener()
     {
     }
-    
+
     NS_IMETHODIMP OnStartURIOpen(nsIURI* uri,
                                  PRBool* abort)
     {
@@ -971,7 +971,7 @@ public:
         nsresult res = uri->GetSpec(spec);
         if (NS_FAILED(res))
             return NS_OK;
-      
+
         m_current_uri = ns2wx(spec);
 
         *abort = PR_FALSE;
@@ -1004,7 +1004,7 @@ public:
     {
         wxString content_type = wxString::FromAscii(_content_type);
         content_type.MakeLower();
-        
+
         *retval = m_handler->CanHandleContent(m_current_uri, content_type) ? PR_TRUE : PR_FALSE;
         return NS_OK;
      }
@@ -1030,31 +1030,31 @@ public:
     }
 
     // nsIStreamListener
-    
+
     NS_IMETHODIMP OnStartRequest(nsIRequest* request, nsISupports* context)
     {
         ns_smartptr<nsIRequest> sp = request;
         ns_smartptr<nsIChannel> channel = sp;
         ns_smartptr<nsIURI> uri;
         channel->GetURI(&uri.p);
-        
+
         nsEmbedCString spec;
 
         if (NS_FAILED(uri->GetSpec(spec)))
             return NS_OK;
-            
+
         wxString url = ns2wx(spec);
-        
+
         m_handler->OnStartRequest(url);
         return NS_OK;
     }
-    
+
     NS_IMETHODIMP OnStopRequest(nsIRequest* request, nsISupports* context, nsresult status_code)
     {
         m_handler->OnStopRequest();
         return NS_OK;
     }
-    
+
     NS_IMETHODIMP OnDataAvailable(nsIRequest* channel,
                                   nsISupports* context,
                                   nsIInputStream* in_stream,
@@ -1062,17 +1062,17 @@ public:
                                   PRUint32 count)
     {
         unsigned char* buf = new unsigned char[count];
-        
+
         PRUint32 read;
         in_stream->Read((char*)buf, count, &read);
-        
+
         m_handler->OnData(buf, count);
-        
+
         delete[] buf;
-        
+
         return NS_OK;
     }
-    
+
 private:
 
     wxWebContentHandler* m_handler;
@@ -1107,26 +1107,26 @@ public:
     MainURIListener(wxWebControl* wnd, nsIWebBrowser* browser)
     {
         NS_INIT_ISUPPORTS();
-        
+
         m_wnd = wnd;
         m_docshell_uri_listener = nsRequestInterface(browser);
     }
-    
+
     virtual ~MainURIListener()
     {
     }
-    
+
     NS_IMETHODIMP OnStartURIOpen(nsIURI* uri,
                                  PRBool* abort)
     {
         wxASSERT(uri);
         wxASSERT(abort);
-        
+
         // set default behavior
         *abort = PR_FALSE;
-        
+
         nsresult res;
-        
+
         nsEmbedCString spec;
         res = uri->GetSpec(spec);
         if (NS_FAILED(res))
@@ -1135,9 +1135,9 @@ public:
             // something went wrong while getting the uri spec
             return NS_OK;
         }
-        
+
         m_current_url = ns2wx(spec);
-        
+
         wxWebEvent evt(wxEVT_WEB_OPENURI, m_wnd->GetId());
         evt.SetEventObject(m_wnd);
         evt.SetHref(m_current_url);
@@ -1149,8 +1149,8 @@ public:
                 return NS_OK;
             }
         }
-        
-        
+
+
         // let all other content listeners know about this
         ContentListenerPtrArray& arr = g_gecko_engine.GetContentListeners();
         int i = 0, count = arr.GetCount();
@@ -1160,8 +1160,8 @@ public:
             if (*abort)
                 return NS_OK;
         }
-        
-        
+
+
         return NS_OK;
     }
 
@@ -1188,15 +1188,15 @@ public:
     {
         wxString content_type = wxString::FromAscii(_content_type);
         content_type.MakeLower();
-        
+
         // this event will decide if the _browser_ should handle the content
         // or not.  If the browser doesn't handle the content, the content
         // listener(s) as specified by wxWebControl::AddContentHandler
         // are given a chance.
-        
+
         // If a type conversion is specified, the browser will ask again
         // if the content can be handled
-        
+
         wxWebEvent evt(wxEVT_WEB_SHOULDHANDLECONTENT, m_wnd->GetId());
         evt.SetEventObject(m_wnd);
         evt.SetContentType(content_type);
@@ -1214,7 +1214,7 @@ public:
                     *desired_content_type = (char*)NS_Alloc(output_content_type.Length()+1);
                     strcpy(*desired_content_type, (const char*)output_content_type.mbc_str());
                 }
-                
+
                 return NS_OK;
             }
         }
@@ -1282,11 +1282,11 @@ public:
     {
         NS_INIT_ISUPPORTS();
     }
-    
+
     virtual ~WindowCreator()
     {
     }
-    
+
     NS_IMETHODIMP CreateChromeWindow(nsIWebBrowserChrome* parent,
                                      PRUint32 chrome_flags,
                                      nsIWebBrowserChrome** retval)
@@ -1298,11 +1298,11 @@ public:
             // (this shouldn't happen)
             return NS_ERROR_FAILURE;
         }
-        
-        
+
+
         int wx_chrome_flags = 0;
-        
-        
+
+
         // TODO: add more flags as necessary
         if (chrome_flags & nsIWebBrowserChrome::CHROME_MODAL)
             wx_chrome_flags |= wxWEB_CHROME_MODAL;
@@ -1310,9 +1310,9 @@ public:
             wx_chrome_flags |= wxWEB_CHROME_RESIZABLE;
         if (chrome_flags & nsIWebBrowserChrome::CHROME_CENTER_SCREEN)
             wx_chrome_flags |= wxWEB_CHROME_CENTER;
-        
-        
-        
+
+
+
         wxWebEvent evt(wxEVT_WEB_CREATEBROWSER, web_control->GetId());
         evt.SetEventObject(web_control);
         evt.SetCreateChromeFlags(wx_chrome_flags);
@@ -1324,13 +1324,13 @@ public:
             // window with a veto
             return NS_ERROR_FAILURE;
         }
-        
+
         if (evt.m_create_browser)
         {
             // owner supplied its own window
             *retval = static_cast<nsIWebBrowserChrome*>(evt.m_create_browser->m_chrome);
             NS_ADDREF(*retval);
-            
+
             return NS_OK;
         }
          else
@@ -1343,7 +1343,7 @@ public:
             *retval = static_cast<nsIWebBrowserChrome*>(ctrl->m_chrome);
             NS_ADDREF(*retval);
         }
-        
+
         return NS_OK;
     }
 };
@@ -1365,27 +1365,27 @@ class PluginEnumerator : public nsISimpleEnumerator
 public:
 
     NS_DECL_ISUPPORTS
-    
+
     PluginEnumerator()
     {
         NS_INIT_ISUPPORTS();
         m_cur_item = 0;
     }
-    
+
     virtual ~PluginEnumerator()
     {
     }
-    
+
     NS_IMETHODIMP HasMoreElements(PRBool* retval)
     {
         if (!retval)
             return NS_ERROR_NULL_POINTER;
-        
+
         if (m_cur_item >= m_paths.GetCount())
             *retval = PR_FALSE;
              else
             *retval = PR_TRUE;
-            
+
         return NS_OK;
     }
 
@@ -1398,12 +1398,12 @@ public:
         nsresult res = NS_NewNativeLocalFile(nsDependentCString((const char*)m_paths[m_cur_item].mbc_str()), PR_TRUE, &file.p);
         if (NS_FAILED(res))
             return NS_ERROR_NULL_POINTER;
-            
+
         *retval = file.p;
         (*retval)->AddRef();
-        
+
         ++m_cur_item;
-        
+
         return NS_OK;
     }
 
@@ -1411,12 +1411,12 @@ public:
     {
         m_paths = paths;
     }
-    
+
 private:
 
     wxArrayString m_paths;
     size_t m_cur_item;
-    
+
 };
 
 NS_IMPL_ISUPPORTS1(PluginEnumerator, nsISimpleEnumerator)
@@ -1440,29 +1440,29 @@ public:
     {
         NS_INIT_ISUPPORTS();
     }
-    
+
     virtual ~PluginListProvider()
     {
     }
-    
+
     void AddPaths(nsISimpleEnumerator* paths)
     {
         PRBool more = PR_FALSE;
-        
+
         while (1)
         {
             paths->HasMoreElements(&more);
             if (!more)
                 break;
-                
+
             nsISupports* element = NULL;
             paths->GetNext(&element);
             if (!element)
                 continue;
-                
+
             ns_smartptr<nsIFile> file = nsToSmart(element);
             element->Release();
-            
+
             if (file)
             {
                 nsEmbedCString path;
@@ -1472,9 +1472,9 @@ public:
                 m_paths.Add(wxpath);
             }
         }
-        
+
     }
-    
+
     void AddPath(const wxString& path)
     {
         m_paths.Add(path);
@@ -1484,7 +1484,7 @@ public:
     {
         if (!retval)
             return NS_ERROR_NULL_POINTER;
-            
+
         // nothing returned by this method;
         // let next directory provider handle the request
         return NS_ERROR_FAILURE;
@@ -1503,11 +1503,11 @@ public:
             (*retval)->AddRef();
             return NS_OK;
         }
-        
+
         // let next directory provider handle the request
         return NS_ERROR_FAILURE;
     }
-  
+
 private:
 
     wxArrayString m_paths;
@@ -1558,14 +1558,14 @@ void GeckoEngine::SetEnginePath(const wxString& path)
 void GeckoEngine::SetStoragePath(const wxString& path)
 {
     wxASSERT_MSG(!m_ok, wxT("This must be called before the first wxWebControl is instantiated"));
-    
+
     m_storage_path = path;
-    
+
     wxChar path_separator = wxFileName::GetPathSeparator();
     m_history_filename = m_storage_path;
     if (m_history_filename.IsEmpty() || m_history_filename.Last() != path_separator)
         m_history_filename += path_separator;
-    
+
     m_history_filename += wxT("kwkh01.dat");
 }
 
@@ -1581,16 +1581,16 @@ public:
         m_wnd = wnd;
         Start(seconds*1000, wxTIMER_ONE_SHOT);
     }
-    
+
     void Notify()
     {
         m_wnd->Destroy();
-        
+
         if (!wxPendingDelete.Member(this))
             wxPendingDelete.Append(this);
-  
+
     }
-    
+
 private:
     wxWindow* m_wnd;
 };
@@ -1605,10 +1605,10 @@ bool GeckoEngine::Init()
 
     if (IsOk())
         return true;
-    
+
     if (m_gecko_path.IsEmpty())
         return false;
-    
+
     if (m_storage_path.IsEmpty())
     {
         wxLogNull log;
@@ -1618,7 +1618,7 @@ bool GeckoEngine::Init()
         if (default_storage_path.IsEmpty() || default_storage_path.Last() != path_separator)
             default_storage_path += path_separator;
         default_storage_path += wxT("kwkh01.tmp");
-        
+
 #ifdef WIN32
         ::wxMkDir(default_storage_path);
 #else
@@ -1628,7 +1628,7 @@ bool GeckoEngine::Init()
 
         SetStoragePath(default_storage_path);
     }
-    
+
     char path_separator = (char)wxFileName::GetPathSeparator();
     std::string gecko_path = (const char*)m_gecko_path.mbc_str();
     std::string xpcom_path = gecko_path;
@@ -1642,10 +1642,10 @@ bool GeckoEngine::Init()
     xpcom_path += "libxpcom.so";
     #endif
 
-        
+
     if (NS_FAILED(XPCOMGlueStartup(xpcom_path.c_str())))
         return false;
-    
+
     ns_smartptr<nsILocalFile> gre_dir;
     res = NS_NewNativeLocalFile(nsDependentCString(gecko_path.c_str()), PR_TRUE, &gre_dir.p);
     if (NS_FAILED(res))
@@ -1653,8 +1653,8 @@ bool GeckoEngine::Init()
 
     if (NS_FAILED(NS_InitXPCOM2(nsnull, gre_dir, nsnull)))
         return false;
-    
-    
+
+
     // create an app shell
     const nsCID appshell_cid = NS_APPSHELL_CID;
     m_appshell = nsCreateInstance(appshell_cid);
@@ -1665,22 +1665,22 @@ bool GeckoEngine::Init()
     }
 
     // set the window creator
-    
+
     ns_smartptr<nsIWindowWatcher> window_watcher = nsGetWindowWatcherService();
     if (!window_watcher)
         return false;
-        
+
     ns_smartptr<nsIWindowCreator> wnd_creator = static_cast<nsIWindowCreator*>(new WindowCreator);
     window_watcher->SetWindowCreator(wnd_creator);
 
 
     // set up our own custom prompting service
-    
+
     ns_smartptr<nsIComponentRegistrar> comp_reg;
     res = NS_GetComponentRegistrar(&comp_reg.p);
     if (NS_FAILED(res))
         return false;
-    
+
     ns_smartptr<nsIFactory> prompt_factory;
     CreatePromptServiceFactory(&prompt_factory.p);
 
@@ -1692,7 +1692,7 @@ bool GeckoEngine::Init()
 
     prompt_factory.clear();
     CreatePromptServiceFactory(&prompt_factory.p);
-    
+
     nsCID nssdialogs_cid = NS_NSSDIALOGS_CID;
     res = comp_reg->RegisterFactory(nssdialogs_cid,
                                     "PSM Dialog Impl",
@@ -1700,7 +1700,7 @@ bool GeckoEngine::Init()
                                     prompt_factory);
 
     // set up our own download progress service
-    
+
     ns_smartptr<nsIFactory> transfer_factory;
     CreateTransferFactory(&transfer_factory.p);
 
@@ -1709,7 +1709,7 @@ bool GeckoEngine::Init()
                                     "Transfer",
                                     "@mozilla.org/transfer;1",
                                     transfer_factory);
-                                    
+
     res = comp_reg->RegisterFactory(download_cid,
                                     "Transfer",
                                     "@mozilla.org/download;1",
@@ -1724,7 +1724,7 @@ bool GeckoEngine::Init()
                                     "Helper App Launcher Dialog",
                                     "@mozilla.org/helperapplauncherdialog;1",
                                     unknowncontenttype_factory);
-                                    
+
 
     // set up some history file (which appears to be
     // required for downloads to work properly, even if we
@@ -1732,16 +1732,16 @@ bool GeckoEngine::Init()
 
     ns_smartptr<nsIDirectoryService> dir_service = nsGetDirectoryService();
     ns_smartptr<nsIProperties> dir_service_props = dir_service;
-    
+
     ns_smartptr<nsILocalFile> history_file;
     res = NS_NewNativeLocalFile(nsDependentCString((const char*)m_history_filename.mbc_str()), PR_TRUE, &history_file.p);
     if (NS_FAILED(res))
         return false;
-        
+
     res = dir_service_props->Set("UHist", history_file.p);
     if (NS_FAILED(res))
         return false;
-    
+
     // set up a profile directory, which is necessary for many
     // parts of the gecko engine, including ssl on linux
 
@@ -1753,35 +1753,35 @@ bool GeckoEngine::Init()
     res = dir_service_props->Set("ProfD", prof_dir.p);
     if (NS_FAILED(res))
         return false;
-    
-    
+
+
     // replace the old plugin directory enumerator with our own
     // but keep all the entries that were in there
-    
+
     ns_smartptr<nsISimpleEnumerator> plugin_enum;
     res = dir_service_props->Get("APluginsDL", NS_GET_IID(nsISimpleEnumerator), (void**)&plugin_enum.p);
     if (NS_FAILED(res) || !plugin_enum.p)
         return false;
-    
+
     m_plugin_provider->AddPaths(plugin_enum.p);
     res = dir_service->RegisterProvider(m_plugin_provider);
     if (NS_FAILED(res) || !plugin_enum.p)
         return false;
-    
+
 
     // set up preferences
-    
+
     ns_smartptr<nsIPref> prefs = nsGetPrefService();
     if (!prefs)
         return false;
-    
+
     // this was originally so that we wouldn't have to set
     // up a prompting service.
     prefs->SetBoolPref("security.warn_submit_insecure", PR_FALSE);
-    
+
     // don't store a history
     prefs->SetIntPref("browser.history_expire_days", 0);
-    
+
     // set path for our cache directory
     PRUnichar* temps = wxToUnichar(m_storage_path);
     prefs->SetUnicharPref("browser.cache.disk.parent_directory", temps);
@@ -1789,10 +1789,10 @@ bool GeckoEngine::Init()
 
 
     m_ok = true;
-    
+
     m_is18 = m_appshell.empty() ? false : true;
-    
-    
+
+
     if (m_is18)
     {
         // 24 May 2008 - a bug was discovered; if a web control is not created
@@ -1802,14 +1802,14 @@ bool GeckoEngine::Init()
         // thread condition that waits until the first web control is created.
         // In any case, creating a web control here appears to solve the problem;
         // It's destroyed 10 seconds after creation.
-        
+
         wxWebFrame* f = new wxWebFrame(NULL, -1, wxT(""));
         f->SetShouldPreventAppExit(false);
         f->GetWebControl()->OpenURI(wxT("about:blank"));
-        
+
         DelayedWindowDestroy* d = new DelayedWindowDestroy(f, 10);
     }
-    
+
     return true;
 }
 
@@ -1828,7 +1828,7 @@ void GeckoEngine::AddPluginPath(const wxString& path)
     // check first if the path exists
     if (!wxFileName::DirExists(path))
         return;
-        
+
     m_plugin_provider->AddPath(path);
 }
 
@@ -1850,10 +1850,10 @@ static wxString urlEscape(const wxString& input)
 {
     wxString result;
     result.Alloc(input.Length() + 10);
-    
+
     const wxChar* ch = input.c_str();
     unsigned int c;
-    
+
     wxString u = wxT(" ");
 
     while ((c = *ch))
@@ -1869,11 +1869,11 @@ static wxString urlEscape(const wxString& input)
                 result += wxString::Format(wxT("%%%02X"), (unsigned char)*utf8);
                 ++utf8;
             }
-            
+
             ch++;
             continue;
         }
-        
+
         if (c <= 0x1f ||
             c == '%' || c == ' ' || c == '&' || c == '=' ||
             c == '+' || c == '$' || c == '#' || c == '{' ||
@@ -1887,7 +1887,7 @@ static wxString urlEscape(const wxString& input)
         {
             result += *ch;
         }
-        
+
         ++ch;
     }
 
@@ -1898,9 +1898,9 @@ wxString wxWebPostData::GetPostString()
 {
     wxString result;
     wxString post_string;
-    
+
     size_t i, cnt = m_vars.GetCount();
-    
+
     for (i = 0; i < cnt; ++i)
     {
         if (i > 0)
@@ -1909,8 +1909,8 @@ wxString wxWebPostData::GetPostString()
         post_string += wxT("=");
         post_string += urlEscape(m_values[i]);
     }
-    
-    
+
+
     result = wxString::Format(wxT("Content-Length: %d\r\n"), post_string.Length());
     result += wxT("Content-Type: application/x-www-form-urlencoded\r\n\r\n");
     result += post_string;
@@ -1958,12 +1958,12 @@ public:
         m_progress = NULL;
         m_ctrl = ctrl;
     }
-    
+
     void SetFilename(const wxString& filename)
     {
         m_filename = filename;
     }
-    
+
     ~wxWebFavIconProgress()
     {
         if (m_progress)
@@ -1977,22 +1977,22 @@ public:
     {
         m_ctrl->OnFavIconFetched(m_filename);
     }
-    
+
     void SetProgressListener(ProgressListenerAdaptor* prog)
     {
         if (m_progress)
         {
             m_progress->Release();
         }
-        
+
         m_progress = prog;
-        
+
         if (m_progress)
         {
             m_progress->AddRef();
         }
     }
-    
+
 private:
 
     ProgressListenerAdaptor* m_progress;
@@ -2017,17 +2017,17 @@ public:
         m_ptr = ptr;
         *m_ptr = false;
     }
-    
+
     void OnFinish()
     {
         *m_ptr = true;
     }
-    
+
     void OnError(const wxString& message)
     {
         *m_ptr = true;
     }
-    
+
 private:
     bool* m_ptr;
 };
@@ -2071,7 +2071,7 @@ wxWebControl::wxWebControl(wxWindow* parent,
     m_favicon_progress = NULL;
 
     m_ptrs = new EmbeddingPtrs;
-    
+
     // create browser chrome
     BrowserChrome* chrome = new BrowserChrome(this);
     chrome->AddRef();
@@ -2127,7 +2127,7 @@ wxWebControl::wxWebControl(wxWindow* parent,
         }
         dsti->SetItemType(nsIDocShellTreeItem::typeContentWrapper);
     }
-    
+
     // get base window interface and set its native window
     #ifdef __WXGTK__
     void* native_handle = (void*)m_wxwindow;
@@ -2145,21 +2145,21 @@ wxWebControl::wxWebControl(wxWindow* parent,
         wxASSERT(0);
         return;
     }
-      
+
     res = m_ptrs->m_base_window->Create();
     if (NS_FAILED(res))
     {
         wxASSERT(0);
         return;
     }
-    
+
     // set our web progress listener
 
     nsIWeakReference* weak = NS_GetWeakReference((nsIWebProgressListener*)m_chrome);
     m_ptrs->m_web_browser->AddWebBrowserListener(weak, NS_GET_IID(nsIWebProgressListener));
     weak->Release();
 
-    
+
 
     // set our URI content listener
 
@@ -2169,7 +2169,7 @@ wxWebControl::wxWebControl(wxWindow* parent,
 
 
     // get the event target
-    
+
     ns_smartptr<nsIDOMWindow> dom_window;
     m_ptrs->m_web_browser->GetContentDOMWindow(&dom_window.p);
     if (!dom_window)
@@ -2177,8 +2177,8 @@ wxWebControl::wxWebControl(wxWindow* parent,
         wxASSERT(0);
         return;
     }
-    
-    
+
+
     ns_smartptr<nsIDOMWindow2> dom_window2(dom_window);
     if (dom_window2)
     {
@@ -2218,7 +2218,7 @@ wxWebControl::wxWebControl(wxWindow* parent,
         wxASSERT(0);
         return;
     }
-    
+
     // get the nsIWebBrowserFind interface
     m_ptrs->m_web_browser_find = nsRequestInterface(m_ptrs->m_web_browser);
     if (!m_ptrs->m_web_browser_find)
@@ -2226,7 +2226,7 @@ wxWebControl::wxWebControl(wxWindow* parent,
         wxASSERT(0);
         return;
     }
-    
+
     // get the nsIWebNavigation interface
     m_ptrs->m_web_navigation = m_ptrs->m_web_browser;
     if (!m_ptrs->m_web_navigation)
@@ -2234,14 +2234,14 @@ wxWebControl::wxWebControl(wxWindow* parent,
         wxASSERT(0);
         return;
     }
-    
+
     m_favicon_progress = new wxWebFavIconProgress(this);
 
     // now that initialization is complete (and successful, tell IsOk()
     // to return true)
     m_ok = true;
-    
-    
+
+
     PRUnichar* ns_uri = wxToUnichar(L"about:blank");
     m_ptrs->m_web_navigation->LoadURI(ns_uri,
                                       nsIWebNavigation::LOAD_FLAGS_NONE,
@@ -2249,7 +2249,7 @@ wxWebControl::wxWebControl(wxWindow* parent,
                                       NULL,
                                       NULL);
     freeUnichar(ns_uri);
-    
+
     // show the browser component
     res = m_ptrs->m_base_window->SetVisibility(PR_TRUE);
 }
@@ -2261,7 +2261,7 @@ wxWebControl::~wxWebControl()
         // destroy web browser
         m_ptrs->m_base_window->Destroy();
         m_ptrs->m_base_window.clear();
-    
+
         // release chrome
         m_chrome->ChromeUninit();
         m_chrome->Release();
@@ -2275,7 +2275,7 @@ wxWebControl::~wxWebControl()
         wxWebContentHandler* handler = m_to_delete.Item(i);
         delete handler;
     }
-    
+
     delete m_favicon_progress;
     delete m_ptrs;
 }
@@ -2297,14 +2297,14 @@ bool wxWebControl::IsOk() const
 // (METHOD) wxWebControl::Find
 // Description:
 //
-// Syntax: bool wxWebControl::Find(const wxString& text, 
+// Syntax: bool wxWebControl::Find(const wxString& text,
 //                                 unsigned int flags)
 //
 // Remarks:
 //
 // Returns:
 
-bool wxWebControl::Find(const wxString& text, 
+bool wxWebControl::Find(const wxString& text,
                         unsigned int flags)
 {
     if (m_ptrs->m_web_browser_find.empty())
@@ -2313,17 +2313,17 @@ bool wxWebControl::Find(const wxString& text,
     PRUnichar* find_text = wxToUnichar(text);
     m_ptrs->m_web_browser_find->SetSearchString(find_text);
     freeUnichar(find_text);
-        
+
     m_ptrs->m_web_browser_find->SetFindBackwards((flags & wxWEB_FIND_BACKWARDS) != 0 ? PR_TRUE : PR_FALSE);
     m_ptrs->m_web_browser_find->SetWrapFind((flags & wxWEB_FIND_WRAP) != 0 ? PR_TRUE : PR_FALSE);
     m_ptrs->m_web_browser_find->SetEntireWord((flags & wxWEB_FIND_ENTIRE_WORD) != 0 ? PR_TRUE : PR_FALSE);
     m_ptrs->m_web_browser_find->SetMatchCase((flags & wxWEB_FIND_MATCH_CASE) != 0 ? PR_TRUE : PR_FALSE);
     m_ptrs->m_web_browser_find->SetSearchFrames((flags & wxWEB_FIND_SEARCH_FRAMES) != 0 ? PR_TRUE : PR_FALSE);
-    
-    
+
+
     PRBool retval = PR_FALSE;
     m_ptrs->m_web_browser_find->FindNext(&retval);
-    
+
     return retval ? true : false;
 }
 
@@ -2341,20 +2341,20 @@ bool wxWebControl::AddContentHandler(wxWebContentHandler* handler,
                                      bool take_ownership)
 {
     nsresult res;
-    
+
     ns_smartptr<nsIServiceManager> service_mgr;
     res = NS_GetServiceManager(&service_mgr.p);
     if (NS_FAILED(res))
         return false;
-    
-    
+
+
     ns_smartptr<nsISupports> uri_loader;
-    
+
     nsIID iid = NS_ISUPPORTS_IID;
     service_mgr->GetServiceByContractID("@mozilla.org/uriloader;1",
                                         iid,
                                         (void**)&uri_loader.p);
-                                        
+
     if (uri_loader.empty())
         return false;
 
@@ -2373,7 +2373,7 @@ bool wxWebControl::AddContentHandler(wxWebContentHandler* handler,
         ns_smartptr<ns18IURILoader> uri_loader18 = uri_loader;
         if (uri_loader18.empty())
             return false;
-    
+
         ContentListener* l = new ContentListener(handler);
         l->AddRef(); // will be released later
         res = uri_loader18->RegisterContentListener(static_cast<nsIURIContentListener*>(l));
@@ -2381,7 +2381,7 @@ bool wxWebControl::AddContentHandler(wxWebContentHandler* handler,
             return false;
         g_gecko_engine.AddContentListener(l);
     }
-    
+
     return true;
 }
 
@@ -2420,7 +2420,7 @@ bool wxWebControl::SaveRequest(const wxString& uri_str,
     ns_smartptr<nsIURI> uri = nsNewURI(uri_str);
     if (uri.empty())
         return false;
-        
+
     ns_smartptr<nsIWebBrowserPersist> persist = nsCreateInstance("@mozilla.org/embedding/browser/nsWebBrowserPersist;1");
     if (!persist)
         return false;
@@ -2442,7 +2442,7 @@ bool wxWebControl::SaveRequest(const wxString& uri_str,
     {
         ns_smartptr<nsIStringInputStream> strs = nsCreateInstance("@mozilla.org/io/string-input-stream;1");
         wxASSERT(strs.p);
-        
+
         if (strs)
         {
             wxString poststr = post_data->GetPostString();
@@ -2450,13 +2450,13 @@ bool wxWebControl::SaveRequest(const wxString& uri_str,
             sp_post_data = strs;
         }
     }
-    
+
 
     nsresult rv;
-    
+
     wxWebWaitUntilFinished* wuf = NULL;
     bool finished = false;
-    
+
     if (listener)
     {
         // caller desires its own progress listener.  Caller is responsible
@@ -2472,11 +2472,11 @@ bool wxWebControl::SaveRequest(const wxString& uri_str,
         ProgressListenerAdaptor* la = new ProgressListenerAdaptor(wuf);
         persist->SetProgressListener(la);
     }
-    
+
     persist->SetPersistFlags(nsIWebBrowserPersist::PERSIST_FLAGS_BYPASS_CACHE);
-    
+
     rv = persist->SaveURI(uri, nsnull, nsnull, sp_post_data.p, nsnull, file);
-    
+
     if (NS_FAILED(rv))
     {
         // free up progress listener
@@ -2488,12 +2488,12 @@ bool wxWebControl::SaveRequest(const wxString& uri_str,
         {
             wxStopWatch sw;
             wxWindowDisabler wd;
-            
+
             while (!finished)
             {
                 // gecko uses the main thread for status callbacks
                 // so this wxSafeYield call is necessary
-                
+
                 if (wxThread::IsMain())
                 {
                     ::wxWakeUpIdle();
@@ -2501,14 +2501,14 @@ bool wxWebControl::SaveRequest(const wxString& uri_str,
                 }
 
                 wxThread::Sleep(10);
-                
+
                 // timeout, right now hardcoded
                 if (sw.Time() > 30000)
                     break;
             }
         }
     }
-    
+
     return NS_SUCCEEDED(rv) ? true : false;
 }
 
@@ -2529,24 +2529,24 @@ bool wxWebControl::SaveRequestToString(const wxString& uri_str,
                                        wxWebPostData* post_data,
                                        wxWebProgressBase* listener)
 {
-    
+
     wxString filename = wxFileName::CreateTempFileName(wxT("wwc"));
     if (!SaveRequest(uri_str, filename, post_data, listener))
         return false;
-    
+
     if (!result)
     {
         ::wxRemoveFile(filename);
         return true;
     }
-        
+
     *result = wxT("");
-    
+
     wxFile f;
     if (f.Open(filename) && result)
     {
         wxString res;
-        
+
         char buf[1025];
         while (1)
         {
@@ -2554,18 +2554,18 @@ bool wxWebControl::SaveRequestToString(const wxString& uri_str,
             if (r == 0)
                 break;
             buf[r] = 0;
-            
+
             res += wxString::FromAscii(buf);
-            
+
             if (r != 1024)
                 break;
         }
-        
+
         f.Close();
-        
+
         *result = res;
     }
-    
+
     ::wxRemoveFile(filename);
     return true;
 }
@@ -2609,7 +2609,7 @@ void wxWebControl::FetchFavIcon(void* _uri)
     ns_smartptr<nsIURI> uri = raw_uri;
     uri->GetSpec(ns_spec);
     spec = ns2wx(ns_spec);
-    
+
     ns_smartptr<nsIWebBrowserPersist> persist = nsCreateInstance("@mozilla.org/embedding/browser/nsWebBrowserPersist;1");
     if (!persist)
         return;
@@ -2620,21 +2620,21 @@ void wxWebControl::FetchFavIcon(void* _uri)
     if (extension.IsEmpty())
         extension = L"tmp";
     extension.MakeLower();
-    
+
     wxString filename = wxFileName::CreateTempFileName(L"fav");
     filename += wxT(".");
     filename += extension;
     ns_smartptr<nsILocalFile> file = nsNewLocalFile(filename);
-    
+
 
     m_favicon_progress->SetFilename(filename);
     ProgressListenerAdaptor* la = new ProgressListenerAdaptor(m_favicon_progress);
     m_favicon_progress->SetProgressListener(la);
     persist->SetProgressListener(la);
 
-    
+
     nsresult rv = persist->SaveURI(uri, nsnull, nsnull, nsnull, nsnull, file);
-    
+
     if (NS_FAILED(rv))
     {
         persist->SetProgressListener(nsnull);
@@ -2648,16 +2648,16 @@ void wxWebControl::ResetFavicon()
     m_favicon_fetched = false;
     m_content_loaded = false;
 }
-   
+
 void wxWebControl::OnFavIconFetched(const wxString& filename)
 {
     wxLogNull nulllog;
-    
+
     m_favicon = wxImage();
     if (!m_favicon.LoadFile(filename))
         return;
     ::wxRemove(filename);
-    
+
     wxWebEvent cevt(wxEVT_WEB_FAVICONAVAILABLE, GetId());
     cevt.SetEventObject(this);
     GetEventHandler()->ProcessEvent(cevt);
@@ -2667,7 +2667,7 @@ void wxWebControl::OnFavIconFetched(const wxString& filename)
 void wxWebControl::OnDOMContentLoaded()
 {
     m_content_loaded = true;
-    
+
     // fire the DOMContentLoaded event
     wxWebEvent evt(wxEVT_WEB_DOMCONTENTLOADED, GetId());
     evt.SetEventObject(this);
@@ -2700,19 +2700,19 @@ wxImage wxWebControl::GetFavIcon() const
 wxDOMDocument wxWebControl::GetDOMDocument()
 {
     wxDOMDocument doc;
-    
-    
+
+
     ns_smartptr<nsIDOMWindow> dom_window;
     m_ptrs->m_web_browser->GetContentDOMWindow(&dom_window.p);
     if (!dom_window)
         return doc;
-    
+
     ns_smartptr<nsIDOMDocument> dom_doc;
     dom_window->GetDocument(&dom_doc.p);
     doc.m_data->setNode(dom_doc);
-    
+
     wxASSERT(doc.IsOk());
-    
+
     return doc;
 }
 
@@ -2738,19 +2738,19 @@ void wxWebControl::OpenURI(const wxString& uri,
     m_favicon = wxImage();
     m_favicon_fetched = false;
     m_content_loaded = false;
-    
+
     unsigned int ns_load_flags = nsIWebNavigation::LOAD_FLAGS_NONE;
-    
+
     if (load_flags & wxWEB_LOAD_LINKCLICK)
         ns_load_flags |= nsIWebNavigation::LOAD_FLAGS_IS_LINK;
-        
+
     // post data
     ns_smartptr<nsIInputStream> sp_post_data;
     if (post_data)
     {
         ns_smartptr<nsIStringInputStream> strs = nsCreateInstance("@mozilla.org/io/string-input-stream;1");
         wxASSERT(strs.p);
-        
+
         if (strs)
         {
             wxString poststr = post_data->GetPostString();
@@ -2758,9 +2758,9 @@ void wxWebControl::OpenURI(const wxString& uri,
             sp_post_data = strs;
         }
     }
-       
-    
-    
+
+
+
     PRUnichar* ns_uri = wxToUnichar(uri);
 
     nsresult res;
@@ -2771,7 +2771,7 @@ void wxWebControl::OpenURI(const wxString& uri,
                                             NULL);
 
     freeUnichar(ns_uri);
-                                            
+
 	if (bGrabFocus == true) {
 		ns_smartptr<nsIWebBrowserFocus> focus = nsRequestInterface(m_ptrs->m_web_browser);
 		if (!focus)
@@ -2793,17 +2793,17 @@ void wxWebControl::OpenURI(const wxString& uri,
 wxString wxWebControl::GetCurrentURI() const
 {
     ns_smartptr<nsIURI> uri;
-    
+
     m_ptrs->m_web_navigation->GetCurrentURI(&uri.p);
-    
+
     if (uri.empty())
         return wxEmptyString;
-    
+
     nsEmbedCString spec;
 
     if (NS_FAILED(uri->GetSpec(spec)))
         return wxEmptyString;
-        
+
     return ns2wx(spec);
 }
 
@@ -2907,15 +2907,15 @@ void wxWebControl::Print(bool silent)
         wxASSERT(0);
         return;
     }
-    
+
     ns_smartptr<nsIPrintSettings> settings = m_ptrs->m_print_settings;
-    
+
     if (settings.empty())
     {
         web_browser_print->GetGlobalPrintSettings(&m_ptrs->m_print_settings.p);
         settings = m_ptrs->m_print_settings;
     }
-    
+
     if (settings)
     {
         settings->SetShowPrintProgress(PR_FALSE);
@@ -2929,7 +2929,7 @@ void wxWebControl::Print(bool silent)
 // Description:
 //
 // Syntax: void wxWebControl::SetPageSettings(double page_width, double page_height,
-//                                            double left_margin, double right_margin, 
+//                                            double left_margin, double right_margin,
 //                                            double top_margin, double bottom_margin)
 //
 // Remarks:
@@ -2937,7 +2937,7 @@ void wxWebControl::Print(bool silent)
 // Returns:
 
 void wxWebControl::SetPageSettings(double page_width, double page_height,
-                                   double left_margin, double right_margin, 
+                                   double left_margin, double right_margin,
                                    double top_margin, double bottom_margin)
 {
     // get the nsIWebBrowserPrint interface
@@ -2949,13 +2949,13 @@ void wxWebControl::SetPageSettings(double page_width, double page_height,
     }
 
     ns_smartptr<nsIPrintSettings> settings = m_ptrs->m_print_settings;
-    
+
     if (settings.empty())
     {
         web_browser_print->GetGlobalPrintSettings(&m_ptrs->m_print_settings.p);
         settings = m_ptrs->m_print_settings;
     }
-    
+
     if (settings)
     {
         // if the page width is greater than the page height,
@@ -2983,7 +2983,7 @@ void wxWebControl::SetPageSettings(double page_width, double page_height,
 // Description:
 //
 // Syntax: void wxWebControl::GetPageSettings(double* page_width, double* page_height,
-//                                            double* left_margin, double* right_margin, 
+//                                            double* left_margin, double* right_margin,
 //                                            double* top_margin, double* bottom_margin)
 //
 // Remarks:
@@ -2991,7 +2991,7 @@ void wxWebControl::SetPageSettings(double page_width, double page_height,
 // Returns:
 
 void wxWebControl::GetPageSettings(double* page_width, double* page_height,
-                                   double* left_margin, double* right_margin, 
+                                   double* left_margin, double* right_margin,
                                    double* top_margin, double* bottom_margin)
 {
     // get the nsIWebBrowserPrint interface
@@ -3018,7 +3018,7 @@ void wxWebControl::GetPageSettings(double* page_width, double* page_height,
         settings->GetMarginRight(right_margin);
         settings->GetMarginTop(top_margin);
         settings->GetMarginBottom(bottom_margin);
-        
+
         // if the orientation is set, reverse the page width
         // and page height
         PRInt32 orientation;
@@ -3056,22 +3056,22 @@ void wxWebControl::ViewSource(wxWebControl* source_web_browser)
     // this code is supposed to download the page from the cache,
     // but it's not working right now.  nsIWebBrowserPersist::SaveURI
     // isn't finished saving the document by the time that OpenURI is called
-    
+
     ns_smartptr<nsIWebBrowserPersist> persist = source_web_browser->m_ptrs->m_web_browser;
-    
+
     if (persist.empty())
     {
         wxFAIL_MSG(wxT("wxWebControl::ViewSource(): nsIWebBrowserPersist interface not available"));
         return;
     }
-        
+
     wxString filename = wxFileName::CreateTempFileName(wxT("wwc"));
     wxString new_filename = filename + wxT(".html");
     ::wxRenameFile(filename, new_filename);
     filename = new_filename;
-    
+
     ns_smartptr<nsILocalFile> file = nsNewLocalFile(filename);
-    
+
     if (file.empty())
     {
         wxFAIL_MSG(wxT("wxWebControl::ViewSource(): could not create temporary file"));
@@ -3079,11 +3079,11 @@ void wxWebControl::ViewSource(wxWebControl* source_web_browser)
     }
 
     nsresult res = persist->SaveURI(nsnull, nsnull, nsnull, nsnull, nsnull, file.p);
-    
+
     wxString view_url = wxT("view-source:file:///");
     filename.Replace(wxT("\\"), wxT("/"));
     view_url += filename;
-    
+
     OpenURI(view_url);
 */
 }
@@ -3111,16 +3111,16 @@ bool wxWebControl::SaveCurrent(const wxString& destination_path)
     // isn't finished saving the document by the time that OpenURI is called
 
     ns_smartptr<nsIWebBrowserPersist> persist = m_ptrs->m_web_browser;
-    
+
     if (persist.empty())
     {
         wxFAIL_MSG(wxT("wxWebControl::ViewSource(): nsIWebBrowserPersist interface not available"));
         return false;
     }
-        
-    
+
+
     ns_smartptr<nsILocalFile> file = nsNewLocalFile(destination_path);
-    
+
     if (file.empty())
     {
         wxFAIL_MSG(wxT("wxWebControl::ViewSource(): could not create temporary file"));
@@ -3133,10 +3133,10 @@ bool wxWebControl::SaveCurrent(const wxString& destination_path)
                                     nsnull, // post data
                                     nsnull, // extra headers
                                     file.p); // target file
-    
+
     if (NS_FAILED(res))
         return false;
-        
+
     return true;
 }
 
@@ -3191,7 +3191,7 @@ bool wxWebControl::CanCutSelection()
 {
     if (!IsOk())
         return false;
-    
+
     PRBool retval;
     m_ptrs->m_clipboard_commands->CanCutSelection(&retval);
     return retval ? true : false;
@@ -3305,7 +3305,7 @@ void wxWebControl::CutSelection()
 {
     if (!IsOk())
         return;
-    
+
     m_ptrs->m_clipboard_commands->CutSelection();
 }
 
@@ -3322,7 +3322,7 @@ void wxWebControl::CopySelection()
 {
     if (!IsOk())
         return;
-    
+
     m_ptrs->m_clipboard_commands->CopySelection();
 }
 
@@ -3339,7 +3339,7 @@ void wxWebControl::CopyLinkLocation()
 {
     if (!IsOk())
         return;
-    
+
     m_ptrs->m_clipboard_commands->CopyLinkLocation();
 }
 
@@ -3356,7 +3356,7 @@ void wxWebControl::CopyImageLocation()
 {
     if (!IsOk())
         return;
-    
+
     m_ptrs->m_clipboard_commands->CopyImageLocation();
 }
 
@@ -3373,7 +3373,7 @@ void wxWebControl::CopyImageContents()
 {
     if (!IsOk())
         return;
-    
+
     m_ptrs->m_clipboard_commands->CopyImageContents();
 }
 
@@ -3390,7 +3390,7 @@ void wxWebControl::Paste()
 {
     if (!IsOk())
         return;
-    
+
     m_ptrs->m_clipboard_commands->Paste();
 }
 
@@ -3407,7 +3407,7 @@ void wxWebControl::SelectAll()
 {
     if (!IsOk())
         return;
-        
+
     m_ptrs->m_clipboard_commands->SelectAll();
 }
 
@@ -3424,7 +3424,7 @@ void wxWebControl::SelectNone()
 {
     if (!IsOk())
         return;
-        
+
     m_ptrs->m_clipboard_commands->SelectNone();
 }
 
@@ -3436,7 +3436,7 @@ void wxWebControl::OnSetFocus(wxFocusEvent& evt)
     ns_smartptr<nsIWebBrowserFocus> focus = nsRequestInterface(m_ptrs->m_web_browser);
     if (!focus)
         return;
-    
+
     focus->Activate();
 }
 
@@ -3492,24 +3492,24 @@ public:
 
     virtual void SetContext(nsIScriptContext* context) = 0;
     virtual nsIScriptContext* GetContext() = 0;
-    
+
     virtual nsresult SetNewDocument(
                     nsIDOMDocument* document,
                     nsISupports* state,
                     PRBool remove_event_listeners,
                     PRBool clear_scope) = 0;
-                    
+
     virtual void SetDocShell(nsIDocShell* doc_shell) = 0;
     virtual nsIDocShell* GetDocShell() = 0;
-    
+
     virtual void SetOpenerWindow(nsIDOMWindowInternal* opener) = 0;
-    
+
     virtual void SetGlobalObjectOwner(nsIScriptGlobalObjectOwner* owner) = 0;
     virtual nsIScriptGlobalObjectOwner* GetGlobalObjectOwner() = 0;
 
     virtual nsresult HandleDOMEvent(
-                    nsPresContext* pres_context, 
-                    nsEvent* event, 
+                    nsPresContext* pres_context,
+                    nsEvent* event,
                     nsIDOMEvent** dom_event,
                     PRUint32 flags,
                     nsEventStatus* event_status)=0;
@@ -3644,12 +3644,12 @@ bool wxWebControl::Execute(const wxString& js_code)
     security_manager = nsGetService("@mozilla.org/scriptsecuritymanager;1");
     if (security_manager.empty())
         return false;
-    
+
     ns_smartptr<nsIPrincipal> principal;
     security_manager->GetSystemPrincipal(&principal.p);
     if (principal.empty())
         return false;
-    
+
     ns_smartptr<nsIScriptGlobalObject> sgo = nsRequestInterface(m_ptrs->m_web_browser);
     if (sgo.empty())
         return false;
@@ -3658,7 +3658,7 @@ bool wxWebControl::Execute(const wxString& js_code)
         return false;
 
     void* obj = sgo->GetGlobalJSObject();
-    
+
     nsEmbedString str;
     wx2ns(js_code, str);
 
@@ -3672,6 +3672,6 @@ bool wxWebControl::Execute(const wxString& js_code)
         nsnull,
         &out,
         nsnull);
-        
+
     return true;
 }

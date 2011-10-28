@@ -20,7 +20,7 @@ BEGIN_EVENT_TABLE(SearchListBox, wxVListBox)
 END_EVENT_TABLE()
 
 SearchListBox::SearchListBox(wxWindow* parent, wxWindowID id):
-	wxVListBox(parent, id, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER) 
+	wxVListBox(parent, id, wxDefaultPosition, wxDefaultSize, wxSUNKEN_BORDER)
 {
 	m_font = wxSystemSettings::GetFont(wxSYS_DEFAULT_GUI_FONT);
 	m_boldFont = m_font;
@@ -45,7 +45,7 @@ wxCoord SearchListBox::OnMeasureItem(size_t WXUNUSED(n)) const {
 
 void SearchListBox::DrawItemText(wxDC& dc, const wxRect& rect, const wxString& name, const vector<unsigned int>& hl, bool isCurrent) const {
 	const unsigned int ypos = rect.y + m_topMargin;
-	
+
 	// Draw action name
 	if (hl.empty()) {
 		dc.SetFont(m_font);
@@ -62,7 +62,7 @@ void SearchListBox::DrawItemText(wxDC& dc, const wxRect& rect, const wxString& n
 		// Draw the command name, highlighting chars from search
 		for (vector<unsigned int>::const_iterator p = hl.begin(); p != hl.end(); ++p) {
 			const unsigned int e = (*p > len-1) ? len-1 : *p;
-			
+
 			if (lastchar < e) {
 				wxString str = name.substr(lastchar, e - lastchar);
 				dc.SetFont(m_font);
@@ -75,7 +75,7 @@ void SearchListBox::DrawItemText(wxDC& dc, const wxRect& rect, const wxString& n
 				// Move xpos
 				lastxpos += w;
 			}
-			
+
 			// highlight char
 			if (e == *p) {
 				const wxString charStr(name[e]);
@@ -87,7 +87,7 @@ void SearchListBox::DrawItemText(wxDC& dc, const wxRect& rect, const wxString& n
 				dc.GetTextExtent(charStr, &w, &h);
 				lastxpos += w;
 			}
-			
+
 			lastchar = e + 1;
 			if (lastchar == len) break;
 		}
@@ -133,7 +133,7 @@ void SearchListBox::OnChar(wxKeyEvent& event) {
 
 unsigned int SearchListBox::CalcRank(const vector<unsigned int>& hl) { // static
 	unsigned int rank = 0;
-	if (hl.size() > 1) {					
+	if (hl.size() > 1) {
 		unsigned int prev = hl[0]+1;
 		for (vector<unsigned int>::const_iterator p = hl.begin()+1; p != hl.end(); ++p) {
 			rank += *p - prev;

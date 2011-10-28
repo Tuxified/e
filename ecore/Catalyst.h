@@ -221,7 +221,7 @@ class cxMatch {
 		size_t end2() const {return offset2+len;};
 		size_t length() const {return len;};
 		bool operator<(const cxMatch& m) const {return offset1 < m.offset1;};
-	
+
 		size_t offset1;
 		size_t offset2;
 		size_t len;
@@ -393,7 +393,7 @@ public:
 	const wxString& RegisteredUserName() const;
 	const wxString& RegisteredUserEmail() const;
 	void ShowRegisterDlg(wxWindow* parent);
-	
+
 	// Users
 	wxString GetUserName(unsigned int user_id) const;
 	wxBitmap GetUserPic(unsigned int user_id) const;

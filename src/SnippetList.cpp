@@ -15,7 +15,7 @@
  * Some general notes about how this works:
  * It shows a list of all of the snippets for the current syntax.
  * As the user types, it filters the list based on which snippet's triggers match the word the user typed.
- * 
+ *
  * To get the list of snippets, it has to get the current 'scope' from the EditorCtrl.
  * Then it can get a list of all of the snippets in the scope.
  * The snippets are filtered so empty ones / duplicates are removed.
@@ -73,11 +73,11 @@ void SnippetList::OnIdle(wxIdleEvent& WXUNUSED(event)) {
 	//The bundle won't get reloaded later, cuz ScopeChanged will return false.  So, it has to wait till they switch tabs or make a change.
 	//if(!ScopeChanged(scope) && newState == m_editorState) return;
 	m_editorState = newState;
-	
+
 	//Update the list of snippets/commands to reflect a potentially new syntax
 	GetCurrentActions();
 	m_listBox->SetAllItems();
-	
+
 	//update the search text to match the current word
 	wxString word = m_editorCtrl->GetCurrentWord();
 	m_listBox->Find(word);
@@ -117,7 +117,7 @@ void SnippetList::GetCurrentActions() {
 			sortedActions.push_back(unsortedActions[c]);
 		}
 	}
-	
+
 	//sort the actions for convenience and to make removing duplicates easier and faster
 	sort(sortedActions.begin(), sortedActions.end(), sortComparator);
 
@@ -150,7 +150,7 @@ bool SnippetList::Destroy() {
 // --- ActionList --------------------------------------------------------
 
 SnippetList::ActionList::ActionList(wxWindow* parent, wxWindowID id, const wxArrayString& actions):
-	SearchListBox(parent, id), 
+	SearchListBox(parent, id),
 	m_actions(actions)
 {
 	SetAllItems();

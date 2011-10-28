@@ -217,7 +217,7 @@ public:
 	//void CheckForModifiedFiles();
 	void CheckForModifiedFilesAsync();
 	wxString GetSaveDir() const;
-	
+
 
 	// Reopen files on startup from previous session.
 	void ReopenFiles(wxArrayString& files, unsigned long firstLine, unsigned long firstColumn, wxString& mate);
@@ -273,7 +273,7 @@ public:
 	// Snippet List (pane)
 	void ShowSnippetList();
 	virtual void CloseSnippetList();
-	
+
 	// DirWatcher & RemoteThread
 	virtual DirWatcher& GetDirWatcher() {wxASSERT(m_dirWatcher); return *m_dirWatcher;};
 

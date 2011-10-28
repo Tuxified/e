@@ -21,7 +21,7 @@
 
 /// Open a page saved from a previous session
 BundleItemEditorCtrl::BundleItemEditorCtrl(const int page_id, CatalystWrapper& cw, wxBitmap& bitmap, wxWindow* parent, EditorFrame& parentFrame):
-	EditorCtrl(page_id, cw, bitmap, parent, parentFrame)	
+	EditorCtrl(page_id, cw, bitmap, parent, parentFrame)
 {
 	const PListHandler& plistHandler = m_syntaxHandler.GetPListHandler();
 	m_bundleType = plistHandler.GetBundleTypeFromUri(m_remotePath);
@@ -47,7 +47,7 @@ const char** BundleItemEditorCtrl::RecommendedIcon() {
 		case BUNDLE_PREF:
 			return tmprefs_xpm;
 
-		case BUNDLE_LANGUAGE: 
+		case BUNDLE_LANGUAGE:
 			return tmlanguage_xpm;
 
 		default: wxASSERT(false);
@@ -101,7 +101,7 @@ bool BundleItemEditorCtrl::SaveBundleItem() {
 					// runEnvironment and contents
 					wxString runEnv;
 					doc.GetProperty(wxT("bundle:runEnvironment"), runEnv);
-					
+
 					if (runEnv == wxT("windows")) itemDict.SetString("runEnvironment", "windows");
 					else itemDict.DeleteItem("runEnvironment");
 
@@ -139,11 +139,11 @@ bool BundleItemEditorCtrl::SaveBundleItem() {
 
 						wxString keyEquivalent;
 						doc.GetProperty(wxT("bundle:keyEquivalent"), keyEquivalent);
-						itemDict.wxUpdateString("keyEquivalent", keyEquivalent); 
+						itemDict.wxUpdateString("keyEquivalent", keyEquivalent);
 
 						wxString tabTrigger;
 						doc.GetProperty(wxT("bundle:tabTrigger"), tabTrigger);
-						itemDict.wxUpdateString("tabTrigger", tabTrigger); 
+						itemDict.wxUpdateString("tabTrigger", tabTrigger);
 
 					}
 					else { // BUNDLE_DRAGCMD
@@ -158,7 +158,7 @@ bool BundleItemEditorCtrl::SaveBundleItem() {
 							extArray.AddString(tok.mb_str(wxConvUTF8));
 						}
 					}
-					
+
 					wxString scope;
 					doc.GetProperty(wxT("bundle:scope"), scope);
 					itemDict.wxSetString("scope", scope);
@@ -178,11 +178,11 @@ bool BundleItemEditorCtrl::SaveBundleItem() {
 
 					wxString keyEquivalent;
 					doc.GetProperty(wxT("bundle:keyEquivalent"), keyEquivalent);
-					itemDict.wxUpdateString("keyEquivalent", keyEquivalent); 
+					itemDict.wxUpdateString("keyEquivalent", keyEquivalent);
 
 					wxString tabTrigger;
 					doc.GetProperty(wxT("bundle:tabTrigger"), tabTrigger);
-					itemDict.wxUpdateString("tabTrigger", tabTrigger); 
+					itemDict.wxUpdateString("tabTrigger", tabTrigger);
 
 					wxString scope;
 					doc.GetProperty(wxT("bundle:scope"), scope);
@@ -200,7 +200,7 @@ bool BundleItemEditorCtrl::SaveBundleItem() {
 					wxJSONValue root;
 					const int numErrors = reader.Parse(jsonStr, &root);
 					if ( numErrors > 0 )  {
-						// if there are errors in the JSON document, print the errors 
+						// if there are errors in the JSON document, print the errors
 						wxString msg = _("<h2>Invalid JSON syntax:</h2>\n");
 						const wxArrayString& errors = reader.GetErrors();
 						wxRegEx reLineCol(wxT("line ([[:digit:]]+), col ([[:digit:]]+)"));
@@ -214,7 +214,7 @@ bool BundleItemEditorCtrl::SaveBundleItem() {
 								reLineCol.GetMatch(&matchStart, &matchLen);
 								const wxString line = reLineCol.GetMatch(error, 1);
 								const wxString col = reLineCol.GetMatch(error, 2);
-								
+
 								msg += error.substr(0, matchStart);
 								msg += wxT("<a href=\"txmt://open?") + m_remotePath + wxT("&line=") + line + wxT("&column=") + col;
 								msg += wxT("\">") + error.substr(matchStart, matchLen) + wxT("</a>") + error.substr(matchStart+matchLen);
@@ -251,7 +251,7 @@ bool BundleItemEditorCtrl::SaveBundleItem() {
 	cxENDLOCK
 
 	// Save to plist
-	if (!plistHandler.Save(m_bundleType, bundleId, itemId)) 
+	if (!plistHandler.Save(m_bundleType, bundleId, itemId))
 		return false;
 
 	// Update mirror
@@ -278,7 +278,7 @@ bool BundleItemEditorCtrl::LoadBundleItem(const wxString& bundleUri) {
 	// Get information about bundle item
 	unsigned int bundleId;
 	unsigned int itemId;
-	if (!plistHandler.GetBundleItemFromUri(bundleUri, m_bundleType, bundleId, itemId)) 
+	if (!plistHandler.GetBundleItemFromUri(bundleUri, m_bundleType, bundleId, itemId))
 		return false;
 
 	const PListDict itemDict = plistHandler.Get(m_bundleType, bundleId, itemId);
@@ -380,11 +380,11 @@ bool BundleItemEditorCtrl::LoadBundleItem(const wxString& bundleUri) {
 					}
 
 					// Set initial syntax for commands
-					// If we don't find some other syntax, use MSDOS batch file for Windows commands 
+					// If we don't find some other syntax, use MSDOS batch file for Windows commands
 					// and Bash for UNIX commands
 					if (!m_syntaxstyler.UpdateSyntax())
-						m_syntaxstyler.SetSyntax(itemDict.HasKey("winCommand") 
-							? wxT("MSDOS batch file") 
+						m_syntaxstyler.SetSyntax(itemDict.HasKey("winCommand")
+							? wxT("MSDOS batch file")
 							:  wxT("Shell Script (Bash)"));
 				}
 				break;
@@ -411,7 +411,7 @@ bool BundleItemEditorCtrl::LoadBundleItem(const wxString& bundleUri) {
 					if (itemDict.GetDict("settings", settingsDict)) {
 						jsonSettings = settingsDict.GetJSON();
 					}
-					
+
 					cxLOCKDOC_WRITE(m_doc)
 						doc.Insert(0, jsonSettings);
 

@@ -73,7 +73,7 @@ public:
 	// ProjectInfo
 	ProjectInfoHandler& GetInfoHandler() {return m_infoHandler;};
 	void SaveCurrentProjectInfo() const {m_infoHandler.SaveRootInfo();};
-	
+
 #ifdef __WXMSW__
 	WXLRESULT MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam);
 #endif

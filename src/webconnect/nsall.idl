@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams, Peter Fritz
 // Modified by:
 // Created:     2006-10-08
-// RCS-ID:      
+// RCS-ID:
 // Copyright:   (C) Copyright 2006-2009, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -99,7 +99,7 @@ interface nsIFactory : nsISupports
     void createInstance(in nsISupports outer,
                         in nsIIDRef iid,
                         [iid_is(iid),retval] out nsQIResult result);
-                        
+
     void lockFactory(in boolean lock);
 };
 
@@ -116,7 +116,7 @@ interface nsIInterfaceRequestor : nsISupports
 {
     void getInterface(in nsIIDRef iid,
                       [iid_is(iid), retval] out nsQIResult result);
-                      
+
 /*
     This error is already present on http://developer.mozilla.org/xpcom/api/.
     On http://www.xulplanet.com the function reads:
@@ -160,7 +160,7 @@ interface nsIFile : nsISupports
 {
     const unsigned long NORMAL_FILE_TYPE = 0;
     const unsigned long DIRECTORY_TYPE   = 1;
-    
+
     void append(in AString node);
     [noscript] void appendNative(in ACString node);
     void normalize();
@@ -177,20 +177,20 @@ interface nsIFile : nsISupports
     void moveTo(in nsIFile parent_dir, in AString name);
     [noscript] void moveToNative(in nsIFile parent_dir, in ACString name);
     void remove(in boolean recursive);
-    
+
     attribute unsigned long permissions;
     attribute unsigned long permissionsOfLink;
     attribute PRInt64 lastModifiedTime;
     attribute PRInt64 lastModifiedTimeOfLink;
     attribute PRInt64 fileSize;
     readonly attribute PRInt64 fileSizeOfLink;
-    
+
     readonly attribute AString target;
     [noscript] readonly attribute ACString nativeTarget;
-    
+
     readonly attribute AString path;
     [noscript] readonly attribute ACString nativePath;
-    
+
     boolean exists();
     boolean isWritable();
     boolean isReadable();
@@ -204,7 +204,7 @@ interface nsIFile : nsISupports
     nsIFile clone();
     boolean equals(in nsIFile file);
     boolean contains(in nsIFile file, in boolean recurse);
-    
+
     readonly attribute nsIFile parent;
     readonly attribute nsISimpleEnumerator directoryEntries;
 };
@@ -233,7 +233,7 @@ interface nsILocalFile : nsIFile
     void initWithPath(in AString file_path);
     [noscript] void initWithNativePath(in ACString file_path);
     void initWithFile(in nsILocalFile file);
-    
+
     attribute boolean followLinks;
 
     [noscript] PRFileDescStar openNSPRFileDesc(in long flags, in long mode);
@@ -241,12 +241,12 @@ interface nsILocalFile : nsIFile
     [noscript] PRLibraryStar load();
     void appendRelativePath(in AString rel_path);
     [noscript] void appendRelativeNativePath(in ACString rel_path);
-    
+
     attribute ACString persistentDescriptor;
-    
+
     void reveal();
     void launch();
-    
+
     ACString getRelativeDescriptor(in nsILocalFile from_file);
     void setRelativeDescriptor(in nsILocalFile from_file, in ACString rel_desc);
 };
@@ -327,10 +327,10 @@ interface nsIBaseWindow : nsISupports
                                in long cy);
     void create();
     void destroy();
-    
+
     void setPosition(in long x, in long y);
     void getPosition(out long x, out long y);
-    
+
     void setSize(in long cx, in long cy, in boolean repaint);
     void getSize(out long cx, out long cy);
 
@@ -421,15 +421,15 @@ interface nsIRequest : nsISupports
     const unsigned long VALIDATE_ONCE_PER_SESSION = 8192;
 
     readonly attribute AUTF8String name;
-    
+
     boolean isPending();
-    
+
     readonly attribute nsresult status;
-    
+
     void cancel(in nsresult status);
     void suspend();
     void resume();
-    
+
     attribute nsILoadGroup loadGroup;
     attribute nsLoadFlags loadFlags;
 };
@@ -511,17 +511,17 @@ interface nsIComponentManager : nsISupports
     void getClassObject(in nsCIDRef class_id,
                         in nsIIDRef iid,
                         [iid_is(iid),retval] out nsQIResult result);
-                        
+
     void getClassObjectByContractID(
                         in string contract_id,
                         in nsIIDRef iid,
                         [iid_is(iid),retval] out nsQIResult result);
-                                  
+
     void createInstance(in nsCIDRef class_id,
                         in nsISupports delegate,
                         in nsIIDRef iid,
                         [iid_is(iid),retval] out nsQIResult result);
-                        
+
     void createInstanceByContractID(
                         in string contract_id,
                         in nsISupports delegate,
@@ -546,16 +546,16 @@ interface nsIComponentRegistrar : nsISupports
 {
     void autoRegister(in nsIFile spec);
     void autoUnregister(in nsIFile spec);
-    
+
     void registerFactory(in nsCIDRef class_id,
                          in string class_name,
                          in string contract_id,
                          in nsIFactory factory);
-                         
+
     void unregisterFactory(
                          in nsCIDRef class_id,
                          in nsIFactory factory);
-                         
+
     void registerFactoryLocation(
                          in nsCIDRef class_id,
                          in string class_name,
@@ -563,11 +563,11 @@ interface nsIComponentRegistrar : nsISupports
                          in nsIFile file,
                          in string loader_str,
                          in string type);
-                         
+
     void unregisterFactoryLocation(
                          in nsCIDRef class_id,
                          in nsIFile file);
-                         
+
     boolean isCIDRegistered(in nsCIDRef class_id);
     boolean isContractIDRegistered(in string contract_id);
     nsISimpleEnumerator enumerateCIDs();
@@ -599,7 +599,7 @@ interface nsIContextMenuListener2 : nsISupports
 };
 
 
- 
+
 [scriptable, uuid(2f977d56-5485-11d4-87e2-0010a4e75ef2)]
 interface nsIContextMenuInfo : nsISupports
 {
@@ -696,7 +696,7 @@ interface nsIDocShellTreeItem : nsIDocShellTreeNode
     nsIDocShellTreeItem findItemWithName(in wstring name,
                                          in nsISupports requestor,
                                          in nsIDocShellTreeItem original_requestor);
-                                         
+
     readonly attribute nsIDocShellTreeOwner treeOwner;
 
     [noscript] void setTreeOwner(in nsIDocShellTreeOwner tree_owner);
@@ -726,7 +726,7 @@ interface ns18IDocShellTreeItem : nsISupports
     nsIDocShellTreeItem findItemWithName(in wstring name,
                                          in nsISupports requestor,
                                          in nsIDocShellTreeItem original_requestor);
-                                         
+
     readonly attribute nsIDocShellTreeOwner treeOwner;
 
     [noscript] void setTreeOwner(in nsIDocShellTreeOwner tree_owner);
@@ -774,7 +774,7 @@ interface nsIDOMNode : nsISupports
     readonly attribute nsIDOMNode nextSibling;
     readonly attribute nsIDOMNamedNodeMap attributes;
     readonly attribute nsIDOMDocument ownerDocument;
-           
+
     nsIDOMNode insertBefore(in nsIDOMNode new_child, in nsIDOMNode ref_child) raises(DOMException);
     nsIDOMNode replaceChild(in nsIDOMNode new_child, in nsIDOMNode old_child) raises(DOMException);
     nsIDOMNode removeChild(in nsIDOMNode old_child)  raises(DOMException);
@@ -783,11 +783,11 @@ interface nsIDOMNode : nsISupports
     nsIDOMNode cloneNode(in boolean deep);
     void normalize();
     boolean isSupported(in DOMString feature, in DOMString version);
-    
+
     readonly attribute DOMString namespaceURI;
     attribute DOMString prefix;
     readonly attribute DOMString localName;
-    
+
     boolean hasAttributes();
 };
 
@@ -813,7 +813,7 @@ interface nsIDOM3Node : nsISupports
     const unsigned short DOCUMENT_POSITION_CONTAINS = 0x08;
     const unsigned short DOCUMENT_POSITION_CONTAINED_BY = 0x10;
     const unsigned short DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC = 0x20;
-    
+
     readonly attribute DOMString       baseURI;
 
     unsigned short compareDocumentPosition(in nsIDOMNode other) raises(DOMException);
@@ -902,7 +902,7 @@ interface nsIDOMElement : nsIDOMNode
     nsIDOMAttr setAttributeNode(in nsIDOMAttr new_attr) raises(DOMException);
 
     nsIDOMAttr removeAttributeNode(in nsIDOMAttr old_attr) raises(DOMException);
- 
+
     nsIDOMNodeList getElementsByTagName(in DOMString name);
 
     DOMString getAttributeNS(in DOMString namespace_uri,
@@ -911,18 +911,18 @@ interface nsIDOMElement : nsIDOMNode
     void setAttributeNS(in DOMString namespace_uri,
                         in DOMString qualified_name,
                         in DOMString value) raises(DOMException);
-      
+
     void removeAttributeNS(in DOMString namespace_uri,
                            in DOMString local_name) raises(DOMException);
 
     nsIDOMAttr getAttributeNodeNS(in DOMString namespace_uri,
                                   in DOMString local_name);
-         
+
     nsIDOMAttr setAttributeNodeNS(in nsIDOMAttr newAttr) raises(DOMException);
-    
+
     nsIDOMNodeList getElementsByTagNameNS(in DOMString namespace_uri,
                                           in DOMString local_name);
-               
+
     boolean hasAttribute(in DOMString name);
 
     boolean hasAttributeNS(in DOMString namespace_uri,
@@ -942,22 +942,22 @@ interface nsIDOMCharacterData : nsIDOMNode
 {
     attribute DOMString data;
     readonly attribute unsigned long length;
-    
+
     DOMString substringData(in unsigned long offset,
                             in unsigned long count)
                             raises(DOMException);
-                            
+
     void appendData(in DOMString arg)
                     raises(DOMException);
-                    
+
     void insertData(in unsigned long offset,
                     in DOMString arg)
                     raises(DOMException);
-                    
+
     void deleteData(in unsigned long offset,
                     in unsigned long count)
                     raises(DOMException);
-                    
+
     void replaceData(in unsigned long offset,
                      in unsigned long count,
                      in DOMString arg)
@@ -990,7 +990,7 @@ interface nsIDOMDocument : nsIDOMNode
     readonly attribute nsIDOMDocumentType doctype;
     readonly attribute nsIDOMDOMImplementation implementation;
     readonly attribute nsIDOMElement documentElement;
-  
+
     nsIDOMElement createElement(in DOMString tagName) raises(DOMException);
     nsIDOMDocumentFragment createDocumentFragment();
     nsIDOMText createTextNode(in DOMString data);
@@ -1036,9 +1036,9 @@ interface nsIDOMEvent : nsISupports
     readonly attribute DOMTimeStamp timeStamp;
 
     void stopPropagation();
-    
+
     void preventDefault();
-    
+
     void initEvent(in DOMString event_type_arg,
                    in boolean can_bubble_arg,
                    in boolean cancelable_arg);
@@ -1080,12 +1080,12 @@ interface nsIDOMEventTarget : nsISupports
     void addEventListener(in DOMString type,
                           in nsIDOMEventListener listener,
                           in boolean use_capture);
-                          
+
     void removeEventListener(
                           in DOMString type,
                           in nsIDOMEventListener listener,
                           in boolean use_capture);
-                             
+
     boolean dispatchEvent(in nsIDOMEvent evt) raises(DOMException);
 };
 
@@ -1189,7 +1189,7 @@ interface nsIDOMHTMLInputElement : nsIDOMHTMLElement
     attribute DOMString type;
     attribute DOMString useMap;
     attribute DOMString value;
-    
+
     void blur();
     void focus();
     void select();
@@ -1284,11 +1284,11 @@ interface nsIDOMHTMLSelectElement : nsIDOMHTMLElement
     attribute DOMString name;
     attribute long size;
     attribute long tabIndex;
-    
+
     void add(in nsIDOMHTMLElement element,
              in nsIDOMHTMLElement before)
              raises(DOMException);
-    
+
     void remove(in long index);
     void blur();
     void focus();
@@ -1318,7 +1318,7 @@ interface nsIDOMHTMLTextAreaElement : nsIDOMHTMLElement
     attribute long tabIndex;
     readonly attribute DOMString type;
     attribute DOMString value;
-    
+
     void blur();
     void focus();
     void select();
@@ -1372,7 +1372,7 @@ interface nsIDOMMouseEvent : nsIDOMUIEvent
     readonly attribute boolean metaKey;
     readonly attribute unsigned short button;
     readonly attribute nsIDOMEventTarget relatedTarget;
-  
+
     void initMouseEvent(in DOMString type_arg,
                         in boolean can_bubble_arg,
                         in boolean cancelable_arg,
@@ -1409,15 +1409,15 @@ interface nsIDOMNamedNodeMap : nsISupports
     nsIDOMNode setNamedItem(in nsIDOMNode arg) raises(DOMException);
     nsIDOMNode removeNamedItem(in DOMString name) raises(DOMException);
     nsIDOMNode item(in unsigned long index);
-    
+
     readonly attribute unsigned long length;
-    
+
     nsIDOMNode getNamedItemNS(in DOMString namespace_uri,
                               in DOMString local_name);
-                                              
+
     nsIDOMNode setNamedItemNS(in nsIDOMNode arg)
                                       raises(DOMException);
-    
+
     nsIDOMNode removeNamedItemNS(
                               in DOMString namespace_uri,
                               in DOMString local_name)
@@ -1529,21 +1529,21 @@ interface nsIEmbeddingSiteWindow : nsISupports
     const unsigned long DIM_FLAGS_POSITION = 1;
     const unsigned long DIM_FLAGS_SIZE_INNER = 2;
     const unsigned long DIM_FLAGS_SIZE_OUTER = 4;
-    
+
     void setDimensions(in unsigned long flags,
                        in long x,
                        in long y,
                        in long cx,
                        in long cy);
-                       
+
     void getDimensions(in unsigned long flags,
                        out long x,
                        out long y,
                        out long cx,
                        out long cy);
-                       
+
     void setFocus();
-    
+
     attribute boolean visibility;
     attribute wstring title;
     [noscript] readonly attribute voidPtr siteWindow;
@@ -1587,14 +1587,14 @@ interface nsIHelperAppLauncher : nsICancelable
 
     void saveToDisk(in nsIFile new_file_location,
                     in boolean remember_this_preference);
-                    
+
     void launchWithApplication(in nsIFile application,
                                in boolean remember_this_preference);
-                               
+
     void setWebProgressListener(in nsIWebProgressListener2 web_progress_listener);
-    
+
     void closeProgressWindow();
-    
+
     readonly attribute nsIFile targetFile;
     readonly attribute PRTime timeDownloadStarted;
 };
@@ -1616,7 +1616,7 @@ interface nsIHelperAppLauncherDialog : nsISupports
     const unsigned long REASON_CANTHANDLE = 0;
     const unsigned long REASON_SERVERREQUEST = 1;
     const unsigned long REASON_TYPESNIFFED = 2;
-    
+
 
     void show(in nsIHelperAppLauncher launcher,
               in nsISupports windowContext,
@@ -1651,7 +1651,7 @@ typedef NS_CALLBACK(nsWriteSegmentFun)(
 %}
 native nsWriteSegmentFun(nsWriteSegmentFun);
 
-  
+
 [scriptable, uuid(fa9c7f6c-61b3-11d4-9877-00c04fa0cf4a)]
 interface nsIInputStream : nsISupports
 {
@@ -1690,9 +1690,9 @@ interface nsIIOService : nsISupports
     nsIChannel newChannel(in AUTF8String spec,
                           in string origin_charset,
                           in nsIURI base_uri);
-    
+
     attribute boolean offline;
-    
+
     boolean allowPort(in long port, in string scheme);
     ACString extractScheme(in AUTF8String url_string);
 };
@@ -1801,7 +1801,7 @@ interface nsIPref : nsISupports
     void savePrefFile(in nsIFile file);
     nsIPrefBranch getBranch(in string pref_root);
     nsIPrefBranch getDefaultBranch(in string pref_root);
-    
+
     const long ePrefInvalid = 0;
     const long ePrefLocked = 1;
     const long ePrefUserset = 2;
@@ -1816,26 +1816,26 @@ interface nsIPref : nsISupports
     readonly attribute string root;
 
     long GetPrefType(in string pref_name);
-    
+
     boolean GetBoolPref(in string pref_name);
     void SetBoolPref(in string pref_name, in long value);
-    
+
     string GetCharPref(in string pref_name);
     void SetCharPref(in string pref_name, in string value);
-    
+
     long GetIntPref(in string pref_name);
     void SetIntPref(in string pref_name, in long value);
-    
+
     void getComplexValue(in string pref_name,
                          in nsIIDRef type,
                          [iid_is(type), retval] out nsQIResult value);
-                         
+
     void setComplexValue(in string pref_name,
                          in nsIIDRef type,
                          in nsISupports value);
-                         
+
     void ClearUserPref(in string pref_name);
-    
+
     boolean PrefIsLocked(in string pref_name);
     void lockPref(in string pref_name);
     void unlockPref(in string pref_name);
@@ -1849,7 +1849,7 @@ interface nsIPref : nsISupports
 
     void addObserver(in string domain, in nsIObserver observer, in boolean hold_weak);
     void removeObserver(in string domain, in nsIObserver observer);
-    
+
     string CopyCharPref(in string pref);
     string CopyDefaultCharPref(in string pref);
     boolean GetDefaultBoolPref(in string pref);
@@ -1857,29 +1857,29 @@ interface nsIPref : nsISupports
     void SetDefaultBoolPref(in string pref, in boolean value);
     void SetDefaultCharPref(in string pref, in string value);
     void SetDefaultIntPref(in string pref, in long value);
-    
+
     wstring CopyUnicharPref(in string pref);
     wstring CopyDefaultUnicharPref(in string pref);
-    
+
     void SetUnicharPref(in string pref, in wstring value);
     void SetDefaultUnicharPref(in string pref, in wstring value);
-    
+
     wstring getDefaultLocalizedUnicharPref(in string pref);
     wstring getLocalizedUnicharPref(in string pref);
-    
+
     nsIFileSpec GetFilePref(in string pref);
     void SetFilePref(in string pref, in nsIFileSpec value, in boolean set_default);
     nsILocalFile getFileXPref(in string pref);
     void setFileXPref(in string pref, in nsILocalFile value);
-    
+
     [noscript] void RegisterCallback(in string domain,
                                      in PrefChangedFunc callback,
                                      in voidPtr closure);
-                                     
+
     [noscript] void UnregisterCallback(in string domain,
                                        in PrefChangedFunc callback,
                                        in voidPtr closure);
-    
+
     [noscript] void EnumerateChildren(in string parent,
                                       in PrefEnumerationFunc callback,
                                       in voidPtr data);
@@ -1931,7 +1931,7 @@ interface nsIWebBrowserPrint : nsISupports
     void enumerateDocumentNames(
                 out PRUint32 count,
                 [retval, array, size_is(count)] out wstring result);
-                
+
     void exitPrintPreview();
 };
 
@@ -2090,26 +2090,26 @@ interface nsIPromptService : nsISupports
     void alert(in nsIDOMWindow parent,
                in wstring dialog_title,
                in wstring text);
-               
+
     void alertCheck(
                in nsIDOMWindow parent,
                in wstring dialog_title,
                in wstring text,
                in wstring check_msg,
                inout boolean check_state);
-               
+
     boolean confirm(
                in nsIDOMWindow parent,
                in wstring dialog_title,
                in wstring text);
-               
+
     boolean confirmCheck(
                in nsIDOMWindow parent,
                in wstring dialog_title,
                in wstring text,
                in wstring check_msg,
                inout boolean check_state);
-        
+
     const unsigned long BUTTON_POS_0 = 1;
     const unsigned long BUTTON_POS_1 = 256;
     const unsigned long BUTTON_POS_2 = 65536;
@@ -2127,8 +2127,8 @@ interface nsIPromptService : nsISupports
     const unsigned long BUTTON_DELAY_ENABLE = 67108864;
     const unsigned long STD_OK_CANCEL_BUTTONS = 513;
     const unsigned long STD_YES_NO_BUTTONS = 1027;
-    
-    
+
+
     PRInt32 confirmEx(
                in nsIDOMWindow parent,
                in wstring dialog_title,
@@ -2193,7 +2193,7 @@ interface nsIProperties : nsISupports
              in nsISupports value);
 
     boolean has(in string prop_name);
-    
+
     void undefine(in string prop_name);
 
     void getKeys(out PRUint32 count,
@@ -2216,7 +2216,7 @@ interface nsIRequestObserver : nsISupports
 {
     void onStartRequest(in nsIRequest request,
                         in nsISupports contxt);
-                        
+
     void onStopRequest(in nsIRequest request,
                        in nsISupports contxt,
                        in nsresult status_code);
@@ -2236,16 +2236,16 @@ interface nsIServiceManager : nsISupports
     void getService(in nsCIDRef class_id,
                     in nsIIDRef iid,
                     [iid_is(iid), retval] out nsQIResult result);
-                    
+
     void getServiceByContractID(
                     in string contract_id,
                     in nsIIDRef iid,
                     [iid_is(iid), retval] out nsQIResult result);
-                    
+
     boolean isServiceInstantiated(
                     in nsCIDRef class_id,
                     in nsIIDRef iid);
-                    
+
     boolean isServiceInstantiatedByContractID(
                     in string contract_id,
                     in nsIIDRef iid);
@@ -2332,7 +2332,7 @@ interface nsIWebProgressListener : nsISupports
     const unsigned long STATE_IS_DOCUMENT = 131072;
     const unsigned long STATE_IS_NETWORK = 262144;
     const unsigned long STATE_IS_WINDOW = 524288;
-    
+
     const unsigned long STATE_RESTORING = 16777216;
 
     const unsigned long STATE_IS_INSECURE = 4;
@@ -2347,23 +2347,23 @@ interface nsIWebProgressListener : nsISupports
                        in nsIRequest request,
                        in unsigned long state_flags,
                        in nsresult status);
-                       
+
     void onProgressChange(in nsIWebProgress web_progress,
                           in nsIRequest request,
                           in long cur_self_progress,
                           in long max_self_progress,
                           in long cur_total_progress,
                           in long max_total_progress);
-                      
+
     void onLocationChange(in nsIWebProgress web_progress,
                           in nsIRequest request,
                           in nsIURI location);
-                          
+
     void onStatusChange(in nsIWebProgress web_progress,
                         in nsIRequest request,
                         in nsresult status,
                         in wstring message);
-               
+
     void onSecurityChange(in nsIWebProgress web_progress,
                           in nsIRequest request,
                           in unsigned long state);
@@ -2439,7 +2439,7 @@ interface nsIURI : nsISupports
     boolean schemeIs(in string scheme);
     nsIURI clone();
     AUTF8String resolve(in AUTF8String relative_path);
-    
+
     readonly attribute ACString asciiSpec;
     readonly attribute ACString asciiHost;
     readonly attribute ACString originCharset;
@@ -2462,21 +2462,21 @@ interface nsIURIContentListener;
 interface nsIURIContentListener : nsISupports
 {
     boolean onStartURIOpen(in nsIURI uri);
-    
+
     boolean doContent(in string content_type,
                       in boolean is_content_preferred,
                       in nsIRequest request,
                       out nsIStreamListener content_handler);
-    
+
     boolean isPreferred(
                       in string content_type,
                       out string desired_content_type);
-                      
+
     boolean canHandleContent(
                       in string content_type,
                       in boolean is_content_preferred,
                       out string desired_content_type);
-               
+
     attribute nsISupports loadCookie;
     attribute nsIURIContentListener parentContentListener;
 };
@@ -2503,11 +2503,11 @@ interface nsIURILoader : nsISupports
 
     void registerContentListener(in nsIURIContentListener content_listener);
     void unRegisterContentListener(in nsIURIContentListener content_listener);
-    
+
     void openURI(in nsIChannel channel,
                  in boolean is_content_preferred,
                  in nsIInterfaceRequestor window_context);
-    
+
     nsIStreamListener openChannel(in nsIChannel channel,
                                   in unsigned long flags,
                                   in nsIInterfaceRequestor window_context);
@@ -2549,7 +2549,7 @@ interface nsIWebBrowser : nsISupports
 {
     void addWebBrowserListener(in nsIWeakReference listener, in nsIIDRef iid);
     void removeWebBrowserListener(in nsIWeakReference listener, in nsIIDRef iid);
-    
+
     attribute nsIWebBrowserChrome containerWindow;
     attribute nsIURIContentListener parentURIContentListener;
     readonly attribute nsIDOMWindow contentDOMWindow;
@@ -2570,7 +2570,7 @@ interface nsIWebBrowserChrome : nsISupports
 {
     void setStatus(in unsigned long status_type, in wstring status);
     attribute nsIWebBrowser webBrowser;
-    
+
     const unsigned long STATUS_SCRIPT=0x00000001;
     const unsigned long STATUS_SCRIPT_DEFAULT=0x00000002;
     const unsigned long STATUS_LINK=0x00000003;
@@ -2600,9 +2600,9 @@ interface nsIWebBrowserChrome : nsISupports
     const unsigned long CHROME_OPENAS_DIALOG=0x40000000;
     const unsigned long CHROME_OPENAS_CHROME =0x80000000;
     const unsigned long CHROME_ALL=0x00000ffe;
-    
+
     attribute unsigned long chromeFlags;
-    
+
     void destroyBrowserWindow();
     void sizeBrowserTo(in long cx, in long cy);
     void showAsModal();
@@ -2664,7 +2664,7 @@ interface nsIWebBrowserFocus : nsISupports
     void deactivate();
     void setFocusAtFirstElement();
     void setFocusAtLastElement();
-    
+
     attribute nsIDOMWindow focusedWindow;
     attribute nsIDOMElement focusedElement;
 };
@@ -2704,11 +2704,11 @@ interface nsIWebBrowserPersist : nsICancelable
     const unsigned long PERSIST_FLAGS_FAIL_ON_BROKEN_LINKS = 4096;
     const unsigned long PERSIST_FLAGS_CLEANUP_ON_FAILURE = 8192;
     const unsigned long PERSIST_FLAGS_AUTODETECT_APPLY_CONVERSION = 16384;
-    
+
     const unsigned long PERSIST_STATE_READY = 1;
     const unsigned long PERSIST_STATE_SAVING = 2;
     const unsigned long PERSIST_STATE_FINISHED = 3;
-    
+
     const unsigned long ENCODE_FLAGS_SELECTION_ONLY = 1;
     const unsigned long ENCODE_FLAGS_FORMATTED = 2;
     const unsigned long ENCODE_FLAGS_RAW = 4;
@@ -2730,17 +2730,17 @@ interface nsIWebBrowserPersist : nsICancelable
     readonly attribute unsigned long currentState;
     readonly attribute unsigned long result;
     attribute nsIWebProgressListener progressListener;
-    
+
     void saveURI(in nsIURI uri,
                  in nsISupports cache_key,
                  in nsIURI referrer,
                  in nsIInputStream post_data,
                  in string extra_headers,
                  in nsIFile file);
-                 
+
     void saveChannel(in nsIChannel channel,
                      in nsISupports file);
-        
+
     void saveDocument(in nsIDOMDocument document,
                       in nsISupports file,
                       in nsISupports data_path,
@@ -2769,11 +2769,11 @@ interface nsIWebNavigation : nsISupports
 {
     readonly attribute boolean canGoBack;
     readonly attribute boolean canGoForward;
-    
+
     void goBack();
     void goForward();
     void gotoIndex(in long index);
-    
+
     const unsigned long LOAD_FLAGS_MASK = 65535;
     const unsigned long LOAD_FLAGS_NONE = 0;
     const unsigned long LOAD_FLAGS_IS_REFRESH = 16;
@@ -2788,7 +2788,7 @@ interface nsIWebNavigation : nsISupports
     const unsigned long STOP_NETWORK = 1;
     const unsigned long STOP_CONTENT = 2;
     const unsigned long STOP_ALL = 3;
-    
+
     void loadURI(in wstring uri,
                  in unsigned long load_flags,
                  in nsIURI referrer,
@@ -2797,7 +2797,7 @@ interface nsIWebNavigation : nsISupports
 
     void reload(in unsigned long reload_flags);
     void stop(in unsigned long stop_flags);
-    
+
     readonly attribute nsIDOMDocument document;
     readonly attribute nsIURI currentURI;
     readonly attribute nsIURI referringURI;
@@ -2845,20 +2845,20 @@ interface nsIWindowWatcher : nsISupports
                             in string name,
                             in string features,
                             in nsISupports arguments);
-                            
+
     void registerNotification(in nsIObserver observer);
     void unregisterNotification(in nsIObserver observer);
-    
+
     nsISimpleEnumerator getWindowEnumerator();
     nsIPrompt getNewPrompter(in nsIDOMWindow parent);
     nsIAuthPrompt getNewAuthPrompter(in nsIDOMWindow parent);
     void setWindowCreator(in nsIWindowCreator creator);
-                            
+
     nsIWebBrowserChrome getChromeForWindow(in nsIDOMWindow window);
-    
+
     nsIDOMWindow getWindowByName(in wstring target_name,
                                  in nsIDOMWindow current_window);
-                                 
+
     attribute nsIDOMWindow activeWindow;
 };
 
@@ -2945,7 +2945,7 @@ interface nsIScriptSecurityManager : nsIXPCSecurityManager
 
     void checkLoadURIWithPrincipal(
                       in nsIPrincipal principal,
-                      in nsIURI uri, 
+                      in nsIURI uri,
                       in unsigned long flags);
 
     void checkLoadURI(in nsIURI from,
@@ -2976,7 +2976,7 @@ interface nsIScriptSecurityManager : nsIXPCSecurityManager
                       in AUTF8String pretty_name,
                       in nsISupports cert,
                       in nsIURI uri);
-            
+
     nsIPrincipal getCodebasePrincipal(in nsIURI uri);
 
     short requestCapability(

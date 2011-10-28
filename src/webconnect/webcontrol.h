@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2006-09-22
-// RCS-ID:      
+// RCS-ID:
 // Copyright:   (C) Copyright 2006-2009, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -31,7 +31,7 @@ enum wxWebState
     wxWEB_STATE_TRANSFERRING = 1 << 2,
     wxWEB_STATE_NEGOTIATING =  1 << 3,
     wxWEB_STATE_STOP =         1 << 4,
-    
+
     wxWEB_STATE_IS_REQUEST =   1 << 5,
     wxWEB_STATE_IS_DOCUMENT =  1 << 6,
     wxWEB_STATE_IS_NETWORK =   1 << 7,
@@ -128,10 +128,10 @@ struct EmbeddingPtrs;
 // (CLASS) wxWebContentHandler
 // Category: Content
 // Description: Used for intercepting and handling specific types of content
-//     in order to override the default manner in which the web control 
+//     in order to override the default manner in which the web control
 //     handles certain types of content.
-// Remarks: The wxWebContentHandler class is used for intercepting and handling 
-//     specific types of content in order to override the default manner in 
+// Remarks: The wxWebContentHandler class is used for intercepting and handling
+//     specific types of content in order to override the default manner in
 //     which the web control handles certain types of content.
 
 // (METHOD) wxWebContentHandler::CanHandleContent
@@ -145,7 +145,7 @@ struct EmbeddingPtrs;
 // Syntax: void wxWebContentHandler::OnStartRequest(const wxString& url)
 
 // (METHOD) wxWebContentHandler::OnData
-// Syntax: void wxWebContentHandler::OnData(const unsigned char* buf, 
+// Syntax: void wxWebContentHandler::OnData(const unsigned char* buf,
 //                                          size_t size)
 
 class wxWebContentHandler
@@ -175,7 +175,7 @@ WX_DEFINE_ARRAY_PTR(wxWebContentHandler*, wxWebContentHandlerPtrArray);
 // (CLASS) wxWebProgressBase
 // Category: Content
 // Description: Used to get information about the progress of a download.
-//     Progress information receivers should derive from this class and 
+//     Progress information receivers should derive from this class and
 //     override the desired methods.
 // Remarks: The wxWebProgressBase class is used to get information about
 //     the progress of a download.  Progress information receivers should
@@ -212,21 +212,21 @@ public:
     {
         m_cancelled = false;
     }
-    
+
     virtual ~wxWebProgressBase() { }
-    
+
     virtual void Init(const wxString& WXUNUSED(url),
                       const wxString& WXUNUSED(suggested_filename)) { }
-    
+
     virtual void Cancel() { m_cancelled = true; }
     virtual bool IsCancelled() const { return m_cancelled; }
     virtual void OnStart() { }
     virtual void OnFinish() { }
     virtual void OnError(const wxString& WXUNUSED(message)) { }
-    
+
     virtual void OnProgressChange(wxLongLong WXUNUSED(cur_progress),
                                   wxLongLong WXUNUSED(max_progress)) { }
-    
+
 protected:
 
     bool m_cancelled;
@@ -242,13 +242,13 @@ protected:
 
 // (CLASS) wxWebPostData
 // Category: Content
-// Description: Used for building up a POST request, which can be issued 
+// Description: Used for building up a POST request, which can be issued
 //     through wxWebControl::openURI().
 // Remarks: The wxWebPostData class is used for building up a POST request,
 //     which can be issued through wxWebControl::openURI().
 
 // (METHOD) wxWebPostData::Add
-// Syntax: void wxWebPostData::Add(const wxString& variable, 
+// Syntax: void wxWebPostData::Add(const wxString& variable,
 //                                 const wxString& value)
 
 // (METHOD) wxWebPostData::GetPostString
@@ -260,7 +260,7 @@ public:
 
     void Add(const wxString& variable, const wxString& value);
     wxString GetPostString();
-    
+
 private:
 
     wxArrayString m_vars;
@@ -291,15 +291,15 @@ private:
 // Syntax: int wxWebPreferences::GetIntPref(const wxString& name)
 
 // (METHOD) wxWebPreferences::SetIntPref
-// Syntax: void wxWebPreferences::SetIntPref(const wxString& name, 
+// Syntax: void wxWebPreferences::SetIntPref(const wxString& name,
 //                                           int value)
 
 // (METHOD) wxWebPreferences::SetStringPref
-// Syntax: void wxWebPreferences::SetStringPref(const wxString& name, 
+// Syntax: void wxWebPreferences::SetStringPref(const wxString& name,
 //                                              const wxString& value)
 
 // (METHOD) wxWebPreferences::SetBoolPref
-// Syntax: void wxWebPreferences::SetBoolPref(const wxString& name, 
+// Syntax: void wxWebPreferences::SetBoolPref(const wxString& name,
 //                                            bool value)
 
 class wxWebPreferences
@@ -310,7 +310,7 @@ private:
 
     // private constructor - please use wxWebControl::GetWebPreferences()
     wxWebPreferences();
-    
+
 public:
 
     bool GetBoolPref(const wxString& name);
@@ -352,21 +352,21 @@ public:
     static bool AddContentHandler(wxWebContentHandler* handler, bool take_ownership = false);
     static void AddPluginPath(const wxString& path);
     static wxWebPreferences GetPreferences();
-    
+
     static bool SaveRequest(
                  const wxString& uri,
                  const wxString& destination_path,
                  wxWebPostData* post_data = NULL,
                  wxWebProgressBase* listener = NULL);
-                 
+
     static bool SaveRequestToString(
                  const wxString& uri,
                  wxString* result = NULL,
                  wxWebPostData* post_data = NULL,
                  wxWebProgressBase* listener = NULL);
-                 
+
     static bool ClearCache();
-                 
+
 public:
 
     wxWebControl(wxWindow* parent,
@@ -374,25 +374,25 @@ public:
                  const wxPoint& pos = wxDefaultPosition,
                  const wxSize& size = wxDefaultSize);
     ~wxWebControl();
-    
+
     bool IsOk() const;
-    
+
     // navigation
     void OpenURI(const wxString& uri,
                  unsigned int flags = wxWEB_LOAD_NORMAL,
                  wxWebPostData* post_data = NULL,
 				 bool bGrabFocus = true);
-                     
+
     wxString GetCurrentURI() const;
     void GoForward();
     void GoBack();
     void Reload();
     void Stop();
     bool IsContentLoaded() const;
-    
+
     // javascript
     bool Execute(const wxString& js_code);
-    
+
     // printing
     void Print(bool silent = false);
     void SetPageSettings(double page_width, double page_height,
@@ -404,17 +404,17 @@ public:
     void ViewSource();
     void ViewSource(wxWebControl* source_web_browser);
     void ViewSource(const wxString& uri);
-    
+
     // save
     bool SaveCurrent(const wxString& destination_path);
-    
+
     // zoom
     void GetTextZoom(float* zoom);
     void SetTextZoom(float zoom);
 
     // find
     bool Find(const wxString& text, unsigned int flags = 0);
-    
+
     // clipboard
     bool CanCutSelection();
     bool CanCopySelection();
@@ -430,11 +430,11 @@ public:
     void Paste();
     void SelectAll();
     void SelectNone();
-    
+
     // other
     wxImage GetFavIcon() const;
     wxDOMDocument GetDOMDocument();
-    
+
 private:
 
     void OnSize(wxSizeEvent& evt);
@@ -445,7 +445,7 @@ private:
     void FetchFavIcon(void* uri);
     void OnFavIconFetched(const wxString& filename);
     void OnDOMContentLoaded();
-    
+
 private:
 
     EmbeddingPtrs* m_ptrs;
@@ -454,11 +454,11 @@ private:
     wxWebContentHandlerPtrArray m_content_handlers;
     wxWebContentHandlerPtrArray m_to_delete;
     wxWebFavIconProgress* m_favicon_progress;
-    
+
     wxImage m_favicon;
     bool m_favicon_fetched;
     bool m_content_loaded;
-    
+
     DECLARE_EVENT_TABLE()
 };
 
@@ -475,8 +475,8 @@ private:
 // Derives: wxNotifyEvent
 // Description: Primary web browser event.  Encapsulates information about
 //     web control state changes, status changes, and other web-related events.
-// Remarks: The wxWebEvent class represents a web browser event.  It 
-//     encapsulates information about web control state changes, status changes, 
+// Remarks: The wxWebEvent class represents a web browser event.  It
+//     encapsulates information about web control state changes, status changes,
 //     and other web-related events.
 
 // (CONSTRUCTOR) wxWebEvent::wxWebEvent
@@ -490,64 +490,64 @@ private:
 // Syntax: wxEvent *wxWebEvent::Clone() const
 
 // (METHOD) wxWebEvent::GetState
-// Syntax: int wxWebEvent::GetState()    
-    
+// Syntax: int wxWebEvent::GetState()
+
 // (METHOD) wxWebEvent::SetState
-// Syntax: void wxWebEvent::SetState(int value)    
-    
+// Syntax: void wxWebEvent::SetState(int value)
+
 // (METHOD) wxWebEvent::GetResult
 // Syntax: int wxWebEvent::GetResult() const
-        
+
 // (METHOD) wxWebEvent::SetResult
-// Syntax: void wxWebEvent::SetResult(int value)    
-    
+// Syntax: void wxWebEvent::SetResult(int value)
+
 // (METHOD) wxWebEvent::SetHref
 // Syntax: void wxWebEvent::SetHref(const wxString& value)
-        
+
 // (METHOD) wxWebEvent::GetHref
-// Syntax: wxString wxWebEvent::GetHref() const    
-    
+// Syntax: wxString wxWebEvent::GetHref() const
+
 // (METHOD) wxWebEvent::SetFilename
 // Syntax: void wxWebEvent::SetFilename(const wxString& value)
-        
+
 // (METHOD) wxWebEvent::GetFilename
-// Syntax: wxString wxWebEvent::GetFilename() const    
-    
+// Syntax: wxString wxWebEvent::GetFilename() const
+
 // (METHOD) wxWebEvent::SetContentType
 // Syntax: void wxWebEvent::SetContentType(const wxString& value)
-        
+
 // (METHOD) wxWebEvent::GetContentType
-// Syntax: wxString wxWebEvent::GetContentType() const    
-    
+// Syntax: wxString wxWebEvent::GetContentType() const
+
 // (METHOD) wxWebEvent::GetTargetNode
 // Syntax: wxDOMNode wxWebEvent::GetTargetNode()
-        
+
 // (METHOD) wxWebEvent::GetDOMEvent
-// Syntax: wxDOMEvent wxWebEvent::GetDOMEvent()    
-    
+// Syntax: wxDOMEvent wxWebEvent::GetDOMEvent()
+
 // (METHOD) wxWebEvent::GetCreateChromeFlags
 // Syntax: int wxWebEvent::GetCreateChromeFlags() const
-        
+
 // (METHOD) wxWebEvent::SetCreateChromeFlags
 // Syntax: void wxWebEvent::SetCreateChromeFlags(int value)
-        
+
 // (METHOD) wxWebEvent::SetCreateBrowser
-// Syntax: void wxWebEvent::SetCreateBrowser(wxWebControl* ctrl)    
-    
+// Syntax: void wxWebEvent::SetCreateBrowser(wxWebControl* ctrl)
+
 // (METHOD) wxWebEvent::SetDownloadAction
 // Syntax: void wxWebEvent::SetDownloadAction(int action)
-        
+
 // (METHOD) wxWebEvent::SetDownloadTarget
 // Syntax: void wxWebEvent::SetDownloadTarget(const wxString& path)
-        
+
 // (METHOD) wxWebEvent::SetDownloadListener
-// Syntax: void wxWebEvent::SetDownloadListener(wxWebProgressBase* listener)    
-    
+// Syntax: void wxWebEvent::SetDownloadListener(wxWebProgressBase* listener)
+
 // (METHOD) wxWebEvent::SetShouldHandle
 // Syntax: void wxWebEvent::SetShouldHandle(bool value)
-        
+
 // (METHOD) wxWebEvent::SetOutputContentType
-// Syntax: void wxWebEvent::SetOutputContentType(const wxString& value)    
+// Syntax: void wxWebEvent::SetOutputContentType(const wxString& value)
 
 class WXDLLIMPEXP_AUI wxWebEvent : public wxNotifyEvent
 {
@@ -588,33 +588,33 @@ public:
 
     int GetState() const { return m_state; }
     void SetState(int value) { m_state = value; }
-    
+
     int GetResult() const { return m_res; }
     void SetResult(int value) { m_res = value; }
-    
+
     void SetHref(const wxString& value) { m_href = value; }
     wxString GetHref() const { return m_href; }
-    
+
     void SetFilename(const wxString& value) { m_filename = value; }
     wxString GetFilename() const { return m_filename; }
-    
+
     void SetContentType(const wxString& value) { m_content_type = value; }
     wxString GetContentType() const { return m_content_type; }
-    
+
     wxDOMNode GetTargetNode() { return m_target_node; }
     wxDOMEvent GetDOMEvent() { return m_dom_event; }
-    
+
     int GetCreateChromeFlags() const { return m_create_chrome_flags; }
     void SetCreateChromeFlags(int value) { m_create_chrome_flags = value; }
     void SetCreateBrowser(wxWebControl* ctrl) { m_create_browser = ctrl; }
-    
+
     void SetDownloadAction(int action) { m_download_action = action; }
     void SetDownloadTarget(const wxString& path) { m_download_action_path = path; }
     void SetDownloadListener(wxWebProgressBase* listener) { m_download_listener = listener; }
-    
+
     void SetShouldHandle(bool value) { m_should_handle = value; }
     void SetOutputContentType(const wxString& value) { m_output_content_type = value; }
-    
+
     int m_state;
     int m_res;
     wxDOMNode m_target_node;
@@ -624,14 +624,14 @@ public:
     bool m_should_handle;
     wxString m_content_type;
     wxString m_output_content_type;
-    
+
     int m_create_chrome_flags;
     wxWebControl* m_create_browser;
-    
+
     int m_download_action;
     wxString m_download_action_path;
     wxWebProgressBase* m_download_listener;
-    
+
 #ifndef SWIG
 private:
     DECLARE_DYNAMIC_CLASS_NO_ASSIGN(wxWebEvent)
@@ -672,7 +672,7 @@ typedef void (wxEvtHandler::*wxWebEventFunction)(wxWebEvent&);
 
 #define EVT_WEB_OPENURI(winid, func) \
    wx__DECLARE_EVT1(wxEVT_WEB_OPENURI, winid, wxWebEventHandler(func))
-    
+
 #define EVT_WEB_TITLECHANGE(winid, func) \
    wx__DECLARE_EVT1(wxEVT_WEB_TITLECHANGE, winid, wxWebEventHandler(func))
 
@@ -687,37 +687,37 @@ typedef void (wxEvtHandler::*wxWebEventFunction)(wxWebEvent&);
 
 #define EVT_WEB_STATUSCHANGE(winid, func) \
    wx__DECLARE_EVT1(wxEVT_WEB_STATUSCHANGE, winid, wxWebEventHandler(func))
-   
+
 #define EVT_WEB_STATUSTEXT(winid, func) \
    wx__DECLARE_EVT1(wxEVT_WEB_STATUSTEXT, winid, wxWebEventHandler(func))
 
 #define EVT_WEB_SHOWCONTEXTMENU(winid, func) \
    wx__DECLARE_EVT1(wxEVT_WEB_SHOWCONTEXTMENU, winid, wxWebEventHandler(func))
-   
+
 #define EVT_WEB_LEFTDOWN(winid, func) \
    wx__DECLARE_EVT1(wxEVT_WEB_LEFTDOWN, winid, wxWebEventHandler(func))
-   
+
 #define EVT_WEB_MIDDLEDOWN(winid, func) \
    wx__DECLARE_EVT1(wxEVT_WEB_MIDDLEDOWN, winid, wxWebEventHandler(func))
-   
+
 #define EVT_WEB_RIGHTDOWN(winid, func) \
    wx__DECLARE_EVT1(wxEVT_WEB_RIGHTDOWN, winid, wxWebEventHandler(func))
 
 #define EVT_WEB_LEFTUP(winid, func) \
    wx__DECLARE_EVT1(wxEVT_WEB_LEFTUP, winid, wxWebEventHandler(func))
-   
+
 #define EVT_WEB_MIDDLEUP(winid, func) \
    wx__DECLARE_EVT1(wxEVT_WEB_MIDDLEUP, winid, wxWebEventHandler(func))
-   
+
 #define EVT_WEB_RIGHTUP(winid, func) \
    wx__DECLARE_EVT1(wxEVT_WEB_RIGHTUP, winid, wxWebEventHandler(func))
 
 #define EVT_WEB_LEFTDCLICK(winid, func) \
    wx__DECLARE_EVT1(wxEVT_WEB_LEFTDCLICK, winid, wxWebEventHandler(func))
-   
+
 #define EVT_WEB_DRAGDROP(winid, func) \
    wx__DECLARE_EVT1(wxEVT_WEB_DRAGDROP, winid, wxWebEventHandler(func))
-   
+
 #define EVT_WEB_CREATEBROWSER(winid, func) \
    wx__DECLARE_EVT1(wxEVT_WEB_CREATEBROWSER, winid, wxWebEventHandler(func))
 

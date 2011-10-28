@@ -66,7 +66,7 @@ wxString URLDecode(const wxString &value) {
 		else
 		{
 			if( isxdigit(szEncoded.GetChar(nEncodedPos)) && isxdigit(szEncoded.GetChar(nEncodedPos+1)) ) {
-				
+
 				int n1 = HexToNumber(szEncoded.GetChar(nEncodedPos));
 				int n2 = HexToNumber(szEncoded.GetChar(nEncodedPos+1));
 

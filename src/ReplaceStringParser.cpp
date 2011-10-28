@@ -19,7 +19,7 @@ struct ReplaceStringParserState {
 };
 
 
-ReplaceStringParser::ReplaceStringParser(const DocumentWrapper& doc, const wxString& indent, 
+ReplaceStringParser::ReplaceStringParser(const DocumentWrapper& doc, const wxString& indent,
 	const wxString& replacetext, const std::map<unsigned int,interval>& captures, const std::vector<char>* source):
 		m_doc(doc), m_indent(indent)
 {

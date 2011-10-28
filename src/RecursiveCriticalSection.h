@@ -16,7 +16,7 @@ public:
 	{
 		m_recursive_mutex.Lock();
 	}
-	
+
 	inline void Leave()
 	{
 		m_recursive_mutex.Unlock();

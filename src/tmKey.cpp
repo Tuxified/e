@@ -270,7 +270,7 @@ tmKey::tmKey(const wxString& binding) : modifiers(0), keyCode(0) {
 				tmKey::uniToWxk(c, keyCode, modifiers);
 		}
 	}
-	
+
 	UpdateShortcut();
 
 #ifdef __WXDEBUG__
@@ -290,7 +290,7 @@ error:
 
 void tmKey::UpdateShortcut() {
 	shortcut.clear();
-	
+
 	// Build shortcut string
 	if (modifiers & 0x0002) shortcut += _("Ctrl-");
 	if (modifiers & 0x0001) shortcut += _("Alt-");

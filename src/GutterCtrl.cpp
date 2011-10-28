@@ -39,11 +39,11 @@ BEGIN_EVENT_TABLE(GutterCtrl, wxControl)
 	EVT_MOUSE_CAPTURE_LOST(GutterCtrl::OnCaptureLost)
 END_EVENT_TABLE()
 
-GutterCtrl::GutterCtrl(EditorCtrl& parent, wxWindowID id): 
+GutterCtrl::GutterCtrl(EditorCtrl& parent, wxWindowID id):
 	wxControl(&parent, id, wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxCLIP_CHILDREN|wxNO_FULL_REPAINT_ON_RESIZE),
-	m_editorCtrl(parent), 
-	m_mdc(), m_bitmap(1,1), m_width(0), m_gutterLeft(true), 
-	m_showBookmarks(true), 
+	m_editorCtrl(parent),
+	m_mdc(), m_bitmap(1,1), m_width(0), m_gutterLeft(true),
+	m_showBookmarks(true),
 	m_showFolds(true), m_currentFold(NULL), m_posBeforeFoldClick(-1),
 	m_theme(m_editorCtrl.GetTheme()),
 	m_currentSel(-1)

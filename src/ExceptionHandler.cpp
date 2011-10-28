@@ -127,19 +127,19 @@ static void hprintf(HANDLE LogFile, LPCTSTR Format, ...)
 // DumpMiniDump
 static void DumpMiniDump(HANDLE hFile, PEXCEPTION_POINTERS excpInfo)
 {
-	if (excpInfo == NULL) 
+	if (excpInfo == NULL)
 	{
 		// Generate exception to get proper context in dump
-		__try 
+		__try
 		{
 			OutputDebugString(_T("raising exception\r\n"));
 			RaiseException(EXCEPTION_BREAKPOINT, 0, 0, NULL);
-		} 
+		}
 		__except(DumpMiniDump(hFile, GetExceptionInformation()),
-				 EXCEPTION_CONTINUE_EXECUTION) 
+				 EXCEPTION_CONTINUE_EXECUTION)
 		{
 		}
-	} 
+	}
 	else
 	{
 		OutputDebugString(_T("writing minidump\r\n"));
@@ -214,7 +214,7 @@ static bool DumpModuleInfo(HANDLE LogFile, HINSTANCE ModuleHandle, int nModuleNo
 
 			TCHAR TimeBuffer[100];
 			TimeBuffer[0] = _T('\0');
-			
+
 			DWORD FileSize = 0;
 			if (ModuleFile != INVALID_HANDLE_VALUE)
 			{
@@ -228,11 +228,11 @@ static bool DumpModuleInfo(HANDLE LogFile, HINSTANCE ModuleHandle, int nModuleNo
 			}
 			hprintf(LogFile, _T("Module %d\r\n"), nModuleNo);
 			hprintf(LogFile, _T("%s\r\n"), szModName);
-			hprintf(LogFile, _T("Image Base: 0x%08x  Image Size: 0x%08x\r\n"), 
-				NTHeader->OptionalHeader.ImageBase, 
-				NTHeader->OptionalHeader.SizeOfImage), 
+			hprintf(LogFile, _T("Image Base: 0x%08x  Image Size: 0x%08x\r\n"),
+				NTHeader->OptionalHeader.ImageBase,
+				NTHeader->OptionalHeader.SizeOfImage),
 
-			hprintf(LogFile, _T("Checksum:   0x%08x  Time Stamp: 0x%08x\r\n"), 
+			hprintf(LogFile, _T("Checksum:   0x%08x  Time Stamp: 0x%08x\r\n"),
 				NTHeader->OptionalHeader.CheckSum,
 				NTHeader->FileHeader.TimeDateStamp);
 
@@ -255,11 +255,11 @@ static bool DumpModuleInfo(HANDLE LogFile, HINSTANCE ModuleHandle, int nModuleNo
 			hprintf(LogFile, _T("   FileDesc:   %s\r\n"), szBuf);
 
 			ver.GetFileVersion(dwBuf);
-			hprintf(LogFile, _T("   FileVer:    %d.%d.%d.%d\r\n"), 
+			hprintf(LogFile, _T("   FileVer:    %d.%d.%d.%d\r\n"),
 				dwBuf[0], dwBuf[1], dwBuf[2], dwBuf[3]);
 
 			ver.GetProductVersion(dwBuf);
-			hprintf(LogFile, _T("   ProdVer:    %d.%d.%d.%d\r\n"), 
+			hprintf(LogFile, _T("   ProdVer:    %d.%d.%d.%d\r\n"),
 				dwBuf[0], dwBuf[1], dwBuf[2], dwBuf[3]);
 
 			ver.Release();
@@ -315,8 +315,8 @@ static void DumpModuleList(HANDLE LogFile)
 					// recording their module names - this will fail
 					// gracefully if they aren't code modules
 					LastAllocationBase = MemInfo.AllocationBase;
-					if (DumpModuleInfo(LogFile, 
-									   (HINSTANCE)LastAllocationBase, 
+					if (DumpModuleInfo(LogFile,
+									   (HINSTANCE)LastAllocationBase,
 									   nModuleNo))
 					{
 						nModuleNo++;
@@ -365,7 +365,7 @@ static void DumpSystemInformation(HANDLE LogFile)
 	TCHAR szWinVer[50], szMajorMinorBuild[50];
 	int nWinVer;
 	GetWinVer(szWinVer, &nWinVer, szMajorMinorBuild);
-	hprintf(LogFile, _T("Operating system:  %s (%s).\r\n"), 
+	hprintf(LogFile, _T("Operating system:  %s (%s).\r\n"),
 		szWinVer, szMajorMinorBuild);
 
 	SYSTEM_INFO	SystemInfo;
@@ -381,15 +381,15 @@ static void DumpSystemInformation(HANDLE LogFile)
 	hprintf(LogFile, _T("%d%% memory in use.\r\n"), MemInfo.dwMemoryLoad);
 	hprintf(LogFile, _T("%d MBytes physical memory.\r\n"), (MemInfo.dwTotalPhys +
 				ONEM - 1) / ONEM);
-	hprintf(LogFile, _T("%d MBytes physical memory free.\r\n"), 
+	hprintf(LogFile, _T("%d MBytes physical memory free.\r\n"),
 		(MemInfo.dwAvailPhys + ONEM - 1) / ONEM);
 	hprintf(LogFile, _T("%d MBytes paging file.\r\n"), (MemInfo.dwTotalPageFile +
 				ONEM - 1) / ONEM);
-	hprintf(LogFile, _T("%d MBytes paging file free.\r\n"), 
+	hprintf(LogFile, _T("%d MBytes paging file free.\r\n"),
 		(MemInfo.dwAvailPageFile + ONEM - 1) / ONEM);
-	hprintf(LogFile, _T("%d MBytes user address space.\r\n"), 
+	hprintf(LogFile, _T("%d MBytes user address space.\r\n"),
 		(MemInfo.dwTotalVirtual + ONEM - 1) / ONEM);
-	hprintf(LogFile, _T("%d MBytes user address space free.\r\n"), 
+	hprintf(LogFile, _T("%d MBytes user address space free.\r\n"),
 		(MemInfo.dwAvailVirtual + ONEM - 1) / ONEM);
 }
 
@@ -406,39 +406,39 @@ static const TCHAR *GetExceptionDescription(DWORD ExceptionCode)
 	};
 
 #if 0  // from winnt.h
-#define STATUS_WAIT_0                    ((DWORD   )0x00000000L)    
-#define STATUS_ABANDONED_WAIT_0          ((DWORD   )0x00000080L)    
-#define STATUS_USER_APC                  ((DWORD   )0x000000C0L)    
-#define STATUS_TIMEOUT                   ((DWORD   )0x00000102L)    
-#define STATUS_PENDING                   ((DWORD   )0x00000103L)    
-#define STATUS_SEGMENT_NOTIFICATION      ((DWORD   )0x40000005L)    
-#define STATUS_GUARD_PAGE_VIOLATION      ((DWORD   )0x80000001L)    
-#define STATUS_DATATYPE_MISALIGNMENT     ((DWORD   )0x80000002L)    
-#define STATUS_BREAKPOINT                ((DWORD   )0x80000003L)    
-#define STATUS_SINGLE_STEP               ((DWORD   )0x80000004L)    
-#define STATUS_ACCESS_VIOLATION          ((DWORD   )0xC0000005L)    
-#define STATUS_IN_PAGE_ERROR             ((DWORD   )0xC0000006L)    
-#define STATUS_INVALID_HANDLE            ((DWORD   )0xC0000008L)    
-#define STATUS_NO_MEMORY                 ((DWORD   )0xC0000017L)    
-#define STATUS_ILLEGAL_INSTRUCTION       ((DWORD   )0xC000001DL)    
-#define STATUS_NONCONTINUABLE_EXCEPTION  ((DWORD   )0xC0000025L)    
-#define STATUS_INVALID_DISPOSITION       ((DWORD   )0xC0000026L)    
-#define STATUS_ARRAY_BOUNDS_EXCEEDED     ((DWORD   )0xC000008CL)    
-#define STATUS_FLOAT_DENORMAL_OPERAND    ((DWORD   )0xC000008DL)    
-#define STATUS_FLOAT_DIVIDE_BY_ZERO      ((DWORD   )0xC000008EL)    
-#define STATUS_FLOAT_INEXACT_RESULT      ((DWORD   )0xC000008FL)    
-#define STATUS_FLOAT_INVALID_OPERATION   ((DWORD   )0xC0000090L)    
-#define STATUS_FLOAT_OVERFLOW            ((DWORD   )0xC0000091L)    
-#define STATUS_FLOAT_STACK_CHECK         ((DWORD   )0xC0000092L)    
-#define STATUS_FLOAT_UNDERFLOW           ((DWORD   )0xC0000093L)    
-#define STATUS_INTEGER_DIVIDE_BY_ZERO    ((DWORD   )0xC0000094L)    
-#define STATUS_INTEGER_OVERFLOW          ((DWORD   )0xC0000095L)    
-#define STATUS_PRIVILEGED_INSTRUCTION    ((DWORD   )0xC0000096L)    
-#define STATUS_STACK_OVERFLOW            ((DWORD   )0xC00000FDL)    
-#define STATUS_CONTROL_C_EXIT            ((DWORD   )0xC000013AL)    
-#define STATUS_FLOAT_MULTIPLE_FAULTS     ((DWORD   )0xC00002B4L)    
-#define STATUS_FLOAT_MULTIPLE_TRAPS      ((DWORD   )0xC00002B5L)    
-#define STATUS_ILLEGAL_VLM_REFERENCE     ((DWORD   )0xC00002C0L)     
+#define STATUS_WAIT_0                    ((DWORD   )0x00000000L)
+#define STATUS_ABANDONED_WAIT_0          ((DWORD   )0x00000080L)
+#define STATUS_USER_APC                  ((DWORD   )0x000000C0L)
+#define STATUS_TIMEOUT                   ((DWORD   )0x00000102L)
+#define STATUS_PENDING                   ((DWORD   )0x00000103L)
+#define STATUS_SEGMENT_NOTIFICATION      ((DWORD   )0x40000005L)
+#define STATUS_GUARD_PAGE_VIOLATION      ((DWORD   )0x80000001L)
+#define STATUS_DATATYPE_MISALIGNMENT     ((DWORD   )0x80000002L)
+#define STATUS_BREAKPOINT                ((DWORD   )0x80000003L)
+#define STATUS_SINGLE_STEP               ((DWORD   )0x80000004L)
+#define STATUS_ACCESS_VIOLATION          ((DWORD   )0xC0000005L)
+#define STATUS_IN_PAGE_ERROR             ((DWORD   )0xC0000006L)
+#define STATUS_INVALID_HANDLE            ((DWORD   )0xC0000008L)
+#define STATUS_NO_MEMORY                 ((DWORD   )0xC0000017L)
+#define STATUS_ILLEGAL_INSTRUCTION       ((DWORD   )0xC000001DL)
+#define STATUS_NONCONTINUABLE_EXCEPTION  ((DWORD   )0xC0000025L)
+#define STATUS_INVALID_DISPOSITION       ((DWORD   )0xC0000026L)
+#define STATUS_ARRAY_BOUNDS_EXCEEDED     ((DWORD   )0xC000008CL)
+#define STATUS_FLOAT_DENORMAL_OPERAND    ((DWORD   )0xC000008DL)
+#define STATUS_FLOAT_DIVIDE_BY_ZERO      ((DWORD   )0xC000008EL)
+#define STATUS_FLOAT_INEXACT_RESULT      ((DWORD   )0xC000008FL)
+#define STATUS_FLOAT_INVALID_OPERATION   ((DWORD   )0xC0000090L)
+#define STATUS_FLOAT_OVERFLOW            ((DWORD   )0xC0000091L)
+#define STATUS_FLOAT_STACK_CHECK         ((DWORD   )0xC0000092L)
+#define STATUS_FLOAT_UNDERFLOW           ((DWORD   )0xC0000093L)
+#define STATUS_INTEGER_DIVIDE_BY_ZERO    ((DWORD   )0xC0000094L)
+#define STATUS_INTEGER_OVERFLOW          ((DWORD   )0xC0000095L)
+#define STATUS_PRIVILEGED_INSTRUCTION    ((DWORD   )0xC0000096L)
+#define STATUS_STACK_OVERFLOW            ((DWORD   )0xC00000FDL)
+#define STATUS_CONTROL_C_EXIT            ((DWORD   )0xC000013AL)
+#define STATUS_FLOAT_MULTIPLE_FAULTS     ((DWORD   )0xC00002B4L)
+#define STATUS_FLOAT_MULTIPLE_TRAPS      ((DWORD   )0xC00002B5L)
+#define STATUS_ILLEGAL_VLM_REFERENCE     ((DWORD   )0xC00002C0L)
 #endif
 
 	ExceptionNames ExceptionMap[] =
@@ -601,7 +601,7 @@ static void DumpRegisters(HANDLE LogFile, PCONTEXT Context)
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-int __cdecl RecordExceptionInfo(PEXCEPTION_POINTERS pExceptPtrs, 
+int __cdecl RecordExceptionInfo(PEXCEPTION_POINTERS pExceptPtrs,
 								LPCTSTR lpszMessage)
 {
 	static bool bFirstTime = true;
@@ -732,7 +732,7 @@ int __cdecl RecordExceptionInfo(PEXCEPTION_POINTERS pExceptPtrs,
 
 	DumpModuleList(hLogFile);
 
-	hprintf(hLogFile, _T("\r\n===== [end of %s] =====\r\n"), 
+	hprintf(hLogFile, _T("\r\n===== [end of %s] =====\r\n"),
 		XCRASHREPORT_ERROR_LOG_FILE);
 	hflush(hLogFile);
 	CloseHandle(hLogFile);

@@ -15,8 +15,8 @@
 
 #include <wx/ffile.h>
 
-EasyPlistWriter::EasyPlistWriter(void): 
-	m_doc(new TiXmlDocument()) 
+EasyPlistWriter::EasyPlistWriter(void):
+	m_doc(new TiXmlDocument())
 {
 	TiXmlDeclaration* decl = new TiXmlDeclaration( "1.0", "UTF-8", "" );
 	m_doc->LinkEndChild(decl);

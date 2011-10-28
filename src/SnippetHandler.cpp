@@ -124,7 +124,7 @@ void SnippetHandler::NextTab() {
 		if (p != m_tabstops.end()) {
 			// Check if we need to pipe content through a shell command
 			// before jumping to next tabstop
-			if (p != m_tabstops.end() && !p->second.pipeCmd.empty()) {	
+			if (p != m_tabstops.end() && !p->second.pipeCmd.empty()) {
 				DoPipe(p->second);
 			}
 
@@ -428,7 +428,7 @@ void SnippetHandler::DoPipe(const TabStop& ts) {
 
 	vector<char> output;
 	const int pid = ShellRunner::RawShell(ts.pipeCmd, input, &output, NULL, env);
-	if (pid == 0 && !output.empty()) {		
+	if (pid == 0 && !output.empty()) {
 		if (output.back() == '\n') output.pop_back(); // Strip the ending newline
 
 		// Re-select tabstop
@@ -684,7 +684,7 @@ bool SnippetHandler::Parse(bool isWrapped) {
 					return true;
 				}
 			}
-			
+
 			// Default: just handle it as normal char
 			m_snipText.push_back(c);
 			++m_pos;
@@ -810,7 +810,7 @@ bool SnippetHandler::ParseTabStop() {
 
 		// Add tabstop
 		TabStop& ts = m_tabstops[tabstop];
-		bool isTabstop = false; // Could be mirror or transformation 
+		bool isTabstop = false; // Could be mirror or transformation
 		if (!ts.isValid) {
 			ts.iv = currentIv;
 			if (m_parentTabStop > 0) {
@@ -825,7 +825,7 @@ bool SnippetHandler::ParseTabStop() {
 				m_tabstops[m_parentTabStop].childrenM.push_back(currentIv);
 			}
 		}
-	
+
 		if (c == ':') {
 			// Parse default value
 			unsigned int oldStop = m_parentTabStop;

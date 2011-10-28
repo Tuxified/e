@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2006-10-08
-// RCS-ID:      
+// RCS-ID:
 // Copyright:   (C) Copyright 2006-2009, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -121,17 +121,17 @@ static void GetDependentLibraryList(const char* xpcom_dll_path, wxArrayString& a
     // first load dependent libraries
     wxString fname = wxString::FromAscii(xpcom_dll_path);
     wxString xpcom_dir;
-    
+
     // remove a trailing slash, if any
     if (fname.Length() > 0 && fname.Last() == XPCOM_PATH_SEPARATOR)
         fname.RemoveLast();
     xpcom_dir = fname.BeforeLast(XPCOM_PATH_SEPARATOR);
-    
+
     // load 'dependentlibs.list'
     wxString deplib_list_fname = xpcom_dir;
     deplib_list_fname += XPCOM_PATH_SEPARATOR;
     deplib_list_fname += wxT("dependentlibs.list");
-    
+
     FILE* ff = fopen(deplib_list_fname.mbc_str(), "r");
     if (ff)
     {
@@ -142,18 +142,18 @@ static void GetDependentLibraryList(const char* xpcom_dll_path, wxArrayString& a
             // ignore empty lines and comment lines
             if (!buf[0] || buf[0] == '#')
                 continue;
-            
+
             full_path = xpcom_dir;
             full_path += XPCOM_PATH_SEPARATOR;
             full_path += wxString::FromAscii(buf);
-            
+
             // remove trailing \n
             if (full_path.Length() > 1 && full_path.Last() == L'\n')
                 full_path.RemoveLast();
-                
+
             arr.Add(full_path);
         }
-        
+
         fclose(ff);
     }
 }
@@ -172,25 +172,25 @@ nsresult XPCOMGlueStartup(const char* xpcom_dll_path)
                                0,
                                LOAD_WITH_ALTERED_SEARCH_PATH);
     }
-    
+
     // now load the functions from xpcom.dll
-    
+
     HMODULE h = LoadLibraryExA(xpcom_dll_path, 0, LOAD_WITH_ALTERED_SEARCH_PATH);
-    
+
     GetFrozenFunctionsFunc f;
     f = (GetFrozenFunctionsFunc)GetProcAddress(h, "NS_GetFrozenFunctions");
-    
+
     if (!f)
     {
         FreeLibrary(h);
         return NS_ERROR_FAILURE;
     }
-    
+
     nsresult res;
     funcs.version = 1;
     funcs.size = sizeof(XPCOMFunctionTable);
     res = f(&funcs, xpcom_dll_path);
-    
+
     if (NS_FAILED(res))
     {
         FreeLibrary(h);
@@ -212,13 +212,13 @@ nsresult XPCOMGlueStartup(const char* xpcom_dll_path)
     {
         void* handle = dlopen(deplibs.Item(i).mbc_str(), RTLD_GLOBAL | RTLD_LAZY);
     }
-    
+
     // now load the functions from libxpcom.so
-    
+
     void* h = dlopen(xpcom_dll_path, RTLD_GLOBAL | RTLD_LAZY);
     if (!h)
         return NS_ERROR_FAILURE;
-        
+
     GetFrozenFunctionsFunc f =
     f = (GetFrozenFunctionsFunc)dlsym(h, "NS_GetFrozenFunctions");
     if (!f)
@@ -226,12 +226,12 @@ nsresult XPCOMGlueStartup(const char* xpcom_dll_path)
         dlclose(h);
         return NS_ERROR_FAILURE;
     }
-    
+
     nsresult res;
     funcs.version = 1;
     funcs.size = sizeof(XPCOMFunctionTable);
     res = f(&funcs, xpcom_dll_path);
-    
+
     if (NS_FAILED(res))
     {
         dlclose(h);
@@ -258,7 +258,7 @@ void* NS_Alloc(PRSize size)
 {
     if (!funcs.Alloc)
         return NULL;
-        
+
     return funcs.Alloc(size);
 }
 
@@ -266,7 +266,7 @@ void NS_Free(void* ptr)
 {
     if (!funcs.Free)
         return;
-    
+
     funcs.Free(ptr);
 }
 
@@ -409,14 +409,14 @@ wxString ns2wx(nsEmbedString& str)
     wxString res;
     const PRUnichar* begin;
     const PRUnichar* end;
-    
+
     PRUint32 i, len = NS_StringGetData(str, &begin);
     end = begin + len;
-    
+
     res.Alloc(end - begin);
     for (i = 0; i < len; ++i)
         res += (wxChar)(*(begin+i));
-    
+
     return res;
 }
 
@@ -424,7 +424,7 @@ wxString ns2wx(const PRUnichar* str)
 {
     if (!str)
         return wxT("");
-        
+
     wxString res;
     size_t i, len = 0;
     while (*(str+len))
@@ -470,16 +470,16 @@ ns_smartptr<nsIWindowWatcher> nsGetWindowWatcherService()
     ns_smartptr<nsIServiceManager> service_mgr;
     ns_smartptr<nsIWindowWatcher> result;
     nsresult res;
-    
+
     res = NS_GetServiceManager(&service_mgr.p);
     if (NS_FAILED(res))
         return result;
-    
+
     nsIID iid = NS_IWINDOWWATCHER_IID;
     service_mgr->GetServiceByContractID("@mozilla.org/embedcomp/window-watcher;1",
                                         iid,
                                         (void**)&result.p);
-    
+
     return result;
 }
 
@@ -488,16 +488,16 @@ ns_smartptr<nsIPref> nsGetPrefService()
     ns_smartptr<nsIServiceManager> service_mgr;
     ns_smartptr<nsIPref> result;
     nsresult res;
-    
+
     res = NS_GetServiceManager(&service_mgr.p);
     if (NS_FAILED(res))
         return result;
-    
+
     nsIID iid = NS_IPREF_IID;
     service_mgr->GetServiceByContractID("@mozilla.org/preferences;1",
                                         iid,
                                         (void**)&result.p);
-    
+
     return result;
 }
 
@@ -506,16 +506,16 @@ ns_smartptr<nsIProperties> nsGetDirectoryService()
     ns_smartptr<nsIProperties> result;
     ns_smartptr<nsIServiceManager> service_mgr;
     nsresult res;
-    
+
     res = NS_GetServiceManager(&service_mgr.p);
     if (NS_FAILED(res))
         return result;
-    
+
     nsIID iid = NS_IPROPERTIES_IID;
     service_mgr->GetServiceByContractID("@mozilla.org/file/directory_service;1",
                                         iid,
                                         (void**)&result.p);
-    
+
     return result;
 }
 
@@ -524,16 +524,16 @@ ns_smartptr<nsIIOService> nsGetIOService()
     ns_smartptr<nsIIOService> result;
     ns_smartptr<nsIServiceManager> service_mgr;
     nsresult res;
-    
+
     res = NS_GetServiceManager(&service_mgr.p);
     if (NS_FAILED(res))
         return result;
-    
+
     nsIID iid = NS_IIOSERVICE_IID;
     service_mgr->GetServiceByContractID("@mozilla.org/network/io-service;1",
                                         iid,
                                         (void**)&result.p);
-    
+
     return result;
 }
 
@@ -542,16 +542,16 @@ ns_smartptr<nsISupports> nsGetService(const char* contract_id)
     ns_smartptr<nsISupports> result;
     ns_smartptr<nsIServiceManager> service_mgr;
     nsresult res;
-    
+
     res = NS_GetServiceManager(&service_mgr.p);
     if (NS_FAILED(res))
         return result;
-    
+
     nsIID iid = NS_ISUPPORTS_IID;
     service_mgr->GetServiceByContractID(contract_id,
                                         iid,
                                         (void**)&result.p);
-    
+
     return result;
 }
 
@@ -559,7 +559,7 @@ ns_smartptr<nsISupports> nsCreateInstance(const char* contract_id)
 {
     ns_smartptr<nsISupports> res;
     static nsIID nsISupportsIID = NS_ISUPPORTS_IID;
-    
+
     ns_smartptr<nsIComponentManager> comp_mgr;
     NS_GetComponentManager(&comp_mgr.p);
     if (comp_mgr)
@@ -569,7 +569,7 @@ ns_smartptr<nsISupports> nsCreateInstance(const char* contract_id)
                                              nsISupportsIID,
                                              (void**)&res.p);
     }
-    
+
     return res;
 }
 
@@ -577,7 +577,7 @@ ns_smartptr<nsISupports> nsCreateInstance(const nsCID& cid)
 {
     ns_smartptr<nsISupports> res;
     static nsIID nsISupportsIID = NS_ISUPPORTS_IID;
-    
+
     ns_smartptr<nsIComponentManager> comp_mgr;
     NS_GetComponentManager(&comp_mgr.p);
     if (comp_mgr)
@@ -587,7 +587,7 @@ ns_smartptr<nsISupports> nsCreateInstance(const nsCID& cid)
                                  nsISupportsIID,
                                  (void**)&res.p);
     }
-    
+
     return res;
 }
 
@@ -595,12 +595,12 @@ ns_smartptr<nsILocalFile> nsNewLocalFile(const wxString& filename)
 {
     nsresult res = 0;
     ns_smartptr<nsILocalFile> ret;
-    
+
     res = NS_NewNativeLocalFile(nsDependentCString((const char*)filename.mbc_str()), TRUE, &ret.p);
-    
+
     if (NS_FAILED(res))
         ret.clear();
-    
+
     return ret;
 }
 
@@ -608,15 +608,15 @@ ns_smartptr<nsILocalFile> nsNewLocalFile(const wxString& filename)
 ns_smartptr<nsIURI> nsNewURI(const wxString& spec)
 {
     ns_smartptr<nsIURI> res;
-    
+
     ns_smartptr<nsIIOService> io_service = nsGetIOService();
     if (io_service.empty())
         return res;
-    
+
     std::string cstr_spec = (const char*)spec.mbc_str();
-    
+
     io_service->NewURI(nsDependentCString(cstr_spec.c_str()), nsnull, nsnull, &res.p);
-    
+
     return res;
 }
 
@@ -631,7 +631,7 @@ ns_smartptr<nsIURI> nsNewURI(const wxString& spec)
 ProgressListenerAdaptor::ProgressListenerAdaptor(wxWebProgressBase* progress)
 {
     m_progress = progress;
-    
+
     if (m_progress)
         m_progress->OnStart();
 }
@@ -663,7 +663,7 @@ NS_IMETHODIMP ProgressListenerAdaptor::OnStateChange(
         if (m_progress)
             m_progress->OnFinish();
     }
-    
+
     return NS_OK;
 }
 
@@ -695,11 +695,11 @@ NS_IMETHODIMP ProgressListenerAdaptor::OnProgressChange64(
     {
         m_progress->OnProgressChange(wxLongLong(cur_self_progress),
                                      wxLongLong(max_self_progress));
-                                     
+
         if (m_progress->IsCancelled())
             request->Cancel(0x804b0002 /*NS_BINDING_ABORTED*/);
     }
-    
+
     return NS_OK;
 }
 
@@ -723,7 +723,7 @@ NS_IMETHODIMP ProgressListenerAdaptor::OnStatusChange(
         if (m_progress && !m_progress->IsCancelled())
             m_progress->OnError(ns2wx(message));
     }
-    
+
     return NS_OK;
 }
 

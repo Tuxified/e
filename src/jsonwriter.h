@@ -17,7 +17,7 @@
 
 // For compilers that support precompilation, includes "wx/wx.h".
 #include "wx/wxprec.h"
- 
+
 #ifdef __BORLANDC__
     #pragma hdrstop
 #endif
@@ -112,7 +112,7 @@ private:
    type object is a stream.
    If the output object is a string, the pointer is NULL.
   */
-  wxMBConv*  m_conv; 
+  wxMBConv*  m_conv;
 };
 
 #endif			// not defined _WX_JSONWRITER_H

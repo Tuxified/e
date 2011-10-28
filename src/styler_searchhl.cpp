@@ -23,7 +23,7 @@ const unsigned int Styler_SearchHL::EXTSIZE = 1000;
 Styler_SearchHL::Styler_SearchHL(const DocumentWrapper& rev, const Lines& lines, const vector<interval>& ranges, const tmTheme& theme)
 : m_doc(rev), m_lines(lines), m_searchRanges(ranges),
   m_theme(theme), m_hlcolor(m_theme.searchHighlightColor),
-  m_rangeColor(m_theme.shadowColor) 
+  m_rangeColor(m_theme.shadowColor)
 {
 	Clear(); // Make sure all variables are empty
 }
@@ -128,7 +128,7 @@ void Styler_SearchHL::Style(StyleRun& sr) {
 				}
 				if (!inRange) continue;
 			}
-			
+
 			ApplyStyle(sr, start, end);
 		}
 	}
@@ -166,7 +166,7 @@ void Styler_SearchHL::DoSearch(unsigned int start, unsigned int end, bool from_l
 		cxLOCKDOC_READ(m_doc)
 			if (m_options & FIND_USE_REGEX) result = doc.RegExFind(m_text, result.end, matchcase, NULL, end);
 			else result = doc.Find(m_text, result.end, matchcase, end);
-			
+
 			skip = !FilterMatch(result, doc);
 		cxENDLOCK
 
@@ -183,7 +183,7 @@ void Styler_SearchHL::DoSearch(unsigned int start, unsigned int end, bool from_l
 					if (next_match->start == result.start && next_match->end == result.end)	break;
 					next_match = m_matches.erase(next_match);
 				}
-	
+
 				next_match = m_matches.insert(next_match, iv);
 				++next_match;
 			}

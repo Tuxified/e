@@ -33,8 +33,8 @@ BEGIN_EVENT_TABLE(DiffPanel, wxPanel)
 END_EVENT_TABLE()
 
 DiffPanel::DiffPanel(wxWindow* parent, EditorFrame& parentFrame, CatalystWrapper& cw, wxBitmap& bitmap):
-	wxPanel(parent, wxID_ANY, wxPoint(-100,-100)), 
-	m_parentFrame(&parentFrame), m_leftEditor(NULL), m_rightEditor(NULL), m_currentEditor(NULL) 
+	wxPanel(parent, wxID_ANY, wxPoint(-100,-100)),
+	m_parentFrame(&parentFrame), m_leftEditor(NULL), m_rightEditor(NULL), m_currentEditor(NULL)
 {
 	Hide(); // Hidden during construction
 
@@ -43,7 +43,7 @@ DiffPanel::DiffPanel(wxWindow* parent, EditorFrame& parentFrame, CatalystWrapper
 	m_rightEditor = new EditorCtrl(cw, bitmap, this, parentFrame);
 	m_leftEditor->SetScrollbarLeft();
 	m_rightEditor->SetGutterRight();
-	
+
 	m_diffBar = new DiffBar(this, cw, m_leftEditor, m_rightEditor);
 	m_leftMarkBar = new DiffMarkBar(this, m_diffBar->GetLineMatches(), m_leftEditor, true);
 	m_rightMarkBar = new DiffMarkBar(this, m_diffBar->GetLineMatches(), m_rightEditor, false);
@@ -156,9 +156,9 @@ void DiffPanel::OnButtonSwap(wxCommandEvent& WXUNUSED(event)) {
 
 	m_leftMarkBar->SetEditor(m_leftEditor);
 	m_rightMarkBar->SetEditor(m_rightEditor);
-	
+
 	m_diffBar->Swap();
-	
+
 	Freeze();
 	m_leftTitle->SetValue(m_leftEditor->GetPath());
 	m_rightTitle->SetValue(m_rightEditor->GetPath());

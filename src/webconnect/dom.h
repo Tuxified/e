@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2009-05-14
-// RCS-ID:      
+// RCS-ID:
 // Copyright:   (C) Copyright 2006-2009, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -53,9 +53,9 @@ public:
     ~wxDOMNode();
     wxDOMNode(const wxDOMNode& c);
     wxDOMNode& operator=(const wxDOMNode& c);
-    
+
     void assign(const wxDOMNode& c);
-    
+
     virtual bool IsOk() const;
 
 public:
@@ -63,7 +63,7 @@ public:
     // DOMNode interface
 
     wxDOMDocument GetOwnerDocument();
-    
+
     wxString GetNodeName();
     int GetNodeType();
 
@@ -83,7 +83,7 @@ public:
     wxDOMNode ReplaceChild(wxDOMNode& new_child, wxDOMNode& old_child);
     wxDOMNode RemoveChild(wxDOMNode& old_child);
     wxDOMNode AppendChild(wxDOMNode& new_child);
-    
+
     wxDOMNamedNodeMap GetAttributes();
 
     wxDOMNode CloneNode(bool deep);
@@ -98,7 +98,7 @@ public:
 
     wxString GetNamespaceURI();
     wxString GetLocalName();
-    
+
 public:
 
     bool AddEventListener(const wxString& type,
@@ -141,7 +141,7 @@ public:
 
     wxDOMNode Item(size_t idx);
     size_t GetLength();
-        
+
 private:
 
     wxDOMNodeListData* m_data;
@@ -170,23 +170,23 @@ public:
     ~wxDOMNamedNodeMap();
     wxDOMNamedNodeMap(const wxDOMNamedNodeMap& c);
     wxDOMNamedNodeMap& operator=(const wxDOMNamedNodeMap& c);
-    
+
     bool IsOk() const;
-    
+
     size_t GetLength();
     wxDOMNode Item(size_t idx);
-    
+
     wxDOMNode GetNamedItem(const wxString& name);
     wxDOMNode GetNamedItemNS(const wxString& namespace_uri,
                              const wxString& name);
-    
+
     wxDOMNode RemoveNamedItem(const wxString& name);
     wxDOMNode RemoveNamedItemNS(const wxString& namespace_uri,
                                 const wxString& name);
-                                
+
     wxDOMNode SetNamedItem(wxDOMNode& arg);
     wxDOMNode SetNamedItemNS(wxDOMNode& arg);
-    
+
 private:
 
     wxDOMNamedNodeMapData* m_data;
@@ -217,7 +217,7 @@ public:
     virtual bool IsOk() const;
 
     // DOMAttr interface
-    
+
     wxString GetName();
     bool GetSpecified();
     wxString GetValue();
@@ -247,9 +247,9 @@ public:
     wxDOMElement& operator=(const wxDOMNode& c);
 
     virtual bool IsOk() const;
-    
+
     // DOMElement interface
-    
+
     wxString GetTagName();
     wxString GetAttribute(const wxString& name);
 
@@ -296,9 +296,9 @@ public:
     wxDOMText();
     wxDOMText(const wxDOMNode& node);
     wxDOMText& operator=(const wxDOMNode& c);
-    
+
     virtual bool IsOk() const;
-    
+
     void SetData(const wxString& data);
     wxString GetData();
 };
@@ -332,24 +332,24 @@ public:
     //NS_IMETHOD GetDoctype(nsIDOMDocumentType * *aDoctype);
     //NS_IMETHOD GetImplementation(nsIDOMDOMImplementation * *aImplementation);
     wxDOMElement GetDocumentElement();
-    
+
     wxDOMElement CreateElement(const wxString& tag_name);
     //NS_IMETHOD CreateDocumentFragment(nsIDOMDocumentFragment **_retval);
     wxDOMText CreateTextNode(const wxString& data);
     //NS_IMETHOD CreateComment(const nsAString & data, nsIDOMComment **_retval);
-    
+
     //NS_IMETHOD CreateCDATASection(const nsAString & data, nsIDOMCDATASection **_retval);
     //NS_IMETHOD CreateProcessingInstruction(const nsAString & target, const nsAString & data, nsIDOMProcessingInstruction **_retval);
     wxDOMAttr CreateAttribute(const wxString& name);
     //NS_IMETHOD CreateEntityReference(const nsAString & name, nsIDOMEntityReference **_retval);
-    
+
     wxDOMNodeList GetElementsByTagName(const wxString& name);
 
     wxDOMNode ImportNode(wxDOMNode& arg, bool deep);
-    
+
     wxDOMElement CreateElementNS(const wxString& namespace_uri, const wxString& local_name);
     wxDOMAttr CreateAttributeNS(const wxString& namespace_uri, const wxString& local_name);
-    
+
     wxDOMNodeList GetElementsByTagNameNS(const wxString& namespace_uri, const wxString& local_name);
     wxDOMElement GetElementById(const wxString& id);
 };
@@ -375,7 +375,7 @@ public:
     wxDOMHTMLElement();
     wxDOMHTMLElement(const wxDOMNode& node);
     wxDOMHTMLElement& operator=(const wxDOMNode& c);
-    
+
     virtual bool IsOk() const;
 
     // DOMHTMLElement interface
@@ -400,7 +400,7 @@ public:
     // these are shortcut accessors to those DOM elements
     // that have a 'value' property;  the IDOMHTMLElement
     // doesn't normally have these calls
-    
+
     wxString GetValue();
     void SetValue(const wxString& value);
     bool HasValueProperty() const;
@@ -427,7 +427,7 @@ public:
     wxDOMHTMLAnchorElement();
     wxDOMHTMLAnchorElement(const wxDOMNode& node);
     wxDOMHTMLAnchorElement& operator=(const wxDOMNode& c);
-    
+
     virtual bool IsOk() const;
 
     // wxDOMHTMLAnchorElement interface
@@ -484,7 +484,7 @@ public:
 // Category: DOM
 // Derives: wxDOMHTMLElement
 // Description: Encapsulates a DOM HTML button element.
-// Remarks: The wxDOMHTMLButtonElement class encapsulates a DOM HTML 
+// Remarks: The wxDOMHTMLButtonElement class encapsulates a DOM HTML
 //     button element.
 
 class wxDOMHTMLButtonElement : public wxDOMHTMLElement
@@ -494,7 +494,7 @@ public:
     wxDOMHTMLButtonElement();
     wxDOMHTMLButtonElement(const wxDOMNode& node);
     wxDOMHTMLButtonElement& operator=(const wxDOMNode& c);
-    
+
     virtual bool IsOk() const;
 
     // DOMHTMLButtonElement interface
@@ -503,16 +503,16 @@ public:
 
     wxString GetAccessKey();
     void SetAccessKey(const wxString& value);
-    
+
     bool GetDisabled();
     void SetDisabled(bool value);
-    
+
     wxString GetName();
     void SetName(const wxString& value);
-    
+
     int GetTabIndex();
     void SetTabIndex(int index);
-    
+
     wxString GetType();
 
     // following interface items are on base class wxDOMHTMLElement
@@ -532,7 +532,7 @@ public:
 // Category: DOM
 // Derives: wxDOMHTMLElement
 // Description: Encapsulates a DOM HTML input element.
-// Remarks: The wxDOMHTMLInputElement class encapsulates a DOM HTML 
+// Remarks: The wxDOMHTMLInputElement class encapsulates a DOM HTML
 //     input element.
 
 class wxDOMHTMLInputElement : public wxDOMHTMLElement
@@ -542,7 +542,7 @@ public:
     wxDOMHTMLInputElement();
     wxDOMHTMLInputElement(const wxDOMNode& node);
     wxDOMHTMLInputElement& operator=(const wxDOMNode& c);
-    
+
     virtual bool IsOk() const;
 
     // DOMHTMLInputElement interface
@@ -600,7 +600,7 @@ public:
     // following interface items are on base class wxDOMHTMLElement
     // NS_IMETHOD GetValue(nsAString& value);
     // NS_IMETHOD SetValue(const nsAString& value);
-    
+
     void Blur();
     void Focus();
     void Select();
@@ -619,7 +619,7 @@ public:
 // Category: DOM
 // Derives: wxDOMHTMLElement
 // Description: Encapsulates a DOM HTML link element.
-// Remarks: The wxDOMHTMLLinkElement class encapsulates a DOM HTML link 
+// Remarks: The wxDOMHTMLLinkElement class encapsulates a DOM HTML link
 //     element.
 
 class wxDOMHTMLLinkElement : public wxDOMHTMLElement
@@ -629,35 +629,35 @@ public:
     wxDOMHTMLLinkElement();
     wxDOMHTMLLinkElement(const wxDOMNode& node);
     wxDOMHTMLLinkElement& operator=(const wxDOMNode& c);
-    
+
     virtual bool IsOk() const;
 
     // wxDOMHTMLLinkElement interface
 
     bool GetDisabled();
     void SetDisabled(bool value);
-    
+
     wxString GetCharset();
     void SetCharset(const wxString& value);
-    
+
     wxString GetHref();
     void SetHref(const wxString& value);
-    
+
     wxString GetHreflang();
     void SetHreflang(const wxString& value);
-    
+
     wxString GetMedia();
     void SetMedia(const wxString& value);
-    
+
     wxString GetRel();
     void SetRel(const wxString& value);
-    
+
     wxString GetRev();
     void SetRev(const wxString& value);
-    
+
     wxString GetTarget();
     void SetTarget(const wxString& value);
-    
+
     wxString GetType();
     void SetType(const wxString& value);
 };
@@ -674,7 +674,7 @@ public:
 // Category: DOM
 // Derives: wxDOMHTMLElement
 // Description: Encapsulates a DOM HTML option element.
-// Remarks: The wxDOMHTMLOptionElement class encapsulates a DOM HTML 
+// Remarks: The wxDOMHTMLOptionElement class encapsulates a DOM HTML
 //     option element.
 
 class wxDOMHTMLOptionElement : public wxDOMHTMLElement
@@ -684,13 +684,13 @@ public:
     wxDOMHTMLOptionElement();
     wxDOMHTMLOptionElement(const wxDOMNode& node);
     wxDOMHTMLOptionElement& operator=(const wxDOMNode& c);
-    
+
     virtual bool IsOk() const;
 
     // DOMHTMLOptionElement interface
 
     // NS_IMETHOD GetForm(nsIDOMHTMLFormElement * *aForm);
-    
+
     bool GetDefaultSelected();
     void SetDefaultSelected(bool value);
 
@@ -723,7 +723,7 @@ public:
 // Category: DOM
 // Derives: wxDOMHTMLElement
 // Description: Encapsulates a DOM HTML param element.
-// Remarks: The wxDOMHTMLParamElement class encapsulates a DOM HTML 
+// Remarks: The wxDOMHTMLParamElement class encapsulates a DOM HTML
 //     param element.
 
 class wxDOMHTMLParamElement : public wxDOMHTMLElement
@@ -733,21 +733,21 @@ public:
     wxDOMHTMLParamElement();
     wxDOMHTMLParamElement(const wxDOMNode& node);
     wxDOMHTMLParamElement& operator=(const wxDOMNode& c);
-    
+
     virtual bool IsOk() const;
 
     // wxDOMHTMLParamElement interface
 
     wxString GetName();
     void SetName(const wxString& name);
-  
+
     wxString GetType();
     void SetType(const wxString& type);
 
     // following interface items are on base class wxDOMHTMLElement
     // NS_IMETHOD GetValue(nsAString& value);
     // NS_IMETHOD SetValue(const nsAString& value);
-  
+
     wxString GetValueType();
     void SetValueType(const wxString& valuetype);
 };
@@ -764,7 +764,7 @@ public:
 // Category: DOM
 // Derives: wxDOMHTMLElement
 // Description: Encapsulates a DOM HTML select element.
-// Remarks: The wxDOMHTMLSelectElement class encapsulates a DOM HTML 
+// Remarks: The wxDOMHTMLSelectElement class encapsulates a DOM HTML
 //     select element.
 
 class wxDOMHTMLSelectElement : public wxDOMHTMLElement
@@ -774,11 +774,11 @@ public:
     wxDOMHTMLSelectElement();
     wxDOMHTMLSelectElement(const wxDOMNode& node);
     wxDOMHTMLSelectElement& operator=(const wxDOMNode& c);
-    
+
     virtual bool IsOk() const;
 
     // DOMHTMLSelectElement interface
-    
+
     wxString GetType();
 
     int GetSelectedIndex();
@@ -808,7 +808,7 @@ public:
 
     int GetTabIndex();
     void SetTabIndex(int index);
- 
+
     void Add(const wxDOMHTMLElement& element,
              const wxDOMHTMLElement& before);
     void Remove(int index);
@@ -828,7 +828,7 @@ public:
 // Category: DOM
 // Derives: wxDOMHTMLElement
 // Description: Encapsulates a DOM HTML text area element.
-// Remarks: The wxDOMHTMLTextAreaElement class encapsulates a DOM HTML text 
+// Remarks: The wxDOMHTMLTextAreaElement class encapsulates a DOM HTML text
 //     area element.
 
 class wxDOMHTMLTextAreaElement : public wxDOMHTMLElement
@@ -838,7 +838,7 @@ public:
     wxDOMHTMLTextAreaElement();
     wxDOMHTMLTextAreaElement(const wxDOMNode& node);
     wxDOMHTMLTextAreaElement& operator=(const wxDOMNode& c);
-    
+
     virtual bool IsOk() const;
 
     // DOMHTMLTextAreaElement interface
@@ -934,9 +934,9 @@ public:
     wxDOMMouseEvent();
     wxDOMMouseEvent(const wxDOMEvent& node);
     wxDOMMouseEvent& operator=(const wxDOMEvent& c);
-    
+
     virtual bool IsOk() const;
-    
+
     long GetScreenX();
     long GetScreenY();
     long GetClientX();

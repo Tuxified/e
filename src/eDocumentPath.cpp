@@ -59,7 +59,7 @@ bool eDocumentPath::IsDotDirectory(const wxString& path) {
 	return path == wxT(".") || path == wxT("..");
 }
 
-wxString eDocumentPath::WinPathToCygwin(const wxFileName& path) { 
+wxString eDocumentPath::WinPathToCygwin(const wxFileName& path) {
 	wxASSERT(path.IsOk() && path.IsAbsolute());
 
 #ifndef __WXMSW__
@@ -71,7 +71,7 @@ wxString eDocumentPath::WinPathToCygwin(const wxFileName& path) {
 	if (fullpath.StartsWith(wxT("//"))) {
 		return fullpath;
 	}
-	
+
 	// Check if we have a backslash unc path; convert to forward slash and pass on.
 	if (fullpath.StartsWith(wxT("\\\\"))) {
 		fullpath.Replace(wxT("\\"), wxT("/"));
@@ -117,7 +117,7 @@ wxString read_cygwin17_registry_key(const wxString &default_value = wxEmptyStrin
 
 	if (!value.empty())
 		return value;
-	
+
 	// Also check in "local machine", the "install for everyone" location.
 	{
 		wxRegKey cygKey(wxT("HKEY_LOCAL_MACHINE\\SOFTWARE\\Cygwin\\setup"));
@@ -146,7 +146,7 @@ wxString read_cygwin15_registry_key(const wxString &key_path, const wxString &ke
 
 	if (!value.empty())
 		return value;
-	
+
 	// Also check in "local machine", the "install for everyone" location.
 	{
 		wxRegKey cygKey(wxT("HKEY_LOCAL_MACHINE\\SOFTWARE\\Cygnus Solutions\\Cygwin\\") + key_path);
@@ -169,7 +169,7 @@ wxString eDocumentPath::GetCygwinDir() {
 	return read_cygwin15_registry_key(wxT("mounts v2\\/"), wxT("native"));
 }
 
-wxString eDocumentPath::GetCygdrivePrefix() { 
+wxString eDocumentPath::GetCygdrivePrefix() {
 	// Note that the registory value doesn't have '/' on the end, and we want one.
 	return read_cygwin15_registry_key(wxT("mounts v2"), wxT("cygdrive prefix"), wxT("/cygdrive")) + wxT("/");
 }
@@ -203,7 +203,7 @@ wxString eDocumentPath::convert_cygdrive_path_to_windows(const wxString& path) {
 	return newpath;
 }
 
-wxString eDocumentPath::CygwinPathToWin(const wxString& path) { 
+wxString eDocumentPath::CygwinPathToWin(const wxString& path) {
 	if (path.empty()) {
 		wxASSERT(false);
 		return wxEmptyString;
@@ -235,35 +235,35 @@ wxString eDocumentPath::CygwinPathToWin(const wxString& path) {
 	//
 	// For now, keep hard coding these mounts and worry about playing will with existing
 	// installations (that e didn't do) in the future.
-	
+
 	// Map /usr/bin/ paths to Cygwin bin folder
 	if (path.StartsWith(wxT("/usr/bin/"))) {
 		newpath = s_cygPath + wxT("\\bin\\") + path.substr(9);
 		newpath.Replace(wxT("/"), wxT("\\"));
 		return newpath;
 	}
-	
+
 	// Map /usr/lib paths to Cygwin lib folder
 	if (path.StartsWith(wxT("/usr/lib/"))) {
 		newpath = s_cygPath + wxT("\\lib\\") + path.substr(9);
 		newpath.Replace(wxT("/"), wxT("\\"));
 		return newpath;
 	}
-	
+
 	// Check for UNC paths
 	if (path.StartsWith(wxT("//"))) {
 		newpath = path;
 		newpath.Replace(wxT("/"), wxT("\\"));
 		return newpath;
 	}
-	
+
 	// Cygwin paths that aren't cygdrive paths get mapped to cygwin's native install folder
 	if (path.GetChar(0) == wxT('/')) {
 		newpath = s_cygPath + path;
 		newpath.Replace(wxT("/"), wxT("\\"));
 		return newpath;
 	}
-	
+
 	// If we got here, then don't convert the path.
 	return path;
 }
@@ -322,7 +322,7 @@ void run_cygwin_dlg(wxWindow *parentWindow, const cxCygwinDlgMode mode){
 	eGetSettings().SetSettingBool(wxT("cygupdate"), cygUpdate);
 }
 
-// 
+//
 // Gets the cygwin last update time, migrating state form previous e versions if needed.
 //
 wxDateTime get_last_cygwin_update() {

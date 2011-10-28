@@ -45,7 +45,7 @@ END_EVENT_TABLE()
 
 CompletionList::CompletionList(wxDialog& parent, EditorCtrl& editorCtrl, const wxString& target, const wxArrayString& completions):
 	wxListBox(&parent, wxID_ANY, wxDefaultPosition, wxDefaultSize, completions, wxSIMPLE_BORDER|wxLB_SINGLE|wxWANTS_CHARS),
-	m_parentDlg(parent), m_editorCtrl(editorCtrl), m_target(target), m_completions(completions) 
+	m_parentDlg(parent), m_editorCtrl(editorCtrl), m_target(target), m_completions(completions)
 {
 	// editorCtrl has text cursor as default
 	SetCursor(wxCursor(wxCURSOR_ARROW));

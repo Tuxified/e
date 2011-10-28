@@ -157,7 +157,7 @@ PreviewDlg::PreviewDlg(EditorFrame& parent):
 			addressSizer->Add(m_pinButton, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 			addressSizer->Add(m_showOptions, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
 			m_mainSizer->Add(addressSizer, 0, wxEXPAND);
-		
+
 		m_mainSizer->Add(m_browser->GetWindow(), 1, wxEXPAND);
 		if (xulrunner) {
 			m_mainSizer->Add(m_webcontrol, 1, wxEXPAND);
@@ -592,7 +592,7 @@ void PreviewDlg::OnTitleChange(const wxString& title) {
 	// This is a bit of a hack, but the easiest way to see if
 	// it does not have a title and returns path is to compare
 	// filenames (very litle chance for match with other)
-	m_parent.SetWebPreviewTitle(wxT("Preview: ") + 
+	m_parent.SetWebPreviewTitle(wxT("Preview: ") +
 		(tempFile != titleEnd) ? title : m_truePath);
 }
 
@@ -657,12 +657,12 @@ void PreviewDlg::OnMSHTMLDocumentComplete(wxActiveXEvent& WXUNUSED(event)) {
 // ------ CommandThread -----------------------------------------------------
 
 Preview_CommandThread::Preview_CommandThread(const wxString& command, vector<char>& input, const wxString& outputPath, const wxString& truePath, wxEvtHandler& parent, const cxEnv& env):
-	m_isTerminated(false), 
-	m_command(command), 
-	m_parent(parent), 
+	m_isTerminated(false),
+	m_command(command),
+	m_parent(parent),
 	m_outputPath(outputPath),
-	m_truePath(truePath), 
-	m_env(env) 
+	m_truePath(truePath),
+	m_env(env)
 {
 	// Copy the input, since the caller may go out of scope.
 	m_input.swap(input);

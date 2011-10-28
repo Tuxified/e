@@ -70,7 +70,7 @@ private:
 	const PrefType m_target;
 };
 
-	
+
 class tmSnippet : public tmAction {
 public:
 	bool IsSnippet() const {return true;};
@@ -437,7 +437,7 @@ void TmSyntaxHandler::ReParseBundles(bool onlyMenu) {
 		m_nextMenuID = 9000; // range is 9000-11999
 	}
 	m_bundleMenu = new wxMenu;
-	
+
 
 	// Parse Bundles
 	for (unsigned int b = 0; b < bundles.size(); ++b) {
@@ -516,7 +516,7 @@ wxString TmSyntaxHandler::GetBundleItemUriFromMenu(unsigned int id) const {
 	unsigned int bundleId;
 	unsigned int itemId;
 	if (!m_plistHandler.GetBundleItemFromUuid(uuid, type, bundleId, itemId)) return wxEmptyString;
-	
+
 	return m_plistHandler.GetBundleItemUri(type, bundleId, itemId);
 }
 
@@ -1831,7 +1831,7 @@ bool TmSyntaxHandler::ParseInfo(const PListDict& infoDict, tmBundle& bundle) {
 		// (otherwise they will be interpreted as shortcuts)
 		wxString label = bundle.name;
 		label.Replace(wxT("&"), wxT("&&"));
-		
+
 		m_bundleMenu->Append(m_nextMenuID, label, mainMenu, bundle.name);
 		++m_nextMenuID;
 	}

@@ -20,8 +20,8 @@ TEST_P(HexDigitTest, Convert) {
 	EXPECT_EQ(as_number, converted);
 }
 
-INSTANTIATE_TEST_CASE_P(HexDigitTest1, 
-	HexDigitTest, 
+INSTANTIATE_TEST_CASE_P(HexDigitTest1,
+	HexDigitTest,
 	Values(
 		CONFIG(wxT('0'), 0),
 		CONFIG(wxT('1'), 1),
@@ -40,7 +40,7 @@ INSTANTIATE_TEST_CASE_P(HexDigitTest1,
 		CONFIG(wxT('D'), 13),
 		CONFIG(wxT('E'), 14),
 		CONFIG(wxT('F'), 15),
-		
+
 		CONFIG(wxT('a'), 10),
 		CONFIG(wxT('b'), 11),
 		CONFIG(wxT('c'), 12),

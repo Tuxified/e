@@ -89,7 +89,7 @@ BEGIN_EVENT_TABLE(FindInProjectDlg, wxDialog)
 	EVT_TEXT_ENTER(CTRL_SEARCH, FindInProjectDlg::OnSearch)
 	EVT_BUTTON(CTRL_SEARCHBUTTON, FindInProjectDlg::OnSearch)
 	EVT_IDLE(FindInProjectDlg::OnIdle)
-	EVT_CLOSE(FindInProjectDlg::OnClose) 
+	EVT_CLOSE(FindInProjectDlg::OnClose)
 	EVT_HTMLWND_BEFORE_LOAD(CTRL_BROWSER, FindInProjectDlg::OnBeforeLoad)
 END_EVENT_TABLE()
 
@@ -101,7 +101,7 @@ FindInProjectDlg::FindInProjectDlg(EditorFrame& parentFrame, const ProjectInfoHa
 
 	// Create the search thread
 	m_searchThread = new SearchThread();
-	
+
 	// Create ctrls
 	m_searchCtrl = new wxTextCtrl(this, CTRL_SEARCH, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_PROCESS_ENTER);
 	m_searchButton = new wxButton(this, CTRL_SEARCHBUTTON, _("Search"));
@@ -125,7 +125,7 @@ FindInProjectDlg::FindInProjectDlg(EditorFrame& parentFrame, const ProjectInfoHa
 			mainSizer->Add(optionSizer, 0);
 		mainSizer->Add(m_pathStatic, 0, wxEXPAND|wxALL, 5);
 		mainSizer->Add(m_browser->GetWindow(), 1, wxEXPAND);
-		
+
 	SetSizer(mainSizer);
 	SetSize(700, 500);
 	Centre();
@@ -135,7 +135,7 @@ FindInProjectDlg::~FindInProjectDlg() {
 	if (m_searchThread->IsSearching()) m_searchThread->CancelSearch();
 	m_searchThread->DeleteThread();
 }
-	
+
 void FindInProjectDlg::SetPattern(const wxString& pattern) {
 	m_searchCtrl->SetValue(pattern);
 	m_searchCtrl->SetSelection(-1, -1);
@@ -218,7 +218,7 @@ void FindInProjectDlg::OnBeforeLoad(IHtmlWndBeforeLoadEvent& event) {
 // ---- SearchThread ---------------------------------------------------------------------------------------
 
 SearchThread::SearchThread():
-	m_isSearching(false), m_isWaiting(false), m_stopSearch(false), m_lastError(false), m_startSearchCond(m_condMutex) 
+	m_isSearching(false), m_isWaiting(false), m_stopSearch(false), m_lastError(false), m_startSearchCond(m_condMutex)
 {
 	// Create and run the thread
 	Create();
@@ -244,7 +244,7 @@ void* SearchThread::Entry() {
 		if (!PrepareSearchInfo(si, m_pattern, m_matchCase, m_regex)) continue;
 
 		m_isSearching = true;
-		
+
 		ProjectInfoHandler infoHandler;
 		infoHandler.SetRoot(m_path);
 
@@ -391,7 +391,7 @@ void SearchThread::SearchDir(const wxString& path, const SearchInfo& si, Project
 			m_currentPath = path + filenames[f];
 		m_outputCrit.Leave();
 		filepath = m_currentPath;
-	
+
 		// Map the file to memory
 		buf.Open(filepath);
 		if (!buf.IsMapped()) {
@@ -401,7 +401,7 @@ void SearchThread::SearchDir(const wxString& path, const SearchInfo& si, Project
 
 		// Search the file
 		DoSearch(buf, si, matches);
-		if (matches.empty()) continue; 
+		if (matches.empty()) continue;
 
 		// Show matches
 		WriteResult(buf, filepath, matches);
@@ -513,7 +513,7 @@ void SearchThread::WriteResult(const MMapBuffer& buf, const wxFileName& filepath
 
 			// Write linenumber with link
 			wxString line = wxString::Format(wxT("<tr><td bgcolor=#f6f6ef align=\"right\"><a href=\"txmt://open/?url=file://%s&line=%d&column=%d&sel=%d\">%d</a></td><td> "), path.c_str(), linecount, column, sel_len, linecount);
-			
+
 			// Start of line
 			{
 				wxString result = wxString(linestart, wxConvUTF8, matchstart-linestart);
@@ -543,7 +543,7 @@ void SearchThread::WriteResult(const MMapBuffer& buf, const wxFileName& filepath
 			}
 			line += wxT("</td></tr>");
 			output += line;
-			
+
 			++m;
 			if (m == matches.end()) break;
 			matchstart = buf.data() + m->start;

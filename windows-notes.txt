@@ -10,10 +10,10 @@ To build e you will need:
 ** Make sure you have VS2008 SP1 and any applicable Vista-related hot-fixes.
 
 * A set of GNU tools for Windows (including bash, patch, wget, etc.)
-** Cygwin is used by e itself to provide Unix support, but has issues on 
+** Cygwin is used by e itself to provide Unix support, but has issues on
    64-bit versions of Windows.
 ** If you're building from source on Windows, you're probably using MSysGit
-** Either of these packages will provide GNU tools, but will have different issues 
+** Either of these packages will provide GNU tools, but will have different issues
    and workarounds. See `externals/readme.txt` for more information.
 
 

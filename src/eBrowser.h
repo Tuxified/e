@@ -13,8 +13,8 @@
 #include "IEHtmlWin.h"
 
 inline wxIEHtmlWin* NewBrowser(wxWindow * parent, wxWindowID id,
-				const wxPoint& point = wxDefaultPosition, 
-                const wxSize& size = wxDefaultSize) 
+				const wxPoint& point = wxDefaultPosition,
+                const wxSize& size = wxDefaultSize)
 {
 	return new wxIEHtmlWin(parent, id, point, size);
 }
@@ -22,8 +22,8 @@ inline wxIEHtmlWin* NewBrowser(wxWindow * parent, wxWindowID id,
 #include "WebKitHtmlWnd.h"
 
 inline wxBrowser* NewBrowser(wxWindow * parent, wxWindowID id,
-				const wxPoint& point = wxDefaultPosition, 
-                const wxSize& size = wxDefaultSize) 
+				const wxPoint& point = wxDefaultPosition,
+                const wxSize& size = wxDefaultSize)
 {
 	return new wxBrowser(parent, id, point, size);
 }

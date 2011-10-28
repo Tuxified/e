@@ -1818,7 +1818,7 @@ PListDict PListHandler::GetPlistItem(unsigned int ndx, c4_View vList) const {
 		const unsigned int ref = pLocalRef(rItem);
 		return GetPlist(ref);
 	}
-	
+
 	if (locality & PLIST_PRISTINE || locality & PLIST_INSTALLED) {
 		const unsigned int ref = pPristineRef(rItem);
 		return GetPlist(ref);

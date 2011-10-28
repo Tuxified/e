@@ -38,13 +38,13 @@ ShareDlg::ShareDlg(wxWindow *parent, CatalystWrapper cat, const doc_id& di)
   m_docId(di), m_catalyst(cat), m_dispatcher(cat.GetDispatcher()), m_localImageList(48, 48)
 {
 	SetTitle (_("Share Document"));
-	
+
 	// Buttons
 	m_addButton = new wxButton(this, wxID_ADD, _("Add"));
 	m_approveButton = new wxButton(this, CTRL_BUTTON_APPROVE, _("Approve"));
 	m_removeButton = new wxButton(this, wxID_REMOVE, _("Remove"));
 	wxButton* doneButton = new wxButton(this, wxID_OK, _("Done"));
-	
+
 	// Create the notebook with two pages
 	m_notebook = new wxNotebook(this, CTRL_NOTEBOOK);
 	{
@@ -72,7 +72,7 @@ ShareDlg::ShareDlg(wxWindow *parent, CatalystWrapper cat, const doc_id& di)
 		}
 		*/
 	}
-	
+
 	// List of current shares
 	m_shareeList = new SizingListCtrl(this, CTRL_SHAREELIST);
 
@@ -139,7 +139,7 @@ void ShareDlg::UpdateShareList() {
 #ifdef CATALYST_OLD_CODE
 		catalyst.GetShares(m_docId, shareList);
 #endif
-	
+
 		wxImageList* imageList = new wxImageList(48, 48);
 		m_shareeList->AssignImageList(imageList, wxIMAGE_LIST_SMALL);
 
@@ -204,7 +204,7 @@ void ShareDlg::OnReceivingUserList(SyncEvent& event) {
 			// we just return the generic userpid
 			wxMemoryInputStream in(generic_userpic_png, GENERIC_USERPIC_PNG_LEN);
 			const wxImage genericImage(in, wxBITMAP_TYPE_PNG);
-		
+
 			imageList->Add(wxBitmap(genericImage));
 		}
 		else {
@@ -212,10 +212,10 @@ void ShareDlg::OnReceivingUserList(SyncEvent& event) {
 			// convert it to a wxBitmap
 			wxMemoryInputStream in(picBytes.Contents(), picBytes.Size());
 			const wxImage userImage(in, wxBITMAP_TYPE_PNG);
-			
+
 			imageList->Add(wxBitmap(userImage));
 		}
-		
+
 		m_inetUserList->InsertItem(i, userName, i);
 	}
 }
@@ -301,7 +301,7 @@ void ShareDlg::OnButtonAdd(wxCommandEvent& WXUNUSED(event)) {
 			if (item == -1) break;
 
 			const c4_RowRef rUser = m_userCache[item];
-			
+
 			cxLOCK_WRITE(m_catalyst)
 				// Check if we know this user (adds if we don't)
 				const int userId = catalyst.AddUser(rUser);
@@ -359,7 +359,7 @@ void ShareDlg::OnNewUser(ShareDlg* self, void* data, int WXUNUSED(filter)) { // 
 #ifdef FEAT_COLLABORATION
 	cxUserMsg* msg = (cxUserMsg*)data;
 	const c4_RowRef rUser = msg->rUser;
-	
+
 	if (msg->flags & wxZEROCONF_ADD) {
 		const wxString userName(pUserName(rUser), wxConvUTF8);
 
@@ -370,7 +370,7 @@ void ShareDlg::OnNewUser(ShareDlg* self, void* data, int WXUNUSED(filter)) { // 
 			// we just return the generic userpid
 			wxMemoryInputStream in(generic_userpic_png, GENERIC_USERPIC_PNG_LEN);
 			const wxImage genericImage(in, wxBITMAP_TYPE_PNG);
-		
+
 			self->m_localImageList.Add(wxBitmap(genericImage));
 		}
 		else {
@@ -378,10 +378,10 @@ void ShareDlg::OnNewUser(ShareDlg* self, void* data, int WXUNUSED(filter)) { // 
 			// convert it to a wxBitmap
 			wxMemoryInputStream in(picBytes.Contents(), picBytes.Size());
 			const wxImage userImage(in, wxBITMAP_TYPE_PNG);
-			
+
 			self->m_localImageList.Add(wxBitmap(userImage));
 		}
-		
+
 		const int ndx = self->m_localUserList->GetItemCount();
 		self->m_localUserList->InsertItem(ndx, userName, ndx);
 		self->m_localUserCache.Add(rUser);

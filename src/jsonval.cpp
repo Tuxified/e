@@ -48,7 +48,7 @@ static const wxChar* cowTraceMask = _T("traceCOW" );
 
  Starting from version 0.4, the JSON value class use the reference
  counting tecnique (also know as \e copy-on-write) described in the
- \b wxWidgets documentation in order to speed up processing. 
+ \b wxWidgets documentation in order to speed up processing.
  The class is used internally by the wxJSONValue class which does
  all processing.
 */
@@ -139,9 +139,9 @@ int          wxJSONValue::sm_progr = 1;
  \par The C-string JSON value object
 
  The wxJSONValue(const wxChar*) ctor allows you to create a JSON value
- object that contains a string value which is stored as a 
+ object that contains a string value which is stored as a
  \e pointer-to-statci-string.
- 
+
  In fact, the ctor DOES NOT copy the string: it only stores the
  pointer in a data member and the pointed-to buffer is not deleted
  by the dtor.
@@ -171,7 +171,7 @@ wxJSONValue::wxJSONValue()
  The function is called by the ctors and allocates a new instance of
  the wxJSONRefData class and sets the type of the JSON value.
  Note that only the type is set, not the value.
- Also note that the function may be called if the \c m_refData 
+ Also note that the function may be called if the \c m_refData
  data member is NULL.
 */
 wxJSONRefData*
@@ -191,7 +191,7 @@ wxJSONValue::Init( wxJSONType type )
   m_progr = sm_progr;
   ++sm_progr;
   ::wxLogTrace( cowTraceMask, _T("(%s) Init a new object progr=%d"),
-			 __PRETTY_FUNCTION__, m_progr ); 
+			 __PRETTY_FUNCTION__, m_progr );
 #endif
   return data;
 }
@@ -298,7 +298,7 @@ wxJSONValue::wxJSONValue( const wxJSONValue& other )
     m_progr = sm_progr;
     ++sm_progr;
     ::wxLogTrace( cowTraceMask, _T("(%s) Copy ctor - progr=%d other progr=%d"),
- 			 __PRETTY_FUNCTION__, m_progr, other.m_progr ); 
+ 			 __PRETTY_FUNCTION__, m_progr, other.m_progr );
   #endif
 }
 
@@ -472,7 +472,7 @@ wxJSONValue::IsObject() const
  compatible type: an \b int, an \b unsigned \b int or a \b boolean.
 
  Also note that starting from version 0.5, the \b wxJSON library
- supports 64-bits integers on platforms that have native support 
+ supports 64-bits integers on platforms that have native support
  for this.
  Because integer values are stored internally as 64-bits integers,
  this function returns the low 32-bits of the value stored in
@@ -512,7 +512,7 @@ wxJSONValue::AsInt() const
       wxFAIL_MSG( _T("wxJSONValue::AsInt() - the value is not compatible with INT"));
       // wxASSERT( 0 );      // always fails
       break;
-  } 
+  }
 #endif
 
   return i;
@@ -520,7 +520,7 @@ wxJSONValue::AsInt() const
 
 //! Return the stored value as a boolean.
 /*!
- If the type of the stored value is not a boolean the function 
+ If the type of the stored value is not a boolean the function
  just returns an undefined result.
  In debug builds the function ASSERTs that the stored value is of
  type \b boolean.
@@ -663,7 +663,7 @@ wxJSONValue::AsCString() const
  compatible type: an \b int, an \b unsigned \b int or a \b boolean.
 
  Also note that starting from version 0.5, the \b wxJSON library
- supports 64-bits integers on platforms that have native support 
+ supports 64-bits integers on platforms that have native support
  for this.
  Because integer values are stored internally as 64-bits integers,
  this function returns the low 32-bits of the value stored in
@@ -790,7 +790,7 @@ wxJSONValue::HasMember( const wxString& key ) const
 /*!
  Note that both the array and the key/value map may have a size of
  ZERO elements.
- If the stored value is not an array nor a key/value hashmap, the 
+ If the stored value is not an array nor a key/value hashmap, the
  function returns -1.
 */
 int
@@ -974,7 +974,7 @@ wxJSONValue::Cat( const wxChar* str )
   wxASSERT( data );
 
   if (data ->m_type != wxJSONTYPE_STRING) return false;
-  
+
   wxJSONRefData* copied_data = COW();
   wxASSERT( copied_data );
   copied_data->m_value.m_valString.append( str );
@@ -1073,7 +1073,7 @@ wxJSONValue::Item( unsigned index )
     data = SetType( wxJSONTYPE_ARRAY );
   }
   int size = Size();
-  wxASSERT( size >= 0 ); 
+  wxASSERT( size >= 0 );
   // if the desired element does not yet exist, we create as many
   // elements as needed; the new values will be 'null' values
   if ( index >= (unsigned) size )  {
@@ -1108,7 +1108,7 @@ wxJSONValue::Item( const wxString& key )
     return data->m_value.m_valMap[key];
   }
   ::wxLogTrace( traceMask, _T("(%s) searching key \'%s' in the actual object"),
-				 __PRETTY_FUNCTION__, key.c_str() ); 
+				 __PRETTY_FUNCTION__, key.c_str() );
   return data->m_value.m_valMap[key];
 }
 
@@ -1128,7 +1128,7 @@ wxJSONValue::ItemAt( unsigned index ) const
   wxJSONValue v( wxJSONTYPE_EMPTY );
   if ( data->m_type == wxJSONTYPE_ARRAY )  {
     int size = Size();
-    wxASSERT( size >= 0 ); 
+    wxASSERT( size >= 0 );
     if ( index < (unsigned) size )  {
       v = data->m_value.m_valArray.Item( index );
     }
@@ -1200,7 +1200,7 @@ wxJSONValue::operator [] ( const wxString& key )
 // note that reference counting is only used if the original
 // value is a wxJSONValue object
 // in all other cases, the operator= function deletes the old
-// content and assigns the new one 
+// content and assigns the new one
 
 
 //! Assign the specified value to this object replacing the old value.
@@ -1420,7 +1420,7 @@ wxJSONValue::TypeToString( wxJSONType type )
  Returns a string that contains info about the object such as:
 
  \li the type of the object
- \li the size 
+ \li the size
  \li the progressive counter
  \li the pointer to referenced data
  \li the progressive counter of referenced data
@@ -1478,7 +1478,7 @@ wxJSONValue::Dump( bool deep, int indent ) const
     indent += 3;
     const wxJSONInternalMap* map;
     int size;;
-    wxJSONInternalMap::const_iterator it; 
+    wxJSONInternalMap::const_iterator it;
     switch ( type )    {
       case wxJSONTYPE_OBJECT :
         map = AsMap();
@@ -1694,7 +1694,7 @@ wxJSONValue::IsSameAs( const wxJSONValue& other ) const
 		  usedElements = new int[size];
 		  for ( int y = 0; y < size; y++ )  {
 			usedElements[y] = 0;
-		  } 
+		  }
 		  for ( int i = 0; i < size; i++ )  {
 			::wxLogTrace( compareTraceMask, _T("(%s) Comparing array element=%d"),
   				 __PRETTY_FUNCTION__, i );
@@ -1704,7 +1704,7 @@ wxJSONValue::IsSameAs( const wxJSONValue& other ) const
 				r = true;
 				usedElements[y] = 1;
 				break;
-			  } 
+			  }
 			}
 			if ( r == false )  {
 			  delete [] usedElements;
@@ -1757,7 +1757,7 @@ wxJSONValue::IsSameAs( const wxJSONValue& other ) const
  Note that the comment string must be a valid C/C++ comment because the
  wxJSONWriter does not modify it.
  In other words, a C++ comment string must start with '//' and must end with
- a new-line character. If the final LF char is missing, the 
+ a new-line character. If the final LF char is missing, the
  automatically adds it.
  You can also add C-style comments which must be enclosed in the usual
  C-comment characters.
@@ -1954,7 +1954,7 @@ wxJSONValue::ClearComments()
  The integer storage depends on the platform: for platforms that support 64-bits
  integers, integers are always stored as 64-bits integers.
  You should never use the wxJSON_TYPE(U)INTxx types: integers are always stored
- as the generic wxJSONTYPE_(U)INT 
+ as the generic wxJSONTYPE_(U)INT
  To know more about the internal representation of integers, read
  \ref json_internals_integer.
 
@@ -1987,14 +1987,14 @@ wxJSONValue::ClearComments()
  \endcode
 
  Maybe I have to spend some words about the (subtle) difference
- between an \b empty value, a \b null value and an \b empty 
+ between an \b empty value, a \b null value and an \b empty
  JSON \b object or \b array.
 
  A \b empty value is a JSONvalue object that was not initialized.
  Its type is \b wxJSONTYPE_EMPTY and it is used internally by the
  wxJSON library. You should never write empty values to JSON text
  because the output is not a valid JSON text.
- If you write an \e empty value to the wxJSONWriter class you 
+ If you write an \e empty value to the wxJSONWriter class you
  obtain the following text (which is not a JSON text):
  \code
    <empty>
@@ -2203,7 +2203,7 @@ wxJSONValue::CloneRefData( const wxJSONRefData* otherData ) const
 
   // wxObjectRefData is private and cannot be accessed by this
   // wxJSONValue class - but we need to set the reference counter
-  // to 1 so we cannot simply use the default copy ctor of 
+  // to 1 so we cannot simply use the default copy ctor of
   // wxJSONRefData* data = new wxJSONRefData( *other );
   // wxJSONRefData structure.
   //data->m_count = 1;
@@ -2327,7 +2327,7 @@ wxJSONValue::IsInt32() const
 
   bool r = false;
   switch ( data->m_type )  {
-    case wxJSONTYPE_INT : 
+    case wxJSONTYPE_INT :
       if ( data->m_value.m_valInt <= INT_MAX &&
 		data->m_value.m_valInt >= INT_MIN )  {
         r = true;
@@ -2353,7 +2353,7 @@ wxJSONValue::IsInt64() const
 
   bool r = false;
   switch ( data->m_type )  {
-    case wxJSONTYPE_INT : 
+    case wxJSONTYPE_INT :
       if ( data->m_value.m_valInt > INT_MAX ||
 		data->m_value.m_valInt < INT_MIN )  {
         r = true;
@@ -2406,7 +2406,7 @@ wxJSONValue::IsUInt64() const
   bool r = false;
   switch ( data->m_type )  {
     case wxJSONTYPE_UINT :
-      if ( data->m_value.m_valUInt > UINT_MAX )    { 
+      if ( data->m_value.m_valUInt > UINT_MAX )    {
         r = true;
       }
       break;
@@ -2573,7 +2573,7 @@ wxJSONValue::AsInt32( wxInt32* i) const
   wxInt64* result = 0;
 
   switch ( data->m_type )  {
-    case wxJSONTYPE_INT : 
+    case wxJSONTYPE_INT :
       r = true;
       result = &(data->m_value.m_valInt );
       break;
@@ -2624,7 +2624,7 @@ wxJSONValue::AsUInt32( wxUint32* ui ) const
   wxUint64* result = 0;
 
   switch ( data->m_type )  {
-    case wxJSONTYPE_INT : 
+    case wxJSONTYPE_INT :
       r = true;
       result = (wxUint64*) &(data->m_value.m_valInt );
       break;

@@ -69,7 +69,7 @@ public:
 
 	int GetHeight() const;
 	int GetCharHeight() const {return charheight;};
-	int GetCharWidth() const {return charwidth;}; // width of a whitespace char 
+	int GetCharWidth() const {return charwidth;}; // width of a whitespace char
 	wxPoint GetCaretPos(unsigned int pos, bool tryfront=false) const;
 	wxRect GetFoldIndicatorRect() const;
 	full_pos ClickOnLine(int xpos, int ypos) const;

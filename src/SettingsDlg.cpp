@@ -74,7 +74,7 @@ BEGIN_EVENT_TABLE(SettingsDlg, wxDialog)
 	EVT_CHECKBOX(CTRL_LASTTAB, SettingsDlg::OnCheckLastTab)
 	EVT_CHECKBOX(CTRL_HIGHLIGHTVARIABLES, SettingsDlg::OnCheckHighlightVariables)
 	EVT_CHECKBOX(CTRL_HIGHLIGHTHTML, SettingsDlg::OnCheckHighlightHtml)
-	EVT_SPINCTRL(CTRL_MARGINSPIN, SettingsDlg::OnMarginSpin) 
+	EVT_SPINCTRL(CTRL_MARGINSPIN, SettingsDlg::OnMarginSpin)
 	EVT_COMBOBOX(CTRL_LINEENDING, SettingsDlg::OnComboEol)
 	EVT_COMBOBOX(CTRL_ENCODING, SettingsDlg::OnComboEncoding)
 	EVT_CHECKBOX(CTRL_BOM, SettingsDlg::OnCheckBom)
@@ -95,7 +95,7 @@ SettingsDlg::SettingsDlg(wxWindow *parent, CatalystWrapper cw, eSettings& settin
 
 	wxPanel* encodingPage = CreateEncodingPage(notebook);
 	notebook->AddPage(encodingPage, _("Encoding"));
-	
+
 	wxPanel* profilePage = CreateProfilePage(notebook);
 	notebook->AddPage(profilePage, _("Profile"));
 
@@ -173,7 +173,7 @@ wxPanel* SettingsDlg::CreateUpdatePage(wxWindow* parent) {
 
 wxPanel* SettingsDlg::CreateSettingsPage(wxWindow* parent) {
 	wxPanel* settingsPage = new wxPanel(parent, wxID_ANY);
-	
+
 	wxCheckBox* autoPair = new wxCheckBox(settingsPage, CTRL_AUTOPAIR, _("Auto-pair characters (quotes etc.)"));
 	wxCheckBox* autoWrap = new wxCheckBox(settingsPage, CTRL_AUTOWRAP, _("Auto-wrap selections"));
 	wxCheckBox* keepState = new wxCheckBox(settingsPage, CTRL_KEEPSTATE, _("Keep state between sessions"));
@@ -213,7 +213,7 @@ wxPanel* SettingsDlg::CreateSettingsPage(wxWindow* parent) {
 	bool doLastTab = false;
 	bool doHighlightVariables = false;
 	bool doHighlightHtml = false;
-	int marginChars = 80;  
+	int marginChars = 80;
 
 	m_settings.GetSettingBool(wxT("autoPair"), doAutoPair);
 	m_settings.GetSettingBool(wxT("autoWrap"), doAutoWrap);
@@ -279,7 +279,7 @@ wxPanel* SettingsDlg::CreateProfilePage(wxWindow* parent) {
 
 	wxStaticText* labelName = new wxStaticText(profilePage, wxID_ANY, _("Name:"));
 	profileSizer->Add(labelName, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5);
-	
+
 	cxLOCK_READ(m_catalyst)
 		m_ctrlUserName = new wxTextCtrl(profilePage, wxID_ANY, catalyst.GetUserName(0));
 		profileSizer->Add(m_ctrlUserName, 1, wxEXPAND|wxALL, 5);
@@ -343,19 +343,19 @@ wxPanel* SettingsDlg::CreateUnixPage(wxWindow* parent) {
 void SettingsDlg::UpdateUnixPage() {
 	const bool cygwin_initialized = eDocumentPath::IsInitialized();
 
-	m_labelCygInitValue->SetLabel(cygwin_initialized 
+	m_labelCygInitValue->SetLabel(cygwin_initialized
 		? _("Yes") : _("No"));
 
-	m_labelBashPathValue->SetLabel(cygwin_initialized 
-		? eDocumentPath::CygwinPath() + wxT("\\bin\\bash.exe") 
+	m_labelBashPathValue->SetLabel(cygwin_initialized
+		? eDocumentPath::CygwinPath() + wxT("\\bin\\bash.exe")
 		: _("(Cygwin not initialized)"));
 
-	m_labelCygdriveValue->SetLabel(cygwin_initialized 
-		? eDocumentPath::CygdrivePrefix() 
+	m_labelCygdriveValue->SetLabel(cygwin_initialized
+		? eDocumentPath::CygdrivePrefix()
 		: _("(Cygwin not initialized)"));
 
-	m_cygwinButton->SetLabel(cygwin_initialized 
-		? _("Show version information") 
+	m_cygwinButton->SetLabel(cygwin_initialized
+		? _("Show version information")
 		: _("Initialize now"));
 
 	m_unixPage->Fit();
@@ -480,7 +480,7 @@ void SettingsDlg::OnButtonCygwinAction(wxCommandEvent& WXUNUSED(event)) {
 			wxBusyCursor wait;
 			cmd_err = ShellRunner::RawShell(cmd, input, &output, NULL, env);
 		}
-		
+
 		wxString cmd_out;
 		if (!output.empty())
 			cmd_out = wxString(&*output.begin(), wxConvUTF8, output.size());

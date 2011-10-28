@@ -149,13 +149,13 @@ unsigned long EditorCtrl::s_ctrlDownTime = 0;
 bool EditorCtrl::s_altGrDown = false;
 
 /// Open a page saved from a previous session
-EditorCtrl::EditorCtrl(const int page_id, CatalystWrapper& cw, wxBitmap& bitmap, wxWindow* parent, EditorFrame& parentFrame) : 
+EditorCtrl::EditorCtrl(const int page_id, CatalystWrapper& cw, wxBitmap& bitmap, wxWindow* parent, EditorFrame& parentFrame) :
 	m_catalyst(cw),
 	m_doc(cw),
 	dispatcher(cw.GetDispatcher()),
 
-	bitmap(bitmap), 
-	m_parentFrame(parentFrame), 
+	bitmap(bitmap),
+	m_parentFrame(parentFrame),
 
 	m_syntaxHandler(m_parentFrame.GetSyntaxHandler()),
 	m_theme(m_syntaxHandler.GetTheme()),
@@ -170,22 +170,22 @@ EditorCtrl::EditorCtrl(const int page_id, CatalystWrapper& cw, wxBitmap& bitmap,
 	m_activeTooltip(NULL),
 
 	m_beforeRedrawCallback(NULL),
-	m_afterRedrawCallback(NULL), 
-	m_scrollCallback(NULL), 
+	m_afterRedrawCallback(NULL),
+	m_scrollCallback(NULL),
 
-	m_enableDrawing(false), 
+	m_enableDrawing(false),
 	m_isResizing(true),
-	scrollPos(0), 
-	m_scrollPosX(0), 
-	topline(-1), 
+	scrollPos(0),
+	m_scrollPosX(0),
+	topline(-1),
 	commandMode(false),
-	m_changeToken(0), 
-	m_savedForPreview(false), 
-	lastpos(0), 
-	m_currentSel(-1), 
-	do_freeze(true), 
-	m_options_cache(0), 
-	m_re(NULL), 
+	m_changeToken(0),
+	m_savedForPreview(false),
+	lastpos(0),
+	m_currentSel(-1),
+	do_freeze(true),
+	m_options_cache(0),
+	m_re(NULL),
 	m_symbolCacheToken(0),
 
 	bookmarks(m_lines)
@@ -204,13 +204,13 @@ EditorCtrl::EditorCtrl(const doc_id di, const wxString& mirrorPath, CatalystWrap
 	m_doc(cw),
 	dispatcher(cw.GetDispatcher()),
 
-	bitmap(bitmap), 
+	bitmap(bitmap),
 	m_parentFrame(parentFrame),
 
 	m_syntaxHandler(m_parentFrame.GetSyntaxHandler()),
 	m_theme(m_syntaxHandler.GetTheme()),
 	m_lines(mdc, m_doc, *this, m_theme),
-	
+
 	m_search_hl_styler(m_doc, m_lines, m_searchRanges, m_theme),
 	m_variable_hl_styler(m_doc, m_lines, m_searchRanges, m_theme, eGetSettings(), *this),
 	m_html_hl_styler(m_doc, m_lines, m_theme, eGetSettings(), *this),
@@ -223,16 +223,16 @@ EditorCtrl::EditorCtrl(const doc_id di, const wxString& mirrorPath, CatalystWrap
 	m_afterRedrawCallback(NULL),
 	m_scrollCallback(NULL),
 
-	m_enableDrawing(false), 
+	m_enableDrawing(false),
 	m_isResizing(true),
 	scrollPos(0),
 	m_scrollPosX(0),
 	topline(-1),
-	commandMode(false), 
+	commandMode(false),
 	m_changeToken(0),
 	m_savedForPreview(false),
 	lastpos(0),
-	m_currentSel(-1), 
+	m_currentSel(-1),
 	do_freeze(true),
 	m_options_cache(0),
 	m_re(NULL),
@@ -265,41 +265,41 @@ EditorCtrl::EditorCtrl(const doc_id di, const wxString& mirrorPath, CatalystWrap
 /// Create a new empty document
 EditorCtrl::EditorCtrl(CatalystWrapper& cw, wxBitmap& bitmap, wxWindow* parent, EditorFrame& parentFrame, const wxPoint& pos, const wxSize& size):
 	m_catalyst(cw),
-	m_doc(cw, true), 
-	dispatcher(cw.GetDispatcher()), 
+	m_doc(cw, true),
+	dispatcher(cw.GetDispatcher()),
 
-	bitmap(bitmap), 
-	m_parentFrame(parentFrame), 
+	bitmap(bitmap),
+	m_parentFrame(parentFrame),
 
-	m_syntaxHandler(m_parentFrame.GetSyntaxHandler()), 
+	m_syntaxHandler(m_parentFrame.GetSyntaxHandler()),
 	m_theme(m_syntaxHandler.GetTheme()),
-	m_lines(mdc, m_doc, *this, m_theme), 
+	m_lines(mdc, m_doc, *this, m_theme),
 
 	m_search_hl_styler(m_doc, m_lines, m_searchRanges, m_theme),
 	m_variable_hl_styler(m_doc, m_lines, m_searchRanges, m_theme, eGetSettings(), *this),
 	m_html_hl_styler(m_doc, m_lines, m_theme, eGetSettings(), *this),
 	m_syntaxstyler(m_doc, m_lines, &m_syntaxHandler),
 
-	m_foldTooltipTimer(this, TIMER_FOLDTOOLTIP), 
+	m_foldTooltipTimer(this, TIMER_FOLDTOOLTIP),
 	m_activeTooltip(NULL),
 
 	m_beforeRedrawCallback(NULL),
-	m_afterRedrawCallback(NULL), 
-	m_scrollCallback(NULL), 
+	m_afterRedrawCallback(NULL),
+	m_scrollCallback(NULL),
 
-	m_enableDrawing(false), 
+	m_enableDrawing(false),
 	m_isResizing(true),
-	scrollPos(0), 
-	m_scrollPosX(0), 
-	topline(-1), 
-	commandMode(false), 
-	m_changeToken(0), 
-	m_savedForPreview(false), 
-	lastpos(0), 
-	m_currentSel(-1), 
-	do_freeze(true), 
-	m_options_cache(0), 
-	m_re(NULL), 
+	scrollPos(0),
+	m_scrollPosX(0),
+	topline(-1),
+	commandMode(false),
+	m_changeToken(0),
+	m_savedForPreview(false),
+	lastpos(0),
+	m_currentSel(-1),
+	do_freeze(true),
+	m_options_cache(0),
+	m_re(NULL),
 	m_symbolCacheToken(0),
 
 	bookmarks(m_lines)
@@ -508,7 +508,7 @@ void EditorCtrl::NotifyParentMate() {
 }
 
 void EditorCtrl::SaveSettings(unsigned int i, eFrameSettings& settings) {
-	SaveSettings(i, settings, 0); 
+	SaveSettings(i, settings, 0);
 }
 
 void EditorCtrl::SaveSettings(unsigned int i, eFrameSettings& settings, unsigned int subid) {
@@ -768,9 +768,9 @@ void EditorCtrl::SetWordWrap(cxWrapMode wrapMode) {
 void EditorCtrl::SetTabWidth(unsigned int width, bool soft_tabs) {
 	// m_indent is the string used for indentation, either a real tab character
 	// or an appropriate number of spaces
-	if (soft_tabs) 
+	if (soft_tabs)
 		m_indent = wxString(wxT(' '), width);
-	else 
+	else
 		m_indent = wxString(wxT("\t"));
 
 	m_lines.SetTabWidth(width);
@@ -841,7 +841,7 @@ bool EditorCtrl::UpdateScrollbars(unsigned int x, unsigned int y) {
 			m_leftScrollbar->SetSize(-1, GetSize().y);
 			m_leftScrollbar->SetThumbPosition(scrollPos);
 			const unsigned int width = m_leftScrollbar->GetSize().x;
-			
+
 			if (m_leftScrollWidth != width) {
 				m_leftScrollWidth = width;
 				ReDraw();
@@ -930,7 +930,7 @@ void EditorCtrl::DrawLayout(wxDC& dc, bool WXUNUSED(isScrolling)) {
 		if (m_showGutter) m_gutterCtrl->DrawGutter();
 		return;
 	}
-	
+
 	// Resize the bitmap used for doublebuffering
 	if (bitmap.GetWidth() < (int)editorSizeX || bitmap.GetHeight() < size.y) {
 		// disassociate and release mem for old bitmap
@@ -1024,7 +1024,7 @@ void EditorCtrl::DrawLayout(wxDC& dc, bool WXUNUSED(isScrolling)) {
 
 	// Draw the layout to MemoryDC
 	m_lines.Draw(-m_scrollPosX, -scrollPos, rect);
-	
+
 	// During the draw we may have corrected some approximated
 	// line dimensions causing the dimesions of the entire document
 	// to have changed. So we have to check if the scrollbars should
@@ -1119,7 +1119,7 @@ wxString EditorCtrl::GetNewIndentAfterNewline(unsigned int lineid) {
 			const wxString& increasePattern = m_syntaxHandler.GetIndentIncreasePattern(scope);
 			if (!increasePattern.empty()) {
 				const search_result res = RegExFind(increasePattern, linestart, false, NULL, lineend);
-				if (res.error_code > 0) 
+				if (res.error_code > 0)
 					return m_lines.GetLineIndent(i) + m_indent;
 			}
 
@@ -1340,7 +1340,7 @@ bool EditorCtrl::SmartTab() {
 	const unsigned int lineend = m_lines.GetLineEndpos(m_lines.GetCurrentLine());
 	const unsigned int tabWidth = m_parentFrame.GetTabWidth();
 	unsigned int p = linestart;
-	
+
 	cxLOCKDOC_READ(m_doc)
 		while(p < lineend) {
 			const wxChar c = doc.GetChar(p);
@@ -1356,7 +1356,7 @@ bool EditorCtrl::SmartTab() {
 		cxLOCKDOC_READ(m_doc)
 			currentWidth = GetTabWidthInSpaces(doc.GetTextPart(linestart, lineend), tabWidth);
 		cxENDLOCK
-		
+
 		//If we are not at or past the previous line's indentation level, then let's jump to it
 		if(currentWidth < realWidth) {
 			int difference = realWidth - currentWidth;
@@ -1382,7 +1382,7 @@ bool EditorCtrl::SmartTab() {
 			// Insert a new tab (done below)
 		}
 	}
-	
+
 	return false;
 }
 void EditorCtrl::Tab() {
@@ -1448,7 +1448,7 @@ void EditorCtrl::Tab() {
 		cxENDLOCK
 		if (qstart < pos && qstart != wordstart && DoTabTrigger(qstart, pos)) return;
 	}
-	
+
 	if(SmartTab()) return;
 
 	// If we get to here we have to insert a real tab
@@ -2873,7 +2873,7 @@ bool EditorCtrl::SetDocument(const doc_id& di, const wxString& path, const Remot
 		cxLOCKDOC_WRITE(m_doc)
 			doc.SetDocument(di);
 		cxENDLOCK
-		
+
 		ApplyDiff(oldDoc, true /*moveToFirstChange*/);
 
 		// If the syntax has been manually set, we want to preserve it
@@ -2957,10 +2957,10 @@ void EditorCtrl::ApplyDiff(const doc_id& oldDoc, bool moveToFirstChange) {
 		const doc_id di = doc.GetDocument();
 		changes = doc.GetChanges(oldDoc, di);
 	cxENDLOCK
-	
+
 	// Lines has to be made valid first
 	m_lines.ApplyDiff(changes);
-	
+
 	// When applying changes to the syntax, we have to be very carefull
 	// not to do any reads of text from stale refs. To avoid this we only
 	// apply changes as full lines.
@@ -4311,7 +4311,7 @@ void EditorCtrl::OnCopy() {
 void EditorCtrl::OnCut() {
 	bool doCopy = true;
 	if (!m_lines.IsSelected()) {
-		// Select current line 
+		// Select current line
 		const unsigned int cl = m_lines.GetCurrentLine();
 		unsigned int start, end;
 		m_lines.GetLineExtent(cl, start, end);
@@ -4338,13 +4338,13 @@ void EditorCtrl::InsertColumn(const wxArrayString& text, bool select) {
 		unsigned int offset = 0;
 		unsigned int pos = m_lines.GetPos();
 		const vector<interval>& selections = m_lines.GetSelections();
-		const bool isShadow = m_lines.IsSelectionShadow(); 
+		const bool isShadow = m_lines.IsSelectionShadow();
 
 		// Calculate insert positions
 		unsigned int dl = 0;
 		for (vector<interval>::const_iterator iv = selections.begin(); iv != selections.end(); ++iv) {
 			inpos.push_back(iv->start-dl);
-			
+
 			if (!isShadow) dl += iv->end - iv->start;
 			else if (pos >= iv->start && pos <= iv->end) {
 				offset = pos - iv->start;
@@ -4390,7 +4390,7 @@ void EditorCtrl::InsertColumn(const wxArrayString& text, bool select) {
 			if (i) {
 				const full_pos fp = m_lines.MovePosDown(cpos.x);
 				pos = fp.pos;
-				
+
 				// Insert newlines if pasting beyond end of doc
 				if (fp.xy_outbound && m_lines.GetCurrentLine() == (int)m_lines.GetLastLine()) {
 					pos = m_lines.GetLength();
@@ -4413,7 +4413,7 @@ void EditorCtrl::InsertColumn(const wxArrayString& text, bool select) {
 
 void EditorCtrl::OnPaste() {
 	if (!wxTheClipboard->Open()) return;
-	
+
 	if (wxTheClipboard->IsSupported( MultilineDataObject::FormatId )) {
 		MultilineDataObject data;
 		if (wxTheClipboard->GetData(data)) {
@@ -4421,7 +4421,7 @@ void EditorCtrl::OnPaste() {
 			wxArrayString textParts;
 			data.GetText(textParts);
 			wxTheClipboard->Close();
-			
+
 			InsertColumn(textParts);
 		}
 	}
@@ -4442,7 +4442,7 @@ void EditorCtrl::OnPaste() {
 
 			Insert(copytext);
 			m_lines.PrepareAll(); // make sure all lines are valid
-			
+
 			Freeze(); // No extension possible after paste
 		}
 	}
@@ -4990,7 +4990,7 @@ cxFindResult EditorCtrl::FindNext(const wxString& text, int options) {
 		// Avoid hitting same zero-length selection
 		if (iv.start == iv.end) {
 			++start_pos;
-			if (start_pos > (int)m_lines.GetLength()) 
+			if (start_pos > (int)m_lines.GetLength())
 				return cxNOT_FOUND;
 		}
 	}
@@ -5002,7 +5002,7 @@ cxFindResult EditorCtrl::FindNext(const wxString& text, int options) {
 	if (result == cxNOT_FOUND && start_pos > 0) {
 		// Restart search from top
 		start_pos = m_searchRanges.empty() ? 0 : m_searchRanges[0].start;
-		if (DoFind(text, start_pos, options)) 
+		if (DoFind(text, start_pos, options))
 			result = cxFOUND_AFTER_RESTART;
 	}
 
@@ -5613,7 +5613,7 @@ bool EditorCtrl::ReplaceAllRegex(const wxString& regex, const wxString& replacet
 
 void EditorCtrl::OnPaint(wxPaintEvent& WXUNUSED(event)) {
 	wxPaintDC dc(this);
-	
+
 	// We have to do a full redraw, because there may be other editorCtrls
 	// shown at the save time which have written to the same backing bitmap
 	DrawLayout(dc);
@@ -5687,7 +5687,7 @@ void EditorCtrl::OnChar(wxKeyEvent& event) {
 // FIXME - is this needed (or it's just for speed?)
 #ifdef __WXMSW__
 	if ((unsigned int)c > 127) InsertChar(c);
-	else 
+	else
 #endif
 	{
 		if (commandMode) {
@@ -6027,7 +6027,7 @@ void EditorCtrl::OnChar(wxKeyEvent& event) {
 						m_lines.RemoveAllSelections();
 					}
 
-					if (pos >= m_lines.GetLength()) 
+					if (pos >= m_lines.GetLength())
 						return; // Can't delete at end of text
 
 					unsigned int nextpos;
@@ -6235,7 +6235,7 @@ void EditorCtrl::DoCommand(int c) {
 
 void EditorCtrl::EndCommand() {
 	if (!commandStack.empty()) {
-		if (commandStack[0] == 26) 
+		if (commandStack[0] == 26)
 			cmd_Undo(0, commandStack, true);
 		commandStack.clear();
 	}
@@ -7135,12 +7135,12 @@ void EditorCtrl::StartDragSelectedText(void) {
 		wxDataObjectComposite compObject;
 		compObject.Add(mdo, true);
 		compObject.Add(new wxTextDataObject(GetSelText()));
-		
+
 		dragSource.SetData(compObject);
 		dragSource.DoDragDrop(wxDrag_DefaultMove);
 	}
 	else {
-		wxTextDataObject textObject(GetSelText());				
+		wxTextDataObject textObject(GetSelText());
 		dragSource.SetData(textObject);
 		dragSource.DoDragDrop(wxDrag_DefaultMove);
 	}
@@ -7306,7 +7306,7 @@ int EditorCtrl::ShowPopupList(const vector<const tmAction*>& actionList) {
 	unsigned int shortcut = 1;
 	for (vector<size_t>::const_iterator p = sortedList.begin(); p != sortedList.end(); ++p) {
 		const tmAction& a = *actionList[*p];
-		
+
 		// Add bundle title
 		if (a.bundle && a.bundle != bundle) {
 			wxString bundleName = a.bundle->name;
@@ -7320,12 +7320,12 @@ int EditorCtrl::ShowPopupList(const vector<const tmAction*>& actionList) {
 		if (a.bundle) itemText = wxT("  "); // slight indentation for bundle members
 		itemText += a.name;
 		itemText.Replace(wxT("&"), wxT("&&"));
-		
+
 		if (shortcut < 10) itemText += wxString::Format(wxT("\t&%u"), shortcut);
 		else if (shortcut == 10) itemText += wxT("\t&0");
 		++shortcut;
 
-		// Add item 
+		// Add item
 		listMenu.Append(new PopupMenuItem(&listMenu, 1000+(*p), itemText));
 	}
 
@@ -7546,7 +7546,7 @@ void EditorCtrl::DoVerticalWheelScroll(wxMouseEvent& event) {
         ProcessEvent(newEvent);
 		return;
 	}
-	
+
 	if (rotation == 0) return;
 
 	const double linescount = (rotation / ((double)event.GetWheelDelta())) * ((double)event.GetLinesPerAction());
@@ -7612,7 +7612,7 @@ void EditorCtrl::OnMouseWheel(wxMouseEvent& event) {
 	const wxSize& my_size = this->GetSize();
 	const wxPoint& where = event.GetPosition();
 
-	if ((where.x < 0) && (where.y < 0) && 
+	if ((where.x < 0) && (where.y < 0) &&
 		(where.x > my_size.GetWidth()) && (where.y > my_size.GetHeight()))
 	{
 		ProcessMouseWheel(event);
@@ -7807,7 +7807,7 @@ void EditorCtrl::OnSettingsChanged(EditorCtrl* self, void* WXUNUSED(data), int W
 	self->m_lines.ShowMargin(marginChars);
 	if (self->m_wrapAtMargin && self->m_lines.GetWrapMode() != cxWRAP_NONE)
 		self->m_lines.SetWidth(self->m_lines.GetMarginPos());
-	
+
 	self->scrollPos = self->m_lines.GetYPosFromLine(topline);
 	self->DrawLayout();
 }
@@ -7853,7 +7853,7 @@ bool EditorCtrl::DoShortcut(int keyCode, int modifiers) {
 	}
 
 	if (actions.empty()) return false; // no matching shortcut
-	
+
 	if (actions.size() == 1)
 		DoAction(*actions[0], NULL, false);
 	else {
@@ -8349,14 +8349,14 @@ vector<cxFold>::iterator EditorCtrl::ParseFoldLine(unsigned int line_id, vector<
 		if (matchStartMarker) {
 			if (!matchEndMarker) { // starter and ender on same line cancels out
 				return m_folds.insert(
-						insertPos, 
+						insertPos,
 						cxFold(line_id, (doFold ? cxFOLD_START_FOLDED : cxFOLD_START), m_lines.GetLineIndentLevel(line_id))
 					) + 1;
 			}
 		}
 		else if (matchEndMarker) {
 			return m_folds.insert(
-					insertPos, 
+					insertPos,
 					cxFold(line_id, cxFOLD_END, m_lines.GetLineIndentLevel(line_id))
 				) + 1;
 		}
@@ -8463,7 +8463,7 @@ void EditorCtrl::FoldingApplyDiff(const vector<cxLineChange>& linechanges) {
 		const unsigned int line_id = m_lines.GetLineFromCharPos(l->start);
 
 		if (line_id > m_foldedLines) return;
-		
+
 		// Find the first line of modification
 		const cxFold target(line_id);
 		vector<cxFold>::iterator f = lower_bound(m_folds.begin(), m_folds.end(), target);
@@ -8530,9 +8530,9 @@ unsigned int EditorCtrl::GetLastLineInFold(const vector<cxFold*>& fStack) const 
 		for (vector<const cxFold*>::reverse_iterator fr = foldStack.rbegin(); fr != foldStack.rend(); ++fr) {
 			if (f->indent == (*fr)->indent) {
 				if ((*fr)->line_id == foldLine) // end matches current
-					return f->line_id; 
+					return f->line_id;
 				else if ((*fr)->line_id < foldLine) // end matches previous (ending fold prematurely)
-					return f->line_id-1; 
+					return f->line_id-1;
 				else {
 					// skip subfolds
 					vector<const cxFold*>::iterator fb = (++fr).base();

@@ -189,7 +189,7 @@ public:
 	cxRemoteAction(const cxRemoteAction& event) : wxEvent(event) {
 		m_action = event.m_action;
 		m_errorCode = event.m_errorCode;
-		m_url = event.m_url.c_str(); // wxString is not threadsafe, so we force full copy to avoid COW 
+		m_url = event.m_url.c_str(); // wxString is not threadsafe, so we force full copy to avoid COW
 		m_target = event.m_target.c_str();
 		m_date = event.m_date;
 	};

@@ -90,10 +90,10 @@ BEGIN_EVENT_TABLE(StatusBar, wxStatusBar)
 END_EVENT_TABLE()
 
 StatusBar::StatusBar(EditorFrame& parent, wxWindowID id, const ITmGetSyntaxes* syntax_handler):
-	wxStatusBar(&parent, id), 
+	wxStatusBar(&parent, id),
 	m_parentFrame(parent),
 	m_syntax_handler(syntax_handler),
-	m_editorCtrl(NULL) 
+	m_editorCtrl(NULL)
 {
 	const int widths[] = {160, 120, 100, -1, 150 };
 	SetFieldsCount(WXSIZEOF(widths), widths);
@@ -190,7 +190,7 @@ void StatusBar::UpdateTabs() {
 	const unsigned int tabWidth = m_parentFrame.GetTabWidth();
 	const bool isSoftTabs = m_parentFrame.IsSoftTabs();
 	if (tabWidth == m_tabWidth && isSoftTabs == m_isSoftTabs) return;
-		
+
 	if (m_parentFrame.IsSoftTabs())
 		SetStatusText(wxString::Format(wxT("Soft Tabs: %u"), tabWidth), 2);
 	else

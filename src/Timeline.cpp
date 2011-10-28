@@ -42,7 +42,7 @@ Timeline::Timeline(wxWindow* parent, wxWindowID id, const wxPoint& pos, const wx
 	m_mdc.SetFont(m_dayFont);
 
 	if (false == m_mdc.Ok()) {
-		wxLogError(wxT("wxMemoryDC() constructor was failed in creating!"));	
+		wxLogError(wxT("wxMemoryDC() constructor was failed in creating!"));
 	}
 }
 

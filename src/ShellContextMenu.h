@@ -28,7 +28,7 @@ public:
 	bool HookWndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& res);
 
 private:
-	
+
 	BOOL GetContextMenu (void ** ppContextMenu, int & iMenuType);
 	HRESULT SHBindToParentEx (LPCITEMIDLIST pidl, REFIID riid, VOID **ppv, LPCITEMIDLIST *ppidlLast);
 	void InvokeCommand (LPCONTEXTMENU pContextMenu, UINT idCommand);

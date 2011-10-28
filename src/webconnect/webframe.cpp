@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2007-04-23
-// RCS-ID:      
+// RCS-ID:
 // Copyright:   (C) Copyright 2006-2009, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -33,12 +33,12 @@ wxWebFrame::wxWebFrame(wxWindow* parent,
                        long style) : wxFrame(parent, id, title, pos, size, style)
 {
     m_should_prevent_app_exit = true;
-    
+
     m_ctrl = new wxWebControl(this, -1, wxPoint(0,0), wxSize(200,200));
-    
+
     wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
     sizer->Add(m_ctrl, 1, wxEXPAND);
-    
+
     SetSizer(sizer);
 }
 
@@ -71,10 +71,10 @@ wxWebDialog::wxWebDialog(wxWindow* parent,
                        long style) : wxDialog(parent, id, title, pos, size, style)
 {
     m_ctrl = new wxWebControl(this, -1, wxPoint(0,0), wxSize(200,200));
-    
+
     wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
     sizer->Add(m_ctrl, 1, wxEXPAND);
-    
+
     SetSizer(sizer);
 }
 

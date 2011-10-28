@@ -29,7 +29,7 @@
  the maximum number of errors and warnings that have to be reported.
 
  If the document does not contain an open/close JSON character the
- function returns an \b empty value object; in other words, the 
+ function returns an \b empty value object; in other words, the
  wxJSONValue::IsEmpty() function returns TRUE.
  This is the case of a document that is empty or contains only
  whitespaces or comments.
@@ -70,19 +70,19 @@
    // this text does not contain an open array/object character
  \endcode
 
- Returns a wxJSONTYPE_OBJECT value of Size() = 0 
+ Returns a wxJSONTYPE_OBJECT value of Size() = 0
  \code
    {
    }
  \endcode
 
- Returns a wxJSONTYPE_ARRAY value of Size() = 0 
+ Returns a wxJSONTYPE_ARRAY value of Size() = 0
  \code
    [
    ]
  \endcode
 
- Text before and after the top-level open/close characters is ignored. 
+ Text before and after the top-level open/close characters is ignored.
  \code
    This non-JSON text does not cause the parser to report errors or warnings
    {
@@ -113,7 +113,7 @@
 
  \li wrong or missing closing character: wxJSON parser is tolerant
 	about the object / array closing character. When an open-array
-	character '[' is encontered, the parser expects the 
+	character '[' is encontered, the parser expects the
 	corresponding close-array character ']'. If the character
 	encontered is a close-object char '}' a warning is reported.
 	A warning is also reported if the character is missing when
@@ -170,7 +170,7 @@
 // WXTRACE=traceReader StoreComment
 // environment variable
 static const wxChar* traceMask = _T("traceReader");
-static const wxChar* storeTraceMask = _T("StoreComment"); 
+static const wxChar* storeTraceMask = _T("StoreComment");
 
 
 //! Ctor
@@ -203,12 +203,12 @@ static const wxChar* storeTraceMask = _T("StoreComment");
      lines
  \li wxJSONREADER_COMMENTS_AFTER: if STORE_COMMENTS if defined, the parser
      assumes that comment lines apear \b before the value they
-     refer to unless this constant is specified. In the latter case, 
+     refer to unless this constant is specified. In the latter case,
      comments apear \b after the value they refer to.
 
  You can also use the following shortcuts to specify some predefined
  flag's combination:
- 
+
   \li wxJSONREADER_STRICT: all wxJSON extensions are reported as errors, this
       is the same as specifying a ZERO value as \c flags.
   \li wxJSONREADER_TOLERANT: this is the same as ALLOW_COMMENTS | CASE |
@@ -255,7 +255,7 @@ wxJSONReader::~wxJSONReader()
  with the \c wxJSONREADER_STRICT flag, then the parsed document
  is \e well-formed and it only contains valid JSON text.
 
- If the \c wxJSONREADER_TOLERANT flag was used in the parser's 
+ If the \c wxJSONREADER_TOLERANT flag was used in the parser's
  constructor, then a return value of ZERO
  does not mean that the document is \e well-formed because it may
  contain comments and other extensions that are not fatal for the
@@ -334,7 +334,7 @@ wxJSONReader::Parse( wxJSONValue* val )
     temp = new wxJSONValue();
   }
 
-  // set the wxJSONValue object's pointers for comment storage 
+  // set the wxJSONValue object's pointers for comment storage
   m_next       = temp;
   m_next->SetLineNo( -1 );
   m_lastStored = 0;
@@ -477,7 +477,7 @@ wxJSONReader::ReadChar()
   else  {
     ++m_colNo;
   }
-  return ch;  
+  return ch;
 }
 
 
@@ -488,7 +488,7 @@ wxJSONReader::ReadChar()
  as an integer so that all 2^31 unicode characters can be represented
  as a positive integer value.
  In case of errors or EOF, the function returns -1.
- Note that this function behaves differently depending on the build 
+ Note that this function behaves differently depending on the build
  mode (ANSI or Unicode) and the type of the object containing the
  JSON document.
 
@@ -514,7 +514,7 @@ wxJSONReader::ReadChar()
  are processed differently by the parser: before storing the
  wide character in the JSON value, it is converted to the
  locale dependent character if one exists; if not, the \e unicode
- \e escape \e sequence is stored in the JSON value. 
+ \e escape \e sequence is stored in the JSON value.
 */
 int
 wxJSONReader::GetChar()
@@ -547,7 +547,7 @@ wxJSONReader::GetChar()
     buffer[0] = is->GetC();
 
     // check the EOF condition; note that in wxWidgets 2.6.x and below
-    // some streams returns EOF after the last char was read and 
+    // some streams returns EOF after the last char was read and
     // we should use LastRead() to know the EOF condition
     // wxJSON depends on 2.8.4 and above so there should be no problem
     if ( is->Eof() )  {
@@ -752,12 +752,12 @@ wxJSONReader::DoRead( wxJSONValue& parent )
 
       case '\"' :
         ch = ReadString( value );     // store the string in 'value'
-        m_current = &value; 
+        m_current = &value;
         m_next    = 0;
         break;
 
       case ':' :   // key / value separator
-        m_current = &value; 
+        m_current = &value;
         m_current->SetLineNo( m_lineNo );
         m_next    = 0;
         if ( !parent.IsObject() )  {
@@ -779,7 +779,7 @@ wxJSONReader::DoRead( wxJSONValue& parent )
       // no special chars, is it a value?
       default :
         // errors are checked in the 'ReadValue()' function.
-        m_current = &value; 
+        m_current = &value;
         m_current->SetLineNo( m_lineNo );
         m_next    = 0;
         ch = ReadValue( ch, value );
@@ -899,7 +899,7 @@ wxJSONReader::StoreValue( int ch, const wxString& key, wxJSONValue& value, wxJSO
  The \c fmt parameter is a format string that has the same syntax as the \b printf
  function.
  Note that it is the user's responsability to provide a format string suitable
- with the arguments: another string or a character. 
+ with the arguments: another string or a character.
 */
 void
 wxJSONReader::AddError( const wxString& msg )
@@ -1012,7 +1012,7 @@ wxJSONReader::SkipWhiteSpace()
  is read from the input stream assuming that a C/C++ comment is starting.
  Returns the first character that follows the comment or
  -1 on EOF.
- The function also adds a warning message because comments are not 
+ The function also adds a warning message because comments are not
  valid JSON text.
  The function also stores the comment, if any, in the \c m_comment data
  member: it can be used by the DoRead() function if comments have to be
@@ -1021,7 +1021,7 @@ wxJSONReader::SkipWhiteSpace()
 int
 wxJSONReader::SkipComment()
 {
-  static const wxChar* warn = 
+  static const wxChar* warn =
 	_T("Comments may be tolerated in JSON text but they are not part of JSON syntax");
 
   // if it is a comment, then a warning is added to the array
@@ -1468,7 +1468,7 @@ wxJSONReader::ReadValue( int ch, wxJSONValue& val )
     // JSON syntax states that constant must be lowercase
     // but this parser tolerate mixed-case literals but
     // reports a warning.
-    default: 
+    default:
       if ( s == _T("null") ) {
         val.SetType( wxJSONTYPE_NULL );
         ::wxLogTrace( traceMask, _T("(%s) value = NULL"),  __PRETTY_FUNCTION__ );
@@ -1716,7 +1716,7 @@ wxJSONReader::UTF8NumBytes( char ch )
   ch = ch << 1;
   }
 
-  // note that if the char contains more than six '1' bits it is not 
+  // note that if the char contains more than six '1' bits it is not
   // a valid UTF-8 encoded character
   if ( num > 6 )  {
     num = -1;
@@ -1737,13 +1737,13 @@ wxJSONReader::UTF8NumBytes( char ch )
   \u03B1
  \endcode
 
- In unicode mode, the function just appends the wide character code 
+ In unicode mode, the function just appends the wide character code
  stored in \c hex to the string \c s.
  In ANSI mode, the function converts the wide character code to the
  corresponding character if it is convertible using the locale dependent
  character set.
  If the wide char cannot be converted, the function appends the
- \e unicode \e escape \e sequence to the string \c s. 
+ \e unicode \e escape \e sequence to the string \c s.
  Returns ZERO if the character was not converted to a unicode escape
  sequence.
 */
@@ -1759,7 +1759,7 @@ wxJSONReader::AppendUnicodeSequence( wxString& s, int hex )
     s.append( 1, (wxChar) hex );
   #else
     char buffer[10];
-    size_t len = wxConvLibc.FromWChar( buffer, 10, &ch, 1 ); 
+    size_t len = wxConvLibc.FromWChar( buffer, 10, &ch, 1 );
     if ( len != wxCONV_FAILED )  {
       s.append( 1, buffer[0] );
     }
@@ -1787,7 +1787,7 @@ wxJSONReader::AppendUnicodeSequence( wxString& s, int hex )
  The wxWidgets library (actually I have installed version 2.8.7)
  relies on 'strtoll' in order to do the conversion from a string
  to a long long integer but, in fact, it does not work because
- the 'wxHAS_STRTOLL' macro is not defined on my system. 
+ the 'wxHAS_STRTOLL' macro is not defined on my system.
 
  Note that this implementation is not a complete substitute of the
  strtoll function because it only converts decimal strings (only base

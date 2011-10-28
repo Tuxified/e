@@ -12,7 +12,7 @@
 #endif
 
 #ifdef __WXGTK__
-// translate X keychar into WX 
+// translate X keychar into WX
 static unsigned int TranslateKeySymToWXK(guint keysym)
 {
 	unsigned int key_code = 0;
@@ -233,7 +233,7 @@ static unsigned int TranslateKeySymToWXK(guint keysym)
 	}
 
 	wxLogDebug(wxT("keycode is 0x%0x\n"), key_code);
-	return key_code; 
+	return key_code;
 }
 
 static void TranslateEventToWxKeyEvent(GdkEventKey* xevent, wxKeyEvent& wx_event)
@@ -241,7 +241,7 @@ static void TranslateEventToWxKeyEvent(GdkEventKey* xevent, wxKeyEvent& wx_event
 	wx_event.m_shiftDown = (xevent->state & GDK_SHIFT_MASK) != 0;
 	wx_event.m_controlDown = (xevent->state & GDK_CONTROL_MASK) != 0;
 	wx_event.m_altDown = (xevent->state & GDK_MOD1_MASK) != 0;
-	wx_event.m_metaDown = (xevent->state & GDK_MOD2_MASK) != 0; 
+	wx_event.m_metaDown = (xevent->state & GDK_MOD2_MASK) != 0;
 	wx_event.m_keyCode = TranslateKeySymToWXK(xevent->keyval);
 }
 

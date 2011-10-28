@@ -28,7 +28,7 @@ public:
 	void SetName(const wxString& name) {m_name =  name;};
 	const wxString& GetName() const {return m_name;};
 	virtual bool Init(bool deep=false) = 0;
-	
+
 	bool IsInitialized() const {return m_isInitialized;};
 	bool IsEnabled() const {return m_isEnabled;};
 	void Disable() {m_isEnabled = false;};
@@ -44,7 +44,7 @@ public:
 	virtual bool IsGroup() {return false;};
 	virtual bool IsSpan() const {return false;};
 	virtual matcher* GetMember(unsigned int) {return this;};
-	
+
 	virtual unsigned int GetSubId(unsigned int) {return 0;};
 
 	// Matching

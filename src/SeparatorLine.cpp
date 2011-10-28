@@ -14,7 +14,7 @@ END_EVENT_TABLE()
 bool SeperatorLine::AcceptsFocus() const { return FALSE; }
 
 SeperatorLine::SeperatorLine(wxWindow* parent, wxWindowID id, const wxPoint& pos):
-	wxControl(parent, id, pos, wxSize(10, 2)) 
+	wxControl(parent, id, pos, wxSize(10, 2))
 {
 	// Make sure sizers min/max height are fixed to 2 pixels
 	SetSizeHints(-1, 2, -1, 2);

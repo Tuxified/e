@@ -353,7 +353,7 @@ void RemoteThread::DoDownload(const RemoteAction& ra) {
 		curl_easy_setopt(m_curlHandle, CURLOPT_WRITEFUNCTION, WriteFileCallback);
 		curl_easy_setopt(m_curlHandle, CURLOPT_WRITEDATA, &file);
 		curl_easy_setopt(m_curlHandle, CURLOPT_FILETIME, 1); // we also want modification time
-		
+
 		// Set proxy
 		if (ra.m_url.StartsWith(wxT("http"))) curl_use_proxy(m_curlHandle);
 

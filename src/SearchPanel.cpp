@@ -196,9 +196,9 @@ void SearchPanel::InitSearch(const wxString& searchtext, bool replace) {
 		else searchbox->SetFocus();
 		return;
 	}
-	
+
 	if (!replace && focus_win == searchbox) {
-		FindNext(); 
+		FindNext();
 		return;
 	}
 
@@ -453,7 +453,7 @@ void SearchEvtHandler::OnChar(wxKeyEvent& event) {
 
 void SearchEvtHandler::OnFocusLost(wxFocusEvent& event) {
 	// We don't want to save partial searches during incremental search
-	// so we only save when the ctrl loses focus. 
+	// so we only save when the ctrl loses focus.
 	parent->UpdateSearchHistory();
 	event.Skip(true);
 }

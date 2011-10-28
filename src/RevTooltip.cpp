@@ -15,7 +15,7 @@
 #include <wx/statline.h>
 #include "Catalyst.h"
 
-RevTooltip::RevTooltip(const CatalystWrapper& catalyst): 
+RevTooltip::RevTooltip(const CatalystWrapper& catalyst):
 	m_catalyst(catalyst) {}
 
 RevTooltip::RevTooltip(wxWindow *parent, const CatalystWrapper& catalyst):

@@ -41,7 +41,7 @@ unsigned int LineListWrap::end(unsigned int index) {
 
 unsigned int LineListWrap::top(unsigned int index) {
 	wxASSERT(index == 0 || (0 < index && index < yPositions.size()));
-	
+
 	if (!index) return 0;
 
 	validate_positions(index-1);
@@ -80,9 +80,9 @@ unsigned int LineListWrap::height() const {
 
 		return last + approxBottom;
 	}
-	
+
 	if (lastValidPos < yPositions.size()) return yPositions.back() + posDiff;
-	
+
 	return yPositions.back();
 }
 
@@ -206,7 +206,7 @@ void LineListWrap::insertlines(unsigned int index, vector<unsigned int>& newline
 		yPositions[i] = ypos += line.GetCharHeight();
 		textstart = textOffsets[i];
 	}
-	
+
 	int last_index = index + newlines.size()-1;
 
 	// Extend l-window to hold new lines
@@ -237,7 +237,7 @@ void LineListWrap::update(unsigned int index, unsigned int newend) {
 	// WARNING: ll only valid upto index
 	wxASSERT(index >= 0 && index < textOffsets.size());
 	//wxASSERT(newend <= m_doc.GetLength());
-	
+
 	validate_offsets(index);
 	if (index) validate_positions(index-1);
 
@@ -273,7 +273,7 @@ void LineListWrap::update_parsed_line(unsigned int index) {
 			}
 			const unsigned int old_height = bottom_xpos - top_xpos;
 			//wxLogDebug("  old_height=%d posDiff=%d top_xpos=%d bottom_xpos=%d", old_height, posDiff, top_xpos, bottom_xpos);
-			
+
 			// Update position
 			if (line_height != old_height || index >= lastValidPos) {
 				yPositions[index] = top_xpos + line_height;
@@ -317,7 +317,7 @@ void LineListWrap::update_line_extent(unsigned int index, unsigned int extent) {
 			const unsigned int bottom_ypos = yPositions[index];
 			const unsigned int old_height = bottom_ypos - top_ypos;
 			//wxLogDebug("  old_height=%d posDiff=%d top_xpos=%d bottom_xpos=%d", old_height, posDiff, top_xpos, bottom_xpos);
-			
+
 			// Update position
 			if (extent != old_height || index >= lastValidPos) {
 				yPositions[index] = top_ypos + extent;
@@ -351,13 +351,13 @@ void LineListWrap::remove(unsigned int startline, unsigned int endline) {
 
 	// Validate offsets up-to end of deletion (needed for diff)
 	validate_offsets(endline-1);
-	
+
 	if (startline) extendwindow(startline-1); // Make sure pos-win reaches top of deletion
 
 	// Remove text lines
 	int diff = offset(startline) - end(endline-1);
 	textOffsets.erase(textOffsets.begin()+startline, textOffsets.begin()+endline);
-	
+
 	// update offsets
 	wxASSERT(lastValidOffset >= endline - startline);
 	lastValidOffset -= endline - startline;
@@ -391,13 +391,13 @@ void LineListWrap::remove(unsigned int startline, unsigned int endline) {
 		}
 		else if (startline >= firstLoadedPos) {
 			wxASSERT(startline < lastLoadedPos);
-			lastLoadedPos -= endline - startline; 
+			lastLoadedPos -= endline - startline;
 		}
 		else wxASSERT(false);
 
 		// Remove position lines
 		yPositions.erase(yPositions.begin()+startline, yPositions.begin()+endline);
-		
+
 		// FIX: update lastValidPos upto startline
 		while (lastValidPos < startline) {
 			yPositions[lastValidPos] += posDiff;
@@ -537,7 +537,7 @@ int LineListWrap::find_ypos(unsigned int ypos) {
 	}
 
 	wxASSERT(false); // We should never reach here
-	return 0; 
+	return 0;
 }
 
 void LineListWrap::invalidate(int index) {
@@ -559,7 +559,7 @@ void LineListWrap::invalidate(int index) {
 
 void LineListWrap::validate_offsets(unsigned int index) {
 	wxASSERT(index >= 0 && index < textOffsets.size());
-	wxASSERT(lastValidOffset >= 0 || textOffsets.empty()); 
+	wxASSERT(lastValidOffset >= 0 || textOffsets.empty());
 	wxASSERT(lastValidOffset < textOffsets.size() || offsetDiff == 0);
 
 	if (index >= lastValidOffset && !textOffsets.empty()) {
@@ -609,7 +609,7 @@ void LineListWrap::update_offsetDiff(unsigned int index, int diff) {
 		else if (diff != 0) {
 			offsetDiff = diff;
 			lastValidOffset = index+1;
-		} 
+		}
 		return;
 	}
 
@@ -646,7 +646,7 @@ void LineListWrap::update_posDiff(unsigned int index, int diff) {
 		}
 		return;
 	}
-	
+
 	if (index+1 < lastValidPos) {
 		// update up-to lastValidPos
 		for (++index; index < lastValidPos; ++index) {
@@ -674,7 +674,7 @@ void LineListWrap::Print() {
 	wxLogDebug(wxT(" height:     %u"), height());
 	if (lastLoadedPos == 0) wxLogDebug(wxT("  _linelist: %d-%d"), firstLoadedPos, lastLoadedPos);
 	else wxLogDebug(wxT("  linelist: %d %d (%d-%d -> %d-%d) %u"), lastValidOffset, lastValidPos, firstLoadedPos, lastLoadedPos, approxTop, yPositions[lastLoadedPos-1], height());
-	
+
 	for (unsigned int i = 0; i < size(); ++i) {
 		wxLogDebug(wxT("  %u: %u %u"), i, textOffsets[i], yPositions[i]);
 	}
@@ -779,7 +779,7 @@ int LineListWrap::extendwindow(unsigned int index) {
 	int endline = index;
 	index = uMinus(index, WINSIZE);
 
-	int top = 0; 
+	int top = 0;
 	if (avr_lineheight > 0) top = approxTop = index * avr_lineheight;
 	else wxASSERT(approxTop == 0);
 	for (int i = index; i <= endline; ++i) {
@@ -820,7 +820,7 @@ int LineListWrap::recalc_approx(bool movetop) {
 
 		int apr_diff = new_approxTop - approxTop;
 		wxASSERT(apr_diff >= 0 || -apr_diff <= (int)yPositions[firstLoadedPos]);
-		
+
 		for (unsigned int i = firstLoadedPos; i < lastLoadedPos; ++i) {
 			yPositions[i] += apr_diff;
 		}
@@ -869,7 +869,7 @@ int LineListWrap::OnIdle() {
 	if (firstLoadedPos > 0) {
 		//wxLogDebug("OnIdle 1");
 		unsigned int index = uMinus(firstLoadedPos, 100);
-		
+
 		// Load positions in extension
 		unsigned int line_bottom = 0;
 		for (unsigned int i = index; i < firstLoadedPos; ++i) {
@@ -908,7 +908,7 @@ int LineListWrap::OnIdle() {
 		approxTop -= diff;
 		firstLoadedPos = index;
 		int aprx = recalc_approx(true);*/
-		
+
 		verify();
 		return ext_diff;
 	}
@@ -924,7 +924,7 @@ int LineListWrap::OnIdle() {
 		if (lastValidPos == lastLoadedPos && posDiff == 0) lastValidPos = index+1;
 		lastLoadedPos = index+1;
 		int aprx = recalc_approx(); // recalc approximations (below only)
-		
+
 		verify();
 		return aprx;
 	}
@@ -978,7 +978,7 @@ void LineListWrap::verify(bool deep) const {
 			}
 		}
 	}
-	
+
 	// textOffsets within range?
 	int t = lastValidOffset < textOffsets.size() ? textOffsets.back() + offsetDiff: textOffsets.back();
 	int l = m_doc.GetLength();

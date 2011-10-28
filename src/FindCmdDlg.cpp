@@ -35,7 +35,7 @@ BEGIN_EVENT_TABLE(FindCmdDlg, wxDialog)
 END_EVENT_TABLE()
 
 FindCmdDlg::FindCmdDlg(wxWindow *parent,  const vector<const tmAction*>& actions):
-	wxDialog (parent, -1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER), m_actions(actions) 
+	wxDialog (parent, -1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER), m_actions(actions)
 {
 	SetTitle (_("Select Bundle Item"));
 

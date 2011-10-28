@@ -30,7 +30,7 @@ const unsigned int DiffBar::s_bracketWidth = 5;
 DiffBar::DiffBar(wxWindow* parent, CatalystWrapper& cw, EditorCtrl* leftEditor, EditorCtrl* rightEditor):
 	wxControl(parent, wxID_ANY, wxPoint(-100,-100), wxSize(40,100), wxNO_BORDER|wxWANTS_CHARS|wxCLIP_CHILDREN|wxNO_FULL_REPAINT_ON_RESIZE),
 	m_catalyst(cw), m_leftEditor(leftEditor), m_rightEditor(rightEditor), m_leftStyler(m_diffs, true), m_rightStyler(m_diffs, false),
-	m_needRedraw(false), m_needTransform(false), m_highlight(-1) 
+	m_needRedraw(false), m_needTransform(false), m_highlight(-1)
 {
 	SetMinSize(wxSize(40, -1));
 	SetMaxSize(wxSize(40, -1));
@@ -122,7 +122,7 @@ void DiffBar::TransformMatchlist() {
 
 		// Make sure markers will get correct coloring
 		m.left_type = (leftCount > 0) ? cxDELETION : cxINSERTION;
-		m.right_type = (rightCount > 0) ? cxINSERTION : cxDELETION;	
+		m.right_type = (rightCount > 0) ? cxINSERTION : cxDELETION;
 
 		if (m_lineMatches.empty()) m_lineMatches.push_back(m);
 		else {
@@ -200,7 +200,7 @@ void DiffBar::DrawLayout(wxDC& dc) {
 	for (; p != m_lineMatches.end(); ++p) {
 		const int leftTop = leftLines.GetYPosFromLine(p->left_start) - leftScrollPos;
 		const int rightTop = rightLines.GetYPosFromLine(p->right_start) - rightScrollPos;
-		
+
 		// Break if outside visible
 		if (leftTop > size.y && rightTop > size.y) break;
 
@@ -317,7 +317,7 @@ void DiffBar::OnMouseMotion(wxMouseEvent& evt) {
 void DiffBar::OnMouseLeftUp(wxMouseEvent& evt) {
 	const wxSize size = GetClientSize();
 	const wxPoint mpos = evt.GetPosition();
-	
+
 	if (mpos.x <= s_bracketWidth) {
 		// Have we clicked a bracket?
 		std::vector<LineMatch>::const_iterator p = OnLeftBracket(mpos.y);
@@ -422,7 +422,7 @@ void DiffBar::OnRightEditorRedrawn(void* data) { // static
 
 void DiffBar::OnLeftEditorScroll(void* data) { // static
 	DiffBar* self = (DiffBar*)data;
-	
+
 	if (!self->m_matchlist.empty() && !wxGetKeyState(WXK_SHIFT)) {
 		Lines& leftLines = self->m_leftEditor->GetLines();
 		Lines& rightLines = self->m_rightEditor->GetLines();

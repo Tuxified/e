@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2006-10-08
-// RCS-ID:      
+// RCS-ID:
 // Copyright:   (C) Copyright 2006-2009, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -58,17 +58,17 @@ public:
     {
         NS_StringContainerInit(*this);
     }
-    
+
     nsString(const PRUnichar* data, size_t len, PRUint32 flags)
     {
         NS_StringContainerInit2(*this, data, len, flags);
     }
-    
+
     ~nsString()
     {
         NS_StringContainerFinish(*this);
     }
-    
+
     void Assign(const PRUnichar* str, int len = PR_UINT32_MAX)
     {
         NS_StringSetData(*this, str, len);
@@ -84,24 +84,24 @@ public:
     {
         NS_CStringContainerInit(*this);
     }
-    
+
     ~nsCString()
     {
         NS_CStringContainerFinish(*this);
     }
-    
+
     nsCString(const char* data, size_t len, PRUint32 flags)
     {
         NS_CStringContainerInit2(*this, data, len, flags);
     }
-    
+
     const char* get() const
     {
         const char* ptr;
         NS_CStringGetData(*this, &ptr);
         return ptr;
     }
-    
+
     void Assign(const char* str, int len = PR_UINT32_MAX)
     {
         NS_CStringContainerFinish(*this);
@@ -117,7 +117,7 @@ public:
            : nsString(data, len, 0x02/*NS_STRING_CONTAINER_INIT_DEPEND*/)
     {
     }
-    
+
 #ifndef _MSC_VER
     // for platforms with 4-byte wchar_t
     nsDependentString(const wchar_t* wdata, size_t specified_len = PR_UINT32_MAX)

@@ -1,6 +1,6 @@
 Package: e
 Version: %VERSION%-%RELEASE%
-Section: editors 
+Section: editors
 Priority: optional
 Architecture: all
 Essential: no
