@@ -163,7 +163,7 @@ void eSettings::RemoveFrame(unsigned int frameId) {
 		frame.Remove(wxT("pages"));
 	}
 	else frames.Remove(frameId);
-	
+
 	AutoSave();
 }
 
@@ -171,7 +171,7 @@ void eSettings::RemoveFrame(const eFrameSettings& fs) {
 	const int frameId = GetIndexFromFrameSettings(fs);
 	if (frameId > -1)
 		RemoveFrame(frameId);
-	
+
 	AutoSave();
 }
 
@@ -196,7 +196,7 @@ void eSettings::DeleteAllFrameSettings(int top) {
 	eFrameSettings frmSettings = GetFrameSettings(0);
 	frmSettings.RemoveSetting(wxT("topwin/tablayout"));
 	frmSettings.RemoveSetting(wxT("topwin/page_id"));
-	
+
 	AutoSave();
 }
 
@@ -343,7 +343,7 @@ void eSettings::AddToRecent(const wxString& key, wxJSONValue& jsonArray, size_t 
 	}
 
 	if (ndx == 0) return; // No need to do anything if path is already top
-	
+
 	if (ndx > 0) jsonArray.Remove(ndx); // remove duplicate entry
 
 	// Insert value at top
@@ -369,7 +369,7 @@ RemoteProfile* eSettings::DoGetRemoteProfile(size_t profile_id)  {
 	const wxJSONValue remotes = m_jsonRoot.ItemAt(wxT("remoteProfiles"));
 	wxASSERT((int)profile_id < remotes.Size());
 	const wxJSONValue profile = remotes.ItemAt(profile_id);
-	
+
 	// Add profile to cache
 	auto_ptr<RemoteProfile> rp(new RemoteProfile());
 	rp->m_id = profile_id;
@@ -434,7 +434,7 @@ void eSettings::SetRemoteProfile(size_t profile_id, const RemoteProfile& profile
 			return;
 		}
 	}
-	
+
 	AutoSave();
 }
 
@@ -599,8 +599,8 @@ bool eSettings::AddSearch(const wxString& pattern, bool isRegex, bool matchCase)
 		if (last.ItemAt(wxT("pattern")).AsString() == pattern) {
 			// We can ignore repeated top insertions, but options may have changed
 			if (last[wxT("isRegex")].AsBool() != isRegex) last[wxT("isRegex")] = isRegex;
-			if (last[wxT("matchCase")].AsBool() != matchCase) last[wxT("matchCase")] = matchCase;		
-			AutoSave();	
+			if (last[wxT("matchCase")].AsBool() != matchCase) last[wxT("matchCase")] = matchCase;
+			AutoSave();
 			return false;
 		}
 
@@ -612,7 +612,7 @@ bool eSettings::AddSearch(const wxString& pattern, bool isRegex, bool matchCase)
 			}
 		}
 	}
-	
+
 	// Add the new item
 	wxJSONValue item;
 	item[wxT("pattern")] = pattern;
@@ -647,7 +647,7 @@ bool eSettings::AddReplace(const wxString& pattern) {
 	if (replacements.Size() > 0) {
 		const wxJSONValue last = replacements.ItemAt(0);
 		if (last.AsString() == pattern) return false;
-		
+
 		// Check if there should be a duplicate lower down
 		for (int i = 0; i < replacements.Size(); ++i) {
 			if (replacements[i].AsString() == pattern) {
@@ -656,7 +656,7 @@ bool eSettings::AddReplace(const wxString& pattern) {
 			}
 		}
 	}
-	
+
 	// Add the new item
 	replacements.Insert(0, pattern);
 
@@ -688,7 +688,7 @@ bool eSettings::AddFilterCommand(const wxString& command) {
 	if (values.Size() > 0) {
 		const wxJSONValue last = values.ItemAt(0);
 		if (last.AsString() == command) return false;
-		
+
 		// Check if there should be a duplicate lower down
 		for (int i = 0; i < values.Size(); ++i) {
 			if (values[i].AsString() == command) {
@@ -697,7 +697,7 @@ bool eSettings::AddFilterCommand(const wxString& command) {
 			}
 		}
 	}
-	
+
 	// Add the new item
 	values.Insert(0, command);
 
@@ -824,7 +824,7 @@ void eFrameSettings::SetPageSettings(size_t page_id, const wxString& path, doc_i
 
 	wxASSERT((int)page_id <= pages.Size());
 	wxJSONValue& toppage = ((int)page_id == pages.Size()) ? pages.Append(wxJSONValue(wxJSONTYPE_OBJECT)) : pages[page_id];
-	
+
 	// With diffs we may have subpages
 	wxJSONValue& page = (sp == SP_MAIN) ? toppage : ((sp == SP_LEFT) ? toppage[wxT("left")] : toppage[wxT("right")]);
 
@@ -916,8 +916,8 @@ doc_id eFrameSettings::GetPageDoc(size_t page_id, SubPage sp) const {
 	return di;
 }
 
-void eFrameSettings::DeleteAllPageSettings() { 
-	m_jsonRoot.Remove(wxT("pages")); 
+void eFrameSettings::DeleteAllPageSettings() {
+	m_jsonRoot.Remove(wxT("pages"));
 	AutoSave();
 }
 

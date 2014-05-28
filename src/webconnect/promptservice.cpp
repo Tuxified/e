@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2006-10-07
-// RCS-ID:      
+// RCS-ID:
 // Copyright:   (C) Copyright 2006-2009, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -30,16 +30,16 @@ wxWebControl* GetWebControlFromDOMWindow(nsIDOMWindow* window)
 {
     ns_smartptr<nsIWindowWatcher> window_watcher = nsGetWindowWatcherService();
     ns_smartptr<nsIWebBrowserChrome> chrome;
-    
+
     if (window == NULL || window_watcher.empty())
     {
         // we don't have either a dom window pointer or
         // access to the window watcher service.  return error
         return NULL;
     }
-    
+
     window_watcher->GetChromeForWindow(window, &chrome.p);
-    
+
     return GetWebControlFromBrowserChrome(chrome);
 }
 
@@ -48,22 +48,22 @@ wxWindow* GetTopFrameFromDOMWindow(nsIDOMWindow* window)
     wxWindow* win = GetWebControlFromDOMWindow(window);
     if (!win)
         return NULL;
-        
+
     // now that we have a window, go up the window
     // hierarchy to find a frame
-    
+
     wxWindow* w = win;
     while (1)
     {
         if (w->IsKindOf(CLASSINFO(wxFrame)))
             return w;
-        
+
         wxWindow* old_win = w;
         w = w->GetParent();
         if (!w)
             return old_win;
     }
-    
+
     return win;
 }
 
@@ -83,7 +83,7 @@ class PromptDlgPassword : public wxDialog
         ID_UsernameTextCtrl = wxID_HIGHEST+1,
         ID_PasswordTextCtrl
     };
-    
+
 public:
 
     PromptDlgPassword(wxWindow* parent)
@@ -96,21 +96,21 @@ public:
                                     wxCENTER)
     {
         // create the username sizer
-        
+
         wxStaticText* label_username = new wxStaticText(this,
                                                         -1,
                                                         _("User Name:"),
                                                         wxDefaultPosition,
                                                         wxDefaultSize);
         m_username_ctrl = new wxTextCtrl(this, ID_UsernameTextCtrl, m_username);
-        
+
         wxBoxSizer* username_sizer = new wxBoxSizer(wxHORIZONTAL);
         username_sizer->Add(label_username, 0, wxALIGN_CENTER);
         username_sizer->Add(m_username_ctrl, 1, wxEXPAND);
-        
-        
+
+
         // create the password sizer
-        
+
         wxStaticText* label_password = new wxStaticText(this,
                                                         -1,
                                                         _("Password:"),
@@ -122,31 +122,31 @@ public:
                                          wxDefaultPosition,
                                          wxDefaultSize,
                                          wxTE_PASSWORD);
-        
+
         wxBoxSizer* password_sizer = new wxBoxSizer(wxHORIZONTAL);
         password_sizer->Add(label_password, 0, wxALIGN_CENTER);
         password_sizer->Add(m_password_ctrl, 1, wxEXPAND);
 
 
         // create a platform standards-compliant OK/Cancel sizer
-        
+
         wxButton* ok_button = new wxButton(this, wxID_OK);
         wxButton* cancel_button = new wxButton(this, wxID_CANCEL);
-        
+
         wxStdDialogButtonSizer* ok_cancel_sizer = new wxStdDialogButtonSizer;
         ok_cancel_sizer->AddButton(ok_button);
         ok_cancel_sizer->AddButton(cancel_button);
         ok_cancel_sizer->Realize();
         ok_cancel_sizer->AddSpacer(5);
-        
+
         ok_button->SetDefault();
-        
+
         // this code is necessary to get the sizer's bottom margin to 8
         wxSize min_size = ok_cancel_sizer->GetMinSize();
         min_size.SetHeight(min_size.GetHeight()+16);
         ok_cancel_sizer->SetMinSize(min_size);
-        
-        
+
+
         // code to allow us to line up the static text elements
         wxSize s1 = label_username->GetSize();
         wxSize s2 = label_password->GetSize();
@@ -157,20 +157,20 @@ public:
 
 
         // create username/password sizer
-        
+
         wxBitmap bmp = wxArtProvider::GetBitmap(wxART_QUESTION, wxART_MESSAGE_BOX);
         wxStaticBitmap* bitmap_question = new wxStaticBitmap(this, -1, bmp);
         m_message_ctrl = new wxStaticText(this, -1, m_message);
-        
+
         wxBoxSizer* vert_sizer = new wxBoxSizer(wxVERTICAL);
         vert_sizer->Add(m_message_ctrl, 0, wxEXPAND);
         vert_sizer->AddSpacer(16);
         vert_sizer->Add(username_sizer, 0, wxEXPAND);
         vert_sizer->AddSpacer(8);
         vert_sizer->Add(password_sizer, 0, wxEXPAND);
-        
+
         // create top sizer
-        
+
         wxBoxSizer* top_sizer = new wxBoxSizer(wxHORIZONTAL);
         top_sizer->AddSpacer(7);
         top_sizer->Add(bitmap_question, 0, wxTOP, 7);
@@ -178,7 +178,7 @@ public:
         top_sizer->Add(vert_sizer, 1, wxEXPAND | wxTOP, 7);
 
         // create main sizer
-        
+
         wxBoxSizer* main_sizer = new wxBoxSizer(wxVERTICAL);
         main_sizer->AddSpacer(8);
         main_sizer->Add(top_sizer, 0, wxEXPAND | wxLEFT | wxRIGHT, 8);
@@ -188,7 +188,7 @@ public:
         SetSizer(main_sizer);
         Layout();
     }
-    
+
     ~PromptDlgPassword()
     {
         // clear out password in memory
@@ -199,12 +199,12 @@ public:
     {
         return m_username;
     }
-    
+
     wxString GetPassword() const
     {
         return m_password;
     }
-    
+
     void SetMessage(const wxString& message)
     {
         m_message = message;
@@ -213,43 +213,43 @@ public:
         m_message_ctrl->Wrap(sizer->GetSize().GetWidth());
         Layout();
     }
-    
+
     void SetUserName(const wxString& username)
     {
         m_username = username;
     }
-    
-    
+
+
 private:
 
     // event handlers
-    
+
     void OnOK(wxCommandEvent& evt)
     {
         m_username = m_username_ctrl->GetValue();
         m_password = m_password_ctrl->GetValue();
-        
+
         EndModal(wxID_OK);
     }
-    
+
     void OnCancel(wxCommandEvent& evt)
     {
         m_username = wxT("");
         m_password = wxT("");
-        
+
         EndModal(wxID_CANCEL);
     }
 
 private:
-    
+
     wxString m_message;
     wxString m_username;
     wxString m_password;
-    
+
     wxStaticText* m_message_ctrl;
     wxTextCtrl* m_username_ctrl;
     wxTextCtrl* m_password_ctrl;
-    
+
     DECLARE_EVENT_TABLE()
 };
 
@@ -310,7 +310,7 @@ NS_IMETHODIMP PromptService::Alert(nsIDOMWindow* parent,
                  title,
                  wxOK,
                  GetTopFrameFromDOMWindow(parent));
-                 
+
     return NS_OK;
 }
 
@@ -324,7 +324,7 @@ NS_IMETHODIMP PromptService::AlertCheck(
     wxString dialog_title = ns2wx(ns_dialog_title);
     wxString text = ns2wx(ns_text);
     wxString check_msg = ns2wx(ns_check_msg);
-    
+
     return NS_OK;
 }
 
@@ -336,20 +336,20 @@ NS_IMETHODIMP PromptService::Confirm(
 {
     wxString dialog_title = ns2wx(ns_dialog_title);
     wxString text = ns2wx(ns_text);
-    
+
     int res = wxMessageBox(text,
              dialog_title,
              wxYES_NO,
              GetTopFrameFromDOMWindow(parent));
-    
+
     if (!retval)
         return NS_ERROR_NULL_POINTER;
-    
+
     if (res == wxYES)
         *retval = PR_TRUE;
          else
         *retval = PR_FALSE;
-           
+
     return NS_OK;
 }
 
@@ -389,11 +389,11 @@ NS_IMETHODIMP PromptService::Prompt(
                                     PRBool* retval)
 {
     // check message and check value aren't implemented yet
-    
+
     wxString dialog_title = ns2wx(_dialog_title);
     wxString text = ns2wx(_text);
     wxString value = ns2wx(*_value);
-    
+
     wxTextEntryDialog dlg(GetTopFrameFromDOMWindow(parent),
                           text,
                           dialog_title,
@@ -425,10 +425,10 @@ NS_IMETHODIMP PromptService::PromptUsernameAndPassword(
                                     PRBool* retval)
 {
     wxWindow* wxparent = GetTopFrameFromDOMWindow(parent);
-    
+
     PromptDlgPassword dlg(wxparent);
     dlg.SetMessage(ns2wx(text));
-    
+
     int res = dlg.ShowModal();
     if (res == wxID_OK)
     {
@@ -440,7 +440,7 @@ NS_IMETHODIMP PromptService::PromptUsernameAndPassword(
     {
         *retval = PR_FALSE;
     }
-    
+
     return NS_OK;
 }
 
@@ -479,13 +479,13 @@ NS_IMETHODIMP PromptService::ConfirmUnknownIssuer(
         _("Website Certified by an Unknown Authority"),
         wxICON_QUESTION | wxCENTER | wxYES_NO,
         NULL);
-        
+
     if (res != wxYES)
     {
         *retval = PR_FALSE;
         return NS_OK;
     }
-        
+
     *certAddType = nsIBadCertListener::ADD_TRUSTED_FOR_SESSION;
     *retval = PR_TRUE;
     return NS_OK;
@@ -502,13 +502,13 @@ NS_IMETHODIMP PromptService::ConfirmMismatchDomain(
         _("Domain Mismatch"),
         wxICON_QUESTION | wxCENTER | wxYES_NO,
         NULL);
-        
+
     if (res != wxYES)
     {
         *retval = PR_FALSE;
         return NS_OK;
     }
-    
+
     *retval = PR_TRUE;
     return NS_OK;
 }
@@ -523,13 +523,13 @@ NS_IMETHODIMP PromptService::ConfirmCertExpired(
         _("Certificate Expired"),
         wxICON_QUESTION | wxCENTER | wxYES_NO,
         NULL);
-    
+
     if (res != wxYES)
     {
         *retval = PR_FALSE;
         return NS_OK;
     }
-    
+
     *retval = PR_TRUE;
     return NS_OK;
 }
@@ -554,35 +554,35 @@ class PromptServiceFactory : public nsIFactory
 {
 public:
     NS_DECL_ISUPPORTS
-    
+
     PromptServiceFactory()
     {
         NS_INIT_ISUPPORTS();
     }
-    
+
     NS_IMETHOD CreateInstance(nsISupports* outer,
                               const nsIID& iid,
                               void** result)
     {
         nsresult res;
-        
+
         if (!result)
             return NS_ERROR_NULL_POINTER;
-            
+
         if (outer)
             return NS_ERROR_NO_AGGREGATION;
-        
+
         PromptService* obj = new PromptService;
         if (!obj)
             return NS_ERROR_OUT_OF_MEMORY;
-            
+
         obj->AddRef();
         res = obj->QueryInterface(iid, result);
         obj->Release();
-        
+
         return res;
     }
-    
+
     NS_IMETHOD LockFactory(PRBool lock)
     {
         return NS_OK;
@@ -650,7 +650,7 @@ public:
                                   cur_total_progress,
                                   max_total_progress);
     }
-    
+
     NS_IMETHOD OnProgressChange64(
                                  nsIWebProgress* web_progress,
                                  nsIRequest* request,
@@ -661,7 +661,7 @@ public:
     {
        return NS_OK;
     }
-    
+
     NS_IMETHOD OnLocationChange(
                              nsIWebProgress* web_progress,
                              nsIRequest* request,
@@ -713,35 +713,35 @@ class TransferFactory : public nsIFactory
 public:
 
     NS_DECL_ISUPPORTS
-    
+
     TransferFactory()
     {
         NS_INIT_ISUPPORTS();
     }
-    
+
     NS_IMETHOD CreateInstance(nsISupports* outer,
                               const nsIID& iid,
                               void** result)
     {
         nsresult res;
-        
+
         if (!result)
             return NS_ERROR_NULL_POINTER;
-            
+
         if (outer)
             return NS_ERROR_NO_AGGREGATION;
-        
+
         TransferService* obj = new TransferService();
         if (!obj)
             return NS_ERROR_OUT_OF_MEMORY;
-            
+
         obj->AddRef();
         res = obj->QueryInterface(iid, result);
         obj->Release();
-        
+
         return res;
     }
-    
+
     NS_IMETHOD LockFactory(PRBool lock)
     {
         return NS_OK;
@@ -775,7 +775,7 @@ public:
     NS_IMETHOD Show(nsIHelperAppLauncher* launcher,
                     nsISupports* _context,
                     PRUint32 reason)
-    {        
+    {
         ns_smartptr<nsISupports> context = _context;
         ns_smartptr<nsIDOMWindow> parent = nsRequestInterface(context);
         wxWebControl* ctrl = GetWebControlFromDOMWindow(parent);
@@ -783,13 +783,13 @@ public:
         {
             // nobody to handle event, default action
             // is to save file to disk
-            
+
             // BIW 7 May 2007 - this was causing save as dialogs to appear
             // during page loads.. we'll do nothing here instead
             return NS_OK;
         }
-        
-        
+
+
         wxString url;
         ns_smartptr<nsIURI> uri;
         launcher->GetSource(&uri.p);
@@ -799,14 +799,14 @@ public:
             if (NS_SUCCEEDED(uri->GetSpec(ns_spec)))
                 url = ns2wx(ns_spec);
         }
-        
-        
-        
+
+
+
         nsEmbedString ns_filename;
         launcher->GetSuggestedFileName(ns_filename);
         wxString filename = ns2wx(ns_filename);
-        
-        
+
+
         nsEmbedCString ns_mimetype;
         ns_smartptr<nsIMIMEInfo> mime_info;
         launcher->GetMIMEInfo(&mime_info.p);
@@ -816,7 +816,7 @@ public:
             mime_info->GetMIMEType(ns_mimetype);
             mime_type = ns2wx(ns_mimetype);
         }
-        
+
         wxWebEvent evt(wxEVT_WEB_INITDOWNLOAD, ctrl->GetId());
         evt.SetEventObject(ctrl);
         evt.SetFilename(filename);
@@ -826,7 +826,7 @@ public:
 
         if (handled)
         {
-        
+
             switch (evt.m_download_action)
             {
                 case wxWEB_DOWNLOAD_SAVE:
@@ -843,12 +843,12 @@ public:
                      else
                     {
                         std::string fname = (const char*)evt.m_download_action_path.mbc_str();
-                        
+
                         nsILocalFile* filep = NULL;
                         NS_NewNativeLocalFile(nsDependentCString(fname.c_str()), PR_TRUE, &filep);
 
                         launcher->SaveToDisk(filep, PR_FALSE);
-                        
+
                         if (filep)
                             filep->Release();
                     }
@@ -860,8 +860,8 @@ public:
                     launcher->Cancel(0x804b0002 /* = NS_BINDING_ABORTED */ );
                     break;
             }
-            
-            
+
+
             if (evt.m_download_listener)
             {
                 evt.m_download_listener->Init(url, evt.m_download_action_path);
@@ -870,7 +870,7 @@ public:
                 launcher->SetWebProgressListener(progress);
                 progress->Release();
             }
-        
+
         }
          else
         {
@@ -879,7 +879,7 @@ public:
 /*
             OpenOrSaveDlg dlg(GetTopFrameFromDOMWindow(parent), filename);
             int result = dlg.ShowModal();
-            
+
             switch (result)
             {
                 case wxID_OPEN:
@@ -893,7 +893,7 @@ public:
             }
             */
         }
-            
+
         return NS_OK;
     }
 
@@ -905,9 +905,9 @@ public:
     {
         ns_smartptr<nsISupports> context = window_context;
         ns_smartptr<nsIDOMWindow> parent = nsRequestInterface(context);
-        
+
         wxString default_filename = ns2wx(default_file);
-        
+
         wxString filter;
         filter += _("All Files");
         filter += wxT(" (*.*)|*.*|");
@@ -919,13 +919,13 @@ public:
                          default_filename,
                          filter,
                          wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
-        
+
         if (dlg.ShowModal() != wxID_OK)
         {
             return NS_ERROR_FAILURE;
         }
-        
-        
+
+
         std::string fname = (const char*)dlg.GetPath().mbc_str();
 
         NS_NewNativeLocalFile(nsDependentCString(fname.c_str()), PR_TRUE, new_file);
@@ -948,35 +948,35 @@ class UnknownContentTypeHandlerFactory : public nsIFactory
 {
 public:
     NS_DECL_ISUPPORTS
-    
+
     UnknownContentTypeHandlerFactory()
     {
         NS_INIT_ISUPPORTS();
     }
-    
+
     NS_IMETHOD CreateInstance(nsISupports* outer,
                               const nsIID& iid,
                               void** result)
     {
         nsresult res;
-        
+
         if (!result)
             return NS_ERROR_NULL_POINTER;
-            
+
         if (outer)
             return NS_ERROR_NO_AGGREGATION;
-        
+
         UnknownContentTypeHandler* obj = new UnknownContentTypeHandler;
         if (!obj)
             return NS_ERROR_OUT_OF_MEMORY;
-            
+
         obj->AddRef();
         res = obj->QueryInterface(iid, result);
         obj->Release();
-        
+
         return res;
     }
-    
+
     NS_IMETHOD LockFactory(PRBool lock)
     {
         return NS_OK;

@@ -574,7 +574,7 @@ bool eApp::ExecuteCmd(const wxString& cmd, wxString& result) {
 		frame->AddTab();
 		return true;
 	}
-	
+
 	if (command.StartsWith(wxT("OPEN_FILE"))) {
 		wxString path = args;
 		wxString mate;
@@ -595,14 +595,14 @@ bool eApp::ExecuteCmd(const wxString& cmd, wxString& result) {
 		if (res && (lineNum || columnNum)) frame->GotoPos(lineNum, columnNum);
 		return res;
 	}
-	
+
 	if (command == wxT("view_insert")) {
 		if (args.empty()) return false;
 		if (args.size() == 1) eCtrl->InsertChar((wxChar)args[0]);
 		else eCtrl->Insert(args);
 		return true;
 	}
-	
+
 	if (command == wxT("view_delete")) {
 		wxString str_start = args.BeforeFirst(wxT(' '));
 		wxString str_end = args.AfterFirst(wxT(' '));
@@ -615,19 +615,19 @@ bool eApp::ExecuteCmd(const wxString& cmd, wxString& result) {
 		eCtrl->Delete(start, end);
 		return true;
 	}
-	
+
 	if (command == wxT("view_freeze")) {
 		eCtrl->Freeze();
 		return true;
 	}
-	
+
 	if (command == wxT("view_getlength")) {
 		int length = eCtrl->GetLength();
 		result.Printf(wxT("%d"), length);
 		wxLogDebug(wxT("  returning length: %d %s"), length, result.c_str());
 		return true;
 	}
-	
+
 	if (command == wxT("view_setpos")) {
 		long pos;
 		if (!args.ToLong(&pos)) return false;
@@ -636,14 +636,14 @@ bool eApp::ExecuteCmd(const wxString& cmd, wxString& result) {
 		eCtrl->SetPos(pos);
 		return true;
 	}
-	
+
 	if (command == wxT("view_getpos")) {
 		int pos = eCtrl->GetPos();
 		result.Printf(wxT("%d"), pos);
 		wxLogDebug(wxT("  returning pos: %d %s"), pos, result.c_str());
 		return true;
 	}
-	
+
 	if (command == wxT("view_getversioncount")) {
 		const DocumentWrapper& dw = eCtrl->GetDocument();
 		cxLOCKDOC_READ(dw)
@@ -653,7 +653,7 @@ bool eApp::ExecuteCmd(const wxString& cmd, wxString& result) {
 		cxENDLOCK
 		return true;
 	}
-	
+
 	if (command == wxT("view_setversion")) {
 		long version_id;
 		if (!args.ToLong(&version_id)) return false;
@@ -811,7 +811,7 @@ eSettings& eGetSettings(void) {
 }
 
  const wxLongLong& eApp::GetId() const {
-	 cxLOCK_READ((*m_catalyst)) 
+	 cxLOCK_READ((*m_catalyst))
 		 return catalyst.GetId();
 	 cxENDLOCK
  }

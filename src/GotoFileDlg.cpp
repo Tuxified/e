@@ -230,7 +230,7 @@ void GotoFileDlg::OnIdle(wxIdleEvent& event) {
 void GotoFileDlg::BuildFileList(const wxString& path) {
 	DirState* dirState = DirState::FromPath(path);
 	if (!dirState) return;
-	
+
 	m_dirStack.push_back(dirState);
 
 	// Load filters for this dir
@@ -352,7 +352,7 @@ void FileEntry::Clear() {
 GotoFileList::GotoFileList(wxWindow* parent, wxWindowID id, const std::vector<FileEntry*>& actions, const wxString& project_root):
 	SearchListBox(parent, id),
 	m_project_root(project_root),
-	m_actions(actions), m_actionCount(0) 
+	m_actions(actions), m_actionCount(0)
 {
 	m_tempEntry = new FileEntry();
 	UpdateList();
@@ -588,7 +588,7 @@ const FileEntry* GotoFileList::GetSelectedAction() {
 // --- aItem --------------------------------------------------------
 
 GotoFileList::aItem::aItem(const FileEntry* a, const std::vector<unsigned int>& hl):
-	file_entry(a), hlChars(hl) 
+	file_entry(a), hlChars(hl)
 {
 	// Calculate rank (total distance between chars)
 	this->rank = 0;

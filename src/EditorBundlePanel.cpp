@@ -50,18 +50,18 @@ BEGIN_EVENT_TABLE(EditorBundlePanel, wxPanel)
 	EVT_CHILD_FOCUS(EditorBundlePanel::OnChildFocus)
 END_EVENT_TABLE()
 
-EditorBundlePanel::EditorBundlePanel(wxWindow* parent, EditorFrame& parentFrame, CatalystWrapper& cw, wxBitmap& bitmap): 
-	wxPanel(parent, wxID_ANY, wxPoint(-100,-100)), 
-	m_editorCtrl(new BundleItemEditorCtrl(cw, bitmap, this, parentFrame)), 
-	m_currentType(BUNDLE_NONE) 
+EditorBundlePanel::EditorBundlePanel(wxWindow* parent, EditorFrame& parentFrame, CatalystWrapper& cw, wxBitmap& bitmap):
+	wxPanel(parent, wxID_ANY, wxPoint(-100,-100)),
+	m_editorCtrl(new BundleItemEditorCtrl(cw, bitmap, this, parentFrame)),
+	m_currentType(BUNDLE_NONE)
 {
 	Init();
 }
 
-EditorBundlePanel::EditorBundlePanel(int page_id, wxWindow* parent, EditorFrame& parentFrame, CatalystWrapper& cw, wxBitmap& bitmap): 
-	wxPanel(parent, wxID_ANY, wxPoint(-100,-100)), 
-	m_editorCtrl(new BundleItemEditorCtrl(page_id, cw, bitmap, this, parentFrame)), 
-	m_currentType(BUNDLE_NONE) 
+EditorBundlePanel::EditorBundlePanel(int page_id, wxWindow* parent, EditorFrame& parentFrame, CatalystWrapper& cw, wxBitmap& bitmap):
+	wxPanel(parent, wxID_ANY, wxPoint(-100,-100)),
+	m_editorCtrl(new BundleItemEditorCtrl(page_id, cw, bitmap, this, parentFrame)),
+	m_currentType(BUNDLE_NONE)
 {
 	Init();
 	UpdatePanel();
@@ -134,7 +134,7 @@ void EditorBundlePanel::Init() {
 	m_shortcutCtrl = new ShortcutCtrl(this, CTRL_SHORTCUT);
 	m_clearButton = new wxButton(this, CTRL_CLEARSHORTCUT, _("Clear"), wxDefaultPosition, wxDefaultSize, wxBU_EXACTFIT);
 	m_scopeText = new wxTextCtrl(this, CTRL_SCOPETEXT);
-	
+
 	// Layout sizers
 	m_envSizer = new wxBoxSizer(wxHORIZONTAL);
 		m_envSizer->Add(m_envStatic, 0, wxALIGN_CENTER_VERTICAL|wxALIGN_RIGHT|wxRIGHT, 5);
@@ -153,7 +153,7 @@ void EditorBundlePanel::Init() {
 
 	m_mainSizer = new wxBoxSizer(wxVERTICAL);
 		m_mainSizer->Add(m_editorCtrl, 1, wxEXPAND);
-	
+
 	SetSizer(m_mainSizer);
 
 	// We want to get notified when text ctrls loses focus so we can freeze any changes
@@ -283,7 +283,7 @@ void EditorBundlePanel::LayoutCtrls() {
 			m_outputChoice->Hide();
 			m_envStatic->Hide();
 			m_envChoice->Hide();
-			
+
 			wxGridBagSizer* gridSizer = new wxGridBagSizer(5, 5);
 				gridSizer->Add(m_activationStatic, wxGBPosition(0,0), wxDefaultSpan, wxALIGN_CENTER_VERTICAL);
 				gridSizer->Add(m_triggerSizer, wxGBPosition(0,1), wxGBSpan(1,3), wxEXPAND);
@@ -299,7 +299,7 @@ void EditorBundlePanel::LayoutCtrls() {
 		{
 			m_scopeStatic->Show();
 			m_scopeText->Show();
-			
+
 			wxBoxSizer* scopeSizer = new wxBoxSizer(wxHORIZONTAL);
 				scopeSizer->Add(m_scopeStatic, 0, wxALIGN_CENTER_VERTICAL|wxRIGHT, 5);
 				scopeSizer->Add(m_scopeText, 1);
@@ -513,7 +513,7 @@ void EditorBundlePanel::OnChoice(wxCommandEvent& event) {
 				case 1: doc.SetProperty(wxT("bundle:runEnvironment"), wxT("cygwin")); break;
 				case 2: doc.SetProperty(wxT("bundle:runEnvironment"), wxT("windows")); break;
 				default: wxASSERT(false);
-			}			
+			}
 		}
 		else if (eventObject == m_saveChoice) {
 			switch (event.GetSelection()) {
@@ -571,7 +571,7 @@ void EditorBundlePanel::OnChoice(wxCommandEvent& event) {
 		doc.Freeze();
 	cxENDLOCK
 }
- 
+
 void EditorBundlePanel::OnTriggerChoice(wxCommandEvent& event) {
 	if (event.GetSelection() == 0) { // Tab Trigger
 		m_triggerSizer->Show(m_tabText, true);

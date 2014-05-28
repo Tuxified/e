@@ -10,8 +10,8 @@ BEGIN_EVENT_TABLE(HtmlOutputPane, wxPanel)
 END_EVENT_TABLE()
 
 HtmlOutputPane::HtmlOutputPane(wxWindow *parent, IOpenTextmateURL& opener):
-	wxPanel(parent, wxID_ANY), 
-	m_opener(opener) 
+	wxPanel(parent, wxID_ANY),
+	m_opener(opener)
 {
 	wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
@@ -80,7 +80,7 @@ void HtmlOutputPane::OnBeforeLoad(IHtmlWndBeforeLoadEvent& event) {
 		event.Cancel(true);
 		return;
 	}
-	
+
 	if (url.StartsWith(wxT("tm-file://"))) {
 		wxString path = url.substr(10);
 

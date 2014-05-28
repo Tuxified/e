@@ -12,18 +12,18 @@ This is a Liux/Windows cross-platform project. Because of this and git's behavio
 file line-endings are important to get right and keep consistent.
 
 The default for all new files in this repo is to use UNIX-style "LF" endings.
-The only time Windows-style line endings "CRLF" should be used is if some 
+The only time Windows-style line endings "CRLF" should be used is if some
 Windows-specific file requires them to work properly.
 
 === Git settings ===
 For Windows users, edit .git/config and under [core] add the setting:
 	autocrlf = false
-	
+
 This will preserve line-endings as they exist in the repo.
 
 === Visual Studio ===
 
-Visual Studio does *not* have a setting for "always use LF"; to save a file 
+Visual Studio does *not* have a setting for "always use LF"; to save a file
 with different line ends you must use the "File | Advanced Save Options"
 dialog and then re-save the file.
 
@@ -44,11 +44,11 @@ To include files in a cross-platform way, use this pattern:
     #ifndef WX_PRECOMP
     	#include <wx/wx.h>
     #endif
-    
+
     // Other includes not defined in wx/wx.h go here for both platforms.
     // Example:
 	#include <wx/arrstr.h>
-	
+
 For code that does not require the full wx/wx.h header (usually non-GUI code that
 makes use of wx core types), include a smaller set of standard includes within the
 WX_PRECOMP block if appropriate.

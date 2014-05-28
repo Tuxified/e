@@ -56,8 +56,8 @@ void BundleMenuItem::AfterInsert(void) {
 #endif
 
 BundleMenuItem::BundleMenuItem(wxMenu* parentMenu, int id, const tmAction& action, wxItemKind kind):
-	wxMenuItem(parentMenu, id, action.name, action.name, kind), 
-	m_action(action) 
+	wxMenuItem(parentMenu, id, action.name, action.name, kind),
+	m_action(action)
 {
 #ifdef __WXMSW__
 	SetOwnerDrawn(true);

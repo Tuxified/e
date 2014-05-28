@@ -30,10 +30,10 @@ BEGIN_EVENT_TABLE(ProjectSettings, wxDialog)
 	EVT_CHECKBOX(ID_INHERIT, ProjectSettings::OnInheritCheck)
 END_EVENT_TABLE()
 
-ProjectSettings::ProjectSettings(wxWindow* parent, const cxProjectInfo& project, const cxProjectInfo& parentProject): 
+ProjectSettings::ProjectSettings(wxWindow* parent, const cxProjectInfo& project, const cxProjectInfo& parentProject):
 	wxDialog (parent, wxID_ANY, _("Project Settings"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER),
-	m_projectInfo(project), 
-	m_parentProject(parentProject), 
+	m_projectInfo(project),
+	m_parentProject(parentProject),
 	m_envModified(false)
 {
 	// Create the notebook

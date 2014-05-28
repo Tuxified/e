@@ -65,8 +65,8 @@ BEGIN_EVENT_TABLE(BundleManager, wxDialog)
 END_EVENT_TABLE()
 
 BundleManager::BundleManager(wxWindow *parent, RemoteThread& remoteThread, ITmLoadBundles* syntaxHandler):
-	wxDialog (parent, -1, _("Manage Bundles"), 
-	wxDefaultPosition, wxDefaultSize, 
+	wxDialog (parent, -1, _("Manage Bundles"),
+	wxDefaultPosition, wxDefaultSize,
 	wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER),
 	m_remoteThread(remoteThread),
 	m_syntaxHandler(syntaxHandler),
@@ -160,7 +160,7 @@ void BundleManager::UpdateBundleList() {
 	m_bundleList->SortItems(CompareNameFunction, 0);
 
 	Thaw();
-} 
+}
 
 const wxString& BundleManager::GetCurrentRepoUrl() const {
 	wxASSERT(!m_currentRepo.empty());
@@ -235,7 +235,7 @@ void BundleManager::OnRemoteListReceived(cxRemoteListEvent& event) {
 			break;
 		}
 	}
-	
+
 	// Check if we have received all bundles
 	m_allBundlesReceived = true;
 	for (vector<RepoInfo>::const_iterator p2 = m_repositories.begin(); p2 != m_repositories.end(); ++p2) {
@@ -325,7 +325,7 @@ void BundleManager::SelectItem(long itemId, bool update) {
 	if (!update) {
 		// Clear description
 		m_browser->LoadString(wxT(""));
-		
+
 		// See if we can download the info.plist
 		RemoteProfile rp;
 		const wxString& repoUrl = GetCurrentRepoUrl();
@@ -535,7 +535,7 @@ bool BundleManager::DownloadDir(const wxString& url, const wxFileName& path, wxP
 				// Download file
 				const wxString fileUrl = url + p->m_name;
 				errorCode = m_remoteThread.Download(fileUrl, pathStr, rp);
-				
+
 				// Check for errors
 				if (errorCode != CURLE_OK) goto error;
 

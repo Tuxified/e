@@ -97,7 +97,7 @@ void Styler_VariableHL::Style(StyleRun& sr) {
 		Invalidate();
 		return;
 	}
-	
+
 	m_cursorPosition = m_editorCtrl.GetPos();
 	Styler_SearchHL::Style(sr);
 }
@@ -131,7 +131,7 @@ bool Styler_VariableHL::FilterMatch(search_result& result, const Document& doc) 
 		c = doc.GetChar(result.end);
 		if(isAlphaNumeric(c) || c == '_') return false;
 	}
-	
+
 	return true;
 }
 
@@ -140,7 +140,7 @@ void Styler_VariableHL::Insert(unsigned int pos, unsigned int length) {
 		Invalidate();
 		return;
 	}
-	
+
 	//We can't call GetPos because it hasn't been updated yet.
     unsigned int end = pos+length;
 	if(m_cursorPosition >= pos) {

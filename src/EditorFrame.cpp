@@ -219,7 +219,7 @@ BEGIN_EVENT_TABLE(EditorFrame, wxFrame)
 	EVT_MENU(MENU_GO_LAST_TAB, EditorFrame::OnMenuLastTab)
 
 			// Go to Header
-	EVT_MENU(MENU_OPEN_EXT, EditorFrame::OnMenuOpenExt) 
+	EVT_MENU(MENU_OPEN_EXT, EditorFrame::OnMenuOpenExt)
 	EVT_MENU(MENU_GOTO_FILE, EditorFrame::OnMenuGotoFile)
 	EVT_MENU(MENU_GOTO_SYMBOLS, EditorFrame::OnMenuSymbols)
 	EVT_MENU(MENU_GOTO_BRACKET, EditorFrame::OnMenuGotoBracket)
@@ -364,7 +364,7 @@ EditorFrame::EditorFrame(CatalystWrapper cat, unsigned int frameId,  const wxStr
 		m_frameManager.AddPane(panel, wxAuiPaneInfo().Name(wxT("Center")).CenterPane().PaneBorder(false));
 
 		// Add the Document History Pane
-		documentHistory = new DocHistory(m_catalyst, GetId(), this, wxID_ANY); 
+		documentHistory = new DocHistory(m_catalyst, GetId(), this, wxID_ANY);
 		m_frameManager.AddPane(documentHistory, wxAuiPaneInfo().Name(wxT("History")).Hide().Right().Caption(_("History")).BestSize(wxSize(150,200)));
 
 		// Add the Undo History Pane
@@ -396,7 +396,7 @@ EditorFrame::EditorFrame(CatalystWrapper cat, unsigned int frameId,  const wxStr
 		// Open project from last session
 		bool showProject;
 		if (!m_settings.GetSettingBool(wxT("showproject"), showProject)) showProject = false;
-		
+
 		wxString projectPath;
 		const bool hasProject = m_settings.GetSettingString(wxT("project"), projectPath);
 
@@ -758,7 +758,7 @@ void EditorFrame::RestoreState() {
 			mirrorPath = m_settings.GetPagePath(i, (SubPage)sp);
 			if (mirrorPath.empty()) continue;
 			const doc_id mirrorDoc = m_settings.GetPageDoc(i, (SubPage)sp);
-			
+
 			cxLOCK_READ(m_catalyst)
 				isMirrored = catalyst.VerifyMirror(mirrorPath, mirrorDoc);
 				if (!isMirrored) break;
@@ -796,7 +796,7 @@ void EditorFrame::RestoreState() {
 				continue;
 			}
 		}
-		
+
 		page->Hide();
 		AddTab(page);
 	}
@@ -942,7 +942,7 @@ void EditorFrame::UpdateEncodingMenu(wxMenu& menu) const {
 	wxMenuItem* bomItem = menu.FindItem(MENU_BOM); // "Byte-Order-Marker item"
 	if (!bomItem) return;
 
-	const bool encodingAllowsBOM = (enc == wxFONTENCODING_UTF7 || 
+	const bool encodingAllowsBOM = (enc == wxFONTENCODING_UTF7 ||
 		enc == wxFONTENCODING_UTF8 || enc == wxFONTENCODING_UTF16LE ||
 		enc == wxFONTENCODING_UTF16BE || enc == wxFONTENCODING_UTF32LE || enc == wxFONTENCODING_UTF32BE);
 
@@ -979,7 +979,7 @@ void EditorFrame::CheckForModifiedFilesAsync() {
 	for (unsigned int i = 0; i < m_tabBar->GetPageCount(); ++i) {
 		//TODO: DiffPanel has two editors (GetEditorCtrlFromPage only get active)
 		EditorCtrl* page = GetEditorCtrlFromPage(i);
-		
+
 		const wxString& mirrorPath = page->GetPath();
 		if (mirrorPath.empty()) continue;
 
@@ -1005,7 +1005,7 @@ void EditorFrame::CheckForModifiedFilesAsync() {
 			if (!plistHandler.GetBundleItemFromUri(mirrorPath, bundleType, bundleId, itemId)) continue;
 			const PListDict itemDict = plistHandler.Get(bundleType, bundleId, itemId);
 			const wxDateTime bundleModDate = itemDict.GetModDate();
-			
+
 			// Only added if modified
 			if (mDate == bundleModDate || (skipDate.IsValid() && bundleModDate == skipDate)) continue;
 
@@ -1220,7 +1220,7 @@ void EditorFrame::OpenDocument(const doc_id& di) {
 void EditorFrame::AddTab(wxWindow* page) {
 	wxASSERT(m_tabBar);
 	Freeze();
-	
+
 	// Default is just creating a new editorCtrl
 	EditorCtrl* ec = NULL;
 	if (page == NULL) {
@@ -1262,11 +1262,11 @@ void EditorFrame::AddTab(wxWindow* page) {
 		else ec->SetSyntax(wxT("Plain Text")); // default syntax
 	}
 	//if (editorCtrl) editorCtrl->EnableRedraw(false);
-	
+
 	// Get tab icon
 	const char** iconxpm = (dynamic_cast<ITabPage*>(page))->RecommendedIcon();
 	const wxBitmap tabIcon = wxBitmap(iconxpm);
-	
+
 	ec->EnableRedraw(true);
 	editorCtrl = ec;
 	m_tabBar->AddPage(page, tabText, true, tabIcon);
@@ -1320,13 +1320,13 @@ void EditorFrame::UpdateWindowTitle() {
 void EditorFrame::UpdateTabs() {
 	for( size_t i = 0; i < m_tabBar->GetPageCount(); ++i)	{
 		const EditorCtrl* page = GetEditorCtrlFromPage(i);
-		
+
 		const wxString name = page->GetName();
 		wxString title;
-		
+
 		if (!name.empty()) title = name;
 		else title = _("Untitled");
-		
+
 		if (editorCtrl->IsModified()) {
 #ifdef __WXMSW__
 			wxString modifiedBug = wxT("\x2022 ");
@@ -1336,8 +1336,8 @@ void EditorFrame::UpdateTabs() {
 			title += modifiedBug;
 #endif
 		}
-		
-		if (m_tabBar->GetPageText(i) != title) m_tabBar->SetPageText(i, title);	
+
+		if (m_tabBar->GetPageText(i) != title) m_tabBar->SetPageText(i, title);
 	}
 }
 
@@ -1488,7 +1488,7 @@ bool EditorFrame::OpenTxmtUrl(const wxString& url) {
 #endif // __WXMSW__
 
 		if (isBundleItem) {
-			if (!OpenRemoteFile(file)) 
+			if (!OpenRemoteFile(file))
 				return false;
 		}
 		else if (wxDir::Exists(file)) {
@@ -1499,14 +1499,14 @@ bool EditorFrame::OpenTxmtUrl(const wxString& url) {
 		else {
 			wxFileName path(file);
 			path.MakeAbsolute();
-			if (!OpenFile(path)) 
+			if (!OpenFile(path))
 				return false;
 		}
 	}
 
 	// Goto position
 	if (line != -1 || column != -1) GotoPos(line, column);
-	
+
 	// Select the number of chars specified in sel
 	if (sel > 0) {
 		const unsigned int pos = editorCtrl->GetPos();
@@ -1536,10 +1536,10 @@ bool EditorFrame::Open(const wxString& path, const wxString& mate) {
 	if (eDocumentPath::IsRemotePath(path)) {
 		wxRegEx domain(wxT("^.*://[^/]+$")); // domains don't need ending slash
 
-		if (path.Last() == wxT('/')) 
+		if (path.Last() == wxT('/'))
 			return OpenRemoteProjectFromUrl(path);
 
-		if (domain.Matches(path)) 
+		if (domain.Matches(path))
 			return OpenRemoteProjectFromUrl(path + wxT('/'));
 
 		if (!OpenRemoteFile(path))
@@ -1549,7 +1549,7 @@ bool EditorFrame::Open(const wxString& path, const wxString& mate) {
 		return true;
 	}
 
-	if (eDocumentPath::IsBundlePath(path)) 
+	if (eDocumentPath::IsBundlePath(path))
 		return OpenRemoteFile(path);
 
 	if (wxDir::Exists(path)) {
@@ -1572,7 +1572,7 @@ bool EditorFrame::OpenProject(const wxString& prj) {
 		ShowBundlePane();
 		return true;
 	}
-	
+
 	if (eDocumentPath::IsRemotePath(prj)) return OpenRemoteProjectFromUrl(prj);
 
 	const wxFileName path = prj;
@@ -1645,7 +1645,7 @@ void EditorFrame::ShowBundlePane() {
 
 		projectPane.Show();
 		m_frameManager.Update();
-	} 
+	}
 	else {
 		// WORKAROUND: Aui does not save size between hide/show
 		projectPane.BestSize(projectPane.window->GetSize());
@@ -1860,7 +1860,7 @@ EditorCtrl* EditorFrame::GetEditorCtrlFromFile(const wxString& filepath, unsigne
 
 		// Paths on windows are case-insensitive
 #ifdef __WXMSW__
-		if (filepath.CmpNoCase(editorCtrl->GetPath()) == 0) { 
+		if (filepath.CmpNoCase(editorCtrl->GetPath()) == 0) {
 #else
 		if (filepath == editorCtrl->GetPath()) {
 #endif
@@ -1876,7 +1876,7 @@ DiffPanel* EditorFrame::GetDiffPaneFromFiles(const wxString& path1, const wxStri
 	for (unsigned int i = 0; i < m_tabBar->GetPageCount(); ++i) {
 		wxWindow* page = m_tabBar->GetPage(i);
 		if (!page->IsKindOf(CLASSINFO(DiffPanel))) continue;
-		
+
 		DiffPanel* diffPage = (DiffPanel*)page;
 
 		if (diffPage->CmpPaths(path1, path2)) {
@@ -1928,7 +1928,7 @@ bool EditorFrame::DoOpenFile(const wxString& filepath, wxFontEncoding enc, const
 			page = bundlePanel;
 			ec = bundlePanel->GetActiveEditor();
 		}
-		else if (!editorCtrl->IsEmpty()) 
+		else if (!editorCtrl->IsEmpty())
 			page = ec = new EditorCtrl(m_catalyst, bitmap, m_tabBar, *this);
 	}
 
@@ -1945,7 +1945,7 @@ bool EditorFrame::DoOpenFile(const wxString& filepath, wxFontEncoding enc, const
 			wxMessageBox(msg, _T("e Error"), wxICON_ERROR);
 		}
 
-		if (ec != editorCtrl) 
+		if (ec != editorCtrl)
 			delete page; // clean up
 		return false;
 	}
@@ -1958,7 +1958,7 @@ bool EditorFrame::DoOpenFile(const wxString& filepath, wxFontEncoding enc, const
 	if (ec != editorCtrl) {
 		// Bundle items do not reuse empty editorCtrls
 		if (isBundleItem && editorCtrl->IsEmpty()) DeletePage(m_tabBar->GetSelection());
-		
+
 		AddTab(page);
 	} else {
 		//if AddTab is not called, then SaveState will never get called.
@@ -2011,7 +2011,7 @@ bool EditorFrame::AskToSaveMulti(int keep_tab) {
 	// User chose not to save unsaved documents.
 	if (result == wxID_NO)
 		return true;
-	
+
 	// Otherwise, result == wxID_YES
 	wxASSERT(result == wxID_YES);
 
@@ -2210,7 +2210,7 @@ void EditorFrame::OnMenuReloadBundles(wxCommandEvent& WXUNUSED(event)) {
 
 	// Reload bundles (will send it's own event to reset bundle menu if needed)
 	m_syntax_handler.LoadBundles(cxUPDATE);
-	
+
 	// If we have an active BundleEditor, it has to reload the new bundles
 	if (m_bundlePane) m_bundlePane->LoadBundles();
 }
@@ -2389,7 +2389,7 @@ void EditorFrame::OnMenuOpen(wxCommandEvent& event) {
 	}
 
 	SetCursor(wxCURSOR_WAIT);
-	
+
 	// Only show progress dialog if more than 3 files
 	wxProgressDialog* progress_window = NULL;
 	const wxString msg = _("Opening selected documents");
@@ -2527,7 +2527,7 @@ void EditorFrame::OnMenuPageSetup(wxCommandEvent& WXUNUSED(event)) {
 }
 
 /*void EditorFrame::OnMenuPrintPreview(wxCommandEvent& WXUNUSED(event)) {
-	// Show Print Preview 
+	// Show Print Preview
 	wxPrintPreview *preview = new wxPrintPreview(new EditorPrintout(*editorCtrl));
 	if (!preview->Ok())
     {
@@ -2792,13 +2792,13 @@ void EditorFrame::OnMenuLastTab(wxCommandEvent& WXUNUSED(event)) {
 
 void EditorFrame::OnMenuGotoTab(wxCommandEvent& event) {
 	const unsigned int tabId = event.GetId() - 40000;
-	if (tabId < m_tabBar->GetPageCount()) 
+	if (tabId < m_tabBar->GetPageCount())
 		m_tabBar->SetSelection(m_tabBar->TabToPage(tabId));
 }
 
 void EditorFrame::OnMenuGotoLastTab(wxCommandEvent& WXUNUSED(event)) {
 	const unsigned int tabcount = m_tabBar->GetPageCount();
-	if (tabcount) 
+	if (tabcount)
 		m_tabBar->SetSelection(m_tabBar->TabToPage(tabcount-1));
 }
 
@@ -3250,7 +3250,7 @@ void EditorFrame::CloseSymbolList() {
 
 void EditorFrame::ShowSnippetList() {
 	if (m_snippetList) return; // already shown
-	
+
 	// Create the pane
 	m_snippetList = new SnippetList(*this);
 	wxAuiPaneInfo paneInfo;
@@ -3698,7 +3698,7 @@ void EditorFrame::SaveState() {
 	// Only save once if window is inactive
 	if (!IsActive()) m_needStateSave = false;
 	m_generalSettings.AllowSave();
-	m_generalSettings.AutoSave(); 
+	m_generalSettings.AutoSave();
 }
 
 void EditorFrame::OnIdle(wxIdleEvent& event) {
@@ -3747,7 +3747,7 @@ bool EditorFrame::CloseTab(unsigned int tab_id, bool removetab) {
 
 		int result = dlg.ShowModal();
 		if (result == wxID_CANCEL) return false; // Veto to close
-		
+
 		if (result == wxID_YES) {
 			if (!page->SaveText()) return false; // Cancel if save failed
 		}

@@ -210,7 +210,7 @@ void VersionTree::DrawTree(wxRect& rect) {
 
         int x = node_xpos[i]-horizontalScrollPos;
         int y = ypos - verticalScrollPos;
-        
+
 		if (style & VTREESTYLE_DRAFT) {
 			if (i == selectedNode) mdc.DrawBitmap(m_bmDraftSelected, x, y, true);
 			else mdc.DrawBitmap(m_bmDraft, x, y, true);
@@ -292,7 +292,7 @@ void VersionTree::Scroll(int xpos, int ypos) {
 			const int newtop = (top == ypos) ? bottom : ypos;
 			rect = wxRect(horizontalScrollPos,newtop,size.x,new_height);
 		}
-		
+
 	}
 	verticalScrollPos = ypos;
 	horizontalScrollPos = xpos;
@@ -325,14 +325,14 @@ void VersionTree::MakeNodeVisible(size_t node_id, bool doCenter) {
 
 		verticalScrollPos = (centertop > 0) ? centertop : 0;
 		if (maxyscrollpos >= 0 && verticalScrollPos > maxyscrollpos) verticalScrollPos = maxyscrollpos;
-		
+
 		horizontalScrollPos = (centerLeft > 0) ? centerLeft : 0;
 		if (maxxscrollpos >= 0 && horizontalScrollPos > maxxscrollpos) horizontalScrollPos = maxxscrollpos;
 	}
 	else {
 		if (verticalScrollPos > ypos) verticalScrollPos = ypos;
 		else if (verticalScrollPos + size.y < ybottom) verticalScrollPos = ybottom - size.y;
-		
+
 		if(horizontalScrollPos > xpos) horizontalScrollPos = xpos;
 		else if(horizontalScrollPos+size.x < xpos) horizontalScrollPos = xpos - size.x;
 	}

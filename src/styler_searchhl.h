@@ -45,10 +45,10 @@ public:
 	virtual void Insert(unsigned int pos, unsigned int length);
 	virtual void Delete(unsigned int start_pos, unsigned int end_pos);
 	virtual void ApplyDiff(const std::vector<cxChange>& changes);
-	
+
 	virtual void ApplyStyle(StyleRun& sr, unsigned int start, unsigned int pos);
 	virtual bool FilterMatch(search_result& WXUNUSED(result), const Document& WXUNUSED(doc)) { return true; }
-	
+
 
 protected:
 	void DoSearch(unsigned int start, unsigned int end, bool from_last=false);

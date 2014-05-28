@@ -919,7 +919,7 @@ public:
             // Dispatch Event
             DispatchEvent(func, *(nit->second), pDispParams);
         }
-        
+
     	return S_OK;
     }
 };
@@ -1747,7 +1747,7 @@ bool wxActiveX::MSWTranslateMessage(WXMSG* pMsg)
     if(m_frameSite)
     {
         LPMSG msg;
-        
+
         msg = (LPMSG)pMsg;
 
         // Trap key messages
@@ -1756,7 +1756,7 @@ bool wxActiveX::MSWTranslateMessage(WXMSG* pMsg)
         {
             bool callAccelerator = true;
             int keyI = 0;
-            
+
             // Check the list of keys that are "doubled"
             while(g_dangerKeys[keyI])
             {
@@ -1768,7 +1768,7 @@ bool wxActiveX::MSWTranslateMessage(WXMSG* pMsg)
                 else
                     ++keyI;
             }
-            
+
             // Call TranslateAccelerator for keys not in the list
             if(callAccelerator)
             {
@@ -1787,11 +1787,11 @@ bool wxActiveX::MSWTranslateMessage(WXMSG* pMsg)
             m_frameSite->TranslateAccelerator((LPMSG)pMsg, (WORD)0);
         }
     }
-    
+
     return wxWindow::MSWTranslateMessage(pMsg);
 }
 // End of hack
-///////////// 
+/////////////
 void wxActiveX::OnSetFocus(wxFocusEvent& WXUNUSED(event))
 {
 	if (m_oleInPlaceActiveObject.Ok())

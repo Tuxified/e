@@ -11,7 +11,7 @@ struct ReplaceStringParserState;
 
 class ReplaceStringParser {
 public:
-	ReplaceStringParser(const DocumentWrapper& doc, const wxString& indent, 
+	ReplaceStringParser(const DocumentWrapper& doc, const wxString& indent,
 		const wxString& replacetext, const std::map<unsigned int, interval>& captures, const std::vector<char>* source=NULL);
 
 	~ReplaceStringParser();

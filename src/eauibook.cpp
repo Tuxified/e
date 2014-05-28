@@ -49,7 +49,7 @@ int eAuiNotebook::PageToTab(size_t page_idx) {
             continue;
 
         wxTabFrame* tabframe = (wxTabFrame*)all_panes.Item(i).window;
-		
+
 		const int page_idx = tabframe->m_tabs->GetIdxFromWindow(page);
         if (page_idx != -1)
 			return offset + page_idx;
@@ -99,18 +99,18 @@ wxString eAuiNotebook::SavePerspective() {
             continue;
 
         wxTabFrame* tabframe = (wxTabFrame*)pane.window;
-		
+
 		if (!tabs.empty()) tabs += wxT("|");
 		tabs += pane.name;
 		tabs += wxT("=");
-		
+
 		// add tab id's
 		size_t page_count = tabframe->m_tabs->GetPageCount();
 		for (size_t p = 0; p < page_count; ++p)
 		{
 			wxAuiNotebookPage& page = tabframe->m_tabs->GetPage(p);
 			const size_t page_idx = m_tabs.GetIdxFromWindow(page.window);
-			
+
 			if (p) tabs += wxT(",");
 
 			if ((int)page_idx == m_curpage) tabs += wxT("*");
@@ -145,12 +145,12 @@ bool eAuiNotebook::LoadPerspective(const wxString& layout) {
 	RemoveEmptyTabFrames();
 
 	size_t sel_page = 0;
-	
+
 	wxString tabs = layout.BeforeFirst(wxT('@'));
 	while (1)
     {
 		const wxString tab_part = tabs.BeforeFirst(wxT('|'));
-		
+
 		// if the string is empty, we're done parsing
         if (tab_part.empty())
             break;
@@ -185,7 +185,7 @@ bool eAuiNotebook::LoadPerspective(const wxString& layout) {
 			// Check if this page has an 'active' marker
 			const wxChar c = tab[0];
 			if (c == wxT('+') || c == wxT('*')) {
-				tab = tab.Mid(1); 
+				tab = tab.Mid(1);
 			}
 
 			const size_t tab_idx = wxAtoi(tab.c_str());
@@ -203,7 +203,7 @@ bool eAuiNotebook::LoadPerspective(const wxString& layout) {
 
 		tabs = tabs.AfterFirst(wxT('|'));
 	}
-	
+
 	// Load the frame perspective
 	const wxString frames = layout.AfterFirst(wxT('@'));
 	m_mgr.LoadPerspective(frames);

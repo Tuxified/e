@@ -39,7 +39,7 @@ END_EVENT_TABLE()
 
 UndoHistory::UndoHistory(CatalystWrapper& cw, IFrameUndoPane* parentFrame, int win_id, wxWindow* parent, wxWindowID id, const wxPoint& pos, const wxSize& size):
 	wxControl(parent, id, pos, size, wxNO_BORDER|wxWANTS_CHARS|wxCLIP_CHILDREN|wxNO_FULL_REPAINT_ON_RESIZE|wxHSCROLL),
-	m_catalyst(cw), m_doc(cw), m_dispatcher(cw.GetDispatcher()), m_mdc(), m_bitmap(1,1), m_cell(m_mdc, m_doc), 
+	m_catalyst(cw), m_doc(cw), m_dispatcher(cw.GetDispatcher()), m_mdc(), m_bitmap(1,1), m_cell(m_mdc, m_doc),
 	m_ignoreUpdates(false), m_editorCtrl(NULL), m_parentFrame(parentFrame), m_source_win_id(win_id)
 {
 	SetBackgroundStyle(wxBG_STYLE_CUSTOM); // Avoid flicker
@@ -111,11 +111,11 @@ void UndoHistory::SetDocument(const doc_id& di, bool doCenter) {
 	// If we are doing selective undo, the we do not
 	// want the tree to be updated until after we are done.
 	if (m_ignoreUpdates) return;
-	
+
 	// Clear selection info
 	m_range.Set(0, 0);
 	m_rangeHistory.clear();
-	
+
 	UpdateTree(doCenter);
 }
 
@@ -145,7 +145,7 @@ void UndoHistory::UpdateTree(bool doCenter) {
 		m_pTree->AddRoot(); // document has no undo history
 		m_selectedNode = 0;
 	}
-	
+
 	// Make the version visible
 	m_pTree->Select(m_selectedNode);
 	m_pTree->MakeNodeVisible(m_selectedNode, doCenter);
@@ -201,7 +201,7 @@ void UndoHistory::DrawLayout(wxDC& dc) {
 			SetScrollbar(wxVERTICAL, 0, 0, 0);
 			if (hasScroll) return; // have sent a size event
 		}
-		
+
 		bool hasHorizontalScroll = (GetScrollThumb(wxHORIZONTAL) != 0);
 		if (m_treeWidth > size.x) {
 			SetScrollbar(wxHORIZONTAL, m_horizontalScrollPos, size.x, m_treeWidth);
@@ -686,7 +686,7 @@ void UndoHistory::OnNewRevision(UndoHistory* self, void* data, int WXUNUSED(filt
 
 	const doc_id& di = *(const doc_id*)data;
 	wxASSERT(di.IsDraft());
-	
+
 	if (di == self->m_editorCtrl->GetDocID()) {
 		self->SetDocument(di);
 	}

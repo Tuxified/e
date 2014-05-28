@@ -17,7 +17,7 @@
 
 // For compilers that support precompilation, includes "wx/wx.h".
 #include "wx/wxprec.h"
- 
+
 #ifdef __BORLANDC__
     #pragma hdrstop
 #endif
@@ -325,7 +325,7 @@ protected:
    the value appeared. This value is compared to the line number
    of a comment line in order to obtain the value which a
    comment refersto.
-  */ 
+  */
   int               m_lineNo;
 
 

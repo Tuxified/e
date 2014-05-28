@@ -14,7 +14,7 @@ BEGIN_EVENT_TABLE(EnvVarsPanel, wxPanel)
 END_EVENT_TABLE()
 
 
-EnvVarsPanel::EnvVarsPanel(wxWindow*parent, wxWindowID id): 
+EnvVarsPanel::EnvVarsPanel(wxWindow*parent, wxWindowID id):
 	wxPanel(parent, id),
 	m_varsChanged(false)
 {

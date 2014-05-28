@@ -31,7 +31,7 @@ typedef PRUint64 PRTime;
     { 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46 }}
 
 class NS_NO_VTABLE nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ISUPPORTS_IID)
 
@@ -50,19 +50,19 @@ class NS_NO_VTABLE nsISupports {
 #define NS_DECL_NSISUPPORTS \
   NS_IMETHOD QueryInterface(const nsIID & iid, void * *result); \
   NS_IMETHOD_(nsrefcnt) AddRef(void); \
-  NS_IMETHOD_(nsrefcnt) Release(void); 
+  NS_IMETHOD_(nsrefcnt) Release(void);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSISUPPORTS(_to) \
   NS_IMETHOD QueryInterface(const nsIID & iid, void * *result) { return _to QueryInterface(iid, result); } \
   NS_IMETHOD_(nsrefcnt) AddRef(void) { return _to AddRef(); } \
-  NS_IMETHOD_(nsrefcnt) Release(void) { return _to Release(); } 
+  NS_IMETHOD_(nsrefcnt) Release(void) { return _to Release(); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSISUPPORTS(_to) \
   NS_IMETHOD QueryInterface(const nsIID & iid, void * *result) { return !_to ? NS_ERROR_NULL_POINTER : _to->QueryInterface(iid, result); } \
   NS_IMETHOD_(nsrefcnt) AddRef(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->AddRef(); } \
-  NS_IMETHOD_(nsrefcnt) Release(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Release(); } 
+  NS_IMETHOD_(nsrefcnt) Release(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Release(); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -126,7 +126,7 @@ NS_IMETHODIMP_(nsrefcnt) nsSupports::Release()
     { 0xbd, 0xd6, 0x00, 0x00, 0x64, 0x65, 0x73, 0x74 }}
 
 class NS_NO_VTABLE nsISimpleEnumerator : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ISIMPLEENUMERATOR_IID)
 
@@ -141,17 +141,17 @@ class NS_NO_VTABLE nsISimpleEnumerator : public nsISupports {
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSISIMPLEENUMERATOR \
   NS_IMETHOD HasMoreElements(PRBool *_retval); \
-  NS_IMETHOD GetNext(nsISupports **_retval); 
+  NS_IMETHOD GetNext(nsISupports **_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSISIMPLEENUMERATOR(_to) \
   NS_IMETHOD HasMoreElements(PRBool *_retval) { return _to HasMoreElements(_retval); } \
-  NS_IMETHOD GetNext(nsISupports **_retval) { return _to GetNext(_retval); } 
+  NS_IMETHOD GetNext(nsISupports **_retval) { return _to GetNext(_retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSISIMPLEENUMERATOR(_to) \
   NS_IMETHOD HasMoreElements(PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->HasMoreElements(_retval); } \
-  NS_IMETHOD GetNext(nsISupports **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetNext(_retval); } 
+  NS_IMETHOD GetNext(nsISupports **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetNext(_retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -209,7 +209,7 @@ NS_IMETHODIMP nsSimpleEnumerator::GetNext(nsISupports **_retval)
     { 0xc0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46 }}
 
 class NS_NO_VTABLE nsIFactory : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IFACTORY_IID)
 
@@ -224,17 +224,17 @@ class NS_NO_VTABLE nsIFactory : public nsISupports {
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIFACTORY \
   NS_IMETHOD CreateInstance(nsISupports *outer, const nsIID & iid, void * *result); \
-  NS_IMETHOD LockFactory(PRBool lock); 
+  NS_IMETHOD LockFactory(PRBool lock);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIFACTORY(_to) \
   NS_IMETHOD CreateInstance(nsISupports *outer, const nsIID & iid, void * *result) { return _to CreateInstance(outer, iid, result); } \
-  NS_IMETHOD LockFactory(PRBool lock) { return _to LockFactory(lock); } 
+  NS_IMETHOD LockFactory(PRBool lock) { return _to LockFactory(lock); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIFACTORY(_to) \
   NS_IMETHOD CreateInstance(nsISupports *outer, const nsIID & iid, void * *result) { return !_to ? NS_ERROR_NULL_POINTER : _to->CreateInstance(outer, iid, result); } \
-  NS_IMETHOD LockFactory(PRBool lock) { return !_to ? NS_ERROR_NULL_POINTER : _to->LockFactory(lock); } 
+  NS_IMETHOD LockFactory(PRBool lock) { return !_to ? NS_ERROR_NULL_POINTER : _to->LockFactory(lock); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -292,7 +292,7 @@ NS_IMETHODIMP nsFactory::LockFactory(PRBool lock)
     { 0xaf, 0x88, 0x00, 0xa0, 0x24, 0xff, 0xc0, 0x8c }}
 
 class NS_NO_VTABLE nsIInterfaceRequestor : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IINTERFACEREQUESTOR_IID)
 
@@ -303,15 +303,15 @@ class NS_NO_VTABLE nsIInterfaceRequestor : public nsISupports {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIINTERFACEREQUESTOR \
-  NS_IMETHOD GetInterface(const nsIID & iid, void * *result); 
+  NS_IMETHOD GetInterface(const nsIID & iid, void * *result);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIINTERFACEREQUESTOR(_to) \
-  NS_IMETHOD GetInterface(const nsIID & iid, void * *result) { return _to GetInterface(iid, result); } 
+  NS_IMETHOD GetInterface(const nsIID & iid, void * *result) { return _to GetInterface(iid, result); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIINTERFACEREQUESTOR(_to) \
-  NS_IMETHOD GetInterface(const nsIID & iid, void * *result) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetInterface(iid, result); } 
+  NS_IMETHOD GetInterface(const nsIID & iid, void * *result) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetInterface(iid, result); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -363,7 +363,7 @@ NS_IMETHODIMP nsInterfaceRequestor::GetInterface(const nsIID & iid, void * *resu
     { 0x81, 0xef, 0x00, 0x60, 0x08, 0x3a, 0x0b, 0xcf }}
 
 class NS_NO_VTABLE nsIWeakReference : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IWEAKREFERENCE_IID)
 
@@ -374,15 +374,15 @@ class NS_NO_VTABLE nsIWeakReference : public nsISupports {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIWEAKREFERENCE \
-  NS_IMETHOD QueryReferent(const nsIID & iid, void * *result); 
+  NS_IMETHOD QueryReferent(const nsIID & iid, void * *result);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIWEAKREFERENCE(_to) \
-  NS_IMETHOD QueryReferent(const nsIID & iid, void * *result) { return _to QueryReferent(iid, result); } 
+  NS_IMETHOD QueryReferent(const nsIID & iid, void * *result) { return _to QueryReferent(iid, result); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIWEAKREFERENCE(_to) \
-  NS_IMETHOD QueryReferent(const nsIID & iid, void * *result) { return !_to ? NS_ERROR_NULL_POINTER : _to->QueryReferent(iid, result); } 
+  NS_IMETHOD QueryReferent(const nsIID & iid, void * *result) { return !_to ? NS_ERROR_NULL_POINTER : _to->QueryReferent(iid, result); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -434,7 +434,7 @@ NS_IMETHODIMP nsWeakReference::QueryReferent(const nsIID & iid, void * *result)
     { 0x81, 0xef, 0x00, 0x60, 0x08, 0x3a, 0x0b, 0xcf }}
 
 class NS_NO_VTABLE nsISupportsWeakReference : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ISUPPORTSWEAKREFERENCE_IID)
 
@@ -445,15 +445,15 @@ class NS_NO_VTABLE nsISupportsWeakReference : public nsISupports {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSISUPPORTSWEAKREFERENCE \
-  NS_IMETHOD GetWeakReference(nsIWeakReference **_retval); 
+  NS_IMETHOD GetWeakReference(nsIWeakReference **_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSISUPPORTSWEAKREFERENCE(_to) \
-  NS_IMETHOD GetWeakReference(nsIWeakReference **_retval) { return _to GetWeakReference(_retval); } 
+  NS_IMETHOD GetWeakReference(nsIWeakReference **_retval) { return _to GetWeakReference(_retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSISUPPORTSWEAKREFERENCE(_to) \
-  NS_IMETHOD GetWeakReference(nsIWeakReference **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetWeakReference(_retval); } 
+  NS_IMETHOD GetWeakReference(nsIWeakReference **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetWeakReference(_retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -507,7 +507,7 @@ class nsISimpleEnumerator; /* forward declaration */
     { 0x91, 0x5f, 0xd9, 0xd8, 0x89, 0xd4, 0x8e, 0x3c }}
 
 class NS_NO_VTABLE nsIFile : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IFILE_IID)
 
@@ -684,7 +684,7 @@ class NS_NO_VTABLE nsIFile : public nsISupports {
   NS_IMETHOD Equals(nsIFile *file, PRBool *_retval); \
   NS_IMETHOD Contains(nsIFile *file, PRBool recurse, PRBool *_retval); \
   NS_IMETHOD GetParent(nsIFile * *aParent); \
-  NS_IMETHOD GetDirectoryEntries(nsISimpleEnumerator * *aDirectoryEntries); 
+  NS_IMETHOD GetDirectoryEntries(nsISimpleEnumerator * *aDirectoryEntries);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIFILE(_to) \
@@ -732,7 +732,7 @@ class NS_NO_VTABLE nsIFile : public nsISupports {
   NS_IMETHOD Equals(nsIFile *file, PRBool *_retval) { return _to Equals(file, _retval); } \
   NS_IMETHOD Contains(nsIFile *file, PRBool recurse, PRBool *_retval) { return _to Contains(file, recurse, _retval); } \
   NS_IMETHOD GetParent(nsIFile * *aParent) { return _to GetParent(aParent); } \
-  NS_IMETHOD GetDirectoryEntries(nsISimpleEnumerator * *aDirectoryEntries) { return _to GetDirectoryEntries(aDirectoryEntries); } 
+  NS_IMETHOD GetDirectoryEntries(nsISimpleEnumerator * *aDirectoryEntries) { return _to GetDirectoryEntries(aDirectoryEntries); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIFILE(_to) \
@@ -780,7 +780,7 @@ class NS_NO_VTABLE nsIFile : public nsISupports {
   NS_IMETHOD Equals(nsIFile *file, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->Equals(file, _retval); } \
   NS_IMETHOD Contains(nsIFile *file, PRBool recurse, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->Contains(file, recurse, _retval); } \
   NS_IMETHOD GetParent(nsIFile * *aParent) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetParent(aParent); } \
-  NS_IMETHOD GetDirectoryEntries(nsISimpleEnumerator * *aDirectoryEntries) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetDirectoryEntries(aDirectoryEntries); } 
+  NS_IMETHOD GetDirectoryEntries(nsISimpleEnumerator * *aDirectoryEntries) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetDirectoryEntries(aDirectoryEntries); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -1084,7 +1084,7 @@ struct PRLibrary;
     { 0x8c, 0x81, 0x00, 0x00, 0x64, 0x65, 0x73, 0x74 }}
 
 class NS_NO_VTABLE nsILocalFile : public nsIFile {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ILOCALFILE_IID)
 
@@ -1151,7 +1151,7 @@ class NS_NO_VTABLE nsILocalFile : public nsIFile {
   NS_IMETHOD Reveal(void); \
   NS_IMETHOD Launch(void); \
   NS_IMETHOD GetRelativeDescriptor(nsILocalFile *from_file, nsACString & _retval); \
-  NS_IMETHOD SetRelativeDescriptor(nsILocalFile *from_file, const nsACString & rel_desc); 
+  NS_IMETHOD SetRelativeDescriptor(nsILocalFile *from_file, const nsACString & rel_desc);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSILOCALFILE(_to) \
@@ -1170,7 +1170,7 @@ class NS_NO_VTABLE nsILocalFile : public nsIFile {
   NS_IMETHOD Reveal(void) { return _to Reveal(); } \
   NS_IMETHOD Launch(void) { return _to Launch(); } \
   NS_IMETHOD GetRelativeDescriptor(nsILocalFile *from_file, nsACString & _retval) { return _to GetRelativeDescriptor(from_file, _retval); } \
-  NS_IMETHOD SetRelativeDescriptor(nsILocalFile *from_file, const nsACString & rel_desc) { return _to SetRelativeDescriptor(from_file, rel_desc); } 
+  NS_IMETHOD SetRelativeDescriptor(nsILocalFile *from_file, const nsACString & rel_desc) { return _to SetRelativeDescriptor(from_file, rel_desc); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSILOCALFILE(_to) \
@@ -1189,7 +1189,7 @@ class NS_NO_VTABLE nsILocalFile : public nsIFile {
   NS_IMETHOD Reveal(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Reveal(); } \
   NS_IMETHOD Launch(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Launch(); } \
   NS_IMETHOD GetRelativeDescriptor(nsILocalFile *from_file, nsACString & _retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetRelativeDescriptor(from_file, _retval); } \
-  NS_IMETHOD SetRelativeDescriptor(nsILocalFile *from_file, const nsACString & rel_desc) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetRelativeDescriptor(from_file, rel_desc); } 
+  NS_IMETHOD SetRelativeDescriptor(nsILocalFile *from_file, const nsACString & rel_desc) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetRelativeDescriptor(from_file, rel_desc); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -1329,7 +1329,7 @@ class nsIEventQueue; /* forward declaration */
     { 0x9e, 0xc1, 0x00, 0xaa, 0x00, 0x2f, 0xb8, 0x21 }}
 
 class NS_NO_VTABLE nsIAppShell : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IAPPSHELL_IID)
 
@@ -1368,7 +1368,7 @@ class NS_NO_VTABLE nsIAppShell : public nsISupports {
   NS_IMETHOD ListenToEventQueue(nsIEventQueue *queue, PRBool listen); \
   NS_IMETHOD GetNativeEvent(PRBool & realEvent, void* & event); \
   NS_IMETHOD DispatchNativeEvent(PRBool realEvent, void * event); \
-  NS_IMETHOD Exit(void); 
+  NS_IMETHOD Exit(void);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIAPPSHELL(_to) \
@@ -1379,7 +1379,7 @@ class NS_NO_VTABLE nsIAppShell : public nsISupports {
   NS_IMETHOD ListenToEventQueue(nsIEventQueue *queue, PRBool listen) { return _to ListenToEventQueue(queue, listen); } \
   NS_IMETHOD GetNativeEvent(PRBool & realEvent, void* & event) { return _to GetNativeEvent(realEvent, event); } \
   NS_IMETHOD DispatchNativeEvent(PRBool realEvent, void * event) { return _to DispatchNativeEvent(realEvent, event); } \
-  NS_IMETHOD Exit(void) { return _to Exit(); } 
+  NS_IMETHOD Exit(void) { return _to Exit(); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIAPPSHELL(_to) \
@@ -1390,7 +1390,7 @@ class NS_NO_VTABLE nsIAppShell : public nsISupports {
   NS_IMETHOD ListenToEventQueue(nsIEventQueue *queue, PRBool listen) { return !_to ? NS_ERROR_NULL_POINTER : _to->ListenToEventQueue(queue, listen); } \
   NS_IMETHOD GetNativeEvent(PRBool & realEvent, void* & event) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetNativeEvent(realEvent, event); } \
   NS_IMETHOD DispatchNativeEvent(PRBool realEvent, void * event) { return !_to ? NS_ERROR_NULL_POINTER : _to->DispatchNativeEvent(realEvent, event); } \
-  NS_IMETHOD Exit(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Exit(); } 
+  NS_IMETHOD Exit(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Exit(); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -1488,7 +1488,7 @@ class nsIX509Cert; /* forward declaration */
     { 0x99, 0x8b, 0x00, 0xb0, 0xd0, 0x23, 0x54, 0xa0 }}
 
 class NS_NO_VTABLE nsIBadCertListener : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IBADCERTLISTENER_IID)
 
@@ -1517,21 +1517,21 @@ class NS_NO_VTABLE nsIBadCertListener : public nsISupports {
   NS_IMETHOD ConfirmUnknownIssuer(nsIInterfaceRequestor *socketInfo, nsIX509Cert *cert, PRInt16 *certAddType, PRBool *_retval); \
   NS_IMETHOD ConfirmMismatchDomain(nsIInterfaceRequestor *socketInfo, const nsACString & targetURL, nsIX509Cert *cert, PRBool *_retval); \
   NS_IMETHOD ConfirmCertExpired(nsIInterfaceRequestor *socketInfo, nsIX509Cert *cert, PRBool *_retval); \
-  NS_IMETHOD NotifyCrlNextupdate(nsIInterfaceRequestor *socketInfo, const nsACString & targetURL, nsIX509Cert *cert); 
+  NS_IMETHOD NotifyCrlNextupdate(nsIInterfaceRequestor *socketInfo, const nsACString & targetURL, nsIX509Cert *cert);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIBADCERTLISTENER(_to) \
   NS_IMETHOD ConfirmUnknownIssuer(nsIInterfaceRequestor *socketInfo, nsIX509Cert *cert, PRInt16 *certAddType, PRBool *_retval) { return _to ConfirmUnknownIssuer(socketInfo, cert, certAddType, _retval); } \
   NS_IMETHOD ConfirmMismatchDomain(nsIInterfaceRequestor *socketInfo, const nsACString & targetURL, nsIX509Cert *cert, PRBool *_retval) { return _to ConfirmMismatchDomain(socketInfo, targetURL, cert, _retval); } \
   NS_IMETHOD ConfirmCertExpired(nsIInterfaceRequestor *socketInfo, nsIX509Cert *cert, PRBool *_retval) { return _to ConfirmCertExpired(socketInfo, cert, _retval); } \
-  NS_IMETHOD NotifyCrlNextupdate(nsIInterfaceRequestor *socketInfo, const nsACString & targetURL, nsIX509Cert *cert) { return _to NotifyCrlNextupdate(socketInfo, targetURL, cert); } 
+  NS_IMETHOD NotifyCrlNextupdate(nsIInterfaceRequestor *socketInfo, const nsACString & targetURL, nsIX509Cert *cert) { return _to NotifyCrlNextupdate(socketInfo, targetURL, cert); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIBADCERTLISTENER(_to) \
   NS_IMETHOD ConfirmUnknownIssuer(nsIInterfaceRequestor *socketInfo, nsIX509Cert *cert, PRInt16 *certAddType, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->ConfirmUnknownIssuer(socketInfo, cert, certAddType, _retval); } \
   NS_IMETHOD ConfirmMismatchDomain(nsIInterfaceRequestor *socketInfo, const nsACString & targetURL, nsIX509Cert *cert, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->ConfirmMismatchDomain(socketInfo, targetURL, cert, _retval); } \
   NS_IMETHOD ConfirmCertExpired(nsIInterfaceRequestor *socketInfo, nsIX509Cert *cert, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->ConfirmCertExpired(socketInfo, cert, _retval); } \
-  NS_IMETHOD NotifyCrlNextupdate(nsIInterfaceRequestor *socketInfo, const nsACString & targetURL, nsIX509Cert *cert) { return !_to ? NS_ERROR_NULL_POINTER : _to->NotifyCrlNextupdate(socketInfo, targetURL, cert); } 
+  NS_IMETHOD NotifyCrlNextupdate(nsIInterfaceRequestor *socketInfo, const nsACString & targetURL, nsIX509Cert *cert) { return !_to ? NS_ERROR_NULL_POINTER : _to->NotifyCrlNextupdate(socketInfo, targetURL, cert); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -1604,7 +1604,7 @@ typedef void * nativeWindow;
     { 0xaf, 0x70, 0x00, 0xa0, 0x24, 0xff, 0xc0, 0x8c }}
 
 class NS_NO_VTABLE nsIBaseWindow : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IBASEWINDOW_IID)
 
@@ -1695,7 +1695,7 @@ class NS_NO_VTABLE nsIBaseWindow : public nsISupports {
   NS_IMETHOD GetMainWidget(nsIWidget * *aMainWidget); \
   NS_IMETHOD SetFocus(void); \
   NS_IMETHOD GetTitle(PRUnichar * *aTitle); \
-  NS_IMETHOD SetTitle(const PRUnichar * aTitle); 
+  NS_IMETHOD SetTitle(const PRUnichar * aTitle);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIBASEWINDOW(_to) \
@@ -1722,7 +1722,7 @@ class NS_NO_VTABLE nsIBaseWindow : public nsISupports {
   NS_IMETHOD GetMainWidget(nsIWidget * *aMainWidget) { return _to GetMainWidget(aMainWidget); } \
   NS_IMETHOD SetFocus(void) { return _to SetFocus(); } \
   NS_IMETHOD GetTitle(PRUnichar * *aTitle) { return _to GetTitle(aTitle); } \
-  NS_IMETHOD SetTitle(const PRUnichar * aTitle) { return _to SetTitle(aTitle); } 
+  NS_IMETHOD SetTitle(const PRUnichar * aTitle) { return _to SetTitle(aTitle); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIBASEWINDOW(_to) \
@@ -1749,7 +1749,7 @@ class NS_NO_VTABLE nsIBaseWindow : public nsISupports {
   NS_IMETHOD GetMainWidget(nsIWidget * *aMainWidget) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetMainWidget(aMainWidget); } \
   NS_IMETHOD SetFocus(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetFocus(); } \
   NS_IMETHOD GetTitle(PRUnichar * *aTitle) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetTitle(aTitle); } \
-  NS_IMETHOD SetTitle(const PRUnichar * aTitle) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetTitle(aTitle); } 
+  NS_IMETHOD SetTitle(const PRUnichar * aTitle) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetTitle(aTitle); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -1933,7 +1933,7 @@ class nsICacheVisitor; /* forward declaration */
     { 0xb2, 0xf7, 0x2d, 0x03, 0xeb, 0x9b, 0xc7, 0x71 }}
 
 class NS_NO_VTABLE nsICacheService : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ICACHESERVICE_IID)
 
@@ -1952,19 +1952,19 @@ class NS_NO_VTABLE nsICacheService : public nsISupports {
 #define NS_DECL_NSICACHESERVICE \
   NS_IMETHOD CreateSession(const char *clientID, nsCacheStoragePolicy storagePolicy, PRBool streamBased, nsICacheSession **_retval); \
   NS_IMETHOD VisitEntries(nsICacheVisitor *visitor); \
-  NS_IMETHOD EvictEntries(nsCacheStoragePolicy storagePolicy); 
+  NS_IMETHOD EvictEntries(nsCacheStoragePolicy storagePolicy);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSICACHESERVICE(_to) \
   NS_IMETHOD CreateSession(const char *clientID, nsCacheStoragePolicy storagePolicy, PRBool streamBased, nsICacheSession **_retval) { return _to CreateSession(clientID, storagePolicy, streamBased, _retval); } \
   NS_IMETHOD VisitEntries(nsICacheVisitor *visitor) { return _to VisitEntries(visitor); } \
-  NS_IMETHOD EvictEntries(nsCacheStoragePolicy storagePolicy) { return _to EvictEntries(storagePolicy); } 
+  NS_IMETHOD EvictEntries(nsCacheStoragePolicy storagePolicy) { return _to EvictEntries(storagePolicy); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSICACHESERVICE(_to) \
   NS_IMETHOD CreateSession(const char *clientID, nsCacheStoragePolicy storagePolicy, PRBool streamBased, nsICacheSession **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->CreateSession(clientID, storagePolicy, streamBased, _retval); } \
   NS_IMETHOD VisitEntries(nsICacheVisitor *visitor) { return !_to ? NS_ERROR_NULL_POINTER : _to->VisitEntries(visitor); } \
-  NS_IMETHOD EvictEntries(nsCacheStoragePolicy storagePolicy) { return !_to ? NS_ERROR_NULL_POINTER : _to->EvictEntries(storagePolicy); } 
+  NS_IMETHOD EvictEntries(nsCacheStoragePolicy storagePolicy) { return !_to ? NS_ERROR_NULL_POINTER : _to->EvictEntries(storagePolicy); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -2028,7 +2028,7 @@ NS_IMETHODIMP nsCacheService::EvictEntries(nsCacheStoragePolicy storagePolicy)
     { 0x84, 0x4e, 0x84, 0x15, 0x90, 0x64, 0xb0, 0xbd }}
 
 class NS_NO_VTABLE nsICancelable : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ICANCELABLE_IID)
 
@@ -2039,15 +2039,15 @@ class NS_NO_VTABLE nsICancelable : public nsISupports {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSICANCELABLE \
-  NS_IMETHOD Cancel(nsresult reason); 
+  NS_IMETHOD Cancel(nsresult reason);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSICANCELABLE(_to) \
-  NS_IMETHOD Cancel(nsresult reason) { return _to Cancel(reason); } 
+  NS_IMETHOD Cancel(nsresult reason) { return _to Cancel(reason); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSICANCELABLE(_to) \
-  NS_IMETHOD Cancel(nsresult reason) { return !_to ? NS_ERROR_NULL_POINTER : _to->Cancel(reason); } 
+  NS_IMETHOD Cancel(nsresult reason) { return !_to ? NS_ERROR_NULL_POINTER : _to->Cancel(reason); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -2103,7 +2103,7 @@ typedef PRUint32 nsLoadFlags;
     { 0x96, 0xb7, 0x9f, 0x8f, 0x0f, 0xd3, 0x87, 0xfe }}
 
 class NS_NO_VTABLE nsIRequest : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IREQUEST_IID)
 
@@ -2164,7 +2164,7 @@ class NS_NO_VTABLE nsIRequest : public nsISupports {
   NS_IMETHOD GetLoadGroup(nsILoadGroup * *aLoadGroup); \
   NS_IMETHOD SetLoadGroup(nsILoadGroup * aLoadGroup); \
   NS_IMETHOD GetLoadFlags(nsLoadFlags *aLoadFlags); \
-  NS_IMETHOD SetLoadFlags(nsLoadFlags aLoadFlags); 
+  NS_IMETHOD SetLoadFlags(nsLoadFlags aLoadFlags);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIREQUEST(_to) \
@@ -2177,7 +2177,7 @@ class NS_NO_VTABLE nsIRequest : public nsISupports {
   NS_IMETHOD GetLoadGroup(nsILoadGroup * *aLoadGroup) { return _to GetLoadGroup(aLoadGroup); } \
   NS_IMETHOD SetLoadGroup(nsILoadGroup * aLoadGroup) { return _to SetLoadGroup(aLoadGroup); } \
   NS_IMETHOD GetLoadFlags(nsLoadFlags *aLoadFlags) { return _to GetLoadFlags(aLoadFlags); } \
-  NS_IMETHOD SetLoadFlags(nsLoadFlags aLoadFlags) { return _to SetLoadFlags(aLoadFlags); } 
+  NS_IMETHOD SetLoadFlags(nsLoadFlags aLoadFlags) { return _to SetLoadFlags(aLoadFlags); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIREQUEST(_to) \
@@ -2190,7 +2190,7 @@ class NS_NO_VTABLE nsIRequest : public nsISupports {
   NS_IMETHOD GetLoadGroup(nsILoadGroup * *aLoadGroup) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetLoadGroup(aLoadGroup); } \
   NS_IMETHOD SetLoadGroup(nsILoadGroup * aLoadGroup) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetLoadGroup(aLoadGroup); } \
   NS_IMETHOD GetLoadFlags(nsLoadFlags *aLoadFlags) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetLoadFlags(aLoadFlags); } \
-  NS_IMETHOD SetLoadFlags(nsLoadFlags aLoadFlags) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetLoadFlags(aLoadFlags); } 
+  NS_IMETHOD SetLoadFlags(nsLoadFlags aLoadFlags) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetLoadFlags(aLoadFlags); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -2300,7 +2300,7 @@ class nsIStreamListener; /* forward declaration */
     { 0xbf, 0x3c, 0x6c, 0xfa, 0x11, 0x08, 0x20, 0x18 }}
 
 class NS_NO_VTABLE nsIChannel : public nsIRequest {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ICHANNEL_IID)
 
@@ -2369,7 +2369,7 @@ class NS_NO_VTABLE nsIChannel : public nsIRequest {
   NS_IMETHOD GetContentLength(PRInt32 *aContentLength); \
   NS_IMETHOD SetContentLength(PRInt32 aContentLength); \
   NS_IMETHOD Open(nsIInputStream **_retval); \
-  NS_IMETHOD AsyncOpen(nsIStreamListener *listener, nsISupports *xcontext); 
+  NS_IMETHOD AsyncOpen(nsIStreamListener *listener, nsISupports *xcontext);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSICHANNEL(_to) \
@@ -2388,7 +2388,7 @@ class NS_NO_VTABLE nsIChannel : public nsIRequest {
   NS_IMETHOD GetContentLength(PRInt32 *aContentLength) { return _to GetContentLength(aContentLength); } \
   NS_IMETHOD SetContentLength(PRInt32 aContentLength) { return _to SetContentLength(aContentLength); } \
   NS_IMETHOD Open(nsIInputStream **_retval) { return _to Open(_retval); } \
-  NS_IMETHOD AsyncOpen(nsIStreamListener *listener, nsISupports *xcontext) { return _to AsyncOpen(listener, xcontext); } 
+  NS_IMETHOD AsyncOpen(nsIStreamListener *listener, nsISupports *xcontext) { return _to AsyncOpen(listener, xcontext); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSICHANNEL(_to) \
@@ -2407,7 +2407,7 @@ class NS_NO_VTABLE nsIChannel : public nsIRequest {
   NS_IMETHOD GetContentLength(PRInt32 *aContentLength) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetContentLength(aContentLength); } \
   NS_IMETHOD SetContentLength(PRInt32 aContentLength) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetContentLength(aContentLength); } \
   NS_IMETHOD Open(nsIInputStream **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->Open(_retval); } \
-  NS_IMETHOD AsyncOpen(nsIStreamListener *listener, nsISupports *xcontext) { return !_to ? NS_ERROR_NULL_POINTER : _to->AsyncOpen(listener, xcontext); } 
+  NS_IMETHOD AsyncOpen(nsIStreamListener *listener, nsISupports *xcontext) { return !_to ? NS_ERROR_NULL_POINTER : _to->AsyncOpen(listener, xcontext); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -2537,7 +2537,7 @@ NS_IMETHODIMP nsChannel::AsyncOpen(nsIStreamListener *listener, nsISupports *xco
     { 0x92, 0xa5, 0x00, 0x10, 0x5a, 0x1b, 0x0d, 0x64 }}
 
 class NS_NO_VTABLE nsIClipboardCommands : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ICLIPBOARDCOMMANDS_IID)
 
@@ -2600,7 +2600,7 @@ class NS_NO_VTABLE nsIClipboardCommands : public nsISupports {
   NS_IMETHOD CopyImageContents(void); \
   NS_IMETHOD Paste(void); \
   NS_IMETHOD SelectAll(void); \
-  NS_IMETHOD SelectNone(void); 
+  NS_IMETHOD SelectNone(void);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSICLIPBOARDCOMMANDS(_to) \
@@ -2617,7 +2617,7 @@ class NS_NO_VTABLE nsIClipboardCommands : public nsISupports {
   NS_IMETHOD CopyImageContents(void) { return _to CopyImageContents(); } \
   NS_IMETHOD Paste(void) { return _to Paste(); } \
   NS_IMETHOD SelectAll(void) { return _to SelectAll(); } \
-  NS_IMETHOD SelectNone(void) { return _to SelectNone(); } 
+  NS_IMETHOD SelectNone(void) { return _to SelectNone(); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSICLIPBOARDCOMMANDS(_to) \
@@ -2634,7 +2634,7 @@ class NS_NO_VTABLE nsIClipboardCommands : public nsISupports {
   NS_IMETHOD CopyImageContents(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->CopyImageContents(); } \
   NS_IMETHOD Paste(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Paste(); } \
   NS_IMETHOD SelectAll(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->SelectAll(); } \
-  NS_IMETHOD SelectNone(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->SelectNone(); } 
+  NS_IMETHOD SelectNone(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->SelectNone(); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -2764,7 +2764,7 @@ NS_IMETHODIMP nsClipboardCommands::SelectNone()
     { 0x94, 0xe1, 0x26, 0x28, 0xda, 0xf5, 0x1e, 0xae }}
 
 class NS_NO_VTABLE nsIComponentManager : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ICOMPONENTMANAGER_IID)
 
@@ -2787,21 +2787,21 @@ class NS_NO_VTABLE nsIComponentManager : public nsISupports {
   NS_IMETHOD GetClassObject(const nsCID & class_id, const nsIID & iid, void * *result); \
   NS_IMETHOD GetClassObjectByContractID(const char *contract_id, const nsIID & iid, void * *result); \
   NS_IMETHOD CreateInstance(const nsCID & class_id, nsISupports *delegate, const nsIID & iid, void * *result); \
-  NS_IMETHOD CreateInstanceByContractID(const char *contract_id, nsISupports *delegate, const nsIID & iid, void * *result); 
+  NS_IMETHOD CreateInstanceByContractID(const char *contract_id, nsISupports *delegate, const nsIID & iid, void * *result);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSICOMPONENTMANAGER(_to) \
   NS_IMETHOD GetClassObject(const nsCID & class_id, const nsIID & iid, void * *result) { return _to GetClassObject(class_id, iid, result); } \
   NS_IMETHOD GetClassObjectByContractID(const char *contract_id, const nsIID & iid, void * *result) { return _to GetClassObjectByContractID(contract_id, iid, result); } \
   NS_IMETHOD CreateInstance(const nsCID & class_id, nsISupports *delegate, const nsIID & iid, void * *result) { return _to CreateInstance(class_id, delegate, iid, result); } \
-  NS_IMETHOD CreateInstanceByContractID(const char *contract_id, nsISupports *delegate, const nsIID & iid, void * *result) { return _to CreateInstanceByContractID(contract_id, delegate, iid, result); } 
+  NS_IMETHOD CreateInstanceByContractID(const char *contract_id, nsISupports *delegate, const nsIID & iid, void * *result) { return _to CreateInstanceByContractID(contract_id, delegate, iid, result); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSICOMPONENTMANAGER(_to) \
   NS_IMETHOD GetClassObject(const nsCID & class_id, const nsIID & iid, void * *result) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetClassObject(class_id, iid, result); } \
   NS_IMETHOD GetClassObjectByContractID(const char *contract_id, const nsIID & iid, void * *result) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetClassObjectByContractID(contract_id, iid, result); } \
   NS_IMETHOD CreateInstance(const nsCID & class_id, nsISupports *delegate, const nsIID & iid, void * *result) { return !_to ? NS_ERROR_NULL_POINTER : _to->CreateInstance(class_id, delegate, iid, result); } \
-  NS_IMETHOD CreateInstanceByContractID(const char *contract_id, nsISupports *delegate, const nsIID & iid, void * *result) { return !_to ? NS_ERROR_NULL_POINTER : _to->CreateInstanceByContractID(contract_id, delegate, iid, result); } 
+  NS_IMETHOD CreateInstanceByContractID(const char *contract_id, nsISupports *delegate, const nsIID & iid, void * *result) { return !_to ? NS_ERROR_NULL_POINTER : _to->CreateInstanceByContractID(contract_id, delegate, iid, result); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -2877,7 +2877,7 @@ class nsIFile; /* forward declaration */
     { 0xb4, 0xb6, 0xeb, 0x84, 0xdb, 0x17, 0x43, 0x92 }}
 
 class NS_NO_VTABLE nsIComponentRegistrar : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ICOMPONENTREGISTRAR_IID)
 
@@ -2932,7 +2932,7 @@ class NS_NO_VTABLE nsIComponentRegistrar : public nsISupports {
   NS_IMETHOD EnumerateCIDs(nsISimpleEnumerator **_retval); \
   NS_IMETHOD EnumerateContractIDs(nsISimpleEnumerator **_retval); \
   NS_IMETHOD CIDToContractID(const nsCID & class_id, char **_retval); \
-  NS_IMETHOD ContractIDToCID(const char *contract_id, nsCID * *_retval); 
+  NS_IMETHOD ContractIDToCID(const char *contract_id, nsCID * *_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSICOMPONENTREGISTRAR(_to) \
@@ -2947,7 +2947,7 @@ class NS_NO_VTABLE nsIComponentRegistrar : public nsISupports {
   NS_IMETHOD EnumerateCIDs(nsISimpleEnumerator **_retval) { return _to EnumerateCIDs(_retval); } \
   NS_IMETHOD EnumerateContractIDs(nsISimpleEnumerator **_retval) { return _to EnumerateContractIDs(_retval); } \
   NS_IMETHOD CIDToContractID(const nsCID & class_id, char **_retval) { return _to CIDToContractID(class_id, _retval); } \
-  NS_IMETHOD ContractIDToCID(const char *contract_id, nsCID * *_retval) { return _to ContractIDToCID(contract_id, _retval); } 
+  NS_IMETHOD ContractIDToCID(const char *contract_id, nsCID * *_retval) { return _to ContractIDToCID(contract_id, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSICOMPONENTREGISTRAR(_to) \
@@ -2962,7 +2962,7 @@ class NS_NO_VTABLE nsIComponentRegistrar : public nsISupports {
   NS_IMETHOD EnumerateCIDs(nsISimpleEnumerator **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->EnumerateCIDs(_retval); } \
   NS_IMETHOD EnumerateContractIDs(nsISimpleEnumerator **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->EnumerateContractIDs(_retval); } \
   NS_IMETHOD CIDToContractID(const nsCID & class_id, char **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->CIDToContractID(class_id, _retval); } \
-  NS_IMETHOD ContractIDToCID(const char *contract_id, nsCID * *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->ContractIDToCID(contract_id, _retval); } 
+  NS_IMETHOD ContractIDToCID(const char *contract_id, nsCID * *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->ContractIDToCID(contract_id, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -3090,7 +3090,7 @@ class imgIContainer; /* forward declaration */
     { 0x95, 0x96, 0x77, 0xcf, 0x92, 0x4e, 0xe3, 0x14 }}
 
 class NS_NO_VTABLE nsIContextMenuListener2 : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ICONTEXTMENULISTENER2_IID)
 
@@ -3101,15 +3101,15 @@ class NS_NO_VTABLE nsIContextMenuListener2 : public nsISupports {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSICONTEXTMENULISTENER2 \
-  NS_IMETHOD OnShowContextMenu(PRUint32 context_flags, nsIContextMenuInfo *utils); 
+  NS_IMETHOD OnShowContextMenu(PRUint32 context_flags, nsIContextMenuInfo *utils);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSICONTEXTMENULISTENER2(_to) \
-  NS_IMETHOD OnShowContextMenu(PRUint32 context_flags, nsIContextMenuInfo *utils) { return _to OnShowContextMenu(context_flags, utils); } 
+  NS_IMETHOD OnShowContextMenu(PRUint32 context_flags, nsIContextMenuInfo *utils) { return _to OnShowContextMenu(context_flags, utils); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSICONTEXTMENULISTENER2(_to) \
-  NS_IMETHOD OnShowContextMenu(PRUint32 context_flags, nsIContextMenuInfo *utils) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnShowContextMenu(context_flags, utils); } 
+  NS_IMETHOD OnShowContextMenu(PRUint32 context_flags, nsIContextMenuInfo *utils) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnShowContextMenu(context_flags, utils); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -3161,7 +3161,7 @@ NS_IMETHODIMP nsContextMenuListener2::OnShowContextMenu(PRUint32 context_flags, 
     { 0x87, 0xe2, 0x00, 0x10, 0xa4, 0xe7, 0x5e, 0xf2 }}
 
 class NS_NO_VTABLE nsIContextMenuInfo : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ICONTEXTMENUINFO_IID)
 
@@ -3196,7 +3196,7 @@ class NS_NO_VTABLE nsIContextMenuInfo : public nsISupports {
   NS_IMETHOD GetImageContainer(imgIContainer * *aImageContainer); \
   NS_IMETHOD GetImageSrc(nsIURI * *aImageSrc); \
   NS_IMETHOD GetBackgroundImageContainer(imgIContainer * *aBackgroundImageContainer); \
-  NS_IMETHOD GetBackgroundImageSrc(nsIURI * *aBackgroundImageSrc); 
+  NS_IMETHOD GetBackgroundImageSrc(nsIURI * *aBackgroundImageSrc);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSICONTEXTMENUINFO(_to) \
@@ -3206,7 +3206,7 @@ class NS_NO_VTABLE nsIContextMenuInfo : public nsISupports {
   NS_IMETHOD GetImageContainer(imgIContainer * *aImageContainer) { return _to GetImageContainer(aImageContainer); } \
   NS_IMETHOD GetImageSrc(nsIURI * *aImageSrc) { return _to GetImageSrc(aImageSrc); } \
   NS_IMETHOD GetBackgroundImageContainer(imgIContainer * *aBackgroundImageContainer) { return _to GetBackgroundImageContainer(aBackgroundImageContainer); } \
-  NS_IMETHOD GetBackgroundImageSrc(nsIURI * *aBackgroundImageSrc) { return _to GetBackgroundImageSrc(aBackgroundImageSrc); } 
+  NS_IMETHOD GetBackgroundImageSrc(nsIURI * *aBackgroundImageSrc) { return _to GetBackgroundImageSrc(aBackgroundImageSrc); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSICONTEXTMENUINFO(_to) \
@@ -3216,7 +3216,7 @@ class NS_NO_VTABLE nsIContextMenuInfo : public nsISupports {
   NS_IMETHOD GetImageContainer(imgIContainer * *aImageContainer) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetImageContainer(aImageContainer); } \
   NS_IMETHOD GetImageSrc(nsIURI * *aImageSrc) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetImageSrc(aImageSrc); } \
   NS_IMETHOD GetBackgroundImageContainer(imgIContainer * *aBackgroundImageContainer) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetBackgroundImageContainer(aBackgroundImageContainer); } \
-  NS_IMETHOD GetBackgroundImageSrc(nsIURI * *aBackgroundImageSrc) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetBackgroundImageSrc(aBackgroundImageSrc); } 
+  NS_IMETHOD GetBackgroundImageSrc(nsIURI * *aBackgroundImageSrc) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetBackgroundImageSrc(aBackgroundImageSrc); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -3308,7 +3308,7 @@ class nsISimpleEnumerator; /* forward declaration */
     { 0x8c, 0xc2, 0x00, 0x60, 0x97, 0x92, 0x27, 0x8c }}
 
 class NS_NO_VTABLE nsIDirectoryServiceProvider : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDIRECTORYSERVICEPROVIDER_IID)
 
@@ -3319,15 +3319,15 @@ class NS_NO_VTABLE nsIDirectoryServiceProvider : public nsISupports {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIDIRECTORYSERVICEPROVIDER \
-  NS_IMETHOD GetFile(const char *property, PRBool *persistent, nsIFile **_retval); 
+  NS_IMETHOD GetFile(const char *property, PRBool *persistent, nsIFile **_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDIRECTORYSERVICEPROVIDER(_to) \
-  NS_IMETHOD GetFile(const char *property, PRBool *persistent, nsIFile **_retval) { return _to GetFile(property, persistent, _retval); } 
+  NS_IMETHOD GetFile(const char *property, PRBool *persistent, nsIFile **_retval) { return _to GetFile(property, persistent, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDIRECTORYSERVICEPROVIDER(_to) \
-  NS_IMETHOD GetFile(const char *property, PRBool *persistent, nsIFile **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetFile(property, persistent, _retval); } 
+  NS_IMETHOD GetFile(const char *property, PRBool *persistent, nsIFile **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetFile(property, persistent, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -3379,7 +3379,7 @@ NS_IMETHODIMP nsDirectoryServiceProvider::GetFile(const char *property, PRBool *
     { 0x87, 0xe2, 0x00, 0x10, 0xa4, 0xe7, 0x5e, 0xf2 }}
 
 class NS_NO_VTABLE nsIDirectoryServiceProvider2 : public nsIDirectoryServiceProvider {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDIRECTORYSERVICEPROVIDER2_IID)
 
@@ -3390,15 +3390,15 @@ class NS_NO_VTABLE nsIDirectoryServiceProvider2 : public nsIDirectoryServiceProv
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIDIRECTORYSERVICEPROVIDER2 \
-  NS_IMETHOD GetFiles(const char *property, nsISimpleEnumerator **_retval); 
+  NS_IMETHOD GetFiles(const char *property, nsISimpleEnumerator **_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDIRECTORYSERVICEPROVIDER2(_to) \
-  NS_IMETHOD GetFiles(const char *property, nsISimpleEnumerator **_retval) { return _to GetFiles(property, _retval); } 
+  NS_IMETHOD GetFiles(const char *property, nsISimpleEnumerator **_retval) { return _to GetFiles(property, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDIRECTORYSERVICEPROVIDER2(_to) \
-  NS_IMETHOD GetFiles(const char *property, nsISimpleEnumerator **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetFiles(property, _retval); } 
+  NS_IMETHOD GetFiles(const char *property, nsISimpleEnumerator **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetFiles(property, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -3450,7 +3450,7 @@ NS_IMETHODIMP nsDirectoryServiceProvider2::GetFiles(const char *property, nsISim
     { 0x8c, 0xc2, 0x00, 0x60, 0x97, 0x92, 0x27, 0x8c }}
 
 class NS_NO_VTABLE nsIDirectoryService : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDIRECTORYSERVICE_IID)
 
@@ -3469,19 +3469,19 @@ class NS_NO_VTABLE nsIDirectoryService : public nsISupports {
 #define NS_DECL_NSIDIRECTORYSERVICE \
   NS_IMETHOD Init(void); \
   NS_IMETHOD RegisterProvider(nsIDirectoryServiceProvider *provider); \
-  NS_IMETHOD UnregisterProvider(nsIDirectoryServiceProvider *provider); 
+  NS_IMETHOD UnregisterProvider(nsIDirectoryServiceProvider *provider);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDIRECTORYSERVICE(_to) \
   NS_IMETHOD Init(void) { return _to Init(); } \
   NS_IMETHOD RegisterProvider(nsIDirectoryServiceProvider *provider) { return _to RegisterProvider(provider); } \
-  NS_IMETHOD UnregisterProvider(nsIDirectoryServiceProvider *provider) { return _to UnregisterProvider(provider); } 
+  NS_IMETHOD UnregisterProvider(nsIDirectoryServiceProvider *provider) { return _to UnregisterProvider(provider); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDIRECTORYSERVICE(_to) \
   NS_IMETHOD Init(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Init(); } \
   NS_IMETHOD RegisterProvider(nsIDirectoryServiceProvider *provider) { return !_to ? NS_ERROR_NULL_POINTER : _to->RegisterProvider(provider); } \
-  NS_IMETHOD UnregisterProvider(nsIDirectoryServiceProvider *provider) { return !_to ? NS_ERROR_NULL_POINTER : _to->UnregisterProvider(provider); } 
+  NS_IMETHOD UnregisterProvider(nsIDirectoryServiceProvider *provider) { return !_to ? NS_ERROR_NULL_POINTER : _to->UnregisterProvider(provider); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -3549,7 +3549,7 @@ class nsIDocShellTreeItem; /* forward declaration */
     { 0x82, 0xf0, 0xd2, 0x83, 0x4a, 0xb1, 0xce, 0xc0 }}
 
 class NS_NO_VTABLE nsIDocShellTreeNode : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOCSHELLTREENODE_IID)
 
@@ -3576,7 +3576,7 @@ class NS_NO_VTABLE nsIDocShellTreeNode : public nsISupports {
   NS_IMETHOD AddChild(nsIDocShellTreeItem *child); \
   NS_IMETHOD RemoveChild(nsIDocShellTreeItem *child); \
   NS_IMETHOD GetChildAt(PRInt32 index, nsIDocShellTreeItem **_retval); \
-  NS_IMETHOD FindChildWithName(const PRUnichar *name, PRBool recurse, PRBool same_type, nsIDocShellTreeItem *requestor, nsIDocShellTreeItem *original_requestor, nsIDocShellTreeItem **_retval); 
+  NS_IMETHOD FindChildWithName(const PRUnichar *name, PRBool recurse, PRBool same_type, nsIDocShellTreeItem *requestor, nsIDocShellTreeItem *original_requestor, nsIDocShellTreeItem **_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOCSHELLTREENODE(_to) \
@@ -3584,7 +3584,7 @@ class NS_NO_VTABLE nsIDocShellTreeNode : public nsISupports {
   NS_IMETHOD AddChild(nsIDocShellTreeItem *child) { return _to AddChild(child); } \
   NS_IMETHOD RemoveChild(nsIDocShellTreeItem *child) { return _to RemoveChild(child); } \
   NS_IMETHOD GetChildAt(PRInt32 index, nsIDocShellTreeItem **_retval) { return _to GetChildAt(index, _retval); } \
-  NS_IMETHOD FindChildWithName(const PRUnichar *name, PRBool recurse, PRBool same_type, nsIDocShellTreeItem *requestor, nsIDocShellTreeItem *original_requestor, nsIDocShellTreeItem **_retval) { return _to FindChildWithName(name, recurse, same_type, requestor, original_requestor, _retval); } 
+  NS_IMETHOD FindChildWithName(const PRUnichar *name, PRBool recurse, PRBool same_type, nsIDocShellTreeItem *requestor, nsIDocShellTreeItem *original_requestor, nsIDocShellTreeItem **_retval) { return _to FindChildWithName(name, recurse, same_type, requestor, original_requestor, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOCSHELLTREENODE(_to) \
@@ -3592,7 +3592,7 @@ class NS_NO_VTABLE nsIDocShellTreeNode : public nsISupports {
   NS_IMETHOD AddChild(nsIDocShellTreeItem *child) { return !_to ? NS_ERROR_NULL_POINTER : _to->AddChild(child); } \
   NS_IMETHOD RemoveChild(nsIDocShellTreeItem *child) { return !_to ? NS_ERROR_NULL_POINTER : _to->RemoveChild(child); } \
   NS_IMETHOD GetChildAt(PRInt32 index, nsIDocShellTreeItem **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetChildAt(index, _retval); } \
-  NS_IMETHOD FindChildWithName(const PRUnichar *name, PRBool recurse, PRBool same_type, nsIDocShellTreeItem *requestor, nsIDocShellTreeItem *original_requestor, nsIDocShellTreeItem **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->FindChildWithName(name, recurse, same_type, requestor, original_requestor, _retval); } 
+  NS_IMETHOD FindChildWithName(const PRUnichar *name, PRBool recurse, PRBool same_type, nsIDocShellTreeItem *requestor, nsIDocShellTreeItem *original_requestor, nsIDocShellTreeItem **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->FindChildWithName(name, recurse, same_type, requestor, original_requestor, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -3668,7 +3668,7 @@ NS_IMETHODIMP nsDocShellTreeNode::FindChildWithName(const PRUnichar *name, PRBoo
     { 0xbc, 0x95, 0x32, 0x19, 0xe8, 0xb5, 0x50, 0x89 }}
 
 class NS_NO_VTABLE nsIDocShellTreeItem : public nsIDocShellTreeNode {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOCSHELLTREEITEM_IID)
 
@@ -3729,7 +3729,7 @@ class NS_NO_VTABLE nsIDocShellTreeItem : public nsIDocShellTreeNode {
   NS_IMETHOD GetSameTypeRootTreeItem(nsIDocShellTreeItem * *aSameTypeRootTreeItem); \
   NS_IMETHOD FindItemWithName(const PRUnichar *name, nsISupports *requestor, nsIDocShellTreeItem *original_requestor, nsIDocShellTreeItem **_retval); \
   NS_IMETHOD GetTreeOwner(nsIDocShellTreeOwner * *aTreeOwner); \
-  NS_IMETHOD SetTreeOwner(nsIDocShellTreeOwner *tree_owner); 
+  NS_IMETHOD SetTreeOwner(nsIDocShellTreeOwner *tree_owner);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOCSHELLTREEITEM(_to) \
@@ -3744,7 +3744,7 @@ class NS_NO_VTABLE nsIDocShellTreeItem : public nsIDocShellTreeNode {
   NS_IMETHOD GetSameTypeRootTreeItem(nsIDocShellTreeItem * *aSameTypeRootTreeItem) { return _to GetSameTypeRootTreeItem(aSameTypeRootTreeItem); } \
   NS_IMETHOD FindItemWithName(const PRUnichar *name, nsISupports *requestor, nsIDocShellTreeItem *original_requestor, nsIDocShellTreeItem **_retval) { return _to FindItemWithName(name, requestor, original_requestor, _retval); } \
   NS_IMETHOD GetTreeOwner(nsIDocShellTreeOwner * *aTreeOwner) { return _to GetTreeOwner(aTreeOwner); } \
-  NS_IMETHOD SetTreeOwner(nsIDocShellTreeOwner *tree_owner) { return _to SetTreeOwner(tree_owner); } 
+  NS_IMETHOD SetTreeOwner(nsIDocShellTreeOwner *tree_owner) { return _to SetTreeOwner(tree_owner); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOCSHELLTREEITEM(_to) \
@@ -3759,7 +3759,7 @@ class NS_NO_VTABLE nsIDocShellTreeItem : public nsIDocShellTreeNode {
   NS_IMETHOD GetSameTypeRootTreeItem(nsIDocShellTreeItem * *aSameTypeRootTreeItem) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetSameTypeRootTreeItem(aSameTypeRootTreeItem); } \
   NS_IMETHOD FindItemWithName(const PRUnichar *name, nsISupports *requestor, nsIDocShellTreeItem *original_requestor, nsIDocShellTreeItem **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->FindItemWithName(name, requestor, original_requestor, _retval); } \
   NS_IMETHOD GetTreeOwner(nsIDocShellTreeOwner * *aTreeOwner) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetTreeOwner(aTreeOwner); } \
-  NS_IMETHOD SetTreeOwner(nsIDocShellTreeOwner *tree_owner) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetTreeOwner(tree_owner); } 
+  NS_IMETHOD SetTreeOwner(nsIDocShellTreeOwner *tree_owner) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetTreeOwner(tree_owner); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -3873,7 +3873,7 @@ NS_IMETHODIMP nsDocShellTreeItem::SetTreeOwner(nsIDocShellTreeOwner *tree_owner)
     { 0xaf, 0xb5, 0x9a, 0x4f, 0x7d, 0x68, 0xb8, 0x25 }}
 
 class NS_NO_VTABLE ns18IDocShellTreeItem : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_18IDOCSHELLTREEITEM_IID)
 
@@ -3940,7 +3940,7 @@ class NS_NO_VTABLE ns18IDocShellTreeItem : public nsISupports {
   NS_IMETHOD GetTreeOwner(nsIDocShellTreeOwner * *aTreeOwner); \
   NS_IMETHOD SetTreeOwner(nsIDocShellTreeOwner *tree_owner); \
   NS_IMETHOD GetChildOffset(PRInt32 *aChildOffset); \
-  NS_IMETHOD SetChildOffset(PRInt32 aChildOffset); 
+  NS_IMETHOD SetChildOffset(PRInt32 aChildOffset);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NS18IDOCSHELLTREEITEM(_to) \
@@ -3957,7 +3957,7 @@ class NS_NO_VTABLE ns18IDocShellTreeItem : public nsISupports {
   NS_IMETHOD GetTreeOwner(nsIDocShellTreeOwner * *aTreeOwner) { return _to GetTreeOwner(aTreeOwner); } \
   NS_IMETHOD SetTreeOwner(nsIDocShellTreeOwner *tree_owner) { return _to SetTreeOwner(tree_owner); } \
   NS_IMETHOD GetChildOffset(PRInt32 *aChildOffset) { return _to GetChildOffset(aChildOffset); } \
-  NS_IMETHOD SetChildOffset(PRInt32 aChildOffset) { return _to SetChildOffset(aChildOffset); } 
+  NS_IMETHOD SetChildOffset(PRInt32 aChildOffset) { return _to SetChildOffset(aChildOffset); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NS18IDOCSHELLTREEITEM(_to) \
@@ -3974,7 +3974,7 @@ class NS_NO_VTABLE ns18IDocShellTreeItem : public nsISupports {
   NS_IMETHOD GetTreeOwner(nsIDocShellTreeOwner * *aTreeOwner) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetTreeOwner(aTreeOwner); } \
   NS_IMETHOD SetTreeOwner(nsIDocShellTreeOwner *tree_owner) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetTreeOwner(tree_owner); } \
   NS_IMETHOD GetChildOffset(PRInt32 *aChildOffset) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetChildOffset(aChildOffset); } \
-  NS_IMETHOD SetChildOffset(PRInt32 aChildOffset) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetChildOffset(aChildOffset); } 
+  NS_IMETHOD SetChildOffset(PRInt32 aChildOffset) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetChildOffset(aChildOffset); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -4106,7 +4106,7 @@ class DOMException; /* forward declaration */
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMNode : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMNODE_IID)
 
@@ -4233,7 +4233,7 @@ class NS_NO_VTABLE nsIDOMNode : public nsISupports {
   NS_IMETHOD GetPrefix(nsAString & aPrefix); \
   NS_IMETHOD SetPrefix(const nsAString & aPrefix); \
   NS_IMETHOD GetLocalName(nsAString & aLocalName); \
-  NS_IMETHOD HasAttributes(PRBool *_retval); 
+  NS_IMETHOD HasAttributes(PRBool *_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMNODE(_to) \
@@ -4261,7 +4261,7 @@ class NS_NO_VTABLE nsIDOMNode : public nsISupports {
   NS_IMETHOD GetPrefix(nsAString & aPrefix) { return _to GetPrefix(aPrefix); } \
   NS_IMETHOD SetPrefix(const nsAString & aPrefix) { return _to SetPrefix(aPrefix); } \
   NS_IMETHOD GetLocalName(nsAString & aLocalName) { return _to GetLocalName(aLocalName); } \
-  NS_IMETHOD HasAttributes(PRBool *_retval) { return _to HasAttributes(_retval); } 
+  NS_IMETHOD HasAttributes(PRBool *_retval) { return _to HasAttributes(_retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMNODE(_to) \
@@ -4289,7 +4289,7 @@ class NS_NO_VTABLE nsIDOMNode : public nsISupports {
   NS_IMETHOD GetPrefix(nsAString & aPrefix) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetPrefix(aPrefix); } \
   NS_IMETHOD SetPrefix(const nsAString & aPrefix) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetPrefix(aPrefix); } \
   NS_IMETHOD GetLocalName(nsAString & aLocalName) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetLocalName(aLocalName); } \
-  NS_IMETHOD HasAttributes(PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->HasAttributes(_retval); } 
+  NS_IMETHOD HasAttributes(PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->HasAttributes(_retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -4489,7 +4489,7 @@ class nsIDOMUserDataHandler; /* forward declaration */
     { 0x8d, 0xd9, 0xa6, 0xfd, 0x5d, 0x5a, 0xd1, 0x2f }}
 
 class NS_NO_VTABLE nsIDOM3Node : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOM3NODE_IID)
 
@@ -4554,7 +4554,7 @@ class NS_NO_VTABLE nsIDOM3Node : public nsISupports {
   NS_IMETHOD IsEqualNode(nsIDOMNode *arg, PRBool *_retval); \
   NS_IMETHOD GetFeature(const nsAString & feature, const nsAString & version, nsISupports **_retval); \
   NS_IMETHOD SetUserData(const nsAString & key, nsIVariant *data, nsIDOMUserDataHandler *handler, nsIVariant **_retval); \
-  NS_IMETHOD GetUserData(const nsAString & key, nsIVariant **_retval); 
+  NS_IMETHOD GetUserData(const nsAString & key, nsIVariant **_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOM3NODE(_to) \
@@ -4569,7 +4569,7 @@ class NS_NO_VTABLE nsIDOM3Node : public nsISupports {
   NS_IMETHOD IsEqualNode(nsIDOMNode *arg, PRBool *_retval) { return _to IsEqualNode(arg, _retval); } \
   NS_IMETHOD GetFeature(const nsAString & feature, const nsAString & version, nsISupports **_retval) { return _to GetFeature(feature, version, _retval); } \
   NS_IMETHOD SetUserData(const nsAString & key, nsIVariant *data, nsIDOMUserDataHandler *handler, nsIVariant **_retval) { return _to SetUserData(key, data, handler, _retval); } \
-  NS_IMETHOD GetUserData(const nsAString & key, nsIVariant **_retval) { return _to GetUserData(key, _retval); } 
+  NS_IMETHOD GetUserData(const nsAString & key, nsIVariant **_retval) { return _to GetUserData(key, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOM3NODE(_to) \
@@ -4584,7 +4584,7 @@ class NS_NO_VTABLE nsIDOM3Node : public nsISupports {
   NS_IMETHOD IsEqualNode(nsIDOMNode *arg, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->IsEqualNode(arg, _retval); } \
   NS_IMETHOD GetFeature(const nsAString & feature, const nsAString & version, nsISupports **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetFeature(feature, version, _retval); } \
   NS_IMETHOD SetUserData(const nsAString & key, nsIVariant *data, nsIDOMUserDataHandler *handler, nsIVariant **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetUserData(key, data, handler, _retval); } \
-  NS_IMETHOD GetUserData(const nsAString & key, nsIVariant **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetUserData(key, _retval); } 
+  NS_IMETHOD GetUserData(const nsAString & key, nsIVariant **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetUserData(key, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -4702,7 +4702,7 @@ class nsIDOMDOMConfiguration; /* forward declaration */
     { 0xbd, 0xeb, 0xca, 0x64, 0xe1, 0xab, 0xeb, 0xa4 }}
 
 class NS_NO_VTABLE nsIDOM3Document : public nsIDOM3Node {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOM3DOCUMENT_IID)
 
@@ -4757,7 +4757,7 @@ class NS_NO_VTABLE nsIDOM3Document : public nsIDOM3Node {
   NS_IMETHOD AdoptNode(nsIDOMNode *source, nsIDOMNode **_retval); \
   NS_IMETHOD GetDomConfig(nsIDOMDOMConfiguration * *aDomConfig); \
   NS_IMETHOD NormalizeDocument(void); \
-  NS_IMETHOD RenameNode(nsIDOMNode *node, const nsAString & namespaceURI, const nsAString & qualifiedName, nsIDOMNode **_retval); 
+  NS_IMETHOD RenameNode(nsIDOMNode *node, const nsAString & namespaceURI, const nsAString & qualifiedName, nsIDOMNode **_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOM3DOCUMENT(_to) \
@@ -4774,7 +4774,7 @@ class NS_NO_VTABLE nsIDOM3Document : public nsIDOM3Node {
   NS_IMETHOD AdoptNode(nsIDOMNode *source, nsIDOMNode **_retval) { return _to AdoptNode(source, _retval); } \
   NS_IMETHOD GetDomConfig(nsIDOMDOMConfiguration * *aDomConfig) { return _to GetDomConfig(aDomConfig); } \
   NS_IMETHOD NormalizeDocument(void) { return _to NormalizeDocument(); } \
-  NS_IMETHOD RenameNode(nsIDOMNode *node, const nsAString & namespaceURI, const nsAString & qualifiedName, nsIDOMNode **_retval) { return _to RenameNode(node, namespaceURI, qualifiedName, _retval); } 
+  NS_IMETHOD RenameNode(nsIDOMNode *node, const nsAString & namespaceURI, const nsAString & qualifiedName, nsIDOMNode **_retval) { return _to RenameNode(node, namespaceURI, qualifiedName, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOM3DOCUMENT(_to) \
@@ -4791,7 +4791,7 @@ class NS_NO_VTABLE nsIDOM3Document : public nsIDOM3Node {
   NS_IMETHOD AdoptNode(nsIDOMNode *source, nsIDOMNode **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->AdoptNode(source, _retval); } \
   NS_IMETHOD GetDomConfig(nsIDOMDOMConfiguration * *aDomConfig) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetDomConfig(aDomConfig); } \
   NS_IMETHOD NormalizeDocument(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->NormalizeDocument(); } \
-  NS_IMETHOD RenameNode(nsIDOMNode *node, const nsAString & namespaceURI, const nsAString & qualifiedName, nsIDOMNode **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->RenameNode(node, namespaceURI, qualifiedName, _retval); } 
+  NS_IMETHOD RenameNode(nsIDOMNode *node, const nsAString & namespaceURI, const nsAString & qualifiedName, nsIDOMNode **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->RenameNode(node, namespaceURI, qualifiedName, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -4915,7 +4915,7 @@ class nsIDOMElement; /* forward declaration */
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMAttr : public nsIDOMNode {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMATTR_IID)
 
@@ -4940,7 +4940,7 @@ class NS_NO_VTABLE nsIDOMAttr : public nsIDOMNode {
   NS_IMETHOD GetSpecified(PRBool *aSpecified); \
   NS_IMETHOD GetValue(nsAString & aValue); \
   NS_IMETHOD SetValue(const nsAString & aValue); \
-  NS_IMETHOD GetOwnerElement(nsIDOMElement * *aOwnerElement); 
+  NS_IMETHOD GetOwnerElement(nsIDOMElement * *aOwnerElement);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMATTR(_to) \
@@ -4948,7 +4948,7 @@ class NS_NO_VTABLE nsIDOMAttr : public nsIDOMNode {
   NS_IMETHOD GetSpecified(PRBool *aSpecified) { return _to GetSpecified(aSpecified); } \
   NS_IMETHOD GetValue(nsAString & aValue) { return _to GetValue(aValue); } \
   NS_IMETHOD SetValue(const nsAString & aValue) { return _to SetValue(aValue); } \
-  NS_IMETHOD GetOwnerElement(nsIDOMElement * *aOwnerElement) { return _to GetOwnerElement(aOwnerElement); } 
+  NS_IMETHOD GetOwnerElement(nsIDOMElement * *aOwnerElement) { return _to GetOwnerElement(aOwnerElement); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMATTR(_to) \
@@ -4956,7 +4956,7 @@ class NS_NO_VTABLE nsIDOMAttr : public nsIDOMNode {
   NS_IMETHOD GetSpecified(PRBool *aSpecified) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetSpecified(aSpecified); } \
   NS_IMETHOD GetValue(nsAString & aValue) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetValue(aValue); } \
   NS_IMETHOD SetValue(const nsAString & aValue) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetValue(aValue); } \
-  NS_IMETHOD GetOwnerElement(nsIDOMElement * *aOwnerElement) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetOwnerElement(aOwnerElement); } 
+  NS_IMETHOD GetOwnerElement(nsIDOMElement * *aOwnerElement) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetOwnerElement(aOwnerElement); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -5034,7 +5034,7 @@ class DOMException; /* forward declaration */
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMElement : public nsIDOMNode {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMELEMENT_IID)
 
@@ -5105,7 +5105,7 @@ class NS_NO_VTABLE nsIDOMElement : public nsIDOMNode {
   NS_IMETHOD SetAttributeNodeNS(nsIDOMAttr *newAttr, nsIDOMAttr **_retval); \
   NS_IMETHOD GetElementsByTagNameNS(const nsAString & namespace_uri, const nsAString & local_name, nsIDOMNodeList **_retval); \
   NS_IMETHOD HasAttribute(const nsAString & name, PRBool *_retval); \
-  NS_IMETHOD HasAttributeNS(const nsAString & namespace_uri, const nsAString & local_name, PRBool *_retval); 
+  NS_IMETHOD HasAttributeNS(const nsAString & namespace_uri, const nsAString & local_name, PRBool *_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMELEMENT(_to) \
@@ -5124,7 +5124,7 @@ class NS_NO_VTABLE nsIDOMElement : public nsIDOMNode {
   NS_IMETHOD SetAttributeNodeNS(nsIDOMAttr *newAttr, nsIDOMAttr **_retval) { return _to SetAttributeNodeNS(newAttr, _retval); } \
   NS_IMETHOD GetElementsByTagNameNS(const nsAString & namespace_uri, const nsAString & local_name, nsIDOMNodeList **_retval) { return _to GetElementsByTagNameNS(namespace_uri, local_name, _retval); } \
   NS_IMETHOD HasAttribute(const nsAString & name, PRBool *_retval) { return _to HasAttribute(name, _retval); } \
-  NS_IMETHOD HasAttributeNS(const nsAString & namespace_uri, const nsAString & local_name, PRBool *_retval) { return _to HasAttributeNS(namespace_uri, local_name, _retval); } 
+  NS_IMETHOD HasAttributeNS(const nsAString & namespace_uri, const nsAString & local_name, PRBool *_retval) { return _to HasAttributeNS(namespace_uri, local_name, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMELEMENT(_to) \
@@ -5143,7 +5143,7 @@ class NS_NO_VTABLE nsIDOMElement : public nsIDOMNode {
   NS_IMETHOD SetAttributeNodeNS(nsIDOMAttr *newAttr, nsIDOMAttr **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetAttributeNodeNS(newAttr, _retval); } \
   NS_IMETHOD GetElementsByTagNameNS(const nsAString & namespace_uri, const nsAString & local_name, nsIDOMNodeList **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetElementsByTagNameNS(namespace_uri, local_name, _retval); } \
   NS_IMETHOD HasAttribute(const nsAString & name, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->HasAttribute(name, _retval); } \
-  NS_IMETHOD HasAttributeNS(const nsAString & namespace_uri, const nsAString & local_name, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->HasAttributeNS(namespace_uri, local_name, _retval); } 
+  NS_IMETHOD HasAttributeNS(const nsAString & namespace_uri, const nsAString & local_name, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->HasAttributeNS(namespace_uri, local_name, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -5285,7 +5285,7 @@ NS_IMETHODIMP nsDOMElement::HasAttributeNS(const nsAString & namespace_uri, cons
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMCharacterData : public nsIDOMNode {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMCHARACTERDATA_IID)
 
@@ -5322,7 +5322,7 @@ class NS_NO_VTABLE nsIDOMCharacterData : public nsIDOMNode {
   NS_IMETHOD AppendData(const nsAString & arg); \
   NS_IMETHOD InsertData(PRUint32 offset, const nsAString & arg); \
   NS_IMETHOD DeleteData(PRUint32 offset, PRUint32 count); \
-  NS_IMETHOD ReplaceData(PRUint32 offset, PRUint32 count, const nsAString & arg); 
+  NS_IMETHOD ReplaceData(PRUint32 offset, PRUint32 count, const nsAString & arg);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMCHARACTERDATA(_to) \
@@ -5333,7 +5333,7 @@ class NS_NO_VTABLE nsIDOMCharacterData : public nsIDOMNode {
   NS_IMETHOD AppendData(const nsAString & arg) { return _to AppendData(arg); } \
   NS_IMETHOD InsertData(PRUint32 offset, const nsAString & arg) { return _to InsertData(offset, arg); } \
   NS_IMETHOD DeleteData(PRUint32 offset, PRUint32 count) { return _to DeleteData(offset, count); } \
-  NS_IMETHOD ReplaceData(PRUint32 offset, PRUint32 count, const nsAString & arg) { return _to ReplaceData(offset, count, arg); } 
+  NS_IMETHOD ReplaceData(PRUint32 offset, PRUint32 count, const nsAString & arg) { return _to ReplaceData(offset, count, arg); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMCHARACTERDATA(_to) \
@@ -5344,7 +5344,7 @@ class NS_NO_VTABLE nsIDOMCharacterData : public nsIDOMNode {
   NS_IMETHOD AppendData(const nsAString & arg) { return !_to ? NS_ERROR_NULL_POINTER : _to->AppendData(arg); } \
   NS_IMETHOD InsertData(PRUint32 offset, const nsAString & arg) { return !_to ? NS_ERROR_NULL_POINTER : _to->InsertData(offset, arg); } \
   NS_IMETHOD DeleteData(PRUint32 offset, PRUint32 count) { return !_to ? NS_ERROR_NULL_POINTER : _to->DeleteData(offset, count); } \
-  NS_IMETHOD ReplaceData(PRUint32 offset, PRUint32 count, const nsAString & arg) { return !_to ? NS_ERROR_NULL_POINTER : _to->ReplaceData(offset, count, arg); } 
+  NS_IMETHOD ReplaceData(PRUint32 offset, PRUint32 count, const nsAString & arg) { return !_to ? NS_ERROR_NULL_POINTER : _to->ReplaceData(offset, count, arg); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -5456,7 +5456,7 @@ class nsIDOMEntityReference; /* forward declaration */
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMDocument : public nsIDOMNode {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMDOCUMENT_IID)
 
@@ -5531,7 +5531,7 @@ class NS_NO_VTABLE nsIDOMDocument : public nsIDOMNode {
   NS_IMETHOD CreateElementNS(const nsAString & namespaceURI, const nsAString & qualifiedName, nsIDOMElement **_retval); \
   NS_IMETHOD CreateAttributeNS(const nsAString & namespaceURI, const nsAString & qualifiedName, nsIDOMAttr **_retval); \
   NS_IMETHOD GetElementsByTagNameNS(const nsAString & namespaceURI, const nsAString & localName, nsIDOMNodeList **_retval); \
-  NS_IMETHOD GetElementById(const nsAString & elementId, nsIDOMElement **_retval); 
+  NS_IMETHOD GetElementById(const nsAString & elementId, nsIDOMElement **_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMDOCUMENT(_to) \
@@ -5551,7 +5551,7 @@ class NS_NO_VTABLE nsIDOMDocument : public nsIDOMNode {
   NS_IMETHOD CreateElementNS(const nsAString & namespaceURI, const nsAString & qualifiedName, nsIDOMElement **_retval) { return _to CreateElementNS(namespaceURI, qualifiedName, _retval); } \
   NS_IMETHOD CreateAttributeNS(const nsAString & namespaceURI, const nsAString & qualifiedName, nsIDOMAttr **_retval) { return _to CreateAttributeNS(namespaceURI, qualifiedName, _retval); } \
   NS_IMETHOD GetElementsByTagNameNS(const nsAString & namespaceURI, const nsAString & localName, nsIDOMNodeList **_retval) { return _to GetElementsByTagNameNS(namespaceURI, localName, _retval); } \
-  NS_IMETHOD GetElementById(const nsAString & elementId, nsIDOMElement **_retval) { return _to GetElementById(elementId, _retval); } 
+  NS_IMETHOD GetElementById(const nsAString & elementId, nsIDOMElement **_retval) { return _to GetElementById(elementId, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMDOCUMENT(_to) \
@@ -5571,7 +5571,7 @@ class NS_NO_VTABLE nsIDOMDocument : public nsIDOMNode {
   NS_IMETHOD CreateElementNS(const nsAString & namespaceURI, const nsAString & qualifiedName, nsIDOMElement **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->CreateElementNS(namespaceURI, qualifiedName, _retval); } \
   NS_IMETHOD CreateAttributeNS(const nsAString & namespaceURI, const nsAString & qualifiedName, nsIDOMAttr **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->CreateAttributeNS(namespaceURI, qualifiedName, _retval); } \
   NS_IMETHOD GetElementsByTagNameNS(const nsAString & namespaceURI, const nsAString & localName, nsIDOMNodeList **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetElementsByTagNameNS(namespaceURI, localName, _retval); } \
-  NS_IMETHOD GetElementById(const nsAString & elementId, nsIDOMElement **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetElementById(elementId, _retval); } 
+  NS_IMETHOD GetElementById(const nsAString & elementId, nsIDOMElement **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetElementById(elementId, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -5725,7 +5725,7 @@ class DOMTimeStamp; /* forward declaration */
     { 0x00, 0x80, 0x5f, 0x8a, 0xe3, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMEvent : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMEVENT_IID)
 
@@ -5778,7 +5778,7 @@ class NS_NO_VTABLE nsIDOMEvent : public nsISupports {
   NS_IMETHOD GetTimeStamp(DOMTimeStamp * *aTimeStamp); \
   NS_IMETHOD StopPropagation(void); \
   NS_IMETHOD PreventDefault(void); \
-  NS_IMETHOD InitEvent(const nsAString & event_type_arg, PRBool can_bubble_arg, PRBool cancelable_arg); 
+  NS_IMETHOD InitEvent(const nsAString & event_type_arg, PRBool can_bubble_arg, PRBool cancelable_arg);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMEVENT(_to) \
@@ -5791,7 +5791,7 @@ class NS_NO_VTABLE nsIDOMEvent : public nsISupports {
   NS_IMETHOD GetTimeStamp(DOMTimeStamp * *aTimeStamp) { return _to GetTimeStamp(aTimeStamp); } \
   NS_IMETHOD StopPropagation(void) { return _to StopPropagation(); } \
   NS_IMETHOD PreventDefault(void) { return _to PreventDefault(); } \
-  NS_IMETHOD InitEvent(const nsAString & event_type_arg, PRBool can_bubble_arg, PRBool cancelable_arg) { return _to InitEvent(event_type_arg, can_bubble_arg, cancelable_arg); } 
+  NS_IMETHOD InitEvent(const nsAString & event_type_arg, PRBool can_bubble_arg, PRBool cancelable_arg) { return _to InitEvent(event_type_arg, can_bubble_arg, cancelable_arg); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMEVENT(_to) \
@@ -5804,7 +5804,7 @@ class NS_NO_VTABLE nsIDOMEvent : public nsISupports {
   NS_IMETHOD GetTimeStamp(DOMTimeStamp * *aTimeStamp) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetTimeStamp(aTimeStamp); } \
   NS_IMETHOD StopPropagation(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->StopPropagation(); } \
   NS_IMETHOD PreventDefault(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->PreventDefault(); } \
-  NS_IMETHOD InitEvent(const nsAString & event_type_arg, PRBool can_bubble_arg, PRBool cancelable_arg) { return !_to ? NS_ERROR_NULL_POINTER : _to->InitEvent(event_type_arg, can_bubble_arg, cancelable_arg); } 
+  NS_IMETHOD InitEvent(const nsAString & event_type_arg, PRBool can_bubble_arg, PRBool cancelable_arg) { return !_to ? NS_ERROR_NULL_POINTER : _to->InitEvent(event_type_arg, can_bubble_arg, cancelable_arg); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -5912,7 +5912,7 @@ class nsIDOMEvent; /* forward declaration */
     { 0xbd, 0x85, 0x00, 0x80, 0x5f, 0x8a, 0xe3, 0xf4 }}
 
 class NS_NO_VTABLE nsIDOMEventListener : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMEVENTLISTENER_IID)
 
@@ -5923,15 +5923,15 @@ class NS_NO_VTABLE nsIDOMEventListener : public nsISupports {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIDOMEVENTLISTENER \
-  NS_IMETHOD HandleEvent(nsIDOMEvent *event); 
+  NS_IMETHOD HandleEvent(nsIDOMEvent *event);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMEVENTLISTENER(_to) \
-  NS_IMETHOD HandleEvent(nsIDOMEvent *event) { return _to HandleEvent(event); } 
+  NS_IMETHOD HandleEvent(nsIDOMEvent *event) { return _to HandleEvent(event); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMEVENTLISTENER(_to) \
-  NS_IMETHOD HandleEvent(nsIDOMEvent *event) { return !_to ? NS_ERROR_NULL_POINTER : _to->HandleEvent(event); } 
+  NS_IMETHOD HandleEvent(nsIDOMEvent *event) { return !_to ? NS_ERROR_NULL_POINTER : _to->HandleEvent(event); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -5989,7 +5989,7 @@ class DOMException; /* forward declaration */
     { 0xbd, 0x95, 0x00, 0x80, 0x5f, 0x8a, 0xe3, 0xf4 }}
 
 class NS_NO_VTABLE nsIDOMEventTarget : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMEVENTTARGET_IID)
 
@@ -6008,19 +6008,19 @@ class NS_NO_VTABLE nsIDOMEventTarget : public nsISupports {
 #define NS_DECL_NSIDOMEVENTTARGET \
   NS_IMETHOD AddEventListener(const nsAString & type, nsIDOMEventListener *listener, PRBool use_capture); \
   NS_IMETHOD RemoveEventListener(const nsAString & type, nsIDOMEventListener *listener, PRBool use_capture); \
-  NS_IMETHOD DispatchEvent(nsIDOMEvent *evt, PRBool *_retval); 
+  NS_IMETHOD DispatchEvent(nsIDOMEvent *evt, PRBool *_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMEVENTTARGET(_to) \
   NS_IMETHOD AddEventListener(const nsAString & type, nsIDOMEventListener *listener, PRBool use_capture) { return _to AddEventListener(type, listener, use_capture); } \
   NS_IMETHOD RemoveEventListener(const nsAString & type, nsIDOMEventListener *listener, PRBool use_capture) { return _to RemoveEventListener(type, listener, use_capture); } \
-  NS_IMETHOD DispatchEvent(nsIDOMEvent *evt, PRBool *_retval) { return _to DispatchEvent(evt, _retval); } 
+  NS_IMETHOD DispatchEvent(nsIDOMEvent *evt, PRBool *_retval) { return _to DispatchEvent(evt, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMEVENTTARGET(_to) \
   NS_IMETHOD AddEventListener(const nsAString & type, nsIDOMEventListener *listener, PRBool use_capture) { return !_to ? NS_ERROR_NULL_POINTER : _to->AddEventListener(type, listener, use_capture); } \
   NS_IMETHOD RemoveEventListener(const nsAString & type, nsIDOMEventListener *listener, PRBool use_capture) { return !_to ? NS_ERROR_NULL_POINTER : _to->RemoveEventListener(type, listener, use_capture); } \
-  NS_IMETHOD DispatchEvent(nsIDOMEvent *evt, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->DispatchEvent(evt, _retval); } 
+  NS_IMETHOD DispatchEvent(nsIDOMEvent *evt, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->DispatchEvent(evt, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -6084,7 +6084,7 @@ NS_IMETHODIMP nsDOMEventTarget::DispatchEvent(nsIDOMEvent *evt, PRBool *_retval)
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMHTMLElement : public nsIDOMElement {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMHTMLELEMENT_IID)
 
@@ -6121,7 +6121,7 @@ class NS_NO_VTABLE nsIDOMHTMLElement : public nsIDOMElement {
   NS_IMETHOD GetDir(nsAString & aDir); \
   NS_IMETHOD SetDir(const nsAString & aDir); \
   NS_IMETHOD GetClassName(nsAString & aClassName); \
-  NS_IMETHOD SetClassName(const nsAString & aClassName); 
+  NS_IMETHOD SetClassName(const nsAString & aClassName);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMHTMLELEMENT(_to) \
@@ -6134,7 +6134,7 @@ class NS_NO_VTABLE nsIDOMHTMLElement : public nsIDOMElement {
   NS_IMETHOD GetDir(nsAString & aDir) { return _to GetDir(aDir); } \
   NS_IMETHOD SetDir(const nsAString & aDir) { return _to SetDir(aDir); } \
   NS_IMETHOD GetClassName(nsAString & aClassName) { return _to GetClassName(aClassName); } \
-  NS_IMETHOD SetClassName(const nsAString & aClassName) { return _to SetClassName(aClassName); } 
+  NS_IMETHOD SetClassName(const nsAString & aClassName) { return _to SetClassName(aClassName); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMHTMLELEMENT(_to) \
@@ -6147,7 +6147,7 @@ class NS_NO_VTABLE nsIDOMHTMLElement : public nsIDOMElement {
   NS_IMETHOD GetDir(nsAString & aDir) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetDir(aDir); } \
   NS_IMETHOD SetDir(const nsAString & aDir) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetDir(aDir); } \
   NS_IMETHOD GetClassName(nsAString & aClassName) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetClassName(aClassName); } \
-  NS_IMETHOD SetClassName(const nsAString & aClassName) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetClassName(aClassName); } 
+  NS_IMETHOD SetClassName(const nsAString & aClassName) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetClassName(aClassName); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -6243,7 +6243,7 @@ NS_IMETHODIMP nsDOMHTMLElement::SetClassName(const nsAString & aClassName)
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMHTMLAnchorElement : public nsIDOMHTMLElement {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMHTMLANCHORELEMENT_IID)
 
@@ -6330,7 +6330,7 @@ class NS_NO_VTABLE nsIDOMHTMLAnchorElement : public nsIDOMHTMLElement {
   NS_IMETHOD GetType(nsAString & aType); \
   NS_IMETHOD SetType(const nsAString & aType); \
   NS_IMETHOD Blur(void); \
-  NS_IMETHOD Focus(void); 
+  NS_IMETHOD Focus(void);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMHTMLANCHORELEMENT(_to) \
@@ -6359,7 +6359,7 @@ class NS_NO_VTABLE nsIDOMHTMLAnchorElement : public nsIDOMHTMLElement {
   NS_IMETHOD GetType(nsAString & aType) { return _to GetType(aType); } \
   NS_IMETHOD SetType(const nsAString & aType) { return _to SetType(aType); } \
   NS_IMETHOD Blur(void) { return _to Blur(); } \
-  NS_IMETHOD Focus(void) { return _to Focus(); } 
+  NS_IMETHOD Focus(void) { return _to Focus(); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMHTMLANCHORELEMENT(_to) \
@@ -6388,7 +6388,7 @@ class NS_NO_VTABLE nsIDOMHTMLAnchorElement : public nsIDOMHTMLElement {
   NS_IMETHOD GetType(nsAString & aType) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetType(aType); } \
   NS_IMETHOD SetType(const nsAString & aType) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetType(aType); } \
   NS_IMETHOD Blur(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Blur(); } \
-  NS_IMETHOD Focus(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Focus(); } 
+  NS_IMETHOD Focus(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Focus(); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -6568,7 +6568,7 @@ class nsIDOMHTMLFormElement; /* forward declaration */
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMHTMLButtonElement : public nsIDOMHTMLElement {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMHTMLBUTTONELEMENT_IID)
 
@@ -6613,7 +6613,7 @@ class NS_NO_VTABLE nsIDOMHTMLButtonElement : public nsIDOMHTMLElement {
   NS_IMETHOD SetTabIndex(PRInt32 aTabIndex); \
   NS_IMETHOD GetType(nsAString & aType); \
   NS_IMETHOD GetValue(nsAString & aValue); \
-  NS_IMETHOD SetValue(const nsAString & aValue); 
+  NS_IMETHOD SetValue(const nsAString & aValue);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMHTMLBUTTONELEMENT(_to) \
@@ -6628,7 +6628,7 @@ class NS_NO_VTABLE nsIDOMHTMLButtonElement : public nsIDOMHTMLElement {
   NS_IMETHOD SetTabIndex(PRInt32 aTabIndex) { return _to SetTabIndex(aTabIndex); } \
   NS_IMETHOD GetType(nsAString & aType) { return _to GetType(aType); } \
   NS_IMETHOD GetValue(nsAString & aValue) { return _to GetValue(aValue); } \
-  NS_IMETHOD SetValue(const nsAString & aValue) { return _to SetValue(aValue); } 
+  NS_IMETHOD SetValue(const nsAString & aValue) { return _to SetValue(aValue); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMHTMLBUTTONELEMENT(_to) \
@@ -6643,7 +6643,7 @@ class NS_NO_VTABLE nsIDOMHTMLButtonElement : public nsIDOMHTMLElement {
   NS_IMETHOD SetTabIndex(PRInt32 aTabIndex) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetTabIndex(aTabIndex); } \
   NS_IMETHOD GetType(nsAString & aType) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetType(aType); } \
   NS_IMETHOD GetValue(nsAString & aValue) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetValue(aValue); } \
-  NS_IMETHOD SetValue(const nsAString & aValue) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetValue(aValue); } 
+  NS_IMETHOD SetValue(const nsAString & aValue) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetValue(aValue); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -6753,7 +6753,7 @@ class nsIDOMHTMLFormElement; /* forward declaration */
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMHTMLInputElement : public nsIDOMHTMLElement {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMHTMLINPUTELEMENT_IID)
 
@@ -6882,7 +6882,7 @@ class NS_NO_VTABLE nsIDOMHTMLInputElement : public nsIDOMHTMLElement {
   NS_IMETHOD Blur(void); \
   NS_IMETHOD Focus(void); \
   NS_IMETHOD Select(void); \
-  NS_IMETHOD Click(void); 
+  NS_IMETHOD Click(void);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMHTMLINPUTELEMENT(_to) \
@@ -6924,7 +6924,7 @@ class NS_NO_VTABLE nsIDOMHTMLInputElement : public nsIDOMHTMLElement {
   NS_IMETHOD Blur(void) { return _to Blur(); } \
   NS_IMETHOD Focus(void) { return _to Focus(); } \
   NS_IMETHOD Select(void) { return _to Select(); } \
-  NS_IMETHOD Click(void) { return _to Click(); } 
+  NS_IMETHOD Click(void) { return _to Click(); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMHTMLINPUTELEMENT(_to) \
@@ -6966,7 +6966,7 @@ class NS_NO_VTABLE nsIDOMHTMLInputElement : public nsIDOMHTMLElement {
   NS_IMETHOD Blur(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Blur(); } \
   NS_IMETHOD Focus(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Focus(); } \
   NS_IMETHOD Select(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Select(); } \
-  NS_IMETHOD Click(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Click(); } 
+  NS_IMETHOD Click(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Click(); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -7212,7 +7212,7 @@ NS_IMETHODIMP nsDOMHTMLInputElement::Click()
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMHTMLLinkElement : public nsIDOMHTMLElement {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMHTMLLINKELEMENT_IID)
 
@@ -7273,7 +7273,7 @@ class NS_NO_VTABLE nsIDOMHTMLLinkElement : public nsIDOMHTMLElement {
   NS_IMETHOD GetTarget(nsAString & aTarget); \
   NS_IMETHOD SetTarget(const nsAString & aTarget); \
   NS_IMETHOD GetType(nsAString & aType); \
-  NS_IMETHOD SetType(const nsAString & aType); 
+  NS_IMETHOD SetType(const nsAString & aType);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMHTMLLINKELEMENT(_to) \
@@ -7294,7 +7294,7 @@ class NS_NO_VTABLE nsIDOMHTMLLinkElement : public nsIDOMHTMLElement {
   NS_IMETHOD GetTarget(nsAString & aTarget) { return _to GetTarget(aTarget); } \
   NS_IMETHOD SetTarget(const nsAString & aTarget) { return _to SetTarget(aTarget); } \
   NS_IMETHOD GetType(nsAString & aType) { return _to GetType(aType); } \
-  NS_IMETHOD SetType(const nsAString & aType) { return _to SetType(aType); } 
+  NS_IMETHOD SetType(const nsAString & aType) { return _to SetType(aType); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMHTMLLINKELEMENT(_to) \
@@ -7315,7 +7315,7 @@ class NS_NO_VTABLE nsIDOMHTMLLinkElement : public nsIDOMHTMLElement {
   NS_IMETHOD GetTarget(nsAString & aTarget) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetTarget(aTarget); } \
   NS_IMETHOD SetTarget(const nsAString & aTarget) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetTarget(aTarget); } \
   NS_IMETHOD GetType(nsAString & aType) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetType(aType); } \
-  NS_IMETHOD SetType(const nsAString & aType) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetType(aType); } 
+  NS_IMETHOD SetType(const nsAString & aType) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetType(aType); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -7453,7 +7453,7 @@ class nsIDOMHTMLFormElement; /* forward declaration */
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMHTMLOptionElement : public nsIDOMHTMLElement {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMHTMLOPTIONELEMENT_IID)
 
@@ -7502,7 +7502,7 @@ class NS_NO_VTABLE nsIDOMHTMLOptionElement : public nsIDOMHTMLElement {
   NS_IMETHOD GetSelected(PRBool *aSelected); \
   NS_IMETHOD SetSelected(PRBool aSelected); \
   NS_IMETHOD GetValue(nsAString & aValue); \
-  NS_IMETHOD SetValue(const nsAString & aValue); 
+  NS_IMETHOD SetValue(const nsAString & aValue);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMHTMLOPTIONELEMENT(_to) \
@@ -7518,7 +7518,7 @@ class NS_NO_VTABLE nsIDOMHTMLOptionElement : public nsIDOMHTMLElement {
   NS_IMETHOD GetSelected(PRBool *aSelected) { return _to GetSelected(aSelected); } \
   NS_IMETHOD SetSelected(PRBool aSelected) { return _to SetSelected(aSelected); } \
   NS_IMETHOD GetValue(nsAString & aValue) { return _to GetValue(aValue); } \
-  NS_IMETHOD SetValue(const nsAString & aValue) { return _to SetValue(aValue); } 
+  NS_IMETHOD SetValue(const nsAString & aValue) { return _to SetValue(aValue); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMHTMLOPTIONELEMENT(_to) \
@@ -7534,7 +7534,7 @@ class NS_NO_VTABLE nsIDOMHTMLOptionElement : public nsIDOMHTMLElement {
   NS_IMETHOD GetSelected(PRBool *aSelected) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetSelected(aSelected); } \
   NS_IMETHOD SetSelected(PRBool aSelected) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetSelected(aSelected); } \
   NS_IMETHOD GetValue(nsAString & aValue) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetValue(aValue); } \
-  NS_IMETHOD SetValue(const nsAString & aValue) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetValue(aValue); } 
+  NS_IMETHOD SetValue(const nsAString & aValue) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetValue(aValue); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -7648,7 +7648,7 @@ NS_IMETHODIMP nsDOMHTMLOptionElement::SetValue(const nsAString & aValue)
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMHTMLParamElement : public nsIDOMHTMLElement {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMHTMLPARAMELEMENT_IID)
 
@@ -7679,7 +7679,7 @@ class NS_NO_VTABLE nsIDOMHTMLParamElement : public nsIDOMHTMLElement {
   NS_IMETHOD GetValue(nsAString & aValue); \
   NS_IMETHOD SetValue(const nsAString & aValue); \
   NS_IMETHOD GetValueType(nsAString & aValueType); \
-  NS_IMETHOD SetValueType(const nsAString & aValueType); 
+  NS_IMETHOD SetValueType(const nsAString & aValueType);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMHTMLPARAMELEMENT(_to) \
@@ -7690,7 +7690,7 @@ class NS_NO_VTABLE nsIDOMHTMLParamElement : public nsIDOMHTMLElement {
   NS_IMETHOD GetValue(nsAString & aValue) { return _to GetValue(aValue); } \
   NS_IMETHOD SetValue(const nsAString & aValue) { return _to SetValue(aValue); } \
   NS_IMETHOD GetValueType(nsAString & aValueType) { return _to GetValueType(aValueType); } \
-  NS_IMETHOD SetValueType(const nsAString & aValueType) { return _to SetValueType(aValueType); } 
+  NS_IMETHOD SetValueType(const nsAString & aValueType) { return _to SetValueType(aValueType); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMHTMLPARAMELEMENT(_to) \
@@ -7701,7 +7701,7 @@ class NS_NO_VTABLE nsIDOMHTMLParamElement : public nsIDOMHTMLElement {
   NS_IMETHOD GetValue(nsAString & aValue) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetValue(aValue); } \
   NS_IMETHOD SetValue(const nsAString & aValue) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetValue(aValue); } \
   NS_IMETHOD GetValueType(nsAString & aValueType) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetValueType(aValueType); } \
-  NS_IMETHOD SetValueType(const nsAString & aValueType) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetValueType(aValueType); } 
+  NS_IMETHOD SetValueType(const nsAString & aValueType) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetValueType(aValueType); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -7791,7 +7791,7 @@ class nsIDOMHTMLOptionsCollection; /* forward declaration */
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMHTMLSelectElement : public nsIDOMHTMLElement {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMHTMLSELECTELEMENT_IID)
 
@@ -7874,7 +7874,7 @@ class NS_NO_VTABLE nsIDOMHTMLSelectElement : public nsIDOMHTMLElement {
   NS_IMETHOD Add(nsIDOMHTMLElement *element, nsIDOMHTMLElement *before); \
   NS_IMETHOD Remove(PRInt32 index); \
   NS_IMETHOD Blur(void); \
-  NS_IMETHOD Focus(void); 
+  NS_IMETHOD Focus(void);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMHTMLSELECTELEMENT(_to) \
@@ -7900,7 +7900,7 @@ class NS_NO_VTABLE nsIDOMHTMLSelectElement : public nsIDOMHTMLElement {
   NS_IMETHOD Add(nsIDOMHTMLElement *element, nsIDOMHTMLElement *before) { return _to Add(element, before); } \
   NS_IMETHOD Remove(PRInt32 index) { return _to Remove(index); } \
   NS_IMETHOD Blur(void) { return _to Blur(); } \
-  NS_IMETHOD Focus(void) { return _to Focus(); } 
+  NS_IMETHOD Focus(void) { return _to Focus(); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMHTMLSELECTELEMENT(_to) \
@@ -7926,7 +7926,7 @@ class NS_NO_VTABLE nsIDOMHTMLSelectElement : public nsIDOMHTMLElement {
   NS_IMETHOD Add(nsIDOMHTMLElement *element, nsIDOMHTMLElement *before) { return !_to ? NS_ERROR_NULL_POINTER : _to->Add(element, before); } \
   NS_IMETHOD Remove(PRInt32 index) { return !_to ? NS_ERROR_NULL_POINTER : _to->Remove(index); } \
   NS_IMETHOD Blur(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Blur(); } \
-  NS_IMETHOD Focus(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Focus(); } 
+  NS_IMETHOD Focus(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Focus(); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -8096,7 +8096,7 @@ class nsIDOMHTMLFormElement; /* forward declaration */
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMHTMLTextAreaElement : public nsIDOMHTMLElement {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMHTMLTEXTAREAELEMENT_IID)
 
@@ -8177,7 +8177,7 @@ class NS_NO_VTABLE nsIDOMHTMLTextAreaElement : public nsIDOMHTMLElement {
   NS_IMETHOD SetValue(const nsAString & aValue); \
   NS_IMETHOD Blur(void); \
   NS_IMETHOD Focus(void); \
-  NS_IMETHOD Select(void); 
+  NS_IMETHOD Select(void);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMHTMLTEXTAREAELEMENT(_to) \
@@ -8203,7 +8203,7 @@ class NS_NO_VTABLE nsIDOMHTMLTextAreaElement : public nsIDOMHTMLElement {
   NS_IMETHOD SetValue(const nsAString & aValue) { return _to SetValue(aValue); } \
   NS_IMETHOD Blur(void) { return _to Blur(); } \
   NS_IMETHOD Focus(void) { return _to Focus(); } \
-  NS_IMETHOD Select(void) { return _to Select(); } 
+  NS_IMETHOD Select(void) { return _to Select(); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMHTMLTEXTAREAELEMENT(_to) \
@@ -8229,7 +8229,7 @@ class NS_NO_VTABLE nsIDOMHTMLTextAreaElement : public nsIDOMHTMLElement {
   NS_IMETHOD SetValue(const nsAString & aValue) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetValue(aValue); } \
   NS_IMETHOD Blur(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Blur(); } \
   NS_IMETHOD Focus(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Focus(); } \
-  NS_IMETHOD Select(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Select(); } 
+  NS_IMETHOD Select(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Select(); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -8397,7 +8397,7 @@ class nsIDOMAbstractView; /* forward declaration */
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMUIEvent : public nsIDOMEvent {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMUIEVENT_IID)
 
@@ -8416,19 +8416,19 @@ class NS_NO_VTABLE nsIDOMUIEvent : public nsIDOMEvent {
 #define NS_DECL_NSIDOMUIEVENT \
   NS_IMETHOD GetView(nsIDOMAbstractView * *aView); \
   NS_IMETHOD GetDetail(PRInt32 *aDetail); \
-  NS_IMETHOD InitUIEvent(const nsAString & type_arg, PRBool can_bubble_arg, PRBool cancelable_arg, nsIDOMAbstractView *view_arg, PRInt32 detail_arg); 
+  NS_IMETHOD InitUIEvent(const nsAString & type_arg, PRBool can_bubble_arg, PRBool cancelable_arg, nsIDOMAbstractView *view_arg, PRInt32 detail_arg);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMUIEVENT(_to) \
   NS_IMETHOD GetView(nsIDOMAbstractView * *aView) { return _to GetView(aView); } \
   NS_IMETHOD GetDetail(PRInt32 *aDetail) { return _to GetDetail(aDetail); } \
-  NS_IMETHOD InitUIEvent(const nsAString & type_arg, PRBool can_bubble_arg, PRBool cancelable_arg, nsIDOMAbstractView *view_arg, PRInt32 detail_arg) { return _to InitUIEvent(type_arg, can_bubble_arg, cancelable_arg, view_arg, detail_arg); } 
+  NS_IMETHOD InitUIEvent(const nsAString & type_arg, PRBool can_bubble_arg, PRBool cancelable_arg, nsIDOMAbstractView *view_arg, PRInt32 detail_arg) { return _to InitUIEvent(type_arg, can_bubble_arg, cancelable_arg, view_arg, detail_arg); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMUIEVENT(_to) \
   NS_IMETHOD GetView(nsIDOMAbstractView * *aView) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetView(aView); } \
   NS_IMETHOD GetDetail(PRInt32 *aDetail) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetDetail(aDetail); } \
-  NS_IMETHOD InitUIEvent(const nsAString & type_arg, PRBool can_bubble_arg, PRBool cancelable_arg, nsIDOMAbstractView *view_arg, PRInt32 detail_arg) { return !_to ? NS_ERROR_NULL_POINTER : _to->InitUIEvent(type_arg, can_bubble_arg, cancelable_arg, view_arg, detail_arg); } 
+  NS_IMETHOD InitUIEvent(const nsAString & type_arg, PRBool can_bubble_arg, PRBool cancelable_arg, nsIDOMAbstractView *view_arg, PRInt32 detail_arg) { return !_to ? NS_ERROR_NULL_POINTER : _to->InitUIEvent(type_arg, can_bubble_arg, cancelable_arg, view_arg, detail_arg); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -8496,7 +8496,7 @@ class nsIDOMEventTarget; /* forward declaration */
     { 0x00, 0x10, 0x83, 0x01, 0x83, 0x8a, 0x31, 0x23 }}
 
 class NS_NO_VTABLE nsIDOMMouseEvent : public nsIDOMUIEvent {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMMOUSEEVENT_IID)
 
@@ -8547,7 +8547,7 @@ class NS_NO_VTABLE nsIDOMMouseEvent : public nsIDOMUIEvent {
   NS_IMETHOD GetMetaKey(PRBool *aMetaKey); \
   NS_IMETHOD GetButton(PRUint16 *aButton); \
   NS_IMETHOD GetRelatedTarget(nsIDOMEventTarget * *aRelatedTarget); \
-  NS_IMETHOD InitMouseEvent(const nsAString & type_arg, PRBool can_bubble_arg, PRBool cancelable_arg, nsIDOMAbstractView *view_arg, PRInt32 detail_arg, PRInt32 screen_x_arg, PRInt32 screen_y_arg, PRInt32 client_x_arg, PRInt32 client_y_arg, PRBool ctrl_key_arg, PRBool alt_key_arg, PRBool shift_key_arg, PRBool meta_key_arg, PRUint16 button_arg, nsIDOMEventTarget *related_target_arg); 
+  NS_IMETHOD InitMouseEvent(const nsAString & type_arg, PRBool can_bubble_arg, PRBool cancelable_arg, nsIDOMAbstractView *view_arg, PRInt32 detail_arg, PRInt32 screen_x_arg, PRInt32 screen_y_arg, PRInt32 client_x_arg, PRInt32 client_y_arg, PRBool ctrl_key_arg, PRBool alt_key_arg, PRBool shift_key_arg, PRBool meta_key_arg, PRUint16 button_arg, nsIDOMEventTarget *related_target_arg);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMMOUSEEVENT(_to) \
@@ -8561,7 +8561,7 @@ class NS_NO_VTABLE nsIDOMMouseEvent : public nsIDOMUIEvent {
   NS_IMETHOD GetMetaKey(PRBool *aMetaKey) { return _to GetMetaKey(aMetaKey); } \
   NS_IMETHOD GetButton(PRUint16 *aButton) { return _to GetButton(aButton); } \
   NS_IMETHOD GetRelatedTarget(nsIDOMEventTarget * *aRelatedTarget) { return _to GetRelatedTarget(aRelatedTarget); } \
-  NS_IMETHOD InitMouseEvent(const nsAString & type_arg, PRBool can_bubble_arg, PRBool cancelable_arg, nsIDOMAbstractView *view_arg, PRInt32 detail_arg, PRInt32 screen_x_arg, PRInt32 screen_y_arg, PRInt32 client_x_arg, PRInt32 client_y_arg, PRBool ctrl_key_arg, PRBool alt_key_arg, PRBool shift_key_arg, PRBool meta_key_arg, PRUint16 button_arg, nsIDOMEventTarget *related_target_arg) { return _to InitMouseEvent(type_arg, can_bubble_arg, cancelable_arg, view_arg, detail_arg, screen_x_arg, screen_y_arg, client_x_arg, client_y_arg, ctrl_key_arg, alt_key_arg, shift_key_arg, meta_key_arg, button_arg, related_target_arg); } 
+  NS_IMETHOD InitMouseEvent(const nsAString & type_arg, PRBool can_bubble_arg, PRBool cancelable_arg, nsIDOMAbstractView *view_arg, PRInt32 detail_arg, PRInt32 screen_x_arg, PRInt32 screen_y_arg, PRInt32 client_x_arg, PRInt32 client_y_arg, PRBool ctrl_key_arg, PRBool alt_key_arg, PRBool shift_key_arg, PRBool meta_key_arg, PRUint16 button_arg, nsIDOMEventTarget *related_target_arg) { return _to InitMouseEvent(type_arg, can_bubble_arg, cancelable_arg, view_arg, detail_arg, screen_x_arg, screen_y_arg, client_x_arg, client_y_arg, ctrl_key_arg, alt_key_arg, shift_key_arg, meta_key_arg, button_arg, related_target_arg); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMMOUSEEVENT(_to) \
@@ -8575,7 +8575,7 @@ class NS_NO_VTABLE nsIDOMMouseEvent : public nsIDOMUIEvent {
   NS_IMETHOD GetMetaKey(PRBool *aMetaKey) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetMetaKey(aMetaKey); } \
   NS_IMETHOD GetButton(PRUint16 *aButton) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetButton(aButton); } \
   NS_IMETHOD GetRelatedTarget(nsIDOMEventTarget * *aRelatedTarget) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetRelatedTarget(aRelatedTarget); } \
-  NS_IMETHOD InitMouseEvent(const nsAString & type_arg, PRBool can_bubble_arg, PRBool cancelable_arg, nsIDOMAbstractView *view_arg, PRInt32 detail_arg, PRInt32 screen_x_arg, PRInt32 screen_y_arg, PRInt32 client_x_arg, PRInt32 client_y_arg, PRBool ctrl_key_arg, PRBool alt_key_arg, PRBool shift_key_arg, PRBool meta_key_arg, PRUint16 button_arg, nsIDOMEventTarget *related_target_arg) { return !_to ? NS_ERROR_NULL_POINTER : _to->InitMouseEvent(type_arg, can_bubble_arg, cancelable_arg, view_arg, detail_arg, screen_x_arg, screen_y_arg, client_x_arg, client_y_arg, ctrl_key_arg, alt_key_arg, shift_key_arg, meta_key_arg, button_arg, related_target_arg); } 
+  NS_IMETHOD InitMouseEvent(const nsAString & type_arg, PRBool can_bubble_arg, PRBool cancelable_arg, nsIDOMAbstractView *view_arg, PRInt32 detail_arg, PRInt32 screen_x_arg, PRInt32 screen_y_arg, PRInt32 client_x_arg, PRInt32 client_y_arg, PRBool ctrl_key_arg, PRBool alt_key_arg, PRBool shift_key_arg, PRBool meta_key_arg, PRUint16 button_arg, nsIDOMEventTarget *related_target_arg) { return !_to ? NS_ERROR_NULL_POINTER : _to->InitMouseEvent(type_arg, can_bubble_arg, cancelable_arg, view_arg, detail_arg, screen_x_arg, screen_y_arg, client_x_arg, client_y_arg, ctrl_key_arg, alt_key_arg, shift_key_arg, meta_key_arg, button_arg, related_target_arg); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -8691,7 +8691,7 @@ class DOMException; /* forward declaration */
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMNamedNodeMap : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMNAMEDNODEMAP_IID)
 
@@ -8730,7 +8730,7 @@ class NS_NO_VTABLE nsIDOMNamedNodeMap : public nsISupports {
   NS_IMETHOD GetLength(PRUint32 *aLength); \
   NS_IMETHOD GetNamedItemNS(const nsAString & namespace_uri, const nsAString & local_name, nsIDOMNode **_retval); \
   NS_IMETHOD SetNamedItemNS(nsIDOMNode *arg, nsIDOMNode **_retval); \
-  NS_IMETHOD RemoveNamedItemNS(const nsAString & namespace_uri, const nsAString & local_name, nsIDOMNode **_retval); 
+  NS_IMETHOD RemoveNamedItemNS(const nsAString & namespace_uri, const nsAString & local_name, nsIDOMNode **_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMNAMEDNODEMAP(_to) \
@@ -8741,7 +8741,7 @@ class NS_NO_VTABLE nsIDOMNamedNodeMap : public nsISupports {
   NS_IMETHOD GetLength(PRUint32 *aLength) { return _to GetLength(aLength); } \
   NS_IMETHOD GetNamedItemNS(const nsAString & namespace_uri, const nsAString & local_name, nsIDOMNode **_retval) { return _to GetNamedItemNS(namespace_uri, local_name, _retval); } \
   NS_IMETHOD SetNamedItemNS(nsIDOMNode *arg, nsIDOMNode **_retval) { return _to SetNamedItemNS(arg, _retval); } \
-  NS_IMETHOD RemoveNamedItemNS(const nsAString & namespace_uri, const nsAString & local_name, nsIDOMNode **_retval) { return _to RemoveNamedItemNS(namespace_uri, local_name, _retval); } 
+  NS_IMETHOD RemoveNamedItemNS(const nsAString & namespace_uri, const nsAString & local_name, nsIDOMNode **_retval) { return _to RemoveNamedItemNS(namespace_uri, local_name, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMNAMEDNODEMAP(_to) \
@@ -8752,7 +8752,7 @@ class NS_NO_VTABLE nsIDOMNamedNodeMap : public nsISupports {
   NS_IMETHOD GetLength(PRUint32 *aLength) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetLength(aLength); } \
   NS_IMETHOD GetNamedItemNS(const nsAString & namespace_uri, const nsAString & local_name, nsIDOMNode **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetNamedItemNS(namespace_uri, local_name, _retval); } \
   NS_IMETHOD SetNamedItemNS(nsIDOMNode *arg, nsIDOMNode **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetNamedItemNS(arg, _retval); } \
-  NS_IMETHOD RemoveNamedItemNS(const nsAString & namespace_uri, const nsAString & local_name, nsIDOMNode **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->RemoveNamedItemNS(namespace_uri, local_name, _retval); } 
+  NS_IMETHOD RemoveNamedItemNS(const nsAString & namespace_uri, const nsAString & local_name, nsIDOMNode **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->RemoveNamedItemNS(namespace_uri, local_name, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -8848,7 +8848,7 @@ class nsIDOMNode; /* forward declaration */
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMNodeList : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMNODELIST_IID)
 
@@ -8863,17 +8863,17 @@ class NS_NO_VTABLE nsIDOMNodeList : public nsISupports {
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIDOMNODELIST \
   NS_IMETHOD Item(PRUint32 index, nsIDOMNode **_retval); \
-  NS_IMETHOD GetLength(PRUint32 *aLength); 
+  NS_IMETHOD GetLength(PRUint32 *aLength);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMNODELIST(_to) \
   NS_IMETHOD Item(PRUint32 index, nsIDOMNode **_retval) { return _to Item(index, _retval); } \
-  NS_IMETHOD GetLength(PRUint32 *aLength) { return _to GetLength(aLength); } 
+  NS_IMETHOD GetLength(PRUint32 *aLength) { return _to GetLength(aLength); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMNODELIST(_to) \
   NS_IMETHOD Item(PRUint32 index, nsIDOMNode **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->Item(index, _retval); } \
-  NS_IMETHOD GetLength(PRUint32 *aLength) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetLength(aLength); } 
+  NS_IMETHOD GetLength(PRUint32 *aLength) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetLength(aLength); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -8931,7 +8931,7 @@ NS_IMETHODIMP nsDOMNodeList::GetLength(PRUint32 *aLength)
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMText : public nsIDOMCharacterData {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMTEXT_IID)
 
@@ -8942,15 +8942,15 @@ class NS_NO_VTABLE nsIDOMText : public nsIDOMCharacterData {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIDOMTEXT \
-  NS_IMETHOD SplitText(PRUint32 offset, nsIDOMText **_retval); 
+  NS_IMETHOD SplitText(PRUint32 offset, nsIDOMText **_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMTEXT(_to) \
-  NS_IMETHOD SplitText(PRUint32 offset, nsIDOMText **_retval) { return _to SplitText(offset, _retval); } 
+  NS_IMETHOD SplitText(PRUint32 offset, nsIDOMText **_retval) { return _to SplitText(offset, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMTEXT(_to) \
-  NS_IMETHOD SplitText(PRUint32 offset, nsIDOMText **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->SplitText(offset, _retval); } 
+  NS_IMETHOD SplitText(PRUint32 offset, nsIDOMText **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->SplitText(offset, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -9010,7 +9010,7 @@ class nsISelection; /* forward declaration */
     { 0x93, 0x2e, 0x00, 0x80, 0x5f, 0x8a, 0xdd, 0x32 }}
 
 class NS_NO_VTABLE nsIDOMWindow : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMWINDOW_IID)
 
@@ -9081,7 +9081,7 @@ class NS_NO_VTABLE nsIDOMWindow : public nsISupports {
   NS_IMETHOD GetSelection(nsISelection **_retval); \
   NS_IMETHOD ScrollByLines(PRInt32 num_lines); \
   NS_IMETHOD ScrollByPages(PRInt32 num_pages); \
-  NS_IMETHOD SizeToContent(void); 
+  NS_IMETHOD SizeToContent(void);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMWINDOW(_to) \
@@ -9101,7 +9101,7 @@ class NS_NO_VTABLE nsIDOMWindow : public nsISupports {
   NS_IMETHOD GetSelection(nsISelection **_retval) { return _to GetSelection(_retval); } \
   NS_IMETHOD ScrollByLines(PRInt32 num_lines) { return _to ScrollByLines(num_lines); } \
   NS_IMETHOD ScrollByPages(PRInt32 num_pages) { return _to ScrollByPages(num_pages); } \
-  NS_IMETHOD SizeToContent(void) { return _to SizeToContent(); } 
+  NS_IMETHOD SizeToContent(void) { return _to SizeToContent(); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMWINDOW(_to) \
@@ -9121,7 +9121,7 @@ class NS_NO_VTABLE nsIDOMWindow : public nsISupports {
   NS_IMETHOD GetSelection(nsISelection **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetSelection(_retval); } \
   NS_IMETHOD ScrollByLines(PRInt32 num_lines) { return !_to ? NS_ERROR_NULL_POINTER : _to->ScrollByLines(num_lines); } \
   NS_IMETHOD ScrollByPages(PRInt32 num_pages) { return !_to ? NS_ERROR_NULL_POINTER : _to->ScrollByPages(num_pages); } \
-  NS_IMETHOD SizeToContent(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->SizeToContent(); } 
+  NS_IMETHOD SizeToContent(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->SizeToContent(); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -9269,7 +9269,7 @@ class nsIDOMOfflineResourceList; /* forward declaration */
     { 0xad, 0xea, 0x52, 0xfa, 0x22, 0xb1, 0x02, 0x8c }}
 
 class NS_NO_VTABLE ns18IDOMWindow2 : public nsIDOMWindow {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_18IDOMWINDOW2_IID)
 
@@ -9280,15 +9280,15 @@ class NS_NO_VTABLE ns18IDOMWindow2 : public nsIDOMWindow {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NS18IDOMWINDOW2 \
-  NS_IMETHOD GetWindowRoot(nsIDOMEventTarget * *aWindowRoot); 
+  NS_IMETHOD GetWindowRoot(nsIDOMEventTarget * *aWindowRoot);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NS18IDOMWINDOW2(_to) \
-  NS_IMETHOD GetWindowRoot(nsIDOMEventTarget * *aWindowRoot) { return _to GetWindowRoot(aWindowRoot); } 
+  NS_IMETHOD GetWindowRoot(nsIDOMEventTarget * *aWindowRoot) { return _to GetWindowRoot(aWindowRoot); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NS18IDOMWINDOW2(_to) \
-  NS_IMETHOD GetWindowRoot(nsIDOMEventTarget * *aWindowRoot) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetWindowRoot(aWindowRoot); } 
+  NS_IMETHOD GetWindowRoot(nsIDOMEventTarget * *aWindowRoot) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetWindowRoot(aWindowRoot); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -9340,7 +9340,7 @@ NS_IMETHODIMP _MYCLASS_::GetWindowRoot(nsIDOMEventTarget * *aWindowRoot)
     { 0xa3, 0x03, 0xa8, 0x50, 0xcc, 0xf4, 0xd6, 0x5a }}
 
 class NS_NO_VTABLE nsIDOMWindow2 : public nsIDOMWindow {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IDOMWINDOW2_IID)
 
@@ -9355,17 +9355,17 @@ class NS_NO_VTABLE nsIDOMWindow2 : public nsIDOMWindow {
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIDOMWINDOW2 \
   NS_IMETHOD GetWindowRoot(nsIDOMEventTarget * *aWindowRoot); \
-  NS_IMETHOD GetApplicationCache(nsIDOMOfflineResourceList * *aApplicationCache); 
+  NS_IMETHOD GetApplicationCache(nsIDOMOfflineResourceList * *aApplicationCache);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIDOMWINDOW2(_to) \
   NS_IMETHOD GetWindowRoot(nsIDOMEventTarget * *aWindowRoot) { return _to GetWindowRoot(aWindowRoot); } \
-  NS_IMETHOD GetApplicationCache(nsIDOMOfflineResourceList * *aApplicationCache) { return _to GetApplicationCache(aApplicationCache); } 
+  NS_IMETHOD GetApplicationCache(nsIDOMOfflineResourceList * *aApplicationCache) { return _to GetApplicationCache(aApplicationCache); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIDOMWINDOW2(_to) \
   NS_IMETHOD GetWindowRoot(nsIDOMEventTarget * *aWindowRoot) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetWindowRoot(aWindowRoot); } \
-  NS_IMETHOD GetApplicationCache(nsIDOMOfflineResourceList * *aApplicationCache) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetApplicationCache(aApplicationCache); } 
+  NS_IMETHOD GetApplicationCache(nsIDOMOfflineResourceList * *aApplicationCache) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetApplicationCache(aApplicationCache); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -9423,7 +9423,7 @@ NS_IMETHODIMP nsDOMWindow2::GetApplicationCache(nsIDOMOfflineResourceList * *aAp
     { 0x8c, 0xbe, 0xd5, 0x0a, 0xba, 0x11, 0x07, 0x43 }}
 
 class NS_NO_VTABLE nsIEmbeddingSiteWindow : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IEMBEDDINGSITEWINDOW_IID)
 
@@ -9464,7 +9464,7 @@ class NS_NO_VTABLE nsIEmbeddingSiteWindow : public nsISupports {
   NS_IMETHOD SetVisibility(PRBool aVisibility); \
   NS_IMETHOD GetTitle(PRUnichar * *aTitle); \
   NS_IMETHOD SetTitle(const PRUnichar * aTitle); \
-  NS_IMETHOD GetSiteWindow(void * *aSiteWindow); 
+  NS_IMETHOD GetSiteWindow(void * *aSiteWindow);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIEMBEDDINGSITEWINDOW(_to) \
@@ -9475,7 +9475,7 @@ class NS_NO_VTABLE nsIEmbeddingSiteWindow : public nsISupports {
   NS_IMETHOD SetVisibility(PRBool aVisibility) { return _to SetVisibility(aVisibility); } \
   NS_IMETHOD GetTitle(PRUnichar * *aTitle) { return _to GetTitle(aTitle); } \
   NS_IMETHOD SetTitle(const PRUnichar * aTitle) { return _to SetTitle(aTitle); } \
-  NS_IMETHOD GetSiteWindow(void * *aSiteWindow) { return _to GetSiteWindow(aSiteWindow); } 
+  NS_IMETHOD GetSiteWindow(void * *aSiteWindow) { return _to GetSiteWindow(aSiteWindow); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIEMBEDDINGSITEWINDOW(_to) \
@@ -9486,7 +9486,7 @@ class NS_NO_VTABLE nsIEmbeddingSiteWindow : public nsISupports {
   NS_IMETHOD SetVisibility(PRBool aVisibility) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetVisibility(aVisibility); } \
   NS_IMETHOD GetTitle(PRUnichar * *aTitle) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetTitle(aTitle); } \
   NS_IMETHOD SetTitle(const PRUnichar * aTitle) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetTitle(aTitle); } \
-  NS_IMETHOD GetSiteWindow(void * *aSiteWindow) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetSiteWindow(aSiteWindow); } 
+  NS_IMETHOD GetSiteWindow(void * *aSiteWindow) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetSiteWindow(aSiteWindow); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -9576,7 +9576,7 @@ NS_IMETHODIMP nsEmbeddingSiteWindow::GetSiteWindow(void * *aSiteWindow)
     { 0x92, 0x3a, 0x1f, 0x32, 0xd3, 0x66, 0x10, 0x44 }}
 
 class NS_NO_VTABLE nsIEmbeddingSiteWindow2 : public nsIEmbeddingSiteWindow {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IEMBEDDINGSITEWINDOW2_IID)
 
@@ -9587,15 +9587,15 @@ class NS_NO_VTABLE nsIEmbeddingSiteWindow2 : public nsIEmbeddingSiteWindow {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIEMBEDDINGSITEWINDOW2 \
-  NS_IMETHOD Blur(void); 
+  NS_IMETHOD Blur(void);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIEMBEDDINGSITEWINDOW2(_to) \
-  NS_IMETHOD Blur(void) { return _to Blur(); } 
+  NS_IMETHOD Blur(void) { return _to Blur(); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIEMBEDDINGSITEWINDOW2(_to) \
-  NS_IMETHOD Blur(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Blur(); } 
+  NS_IMETHOD Blur(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Blur(); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -9655,7 +9655,7 @@ class nsIMIMEInfo; /* forward declaration */
     { 0x99, 0x52, 0x9a, 0xc5, 0x31, 0xba, 0x55, 0x92 }}
 
 class NS_NO_VTABLE nsIHelperAppLauncher : public nsICancelable {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IHELPERAPPLAUNCHER_IID)
 
@@ -9698,7 +9698,7 @@ class NS_NO_VTABLE nsIHelperAppLauncher : public nsICancelable {
   NS_IMETHOD SetWebProgressListener(nsIWebProgressListener2 *web_progress_listener); \
   NS_IMETHOD CloseProgressWindow(void); \
   NS_IMETHOD GetTargetFile(nsIFile * *aTargetFile); \
-  NS_IMETHOD GetTimeDownloadStarted(PRTime *aTimeDownloadStarted); 
+  NS_IMETHOD GetTimeDownloadStarted(PRTime *aTimeDownloadStarted);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIHELPERAPPLAUNCHER(_to) \
@@ -9710,7 +9710,7 @@ class NS_NO_VTABLE nsIHelperAppLauncher : public nsICancelable {
   NS_IMETHOD SetWebProgressListener(nsIWebProgressListener2 *web_progress_listener) { return _to SetWebProgressListener(web_progress_listener); } \
   NS_IMETHOD CloseProgressWindow(void) { return _to CloseProgressWindow(); } \
   NS_IMETHOD GetTargetFile(nsIFile * *aTargetFile) { return _to GetTargetFile(aTargetFile); } \
-  NS_IMETHOD GetTimeDownloadStarted(PRTime *aTimeDownloadStarted) { return _to GetTimeDownloadStarted(aTimeDownloadStarted); } 
+  NS_IMETHOD GetTimeDownloadStarted(PRTime *aTimeDownloadStarted) { return _to GetTimeDownloadStarted(aTimeDownloadStarted); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIHELPERAPPLAUNCHER(_to) \
@@ -9722,7 +9722,7 @@ class NS_NO_VTABLE nsIHelperAppLauncher : public nsICancelable {
   NS_IMETHOD SetWebProgressListener(nsIWebProgressListener2 *web_progress_listener) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetWebProgressListener(web_progress_listener); } \
   NS_IMETHOD CloseProgressWindow(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->CloseProgressWindow(); } \
   NS_IMETHOD GetTargetFile(nsIFile * *aTargetFile) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetTargetFile(aTargetFile); } \
-  NS_IMETHOD GetTimeDownloadStarted(PRTime *aTimeDownloadStarted) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetTimeDownloadStarted(aTimeDownloadStarted); } 
+  NS_IMETHOD GetTimeDownloadStarted(PRTime *aTimeDownloadStarted) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetTimeDownloadStarted(aTimeDownloadStarted); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -9826,7 +9826,7 @@ class nsILocalFile; /* forward declaration */
     { 0xba, 0x8e, 0xfc, 0xde, 0x78, 0xca, 0xc6, 0x31 }}
 
 class NS_NO_VTABLE nsIHelperAppLauncherDialog : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IHELPERAPPLAUNCHERDIALOG_IID)
 
@@ -9847,17 +9847,17 @@ class NS_NO_VTABLE nsIHelperAppLauncherDialog : public nsISupports {
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIHELPERAPPLAUNCHERDIALOG \
   NS_IMETHOD Show(nsIHelperAppLauncher *launcher, nsISupports *windowContext, PRUint32 reason); \
-  NS_IMETHOD PromptForSaveToFile(nsIHelperAppLauncher *launcher, nsISupports *windowContext, const PRUnichar *defaultFile, const PRUnichar *suggestedFileExtension, nsILocalFile **_retval); 
+  NS_IMETHOD PromptForSaveToFile(nsIHelperAppLauncher *launcher, nsISupports *windowContext, const PRUnichar *defaultFile, const PRUnichar *suggestedFileExtension, nsILocalFile **_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIHELPERAPPLAUNCHERDIALOG(_to) \
   NS_IMETHOD Show(nsIHelperAppLauncher *launcher, nsISupports *windowContext, PRUint32 reason) { return _to Show(launcher, windowContext, reason); } \
-  NS_IMETHOD PromptForSaveToFile(nsIHelperAppLauncher *launcher, nsISupports *windowContext, const PRUnichar *defaultFile, const PRUnichar *suggestedFileExtension, nsILocalFile **_retval) { return _to PromptForSaveToFile(launcher, windowContext, defaultFile, suggestedFileExtension, _retval); } 
+  NS_IMETHOD PromptForSaveToFile(nsIHelperAppLauncher *launcher, nsISupports *windowContext, const PRUnichar *defaultFile, const PRUnichar *suggestedFileExtension, nsILocalFile **_retval) { return _to PromptForSaveToFile(launcher, windowContext, defaultFile, suggestedFileExtension, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIHELPERAPPLAUNCHERDIALOG(_to) \
   NS_IMETHOD Show(nsIHelperAppLauncher *launcher, nsISupports *windowContext, PRUint32 reason) { return !_to ? NS_ERROR_NULL_POINTER : _to->Show(launcher, windowContext, reason); } \
-  NS_IMETHOD PromptForSaveToFile(nsIHelperAppLauncher *launcher, nsISupports *windowContext, const PRUnichar *defaultFile, const PRUnichar *suggestedFileExtension, nsILocalFile **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->PromptForSaveToFile(launcher, windowContext, defaultFile, suggestedFileExtension, _retval); } 
+  NS_IMETHOD PromptForSaveToFile(nsIHelperAppLauncher *launcher, nsISupports *windowContext, const PRUnichar *defaultFile, const PRUnichar *suggestedFileExtension, nsILocalFile **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->PromptForSaveToFile(launcher, windowContext, defaultFile, suggestedFileExtension, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -9923,7 +9923,7 @@ typedef NS_CALLBACK(nsWriteSegmentFun)(
     { 0x98, 0x77, 0x00, 0xc0, 0x4f, 0xa0, 0xcf, 0x4a }}
 
 class NS_NO_VTABLE nsIInputStream : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IINPUTSTREAM_IID)
 
@@ -9950,7 +9950,7 @@ class NS_NO_VTABLE nsIInputStream : public nsISupports {
   NS_IMETHOD Available(PRUint32 *_retval); \
   NS_IMETHOD Read(char * buf, PRUint32 count, PRUint32 *_retval); \
   NS_IMETHOD ReadSegments(void * writer, void * closure, PRUint32 count, PRUint32 *_retval); \
-  NS_IMETHOD IsNonBlocking(PRBool *_retval); 
+  NS_IMETHOD IsNonBlocking(PRBool *_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIINPUTSTREAM(_to) \
@@ -9958,7 +9958,7 @@ class NS_NO_VTABLE nsIInputStream : public nsISupports {
   NS_IMETHOD Available(PRUint32 *_retval) { return _to Available(_retval); } \
   NS_IMETHOD Read(char * buf, PRUint32 count, PRUint32 *_retval) { return _to Read(buf, count, _retval); } \
   NS_IMETHOD ReadSegments(void * writer, void * closure, PRUint32 count, PRUint32 *_retval) { return _to ReadSegments(writer, closure, count, _retval); } \
-  NS_IMETHOD IsNonBlocking(PRBool *_retval) { return _to IsNonBlocking(_retval); } 
+  NS_IMETHOD IsNonBlocking(PRBool *_retval) { return _to IsNonBlocking(_retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIINPUTSTREAM(_to) \
@@ -9966,7 +9966,7 @@ class NS_NO_VTABLE nsIInputStream : public nsISupports {
   NS_IMETHOD Available(PRUint32 *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->Available(_retval); } \
   NS_IMETHOD Read(char * buf, PRUint32 count, PRUint32 *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->Read(buf, count, _retval); } \
   NS_IMETHOD ReadSegments(void * writer, void * closure, PRUint32 count, PRUint32 *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->ReadSegments(writer, closure, count, _retval); } \
-  NS_IMETHOD IsNonBlocking(PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->IsNonBlocking(_retval); } 
+  NS_IMETHOD IsNonBlocking(PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->IsNonBlocking(_retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -10050,7 +10050,7 @@ class nsIChannel; /* forward declaration */
     { 0x8c, 0x70, 0x98, 0x4e, 0xe9, 0xf7, 0x93, 0x5e }}
 
 class NS_NO_VTABLE nsIIOService : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IIOSERVICE_IID)
 
@@ -10095,7 +10095,7 @@ class NS_NO_VTABLE nsIIOService : public nsISupports {
   NS_IMETHOD GetOffline(PRBool *aOffline); \
   NS_IMETHOD SetOffline(PRBool aOffline); \
   NS_IMETHOD AllowPort(PRInt32 port, const char *scheme, PRBool *_retval); \
-  NS_IMETHOD ExtractScheme(const nsACString & url_string, nsACString & _retval); 
+  NS_IMETHOD ExtractScheme(const nsACString & url_string, nsACString & _retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIIOSERVICE(_to) \
@@ -10108,7 +10108,7 @@ class NS_NO_VTABLE nsIIOService : public nsISupports {
   NS_IMETHOD GetOffline(PRBool *aOffline) { return _to GetOffline(aOffline); } \
   NS_IMETHOD SetOffline(PRBool aOffline) { return _to SetOffline(aOffline); } \
   NS_IMETHOD AllowPort(PRInt32 port, const char *scheme, PRBool *_retval) { return _to AllowPort(port, scheme, _retval); } \
-  NS_IMETHOD ExtractScheme(const nsACString & url_string, nsACString & _retval) { return _to ExtractScheme(url_string, _retval); } 
+  NS_IMETHOD ExtractScheme(const nsACString & url_string, nsACString & _retval) { return _to ExtractScheme(url_string, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIIOSERVICE(_to) \
@@ -10121,7 +10121,7 @@ class NS_NO_VTABLE nsIIOService : public nsISupports {
   NS_IMETHOD GetOffline(PRBool *aOffline) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetOffline(aOffline); } \
   NS_IMETHOD SetOffline(PRBool aOffline) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetOffline(aOffline); } \
   NS_IMETHOD AllowPort(PRInt32 port, const char *scheme, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->AllowPort(port, scheme, _retval); } \
-  NS_IMETHOD ExtractScheme(const nsACString & url_string, nsACString & _retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->ExtractScheme(url_string, _retval); } 
+  NS_IMETHOD ExtractScheme(const nsACString & url_string, nsACString & _retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->ExtractScheme(url_string, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -10226,7 +10226,7 @@ struct JSContext;
     { 0x98, 0x85, 0x00, 0x60, 0x08, 0x96, 0x24, 0x22 }}
 
 class NS_NO_VTABLE nsIJSContextStack : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IJSCONTEXTSTACK_IID)
 
@@ -10249,21 +10249,21 @@ class NS_NO_VTABLE nsIJSContextStack : public nsISupports {
   NS_IMETHOD GetCount(PRInt32 *aCount); \
   NS_IMETHOD Peek(JSContext * *_retval); \
   NS_IMETHOD Pop(JSContext * *_retval); \
-  NS_IMETHOD Push(JSContext * contxt); 
+  NS_IMETHOD Push(JSContext * contxt);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIJSCONTEXTSTACK(_to) \
   NS_IMETHOD GetCount(PRInt32 *aCount) { return _to GetCount(aCount); } \
   NS_IMETHOD Peek(JSContext * *_retval) { return _to Peek(_retval); } \
   NS_IMETHOD Pop(JSContext * *_retval) { return _to Pop(_retval); } \
-  NS_IMETHOD Push(JSContext * contxt) { return _to Push(contxt); } 
+  NS_IMETHOD Push(JSContext * contxt) { return _to Push(contxt); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIJSCONTEXTSTACK(_to) \
   NS_IMETHOD GetCount(PRInt32 *aCount) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetCount(aCount); } \
   NS_IMETHOD Peek(JSContext * *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->Peek(_retval); } \
   NS_IMETHOD Pop(JSContext * *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->Pop(_retval); } \
-  NS_IMETHOD Push(JSContext * contxt) { return !_to ? NS_ERROR_NULL_POINTER : _to->Push(contxt); } 
+  NS_IMETHOD Push(JSContext * contxt) { return !_to ? NS_ERROR_NULL_POINTER : _to->Push(contxt); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -10339,7 +10339,7 @@ class nsMIMEInfoHandleAction; /* forward declaration */
     { 0xbb, 0x09, 0x0b, 0x0e, 0x29, 0x82, 0xfd, 0xe8 }}
 
 class NS_NO_VTABLE nsIMIMEInfo : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IMIMEINFO_IID)
 
@@ -10440,7 +10440,7 @@ class NS_NO_VTABLE nsIMIMEInfo : public nsISupports {
   NS_IMETHOD GetPreferredAction(nsMIMEInfoHandleAction * *aPreferredAction); \
   NS_IMETHOD SetPreferredAction(nsMIMEInfoHandleAction * aPreferredAction); \
   NS_IMETHOD GetAlwaysAskBeforeHandling(PRBool *aAlwaysAskBeforeHandling); \
-  NS_IMETHOD SetAlwaysAskBeforeHandling(PRBool aAlwaysAskBeforeHandling); 
+  NS_IMETHOD SetAlwaysAskBeforeHandling(PRBool aAlwaysAskBeforeHandling);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIMIMEINFO(_to) \
@@ -10468,7 +10468,7 @@ class NS_NO_VTABLE nsIMIMEInfo : public nsISupports {
   NS_IMETHOD GetPreferredAction(nsMIMEInfoHandleAction * *aPreferredAction) { return _to GetPreferredAction(aPreferredAction); } \
   NS_IMETHOD SetPreferredAction(nsMIMEInfoHandleAction * aPreferredAction) { return _to SetPreferredAction(aPreferredAction); } \
   NS_IMETHOD GetAlwaysAskBeforeHandling(PRBool *aAlwaysAskBeforeHandling) { return _to GetAlwaysAskBeforeHandling(aAlwaysAskBeforeHandling); } \
-  NS_IMETHOD SetAlwaysAskBeforeHandling(PRBool aAlwaysAskBeforeHandling) { return _to SetAlwaysAskBeforeHandling(aAlwaysAskBeforeHandling); } 
+  NS_IMETHOD SetAlwaysAskBeforeHandling(PRBool aAlwaysAskBeforeHandling) { return _to SetAlwaysAskBeforeHandling(aAlwaysAskBeforeHandling); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIMIMEINFO(_to) \
@@ -10496,7 +10496,7 @@ class NS_NO_VTABLE nsIMIMEInfo : public nsISupports {
   NS_IMETHOD GetPreferredAction(nsMIMEInfoHandleAction * *aPreferredAction) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetPreferredAction(aPreferredAction); } \
   NS_IMETHOD SetPreferredAction(nsMIMEInfoHandleAction * aPreferredAction) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetPreferredAction(aPreferredAction); } \
   NS_IMETHOD GetAlwaysAskBeforeHandling(PRBool *aAlwaysAskBeforeHandling) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetAlwaysAskBeforeHandling(aAlwaysAskBeforeHandling); } \
-  NS_IMETHOD SetAlwaysAskBeforeHandling(PRBool aAlwaysAskBeforeHandling) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetAlwaysAskBeforeHandling(aAlwaysAskBeforeHandling); } 
+  NS_IMETHOD SetAlwaysAskBeforeHandling(PRBool aAlwaysAskBeforeHandling) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetAlwaysAskBeforeHandling(aAlwaysAskBeforeHandling); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -10688,7 +10688,7 @@ class nsIObserver; /* forward declaration */
     { 0xa9, 0xa4, 0x00, 0x80, 0x5f, 0x8a, 0x7a, 0xc4 }}
 
 class NS_NO_VTABLE nsIPref : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IPREF_IID)
 
@@ -10895,7 +10895,7 @@ class NS_NO_VTABLE nsIPref : public nsISupports {
   NS_IMETHOD SetFileXPref(const char *pref, nsILocalFile *value); \
   NS_IMETHOD RegisterCallback(const char *domain, PrefChangedFunc callback, void * closure); \
   NS_IMETHOD UnregisterCallback(const char *domain, PrefChangedFunc callback, void * closure); \
-  NS_IMETHOD EnumerateChildren(const char *parent, PrefEnumerationFunc callback, void * data); 
+  NS_IMETHOD EnumerateChildren(const char *parent, PrefEnumerationFunc callback, void * data);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIPREF(_to) \
@@ -10943,7 +10943,7 @@ class NS_NO_VTABLE nsIPref : public nsISupports {
   NS_IMETHOD SetFileXPref(const char *pref, nsILocalFile *value) { return _to SetFileXPref(pref, value); } \
   NS_IMETHOD RegisterCallback(const char *domain, PrefChangedFunc callback, void * closure) { return _to RegisterCallback(domain, callback, closure); } \
   NS_IMETHOD UnregisterCallback(const char *domain, PrefChangedFunc callback, void * closure) { return _to UnregisterCallback(domain, callback, closure); } \
-  NS_IMETHOD EnumerateChildren(const char *parent, PrefEnumerationFunc callback, void * data) { return _to EnumerateChildren(parent, callback, data); } 
+  NS_IMETHOD EnumerateChildren(const char *parent, PrefEnumerationFunc callback, void * data) { return _to EnumerateChildren(parent, callback, data); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIPREF(_to) \
@@ -10991,7 +10991,7 @@ class NS_NO_VTABLE nsIPref : public nsISupports {
   NS_IMETHOD SetFileXPref(const char *pref, nsILocalFile *value) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetFileXPref(pref, value); } \
   NS_IMETHOD RegisterCallback(const char *domain, PrefChangedFunc callback, void * closure) { return !_to ? NS_ERROR_NULL_POINTER : _to->RegisterCallback(domain, callback, closure); } \
   NS_IMETHOD UnregisterCallback(const char *domain, PrefChangedFunc callback, void * closure) { return !_to ? NS_ERROR_NULL_POINTER : _to->UnregisterCallback(domain, callback, closure); } \
-  NS_IMETHOD EnumerateChildren(const char *parent, PrefEnumerationFunc callback, void * data) { return !_to ? NS_ERROR_NULL_POINTER : _to->EnumerateChildren(parent, callback, data); } 
+  NS_IMETHOD EnumerateChildren(const char *parent, PrefEnumerationFunc callback, void * data) { return !_to ? NS_ERROR_NULL_POINTER : _to->EnumerateChildren(parent, callback, data); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -11313,7 +11313,7 @@ class nsIWebProgressListener; /* forward declaration */
     { 0xa8, 0x69, 0x00, 0x10, 0x5a, 0x18, 0x34, 0x19 }}
 
 class NS_NO_VTABLE nsIWebBrowserPrint : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IWEBBROWSERPRINT_IID)
 
@@ -11394,7 +11394,7 @@ class NS_NO_VTABLE nsIWebBrowserPrint : public nsISupports {
   NS_IMETHOD PrintPreviewNavigate(PRInt16 navType, PRInt32 pageNum); \
   NS_IMETHOD Cancel(void); \
   NS_IMETHOD EnumerateDocumentNames(PRUint32 *count, PRUnichar ***result); \
-  NS_IMETHOD ExitPrintPreview(void); 
+  NS_IMETHOD ExitPrintPreview(void);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIWEBBROWSERPRINT(_to) \
@@ -11413,7 +11413,7 @@ class NS_NO_VTABLE nsIWebBrowserPrint : public nsISupports {
   NS_IMETHOD PrintPreviewNavigate(PRInt16 navType, PRInt32 pageNum) { return _to PrintPreviewNavigate(navType, pageNum); } \
   NS_IMETHOD Cancel(void) { return _to Cancel(); } \
   NS_IMETHOD EnumerateDocumentNames(PRUint32 *count, PRUnichar ***result) { return _to EnumerateDocumentNames(count, result); } \
-  NS_IMETHOD ExitPrintPreview(void) { return _to ExitPrintPreview(); } 
+  NS_IMETHOD ExitPrintPreview(void) { return _to ExitPrintPreview(); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIWEBBROWSERPRINT(_to) \
@@ -11432,7 +11432,7 @@ class NS_NO_VTABLE nsIWebBrowserPrint : public nsISupports {
   NS_IMETHOD PrintPreviewNavigate(PRInt16 navType, PRInt32 pageNum) { return !_to ? NS_ERROR_NULL_POINTER : _to->PrintPreviewNavigate(navType, pageNum); } \
   NS_IMETHOD Cancel(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Cancel(); } \
   NS_IMETHOD EnumerateDocumentNames(PRUint32 *count, PRUnichar ***result) { return !_to ? NS_ERROR_NULL_POINTER : _to->EnumerateDocumentNames(count, result); } \
-  NS_IMETHOD ExitPrintPreview(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->ExitPrintPreview(); } 
+  NS_IMETHOD ExitPrintPreview(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->ExitPrintPreview(); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -11576,7 +11576,7 @@ class nsIPrintSession; /* forward declaration */
     { 0x98, 0x47, 0x2f, 0x66, 0x31, 0x72, 0xc3, 0x8d }}
 
 class NS_NO_VTABLE nsIPrintSettings : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IPRINTSETTINGS_IID)
 
@@ -12011,7 +12011,7 @@ class NS_NO_VTABLE nsIPrintSettings : public nsISupports {
   NS_IMETHOD GetIsInitializedFromPrinter(PRBool *aIsInitializedFromPrinter); \
   NS_IMETHOD SetIsInitializedFromPrinter(PRBool aIsInitializedFromPrinter); \
   NS_IMETHOD GetIsInitializedFromPrefs(PRBool *aIsInitializedFromPrefs); \
-  NS_IMETHOD SetIsInitializedFromPrefs(PRBool aIsInitializedFromPrefs); 
+  NS_IMETHOD SetIsInitializedFromPrefs(PRBool aIsInitializedFromPrefs);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIPRINTSETTINGS(_to) \
@@ -12116,7 +12116,7 @@ class NS_NO_VTABLE nsIPrintSettings : public nsISupports {
   NS_IMETHOD GetIsInitializedFromPrinter(PRBool *aIsInitializedFromPrinter) { return _to GetIsInitializedFromPrinter(aIsInitializedFromPrinter); } \
   NS_IMETHOD SetIsInitializedFromPrinter(PRBool aIsInitializedFromPrinter) { return _to SetIsInitializedFromPrinter(aIsInitializedFromPrinter); } \
   NS_IMETHOD GetIsInitializedFromPrefs(PRBool *aIsInitializedFromPrefs) { return _to GetIsInitializedFromPrefs(aIsInitializedFromPrefs); } \
-  NS_IMETHOD SetIsInitializedFromPrefs(PRBool aIsInitializedFromPrefs) { return _to SetIsInitializedFromPrefs(aIsInitializedFromPrefs); } 
+  NS_IMETHOD SetIsInitializedFromPrefs(PRBool aIsInitializedFromPrefs) { return _to SetIsInitializedFromPrefs(aIsInitializedFromPrefs); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIPRINTSETTINGS(_to) \
@@ -12221,7 +12221,7 @@ class NS_NO_VTABLE nsIPrintSettings : public nsISupports {
   NS_IMETHOD GetIsInitializedFromPrinter(PRBool *aIsInitializedFromPrinter) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetIsInitializedFromPrinter(aIsInitializedFromPrinter); } \
   NS_IMETHOD SetIsInitializedFromPrinter(PRBool aIsInitializedFromPrinter) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetIsInitializedFromPrinter(aIsInitializedFromPrinter); } \
   NS_IMETHOD GetIsInitializedFromPrefs(PRBool *aIsInitializedFromPrefs) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetIsInitializedFromPrefs(aIsInitializedFromPrefs); } \
-  NS_IMETHOD SetIsInitializedFromPrefs(PRBool aIsInitializedFromPrefs) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetIsInitializedFromPrefs(aIsInitializedFromPrefs); } 
+  NS_IMETHOD SetIsInitializedFromPrefs(PRBool aIsInitializedFromPrefs) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetIsInitializedFromPrefs(aIsInitializedFromPrefs); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -12785,7 +12785,7 @@ class nsIDOMWindow; /* forward declaration */
     { 0x87, 0x59, 0xa3, 0x1b, 0x16, 0xc4, 0x7a, 0xa5 }}
 
 class NS_NO_VTABLE nsIPromptService : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IPROMPTSERVICE_IID)
 
@@ -12862,7 +12862,7 @@ class NS_NO_VTABLE nsIPromptService : public nsISupports {
   NS_IMETHOD Prompt(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUnichar **value, const PRUnichar *check_msg, PRBool *check_state, PRBool *_retval); \
   NS_IMETHOD PromptUsernameAndPassword(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUnichar **username, PRUnichar **password, const PRUnichar *check_msg, PRBool *check_state, PRBool *_retval); \
   NS_IMETHOD PromptPassword(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUnichar **password, const PRUnichar *check_msg, PRBool *check_state, PRBool *_retval); \
-  NS_IMETHOD Select(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUint32 count, const PRUnichar **select_list, PRInt32 *out_selection, PRBool *_retval); 
+  NS_IMETHOD Select(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUint32 count, const PRUnichar **select_list, PRInt32 *out_selection, PRBool *_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIPROMPTSERVICE(_to) \
@@ -12874,7 +12874,7 @@ class NS_NO_VTABLE nsIPromptService : public nsISupports {
   NS_IMETHOD Prompt(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUnichar **value, const PRUnichar *check_msg, PRBool *check_state, PRBool *_retval) { return _to Prompt(parent, dialog_title, text, value, check_msg, check_state, _retval); } \
   NS_IMETHOD PromptUsernameAndPassword(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUnichar **username, PRUnichar **password, const PRUnichar *check_msg, PRBool *check_state, PRBool *_retval) { return _to PromptUsernameAndPassword(parent, dialog_title, text, username, password, check_msg, check_state, _retval); } \
   NS_IMETHOD PromptPassword(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUnichar **password, const PRUnichar *check_msg, PRBool *check_state, PRBool *_retval) { return _to PromptPassword(parent, dialog_title, text, password, check_msg, check_state, _retval); } \
-  NS_IMETHOD Select(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUint32 count, const PRUnichar **select_list, PRInt32 *out_selection, PRBool *_retval) { return _to Select(parent, dialog_title, text, count, select_list, out_selection, _retval); } 
+  NS_IMETHOD Select(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUint32 count, const PRUnichar **select_list, PRInt32 *out_selection, PRBool *_retval) { return _to Select(parent, dialog_title, text, count, select_list, out_selection, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIPROMPTSERVICE(_to) \
@@ -12886,7 +12886,7 @@ class NS_NO_VTABLE nsIPromptService : public nsISupports {
   NS_IMETHOD Prompt(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUnichar **value, const PRUnichar *check_msg, PRBool *check_state, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->Prompt(parent, dialog_title, text, value, check_msg, check_state, _retval); } \
   NS_IMETHOD PromptUsernameAndPassword(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUnichar **username, PRUnichar **password, const PRUnichar *check_msg, PRBool *check_state, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->PromptUsernameAndPassword(parent, dialog_title, text, username, password, check_msg, check_state, _retval); } \
   NS_IMETHOD PromptPassword(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUnichar **password, const PRUnichar *check_msg, PRBool *check_state, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->PromptPassword(parent, dialog_title, text, password, check_msg, check_state, _retval); } \
-  NS_IMETHOD Select(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUint32 count, const PRUnichar **select_list, PRInt32 *out_selection, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->Select(parent, dialog_title, text, count, select_list, out_selection, _retval); } 
+  NS_IMETHOD Select(nsIDOMWindow *parent, const PRUnichar *dialog_title, const PRUnichar *text, PRUint32 count, const PRUnichar **select_list, PRInt32 *out_selection, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->Select(parent, dialog_title, text, count, select_list, out_selection, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -12986,7 +12986,7 @@ NS_IMETHODIMP nsPromptService::Select(nsIDOMWindow *parent, const PRUnichar *dia
     { 0x8e, 0x85, 0x26, 0xeb, 0xd3, 0xeb, 0x14, 0xca }}
 
 class NS_NO_VTABLE nsIProperties : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IPROPERTIES_IID)
 
@@ -13013,7 +13013,7 @@ class NS_NO_VTABLE nsIProperties : public nsISupports {
   NS_IMETHOD Set(const char *prop_name, nsISupports *value); \
   NS_IMETHOD Has(const char *prop_name, PRBool *_retval); \
   NS_IMETHOD Undefine(const char *prop_name); \
-  NS_IMETHOD GetKeys(PRUint32 *count, char ***keys); 
+  NS_IMETHOD GetKeys(PRUint32 *count, char ***keys);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIPROPERTIES(_to) \
@@ -13021,7 +13021,7 @@ class NS_NO_VTABLE nsIProperties : public nsISupports {
   NS_IMETHOD Set(const char *prop_name, nsISupports *value) { return _to Set(prop_name, value); } \
   NS_IMETHOD Has(const char *prop_name, PRBool *_retval) { return _to Has(prop_name, _retval); } \
   NS_IMETHOD Undefine(const char *prop_name) { return _to Undefine(prop_name); } \
-  NS_IMETHOD GetKeys(PRUint32 *count, char ***keys) { return _to GetKeys(count, keys); } 
+  NS_IMETHOD GetKeys(PRUint32 *count, char ***keys) { return _to GetKeys(count, keys); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIPROPERTIES(_to) \
@@ -13029,7 +13029,7 @@ class NS_NO_VTABLE nsIProperties : public nsISupports {
   NS_IMETHOD Set(const char *prop_name, nsISupports *value) { return !_to ? NS_ERROR_NULL_POINTER : _to->Set(prop_name, value); } \
   NS_IMETHOD Has(const char *prop_name, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->Has(prop_name, _retval); } \
   NS_IMETHOD Undefine(const char *prop_name) { return !_to ? NS_ERROR_NULL_POINTER : _to->Undefine(prop_name); } \
-  NS_IMETHOD GetKeys(PRUint32 *count, char ***keys) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetKeys(count, keys); } 
+  NS_IMETHOD GetKeys(PRUint32 *count, char ***keys) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetKeys(count, keys); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -13107,7 +13107,7 @@ class nsIRequest; /* forward declaration */
     { 0x93, 0x33, 0x00, 0x10, 0x4b, 0xa0, 0xfd, 0x40 }}
 
 class NS_NO_VTABLE nsIRequestObserver : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IREQUESTOBSERVER_IID)
 
@@ -13122,17 +13122,17 @@ class NS_NO_VTABLE nsIRequestObserver : public nsISupports {
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIREQUESTOBSERVER \
   NS_IMETHOD OnStartRequest(nsIRequest *request, nsISupports *contxt); \
-  NS_IMETHOD OnStopRequest(nsIRequest *request, nsISupports *contxt, nsresult status_code); 
+  NS_IMETHOD OnStopRequest(nsIRequest *request, nsISupports *contxt, nsresult status_code);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIREQUESTOBSERVER(_to) \
   NS_IMETHOD OnStartRequest(nsIRequest *request, nsISupports *contxt) { return _to OnStartRequest(request, contxt); } \
-  NS_IMETHOD OnStopRequest(nsIRequest *request, nsISupports *contxt, nsresult status_code) { return _to OnStopRequest(request, contxt, status_code); } 
+  NS_IMETHOD OnStopRequest(nsIRequest *request, nsISupports *contxt, nsresult status_code) { return _to OnStopRequest(request, contxt, status_code); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIREQUESTOBSERVER(_to) \
   NS_IMETHOD OnStartRequest(nsIRequest *request, nsISupports *contxt) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnStartRequest(request, contxt); } \
-  NS_IMETHOD OnStopRequest(nsIRequest *request, nsISupports *contxt, nsresult status_code) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnStopRequest(request, contxt, status_code); } 
+  NS_IMETHOD OnStopRequest(nsIRequest *request, nsISupports *contxt, nsresult status_code) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnStopRequest(request, contxt, status_code); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -13190,7 +13190,7 @@ NS_IMETHODIMP nsRequestObserver::OnStopRequest(nsIRequest *request, nsISupports 
     { 0x91, 0x55, 0x4a, 0x00, 0x2a, 0xb5, 0xc9, 0x58 }}
 
 class NS_NO_VTABLE nsIServiceManager : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ISERVICEMANAGER_IID)
 
@@ -13213,21 +13213,21 @@ class NS_NO_VTABLE nsIServiceManager : public nsISupports {
   NS_IMETHOD GetService(const nsCID & class_id, const nsIID & iid, void * *result); \
   NS_IMETHOD GetServiceByContractID(const char *contract_id, const nsIID & iid, void * *result); \
   NS_IMETHOD IsServiceInstantiated(const nsCID & class_id, const nsIID & iid, PRBool *_retval); \
-  NS_IMETHOD IsServiceInstantiatedByContractID(const char *contract_id, const nsIID & iid, PRBool *_retval); 
+  NS_IMETHOD IsServiceInstantiatedByContractID(const char *contract_id, const nsIID & iid, PRBool *_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSISERVICEMANAGER(_to) \
   NS_IMETHOD GetService(const nsCID & class_id, const nsIID & iid, void * *result) { return _to GetService(class_id, iid, result); } \
   NS_IMETHOD GetServiceByContractID(const char *contract_id, const nsIID & iid, void * *result) { return _to GetServiceByContractID(contract_id, iid, result); } \
   NS_IMETHOD IsServiceInstantiated(const nsCID & class_id, const nsIID & iid, PRBool *_retval) { return _to IsServiceInstantiated(class_id, iid, _retval); } \
-  NS_IMETHOD IsServiceInstantiatedByContractID(const char *contract_id, const nsIID & iid, PRBool *_retval) { return _to IsServiceInstantiatedByContractID(contract_id, iid, _retval); } 
+  NS_IMETHOD IsServiceInstantiatedByContractID(const char *contract_id, const nsIID & iid, PRBool *_retval) { return _to IsServiceInstantiatedByContractID(contract_id, iid, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSISERVICEMANAGER(_to) \
   NS_IMETHOD GetService(const nsCID & class_id, const nsIID & iid, void * *result) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetService(class_id, iid, result); } \
   NS_IMETHOD GetServiceByContractID(const char *contract_id, const nsIID & iid, void * *result) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetServiceByContractID(contract_id, iid, result); } \
   NS_IMETHOD IsServiceInstantiated(const nsCID & class_id, const nsIID & iid, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->IsServiceInstantiated(class_id, iid, _retval); } \
-  NS_IMETHOD IsServiceInstantiatedByContractID(const char *contract_id, const nsIID & iid, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->IsServiceInstantiatedByContractID(contract_id, iid, _retval); } 
+  NS_IMETHOD IsServiceInstantiatedByContractID(const char *contract_id, const nsIID & iid, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->IsServiceInstantiatedByContractID(contract_id, iid, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -13301,7 +13301,7 @@ class nsIInputStream; /* forward declaration */
     { 0x93, 0x33, 0x00, 0x10, 0x4b, 0xa0, 0xfd, 0x40 }}
 
 class NS_NO_VTABLE nsIStreamListener : public nsIRequestObserver {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ISTREAMLISTENER_IID)
 
@@ -13312,15 +13312,15 @@ class NS_NO_VTABLE nsIStreamListener : public nsIRequestObserver {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSISTREAMLISTENER \
-  NS_IMETHOD OnDataAvailable(nsIRequest *request, nsISupports *contxt, nsIInputStream *input_stream, PRUint32 offset, PRUint32 count); 
+  NS_IMETHOD OnDataAvailable(nsIRequest *request, nsISupports *contxt, nsIInputStream *input_stream, PRUint32 offset, PRUint32 count);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSISTREAMLISTENER(_to) \
-  NS_IMETHOD OnDataAvailable(nsIRequest *request, nsISupports *contxt, nsIInputStream *input_stream, PRUint32 offset, PRUint32 count) { return _to OnDataAvailable(request, contxt, input_stream, offset, count); } 
+  NS_IMETHOD OnDataAvailable(nsIRequest *request, nsISupports *contxt, nsIInputStream *input_stream, PRUint32 offset, PRUint32 count) { return _to OnDataAvailable(request, contxt, input_stream, offset, count); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSISTREAMLISTENER(_to) \
-  NS_IMETHOD OnDataAvailable(nsIRequest *request, nsISupports *contxt, nsIInputStream *input_stream, PRUint32 offset, PRUint32 count) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnDataAvailable(request, contxt, input_stream, offset, count); } 
+  NS_IMETHOD OnDataAvailable(nsIRequest *request, nsISupports *contxt, nsIInputStream *input_stream, PRUint32 offset, PRUint32 count) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnDataAvailable(request, contxt, input_stream, offset, count); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -13372,7 +13372,7 @@ NS_IMETHODIMP nsStreamListener::OnDataAvailable(nsIRequest *request, nsISupports
     { 0xb3, 0x65, 0xb1, 0x25, 0x1f, 0x80, 0xfd, 0x53 }}
 
 class NS_NO_VTABLE nsIStringInputStream : public nsIInputStream {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ISTRINGINPUTSTREAM_IID)
 
@@ -13391,19 +13391,19 @@ class NS_NO_VTABLE nsIStringInputStream : public nsIInputStream {
 #define NS_DECL_NSISTRINGINPUTSTREAM \
   NS_IMETHOD SetData(const char *data, PRInt32 dataLen); \
   NS_IMETHOD AdoptData(char * data, PRInt32 data_len); \
-  NS_IMETHOD ShareData(const char *data, PRInt32 data_len); 
+  NS_IMETHOD ShareData(const char *data, PRInt32 data_len);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSISTRINGINPUTSTREAM(_to) \
   NS_IMETHOD SetData(const char *data, PRInt32 dataLen) { return _to SetData(data, dataLen); } \
   NS_IMETHOD AdoptData(char * data, PRInt32 data_len) { return _to AdoptData(data, data_len); } \
-  NS_IMETHOD ShareData(const char *data, PRInt32 data_len) { return _to ShareData(data, data_len); } 
+  NS_IMETHOD ShareData(const char *data, PRInt32 data_len) { return _to ShareData(data, data_len); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSISTRINGINPUTSTREAM(_to) \
   NS_IMETHOD SetData(const char *data, PRInt32 dataLen) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetData(data, dataLen); } \
   NS_IMETHOD AdoptData(char * data, PRInt32 data_len) { return !_to ? NS_ERROR_NULL_POINTER : _to->AdoptData(data, data_len); } \
-  NS_IMETHOD ShareData(const char *data, PRInt32 data_len) { return !_to ? NS_ERROR_NULL_POINTER : _to->ShareData(data, data_len); } 
+  NS_IMETHOD ShareData(const char *data, PRInt32 data_len) { return !_to ? NS_ERROR_NULL_POINTER : _to->ShareData(data, data_len); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -13467,7 +13467,7 @@ NS_IMETHODIMP nsStringInputStream::ShareData(const char *data, PRInt32 data_len)
     { 0x9a, 0xd2, 0xe4, 0xee, 0xe2, 0xca, 0x19, 0x16 }}
 
 class NS_NO_VTABLE nsITooltipListener : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ITOOLTIPLISTENER_IID)
 
@@ -13482,17 +13482,17 @@ class NS_NO_VTABLE nsITooltipListener : public nsISupports {
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSITOOLTIPLISTENER \
   NS_IMETHOD OnShowTooltip(PRInt32 x_coords, PRInt32 y_coords, const PRUnichar *tip_text); \
-  NS_IMETHOD OnHideTooltip(void); 
+  NS_IMETHOD OnHideTooltip(void);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSITOOLTIPLISTENER(_to) \
   NS_IMETHOD OnShowTooltip(PRInt32 x_coords, PRInt32 y_coords, const PRUnichar *tip_text) { return _to OnShowTooltip(x_coords, y_coords, tip_text); } \
-  NS_IMETHOD OnHideTooltip(void) { return _to OnHideTooltip(); } 
+  NS_IMETHOD OnHideTooltip(void) { return _to OnHideTooltip(); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSITOOLTIPLISTENER(_to) \
   NS_IMETHOD OnShowTooltip(PRInt32 x_coords, PRInt32 y_coords, const PRUnichar *tip_text) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnShowTooltip(x_coords, y_coords, tip_text); } \
-  NS_IMETHOD OnHideTooltip(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnHideTooltip(); } 
+  NS_IMETHOD OnHideTooltip(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnHideTooltip(); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -13556,7 +13556,7 @@ class nsIURI; /* forward declaration */
     { 0xb0, 0x93, 0x00, 0xa0, 0x24, 0xff, 0xc0, 0x8c }}
 
 class NS_NO_VTABLE nsIWebProgressListener : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IWEBPROGRESSLISTENER_IID)
 
@@ -13615,7 +13615,7 @@ class NS_NO_VTABLE nsIWebProgressListener : public nsISupports {
   NS_IMETHOD OnProgressChange(nsIWebProgress *web_progress, nsIRequest *request, PRInt32 cur_self_progress, PRInt32 max_self_progress, PRInt32 cur_total_progress, PRInt32 max_total_progress); \
   NS_IMETHOD OnLocationChange(nsIWebProgress *web_progress, nsIRequest *request, nsIURI *location); \
   NS_IMETHOD OnStatusChange(nsIWebProgress *web_progress, nsIRequest *request, nsresult status, const PRUnichar *message); \
-  NS_IMETHOD OnSecurityChange(nsIWebProgress *web_progress, nsIRequest *request, PRUint32 state); 
+  NS_IMETHOD OnSecurityChange(nsIWebProgress *web_progress, nsIRequest *request, PRUint32 state);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIWEBPROGRESSLISTENER(_to) \
@@ -13623,7 +13623,7 @@ class NS_NO_VTABLE nsIWebProgressListener : public nsISupports {
   NS_IMETHOD OnProgressChange(nsIWebProgress *web_progress, nsIRequest *request, PRInt32 cur_self_progress, PRInt32 max_self_progress, PRInt32 cur_total_progress, PRInt32 max_total_progress) { return _to OnProgressChange(web_progress, request, cur_self_progress, max_self_progress, cur_total_progress, max_total_progress); } \
   NS_IMETHOD OnLocationChange(nsIWebProgress *web_progress, nsIRequest *request, nsIURI *location) { return _to OnLocationChange(web_progress, request, location); } \
   NS_IMETHOD OnStatusChange(nsIWebProgress *web_progress, nsIRequest *request, nsresult status, const PRUnichar *message) { return _to OnStatusChange(web_progress, request, status, message); } \
-  NS_IMETHOD OnSecurityChange(nsIWebProgress *web_progress, nsIRequest *request, PRUint32 state) { return _to OnSecurityChange(web_progress, request, state); } 
+  NS_IMETHOD OnSecurityChange(nsIWebProgress *web_progress, nsIRequest *request, PRUint32 state) { return _to OnSecurityChange(web_progress, request, state); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIWEBPROGRESSLISTENER(_to) \
@@ -13631,7 +13631,7 @@ class NS_NO_VTABLE nsIWebProgressListener : public nsISupports {
   NS_IMETHOD OnProgressChange(nsIWebProgress *web_progress, nsIRequest *request, PRInt32 cur_self_progress, PRInt32 max_self_progress, PRInt32 cur_total_progress, PRInt32 max_total_progress) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnProgressChange(web_progress, request, cur_self_progress, max_self_progress, cur_total_progress, max_total_progress); } \
   NS_IMETHOD OnLocationChange(nsIWebProgress *web_progress, nsIRequest *request, nsIURI *location) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnLocationChange(web_progress, request, location); } \
   NS_IMETHOD OnStatusChange(nsIWebProgress *web_progress, nsIRequest *request, nsresult status, const PRUnichar *message) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnStatusChange(web_progress, request, status, message); } \
-  NS_IMETHOD OnSecurityChange(nsIWebProgress *web_progress, nsIRequest *request, PRUint32 state) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnSecurityChange(web_progress, request, state); } 
+  NS_IMETHOD OnSecurityChange(nsIWebProgress *web_progress, nsIRequest *request, PRUint32 state) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnSecurityChange(web_progress, request, state); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -13707,7 +13707,7 @@ NS_IMETHODIMP nsWebProgressListener::OnSecurityChange(nsIWebProgress *web_progre
     { 0x9d, 0x2e, 0x23, 0x98, 0x84, 0x74, 0x23, 0x24 }}
 
 class NS_NO_VTABLE nsIWebProgressListener2 : public nsIWebProgressListener {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IWEBPROGRESSLISTENER2_IID)
 
@@ -13718,15 +13718,15 @@ class NS_NO_VTABLE nsIWebProgressListener2 : public nsIWebProgressListener {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIWEBPROGRESSLISTENER2 \
-  NS_IMETHOD OnProgressChange64(nsIWebProgress *web_progress, nsIRequest *request, PRInt64 cur_self_progress, PRInt64 max_self_progress, PRInt64 cur_total_progress, PRInt64 max_total_progress); 
+  NS_IMETHOD OnProgressChange64(nsIWebProgress *web_progress, nsIRequest *request, PRInt64 cur_self_progress, PRInt64 max_self_progress, PRInt64 cur_total_progress, PRInt64 max_total_progress);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIWEBPROGRESSLISTENER2(_to) \
-  NS_IMETHOD OnProgressChange64(nsIWebProgress *web_progress, nsIRequest *request, PRInt64 cur_self_progress, PRInt64 max_self_progress, PRInt64 cur_total_progress, PRInt64 max_total_progress) { return _to OnProgressChange64(web_progress, request, cur_self_progress, max_self_progress, cur_total_progress, max_total_progress); } 
+  NS_IMETHOD OnProgressChange64(nsIWebProgress *web_progress, nsIRequest *request, PRInt64 cur_self_progress, PRInt64 max_self_progress, PRInt64 cur_total_progress, PRInt64 max_total_progress) { return _to OnProgressChange64(web_progress, request, cur_self_progress, max_self_progress, cur_total_progress, max_total_progress); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIWEBPROGRESSLISTENER2(_to) \
-  NS_IMETHOD OnProgressChange64(nsIWebProgress *web_progress, nsIRequest *request, PRInt64 cur_self_progress, PRInt64 max_self_progress, PRInt64 cur_total_progress, PRInt64 max_total_progress) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnProgressChange64(web_progress, request, cur_self_progress, max_self_progress, cur_total_progress, max_total_progress); } 
+  NS_IMETHOD OnProgressChange64(nsIWebProgress *web_progress, nsIRequest *request, PRInt64 cur_self_progress, PRInt64 max_self_progress, PRInt64 cur_total_progress, PRInt64 max_total_progress) { return !_to ? NS_ERROR_NULL_POINTER : _to->OnProgressChange64(web_progress, request, cur_self_progress, max_self_progress, cur_total_progress, max_total_progress); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -13784,7 +13784,7 @@ class nsICancelable; /* forward declaration */
     { 0xad, 0xeb, 0x37, 0x23, 0xdb, 0x82, 0xef, 0x7c }}
 
 class NS_NO_VTABLE nsITransfer : public nsIWebProgressListener2 {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ITRANSFER_IID)
 
@@ -13795,15 +13795,15 @@ class NS_NO_VTABLE nsITransfer : public nsIWebProgressListener2 {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSITRANSFER \
-  NS_IMETHOD Init(nsIURI *source, nsIURI *target, const nsAString & display_name, nsIMIMEInfo *mime_info, PRTime start_time, nsILocalFile *temp_file, nsICancelable *cancelable); 
+  NS_IMETHOD Init(nsIURI *source, nsIURI *target, const nsAString & display_name, nsIMIMEInfo *mime_info, PRTime start_time, nsILocalFile *temp_file, nsICancelable *cancelable);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSITRANSFER(_to) \
-  NS_IMETHOD Init(nsIURI *source, nsIURI *target, const nsAString & display_name, nsIMIMEInfo *mime_info, PRTime start_time, nsILocalFile *temp_file, nsICancelable *cancelable) { return _to Init(source, target, display_name, mime_info, start_time, temp_file, cancelable); } 
+  NS_IMETHOD Init(nsIURI *source, nsIURI *target, const nsAString & display_name, nsIMIMEInfo *mime_info, PRTime start_time, nsILocalFile *temp_file, nsICancelable *cancelable) { return _to Init(source, target, display_name, mime_info, start_time, temp_file, cancelable); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSITRANSFER(_to) \
-  NS_IMETHOD Init(nsIURI *source, nsIURI *target, const nsAString & display_name, nsIMIMEInfo *mime_info, PRTime start_time, nsILocalFile *temp_file, nsICancelable *cancelable) { return !_to ? NS_ERROR_NULL_POINTER : _to->Init(source, target, display_name, mime_info, start_time, temp_file, cancelable); } 
+  NS_IMETHOD Init(nsIURI *source, nsIURI *target, const nsAString & display_name, nsIMIMEInfo *mime_info, PRTime start_time, nsILocalFile *temp_file, nsICancelable *cancelable) { return !_to ? NS_ERROR_NULL_POINTER : _to->Init(source, target, display_name, mime_info, start_time, temp_file, cancelable); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -13855,7 +13855,7 @@ NS_IMETHODIMP nsTransfer::Init(nsIURI *source, nsIURI *target, const nsAString &
     { 0x93, 0x31, 0x00, 0x10, 0x4b, 0xa0, 0xfd, 0x40 }}
 
 class NS_NO_VTABLE nsIURI : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IURI_IID)
 
@@ -13948,7 +13948,7 @@ class NS_NO_VTABLE nsIURI : public nsISupports {
   NS_IMETHOD Resolve(const nsACString & relative_path, nsACString & _retval); \
   NS_IMETHOD GetAsciiSpec(nsACString & aAsciiSpec); \
   NS_IMETHOD GetAsciiHost(nsACString & aAsciiHost); \
-  NS_IMETHOD GetOriginCharset(nsACString & aOriginCharset); 
+  NS_IMETHOD GetOriginCharset(nsACString & aOriginCharset);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIURI(_to) \
@@ -13977,7 +13977,7 @@ class NS_NO_VTABLE nsIURI : public nsISupports {
   NS_IMETHOD Resolve(const nsACString & relative_path, nsACString & _retval) { return _to Resolve(relative_path, _retval); } \
   NS_IMETHOD GetAsciiSpec(nsACString & aAsciiSpec) { return _to GetAsciiSpec(aAsciiSpec); } \
   NS_IMETHOD GetAsciiHost(nsACString & aAsciiHost) { return _to GetAsciiHost(aAsciiHost); } \
-  NS_IMETHOD GetOriginCharset(nsACString & aOriginCharset) { return _to GetOriginCharset(aOriginCharset); } 
+  NS_IMETHOD GetOriginCharset(nsACString & aOriginCharset) { return _to GetOriginCharset(aOriginCharset); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIURI(_to) \
@@ -14006,7 +14006,7 @@ class NS_NO_VTABLE nsIURI : public nsISupports {
   NS_IMETHOD Resolve(const nsACString & relative_path, nsACString & _retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->Resolve(relative_path, _retval); } \
   NS_IMETHOD GetAsciiSpec(nsACString & aAsciiSpec) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetAsciiSpec(aAsciiSpec); } \
   NS_IMETHOD GetAsciiHost(nsACString & aAsciiHost) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetAsciiHost(aAsciiHost); } \
-  NS_IMETHOD GetOriginCharset(nsACString & aOriginCharset) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetOriginCharset(aOriginCharset); } 
+  NS_IMETHOD GetOriginCharset(nsACString & aOriginCharset) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetOriginCharset(aOriginCharset); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -14198,7 +14198,7 @@ class nsIURIContentListener; /* forward declaration */
     { 0x98, 0x9d, 0x00, 0x10, 0x83, 0x01, 0x0e, 0x9b }}
 
 class NS_NO_VTABLE nsIURIContentListener : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IURICONTENTLISTENER_IID)
 
@@ -14233,7 +14233,7 @@ class NS_NO_VTABLE nsIURIContentListener : public nsISupports {
   NS_IMETHOD GetLoadCookie(nsISupports * *aLoadCookie); \
   NS_IMETHOD SetLoadCookie(nsISupports * aLoadCookie); \
   NS_IMETHOD GetParentContentListener(nsIURIContentListener * *aParentContentListener); \
-  NS_IMETHOD SetParentContentListener(nsIURIContentListener * aParentContentListener); 
+  NS_IMETHOD SetParentContentListener(nsIURIContentListener * aParentContentListener);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIURICONTENTLISTENER(_to) \
@@ -14244,7 +14244,7 @@ class NS_NO_VTABLE nsIURIContentListener : public nsISupports {
   NS_IMETHOD GetLoadCookie(nsISupports * *aLoadCookie) { return _to GetLoadCookie(aLoadCookie); } \
   NS_IMETHOD SetLoadCookie(nsISupports * aLoadCookie) { return _to SetLoadCookie(aLoadCookie); } \
   NS_IMETHOD GetParentContentListener(nsIURIContentListener * *aParentContentListener) { return _to GetParentContentListener(aParentContentListener); } \
-  NS_IMETHOD SetParentContentListener(nsIURIContentListener * aParentContentListener) { return _to SetParentContentListener(aParentContentListener); } 
+  NS_IMETHOD SetParentContentListener(nsIURIContentListener * aParentContentListener) { return _to SetParentContentListener(aParentContentListener); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIURICONTENTLISTENER(_to) \
@@ -14255,7 +14255,7 @@ class NS_NO_VTABLE nsIURIContentListener : public nsISupports {
   NS_IMETHOD GetLoadCookie(nsISupports * *aLoadCookie) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetLoadCookie(aLoadCookie); } \
   NS_IMETHOD SetLoadCookie(nsISupports * aLoadCookie) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetLoadCookie(aLoadCookie); } \
   NS_IMETHOD GetParentContentListener(nsIURIContentListener * *aParentContentListener) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetParentContentListener(aParentContentListener); } \
-  NS_IMETHOD SetParentContentListener(nsIURIContentListener * aParentContentListener) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetParentContentListener(aParentContentListener); } 
+  NS_IMETHOD SetParentContentListener(nsIURIContentListener * aParentContentListener) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetParentContentListener(aParentContentListener); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -14353,7 +14353,7 @@ class nsIStreamListener; /* forward declaration */
     { 0x85, 0x84, 0x9c, 0xfd, 0x58, 0x49, 0xe3, 0x43 }}
 
 class NS_NO_VTABLE nsIURILoader : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IURILOADER_IID)
 
@@ -14384,7 +14384,7 @@ class NS_NO_VTABLE nsIURILoader : public nsISupports {
   NS_IMETHOD UnRegisterContentListener(nsIURIContentListener *content_listener); \
   NS_IMETHOD OpenURI(nsIChannel *channel, PRBool is_content_preferred, nsIInterfaceRequestor *window_context); \
   NS_IMETHOD OpenChannel(nsIChannel *channel, PRUint32 flags, nsIInterfaceRequestor *window_context, nsIStreamListener **_retval); \
-  NS_IMETHOD Stop(nsISupports *load_cookie); 
+  NS_IMETHOD Stop(nsISupports *load_cookie);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIURILOADER(_to) \
@@ -14392,7 +14392,7 @@ class NS_NO_VTABLE nsIURILoader : public nsISupports {
   NS_IMETHOD UnRegisterContentListener(nsIURIContentListener *content_listener) { return _to UnRegisterContentListener(content_listener); } \
   NS_IMETHOD OpenURI(nsIChannel *channel, PRBool is_content_preferred, nsIInterfaceRequestor *window_context) { return _to OpenURI(channel, is_content_preferred, window_context); } \
   NS_IMETHOD OpenChannel(nsIChannel *channel, PRUint32 flags, nsIInterfaceRequestor *window_context, nsIStreamListener **_retval) { return _to OpenChannel(channel, flags, window_context, _retval); } \
-  NS_IMETHOD Stop(nsISupports *load_cookie) { return _to Stop(load_cookie); } 
+  NS_IMETHOD Stop(nsISupports *load_cookie) { return _to Stop(load_cookie); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIURILOADER(_to) \
@@ -14400,7 +14400,7 @@ class NS_NO_VTABLE nsIURILoader : public nsISupports {
   NS_IMETHOD UnRegisterContentListener(nsIURIContentListener *content_listener) { return !_to ? NS_ERROR_NULL_POINTER : _to->UnRegisterContentListener(content_listener); } \
   NS_IMETHOD OpenURI(nsIChannel *channel, PRBool is_content_preferred, nsIInterfaceRequestor *window_context) { return !_to ? NS_ERROR_NULL_POINTER : _to->OpenURI(channel, is_content_preferred, window_context); } \
   NS_IMETHOD OpenChannel(nsIChannel *channel, PRUint32 flags, nsIInterfaceRequestor *window_context, nsIStreamListener **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->OpenChannel(channel, flags, window_context, _retval); } \
-  NS_IMETHOD Stop(nsISupports *load_cookie) { return !_to ? NS_ERROR_NULL_POINTER : _to->Stop(load_cookie); } 
+  NS_IMETHOD Stop(nsISupports *load_cookie) { return !_to ? NS_ERROR_NULL_POINTER : _to->Stop(load_cookie); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -14476,7 +14476,7 @@ NS_IMETHODIMP nsURILoader::Stop(nsISupports *load_cookie)
     { 0xbc, 0x1d, 0xf5, 0x75, 0x6d, 0x79, 0xea, 0x07 }}
 
 class NS_NO_VTABLE ns18IURILoader : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_18IURILOADER_IID)
 
@@ -14499,21 +14499,21 @@ class NS_NO_VTABLE ns18IURILoader : public nsISupports {
   NS_IMETHOD RegisterContentListener(nsIURIContentListener *content_listener); \
   NS_IMETHOD UnRegisterContentListener(nsIURIContentListener *content_listener); \
   NS_IMETHOD OpenURI(nsIChannel *channel, PRBool is_content_preferred, nsIInterfaceRequestor *window_context); \
-  NS_IMETHOD Stop(nsISupports *load_cookie); 
+  NS_IMETHOD Stop(nsISupports *load_cookie);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NS18IURILOADER(_to) \
   NS_IMETHOD RegisterContentListener(nsIURIContentListener *content_listener) { return _to RegisterContentListener(content_listener); } \
   NS_IMETHOD UnRegisterContentListener(nsIURIContentListener *content_listener) { return _to UnRegisterContentListener(content_listener); } \
   NS_IMETHOD OpenURI(nsIChannel *channel, PRBool is_content_preferred, nsIInterfaceRequestor *window_context) { return _to OpenURI(channel, is_content_preferred, window_context); } \
-  NS_IMETHOD Stop(nsISupports *load_cookie) { return _to Stop(load_cookie); } 
+  NS_IMETHOD Stop(nsISupports *load_cookie) { return _to Stop(load_cookie); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NS18IURILOADER(_to) \
   NS_IMETHOD RegisterContentListener(nsIURIContentListener *content_listener) { return !_to ? NS_ERROR_NULL_POINTER : _to->RegisterContentListener(content_listener); } \
   NS_IMETHOD UnRegisterContentListener(nsIURIContentListener *content_listener) { return !_to ? NS_ERROR_NULL_POINTER : _to->UnRegisterContentListener(content_listener); } \
   NS_IMETHOD OpenURI(nsIChannel *channel, PRBool is_content_preferred, nsIInterfaceRequestor *window_context) { return !_to ? NS_ERROR_NULL_POINTER : _to->OpenURI(channel, is_content_preferred, window_context); } \
-  NS_IMETHOD Stop(nsISupports *load_cookie) { return !_to ? NS_ERROR_NULL_POINTER : _to->Stop(load_cookie); } 
+  NS_IMETHOD Stop(nsISupports *load_cookie) { return !_to ? NS_ERROR_NULL_POINTER : _to->Stop(load_cookie); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -14591,7 +14591,7 @@ class nsIWeakReference; /* forward declaration */
     { 0xaf, 0x61, 0x00, 0xa0, 0x24, 0xff, 0xc0, 0x8c }}
 
 class NS_NO_VTABLE nsIWebBrowser : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IWEBBROWSER_IID)
 
@@ -14622,7 +14622,7 @@ class NS_NO_VTABLE nsIWebBrowser : public nsISupports {
   NS_IMETHOD SetContainerWindow(nsIWebBrowserChrome * aContainerWindow); \
   NS_IMETHOD GetParentURIContentListener(nsIURIContentListener * *aParentURIContentListener); \
   NS_IMETHOD SetParentURIContentListener(nsIURIContentListener * aParentURIContentListener); \
-  NS_IMETHOD GetContentDOMWindow(nsIDOMWindow * *aContentDOMWindow); 
+  NS_IMETHOD GetContentDOMWindow(nsIDOMWindow * *aContentDOMWindow);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIWEBBROWSER(_to) \
@@ -14632,7 +14632,7 @@ class NS_NO_VTABLE nsIWebBrowser : public nsISupports {
   NS_IMETHOD SetContainerWindow(nsIWebBrowserChrome * aContainerWindow) { return _to SetContainerWindow(aContainerWindow); } \
   NS_IMETHOD GetParentURIContentListener(nsIURIContentListener * *aParentURIContentListener) { return _to GetParentURIContentListener(aParentURIContentListener); } \
   NS_IMETHOD SetParentURIContentListener(nsIURIContentListener * aParentURIContentListener) { return _to SetParentURIContentListener(aParentURIContentListener); } \
-  NS_IMETHOD GetContentDOMWindow(nsIDOMWindow * *aContentDOMWindow) { return _to GetContentDOMWindow(aContentDOMWindow); } 
+  NS_IMETHOD GetContentDOMWindow(nsIDOMWindow * *aContentDOMWindow) { return _to GetContentDOMWindow(aContentDOMWindow); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIWEBBROWSER(_to) \
@@ -14642,7 +14642,7 @@ class NS_NO_VTABLE nsIWebBrowser : public nsISupports {
   NS_IMETHOD SetContainerWindow(nsIWebBrowserChrome * aContainerWindow) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetContainerWindow(aContainerWindow); } \
   NS_IMETHOD GetParentURIContentListener(nsIURIContentListener * *aParentURIContentListener) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetParentURIContentListener(aParentURIContentListener); } \
   NS_IMETHOD SetParentURIContentListener(nsIURIContentListener * aParentURIContentListener) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetParentURIContentListener(aParentURIContentListener); } \
-  NS_IMETHOD GetContentDOMWindow(nsIDOMWindow * *aContentDOMWindow) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetContentDOMWindow(aContentDOMWindow); } 
+  NS_IMETHOD GetContentDOMWindow(nsIDOMWindow * *aContentDOMWindow) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetContentDOMWindow(aContentDOMWindow); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -14728,7 +14728,7 @@ class nsIWebBrowser; /* forward declaration */
     { 0xaf, 0xb0, 0x00, 0xa0, 0x24, 0xff, 0xc0, 0x8c }}
 
 class NS_NO_VTABLE nsIWebBrowserChrome : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IWEBBROWSERCHROME_IID)
 
@@ -14823,7 +14823,7 @@ class NS_NO_VTABLE nsIWebBrowserChrome : public nsISupports {
   NS_IMETHOD SizeBrowserTo(PRInt32 cx, PRInt32 cy); \
   NS_IMETHOD ShowAsModal(void); \
   NS_IMETHOD IsWindowModal(PRBool *_retval); \
-  NS_IMETHOD ExitModalEventLoop(nsresult status); 
+  NS_IMETHOD ExitModalEventLoop(nsresult status);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIWEBBROWSERCHROME(_to) \
@@ -14836,7 +14836,7 @@ class NS_NO_VTABLE nsIWebBrowserChrome : public nsISupports {
   NS_IMETHOD SizeBrowserTo(PRInt32 cx, PRInt32 cy) { return _to SizeBrowserTo(cx, cy); } \
   NS_IMETHOD ShowAsModal(void) { return _to ShowAsModal(); } \
   NS_IMETHOD IsWindowModal(PRBool *_retval) { return _to IsWindowModal(_retval); } \
-  NS_IMETHOD ExitModalEventLoop(nsresult status) { return _to ExitModalEventLoop(status); } 
+  NS_IMETHOD ExitModalEventLoop(nsresult status) { return _to ExitModalEventLoop(status); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIWEBBROWSERCHROME(_to) \
@@ -14849,7 +14849,7 @@ class NS_NO_VTABLE nsIWebBrowserChrome : public nsISupports {
   NS_IMETHOD SizeBrowserTo(PRInt32 cx, PRInt32 cy) { return !_to ? NS_ERROR_NULL_POINTER : _to->SizeBrowserTo(cx, cy); } \
   NS_IMETHOD ShowAsModal(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->ShowAsModal(); } \
   NS_IMETHOD IsWindowModal(PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->IsWindowModal(_retval); } \
-  NS_IMETHOD ExitModalEventLoop(nsresult status) { return !_to ? NS_ERROR_NULL_POINTER : _to->ExitModalEventLoop(status); } 
+  NS_IMETHOD ExitModalEventLoop(nsresult status) { return !_to ? NS_ERROR_NULL_POINTER : _to->ExitModalEventLoop(status); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -14951,7 +14951,7 @@ NS_IMETHODIMP nsWebBrowserChrome::ExitModalEventLoop(nsresult status)
     { 0x8e, 0x55, 0xac, 0xdd, 0xcd, 0x2b, 0xcf, 0xb8 }}
 
 class NS_NO_VTABLE nsIWebBrowserChromeFocus : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IWEBBROWSERCHROMEFOCUS_IID)
 
@@ -14966,17 +14966,17 @@ class NS_NO_VTABLE nsIWebBrowserChromeFocus : public nsISupports {
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIWEBBROWSERCHROMEFOCUS \
   NS_IMETHOD FocusNextElement(void); \
-  NS_IMETHOD FocusPrevElement(void); 
+  NS_IMETHOD FocusPrevElement(void);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIWEBBROWSERCHROMEFOCUS(_to) \
   NS_IMETHOD FocusNextElement(void) { return _to FocusNextElement(); } \
-  NS_IMETHOD FocusPrevElement(void) { return _to FocusPrevElement(); } 
+  NS_IMETHOD FocusPrevElement(void) { return _to FocusPrevElement(); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIWEBBROWSERCHROMEFOCUS(_to) \
   NS_IMETHOD FocusNextElement(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->FocusNextElement(); } \
-  NS_IMETHOD FocusPrevElement(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->FocusPrevElement(); } 
+  NS_IMETHOD FocusPrevElement(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->FocusPrevElement(); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -15034,7 +15034,7 @@ NS_IMETHODIMP nsWebBrowserChromeFocus::FocusPrevElement()
     { 0x87, 0xe2, 0x00, 0x10, 0xa4, 0xe7, 0x5e, 0xf2 }}
 
 class NS_NO_VTABLE nsIWebBrowserFind : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IWEBBROWSERFIND_IID)
 
@@ -15081,7 +15081,7 @@ class NS_NO_VTABLE nsIWebBrowserFind : public nsISupports {
   NS_IMETHOD GetMatchCase(PRBool *aMatchCase); \
   NS_IMETHOD SetMatchCase(PRBool aMatchCase); \
   NS_IMETHOD GetSearchFrames(PRBool *aSearchFrames); \
-  NS_IMETHOD SetSearchFrames(PRBool aSearchFrames); 
+  NS_IMETHOD SetSearchFrames(PRBool aSearchFrames);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIWEBBROWSERFIND(_to) \
@@ -15097,7 +15097,7 @@ class NS_NO_VTABLE nsIWebBrowserFind : public nsISupports {
   NS_IMETHOD GetMatchCase(PRBool *aMatchCase) { return _to GetMatchCase(aMatchCase); } \
   NS_IMETHOD SetMatchCase(PRBool aMatchCase) { return _to SetMatchCase(aMatchCase); } \
   NS_IMETHOD GetSearchFrames(PRBool *aSearchFrames) { return _to GetSearchFrames(aSearchFrames); } \
-  NS_IMETHOD SetSearchFrames(PRBool aSearchFrames) { return _to SetSearchFrames(aSearchFrames); } 
+  NS_IMETHOD SetSearchFrames(PRBool aSearchFrames) { return _to SetSearchFrames(aSearchFrames); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIWEBBROWSERFIND(_to) \
@@ -15113,7 +15113,7 @@ class NS_NO_VTABLE nsIWebBrowserFind : public nsISupports {
   NS_IMETHOD GetMatchCase(PRBool *aMatchCase) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetMatchCase(aMatchCase); } \
   NS_IMETHOD SetMatchCase(PRBool aMatchCase) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetMatchCase(aMatchCase); } \
   NS_IMETHOD GetSearchFrames(PRBool *aSearchFrames) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetSearchFrames(aSearchFrames); } \
-  NS_IMETHOD SetSearchFrames(PRBool aSearchFrames) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetSearchFrames(aSearchFrames); } 
+  NS_IMETHOD SetSearchFrames(PRBool aSearchFrames) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetSearchFrames(aSearchFrames); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -15229,7 +15229,7 @@ class nsIDOMElement; /* forward declaration */
     { 0xa1, 0xc9, 0xf3, 0x69, 0x92, 0x84, 0x65, 0x7a }}
 
 class NS_NO_VTABLE nsIWebBrowserFocus : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IWEBBROWSERFOCUS_IID)
 
@@ -15264,7 +15264,7 @@ class NS_NO_VTABLE nsIWebBrowserFocus : public nsISupports {
   NS_IMETHOD GetFocusedWindow(nsIDOMWindow * *aFocusedWindow); \
   NS_IMETHOD SetFocusedWindow(nsIDOMWindow * aFocusedWindow); \
   NS_IMETHOD GetFocusedElement(nsIDOMElement * *aFocusedElement); \
-  NS_IMETHOD SetFocusedElement(nsIDOMElement * aFocusedElement); 
+  NS_IMETHOD SetFocusedElement(nsIDOMElement * aFocusedElement);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIWEBBROWSERFOCUS(_to) \
@@ -15275,7 +15275,7 @@ class NS_NO_VTABLE nsIWebBrowserFocus : public nsISupports {
   NS_IMETHOD GetFocusedWindow(nsIDOMWindow * *aFocusedWindow) { return _to GetFocusedWindow(aFocusedWindow); } \
   NS_IMETHOD SetFocusedWindow(nsIDOMWindow * aFocusedWindow) { return _to SetFocusedWindow(aFocusedWindow); } \
   NS_IMETHOD GetFocusedElement(nsIDOMElement * *aFocusedElement) { return _to GetFocusedElement(aFocusedElement); } \
-  NS_IMETHOD SetFocusedElement(nsIDOMElement * aFocusedElement) { return _to SetFocusedElement(aFocusedElement); } 
+  NS_IMETHOD SetFocusedElement(nsIDOMElement * aFocusedElement) { return _to SetFocusedElement(aFocusedElement); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIWEBBROWSERFOCUS(_to) \
@@ -15286,7 +15286,7 @@ class NS_NO_VTABLE nsIWebBrowserFocus : public nsISupports {
   NS_IMETHOD GetFocusedWindow(nsIDOMWindow * *aFocusedWindow) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetFocusedWindow(aFocusedWindow); } \
   NS_IMETHOD SetFocusedWindow(nsIDOMWindow * aFocusedWindow) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetFocusedWindow(aFocusedWindow); } \
   NS_IMETHOD GetFocusedElement(nsIDOMElement * *aFocusedElement) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetFocusedElement(aFocusedElement); } \
-  NS_IMETHOD SetFocusedElement(nsIDOMElement * aFocusedElement) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetFocusedElement(aFocusedElement); } 
+  NS_IMETHOD SetFocusedElement(nsIDOMElement * aFocusedElement) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetFocusedElement(aFocusedElement); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -15388,7 +15388,7 @@ class nsIDOMDocument; /* forward declaration */
     { 0xad, 0x85, 0x40, 0xe8, 0x54, 0x3b, 0x94, 0x65 }}
 
 class NS_NO_VTABLE nsIWebBrowserPersist : public nsICancelable {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IWEBBROWSERPERSIST_IID)
 
@@ -15501,7 +15501,7 @@ class NS_NO_VTABLE nsIWebBrowserPersist : public nsICancelable {
   NS_IMETHOD SaveURI(nsIURI *uri, nsISupports *cache_key, nsIURI *referrer, nsIInputStream *post_data, const char *extra_headers, nsIFile *file); \
   NS_IMETHOD SaveChannel(nsIChannel *channel, nsISupports *file); \
   NS_IMETHOD SaveDocument(nsIDOMDocument *document, nsISupports *file, nsISupports *data_path, const char *output_content_type, PRUint32 encoding_flags, PRUint32 wrap_column); \
-  NS_IMETHOD CancelSave(void); 
+  NS_IMETHOD CancelSave(void);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIWEBBROWSERPERSIST(_to) \
@@ -15514,7 +15514,7 @@ class NS_NO_VTABLE nsIWebBrowserPersist : public nsICancelable {
   NS_IMETHOD SaveURI(nsIURI *uri, nsISupports *cache_key, nsIURI *referrer, nsIInputStream *post_data, const char *extra_headers, nsIFile *file) { return _to SaveURI(uri, cache_key, referrer, post_data, extra_headers, file); } \
   NS_IMETHOD SaveChannel(nsIChannel *channel, nsISupports *file) { return _to SaveChannel(channel, file); } \
   NS_IMETHOD SaveDocument(nsIDOMDocument *document, nsISupports *file, nsISupports *data_path, const char *output_content_type, PRUint32 encoding_flags, PRUint32 wrap_column) { return _to SaveDocument(document, file, data_path, output_content_type, encoding_flags, wrap_column); } \
-  NS_IMETHOD CancelSave(void) { return _to CancelSave(); } 
+  NS_IMETHOD CancelSave(void) { return _to CancelSave(); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIWEBBROWSERPERSIST(_to) \
@@ -15527,7 +15527,7 @@ class NS_NO_VTABLE nsIWebBrowserPersist : public nsICancelable {
   NS_IMETHOD SaveURI(nsIURI *uri, nsISupports *cache_key, nsIURI *referrer, nsIInputStream *post_data, const char *extra_headers, nsIFile *file) { return !_to ? NS_ERROR_NULL_POINTER : _to->SaveURI(uri, cache_key, referrer, post_data, extra_headers, file); } \
   NS_IMETHOD SaveChannel(nsIChannel *channel, nsISupports *file) { return !_to ? NS_ERROR_NULL_POINTER : _to->SaveChannel(channel, file); } \
   NS_IMETHOD SaveDocument(nsIDOMDocument *document, nsISupports *file, nsISupports *data_path, const char *output_content_type, PRUint32 encoding_flags, PRUint32 wrap_column) { return !_to ? NS_ERROR_NULL_POINTER : _to->SaveDocument(document, file, data_path, output_content_type, encoding_flags, wrap_column); } \
-  NS_IMETHOD CancelSave(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->CancelSave(); } 
+  NS_IMETHOD CancelSave(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->CancelSave(); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -15637,7 +15637,7 @@ class nsISHistory; /* forward declaration */
     { 0xb0, 0x57, 0x00, 0xa0, 0x24, 0xff, 0xc0, 0x8c }}
 
 class NS_NO_VTABLE nsIWebNavigation : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IWEBNAVIGATION_IID)
 
@@ -15722,7 +15722,7 @@ class NS_NO_VTABLE nsIWebNavigation : public nsISupports {
   NS_IMETHOD GetCurrentURI(nsIURI * *aCurrentURI); \
   NS_IMETHOD GetReferringURI(nsIURI * *aReferringURI); \
   NS_IMETHOD GetSessionHistory(nsISHistory * *aSessionHistory); \
-  NS_IMETHOD SetSessionHistory(nsISHistory * aSessionHistory); 
+  NS_IMETHOD SetSessionHistory(nsISHistory * aSessionHistory);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIWEBNAVIGATION(_to) \
@@ -15738,7 +15738,7 @@ class NS_NO_VTABLE nsIWebNavigation : public nsISupports {
   NS_IMETHOD GetCurrentURI(nsIURI * *aCurrentURI) { return _to GetCurrentURI(aCurrentURI); } \
   NS_IMETHOD GetReferringURI(nsIURI * *aReferringURI) { return _to GetReferringURI(aReferringURI); } \
   NS_IMETHOD GetSessionHistory(nsISHistory * *aSessionHistory) { return _to GetSessionHistory(aSessionHistory); } \
-  NS_IMETHOD SetSessionHistory(nsISHistory * aSessionHistory) { return _to SetSessionHistory(aSessionHistory); } 
+  NS_IMETHOD SetSessionHistory(nsISHistory * aSessionHistory) { return _to SetSessionHistory(aSessionHistory); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIWEBNAVIGATION(_to) \
@@ -15754,7 +15754,7 @@ class NS_NO_VTABLE nsIWebNavigation : public nsISupports {
   NS_IMETHOD GetCurrentURI(nsIURI * *aCurrentURI) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetCurrentURI(aCurrentURI); } \
   NS_IMETHOD GetReferringURI(nsIURI * *aReferringURI) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetReferringURI(aReferringURI); } \
   NS_IMETHOD GetSessionHistory(nsISHistory * *aSessionHistory) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetSessionHistory(aSessionHistory); } \
-  NS_IMETHOD SetSessionHistory(nsISHistory * aSessionHistory) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetSessionHistory(aSessionHistory); } 
+  NS_IMETHOD SetSessionHistory(nsISHistory * aSessionHistory) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetSessionHistory(aSessionHistory); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -15878,7 +15878,7 @@ class nsIWebBrowserChrome; /* forward declaration */
     { 0x90, 0xf9, 0x81, 0x45, 0x47, 0x5e, 0xf9, 0x99 }}
 
 class NS_NO_VTABLE nsIWindowCreator : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IWINDOWCREATOR_IID)
 
@@ -15889,15 +15889,15 @@ class NS_NO_VTABLE nsIWindowCreator : public nsISupports {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIWINDOWCREATOR \
-  NS_IMETHOD CreateChromeWindow(nsIWebBrowserChrome *parent, PRUint32 chrome_flags, nsIWebBrowserChrome **_retval); 
+  NS_IMETHOD CreateChromeWindow(nsIWebBrowserChrome *parent, PRUint32 chrome_flags, nsIWebBrowserChrome **_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIWINDOWCREATOR(_to) \
-  NS_IMETHOD CreateChromeWindow(nsIWebBrowserChrome *parent, PRUint32 chrome_flags, nsIWebBrowserChrome **_retval) { return _to CreateChromeWindow(parent, chrome_flags, _retval); } 
+  NS_IMETHOD CreateChromeWindow(nsIWebBrowserChrome *parent, PRUint32 chrome_flags, nsIWebBrowserChrome **_retval) { return _to CreateChromeWindow(parent, chrome_flags, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIWINDOWCREATOR(_to) \
-  NS_IMETHOD CreateChromeWindow(nsIWebBrowserChrome *parent, PRUint32 chrome_flags, nsIWebBrowserChrome **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->CreateChromeWindow(parent, chrome_flags, _retval); } 
+  NS_IMETHOD CreateChromeWindow(nsIWebBrowserChrome *parent, PRUint32 chrome_flags, nsIWebBrowserChrome **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->CreateChromeWindow(parent, chrome_flags, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -15963,7 +15963,7 @@ class nsIWindowCreator; /* forward declaration */
     { 0x8d, 0xdd, 0x49, 0xe3, 0xfc, 0x50, 0x62, 0x2b }}
 
 class NS_NO_VTABLE nsIWindowWatcher : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IWINDOWWATCHER_IID)
 
@@ -16012,7 +16012,7 @@ class NS_NO_VTABLE nsIWindowWatcher : public nsISupports {
   NS_IMETHOD GetChromeForWindow(nsIDOMWindow *window, nsIWebBrowserChrome **_retval); \
   NS_IMETHOD GetWindowByName(const PRUnichar *target_name, nsIDOMWindow *current_window, nsIDOMWindow **_retval); \
   NS_IMETHOD GetActiveWindow(nsIDOMWindow * *aActiveWindow); \
-  NS_IMETHOD SetActiveWindow(nsIDOMWindow * aActiveWindow); 
+  NS_IMETHOD SetActiveWindow(nsIDOMWindow * aActiveWindow);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIWINDOWWATCHER(_to) \
@@ -16026,7 +16026,7 @@ class NS_NO_VTABLE nsIWindowWatcher : public nsISupports {
   NS_IMETHOD GetChromeForWindow(nsIDOMWindow *window, nsIWebBrowserChrome **_retval) { return _to GetChromeForWindow(window, _retval); } \
   NS_IMETHOD GetWindowByName(const PRUnichar *target_name, nsIDOMWindow *current_window, nsIDOMWindow **_retval) { return _to GetWindowByName(target_name, current_window, _retval); } \
   NS_IMETHOD GetActiveWindow(nsIDOMWindow * *aActiveWindow) { return _to GetActiveWindow(aActiveWindow); } \
-  NS_IMETHOD SetActiveWindow(nsIDOMWindow * aActiveWindow) { return _to SetActiveWindow(aActiveWindow); } 
+  NS_IMETHOD SetActiveWindow(nsIDOMWindow * aActiveWindow) { return _to SetActiveWindow(aActiveWindow); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIWINDOWWATCHER(_to) \
@@ -16040,7 +16040,7 @@ class NS_NO_VTABLE nsIWindowWatcher : public nsISupports {
   NS_IMETHOD GetChromeForWindow(nsIDOMWindow *window, nsIWebBrowserChrome **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetChromeForWindow(window, _retval); } \
   NS_IMETHOD GetWindowByName(const PRUnichar *target_name, nsIDOMWindow *current_window, nsIDOMWindow **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetWindowByName(target_name, current_window, _retval); } \
   NS_IMETHOD GetActiveWindow(nsIDOMWindow * *aActiveWindow) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetActiveWindow(aActiveWindow); } \
-  NS_IMETHOD SetActiveWindow(nsIDOMWindow * aActiveWindow) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetActiveWindow(aActiveWindow); } 
+  NS_IMETHOD SetActiveWindow(nsIDOMWindow * aActiveWindow) { return !_to ? NS_ERROR_NULL_POINTER : _to->SetActiveWindow(aActiveWindow); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -16156,7 +16156,7 @@ class nsIXPCNativeCallContext; /* forward declaration */
     { 0x98, 0x5a, 0x00, 0x60, 0x08, 0x96, 0x24, 0x22 }}
 
 class NS_NO_VTABLE nsIXPCSecurityManager : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IXPCSECURITYMANAGER_IID)
 
@@ -16179,21 +16179,21 @@ class NS_NO_VTABLE nsIXPCSecurityManager : public nsISupports {
   NS_IMETHOD CanCreateWrapper(JSContext * js_context, const nsIID & iid, nsISupports *obj, nsIClassInfo *class_info, void * *policy); \
   NS_IMETHOD CanCreateInstance(JSContext * js_context, const nsCID & cid); \
   NS_IMETHOD CanGetService(JSContext * js_context, const nsCID & cid); \
-  NS_IMETHOD CanAccess(PRUint32 action, nsIXPCNativeCallContext *call_context, JSContext * js_context, JSObject * js_object, nsISupports *obj, nsIClassInfo *class_info, jsval name, void * *policy); 
+  NS_IMETHOD CanAccess(PRUint32 action, nsIXPCNativeCallContext *call_context, JSContext * js_context, JSObject * js_object, nsISupports *obj, nsIClassInfo *class_info, jsval name, void * *policy);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIXPCSECURITYMANAGER(_to) \
   NS_IMETHOD CanCreateWrapper(JSContext * js_context, const nsIID & iid, nsISupports *obj, nsIClassInfo *class_info, void * *policy) { return _to CanCreateWrapper(js_context, iid, obj, class_info, policy); } \
   NS_IMETHOD CanCreateInstance(JSContext * js_context, const nsCID & cid) { return _to CanCreateInstance(js_context, cid); } \
   NS_IMETHOD CanGetService(JSContext * js_context, const nsCID & cid) { return _to CanGetService(js_context, cid); } \
-  NS_IMETHOD CanAccess(PRUint32 action, nsIXPCNativeCallContext *call_context, JSContext * js_context, JSObject * js_object, nsISupports *obj, nsIClassInfo *class_info, jsval name, void * *policy) { return _to CanAccess(action, call_context, js_context, js_object, obj, class_info, name, policy); } 
+  NS_IMETHOD CanAccess(PRUint32 action, nsIXPCNativeCallContext *call_context, JSContext * js_context, JSObject * js_object, nsISupports *obj, nsIClassInfo *class_info, jsval name, void * *policy) { return _to CanAccess(action, call_context, js_context, js_object, obj, class_info, name, policy); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIXPCSECURITYMANAGER(_to) \
   NS_IMETHOD CanCreateWrapper(JSContext * js_context, const nsIID & iid, nsISupports *obj, nsIClassInfo *class_info, void * *policy) { return !_to ? NS_ERROR_NULL_POINTER : _to->CanCreateWrapper(js_context, iid, obj, class_info, policy); } \
   NS_IMETHOD CanCreateInstance(JSContext * js_context, const nsCID & cid) { return !_to ? NS_ERROR_NULL_POINTER : _to->CanCreateInstance(js_context, cid); } \
   NS_IMETHOD CanGetService(JSContext * js_context, const nsCID & cid) { return !_to ? NS_ERROR_NULL_POINTER : _to->CanGetService(js_context, cid); } \
-  NS_IMETHOD CanAccess(PRUint32 action, nsIXPCNativeCallContext *call_context, JSContext * js_context, JSObject * js_object, nsISupports *obj, nsIClassInfo *class_info, jsval name, void * *policy) { return !_to ? NS_ERROR_NULL_POINTER : _to->CanAccess(action, call_context, js_context, js_object, obj, class_info, name, policy); } 
+  NS_IMETHOD CanAccess(PRUint32 action, nsIXPCNativeCallContext *call_context, JSContext * js_context, JSObject * js_object, nsISupports *obj, nsIClassInfo *class_info, jsval name, void * *policy) { return !_to ? NS_ERROR_NULL_POINTER : _to->CanAccess(action, call_context, js_context, js_object, obj, class_info, name, policy); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -16265,7 +16265,7 @@ class nsIURI; /* forward declaration */
     { 0xa8, 0x18, 0x3c, 0x4c, 0x97, 0xc2, 0x43, 0x0d }}
 
 class NS_NO_VTABLE nsIPrincipal : public nsISupports {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_IPRINCIPAL_IID)
 
@@ -16276,15 +16276,15 @@ class NS_NO_VTABLE nsIPrincipal : public nsISupports {
 
 /* Use this macro when declaring classes that implement this interface. */
 #define NS_DECL_NSIPRINCIPAL \
-  NS_IMETHOD Placeholder(void); 
+  NS_IMETHOD Placeholder(void);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSIPRINCIPAL(_to) \
-  NS_IMETHOD Placeholder(void) { return _to Placeholder(); } 
+  NS_IMETHOD Placeholder(void) { return _to Placeholder(); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSIPRINCIPAL(_to) \
-  NS_IMETHOD Placeholder(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Placeholder(); } 
+  NS_IMETHOD Placeholder(void) { return !_to ? NS_ERROR_NULL_POINTER : _to->Placeholder(); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */
@@ -16336,7 +16336,7 @@ NS_IMETHODIMP nsPrincipal::Placeholder()
     { 0xa3, 0xe4, 0xa3, 0x92, 0xac, 0x5a, 0xc3, 0xff }}
 
 class NS_NO_VTABLE nsIScriptSecurityManager : public nsIXPCSecurityManager {
- public: 
+ public:
 
   NS_DEFINE_STATIC_IID_ACCESSOR(NS_ISCRIPTSECURITYMANAGER_IID)
 
@@ -16443,7 +16443,7 @@ class NS_NO_VTABLE nsIScriptSecurityManager : public nsIXPCSecurityManager {
   NS_IMETHOD CheckSameOriginURI(nsIURI *source_uri, nsIURI *target_uri); \
   NS_IMETHOD CheckSameOriginPrincipal(nsIPrincipal *source_principal, nsIPrincipal *target_principal); \
   NS_IMETHOD GetPrincipalFromContext(JSContext * cx, nsIPrincipal **_retval); \
-  NS_IMETHOD SecurityCompareURIs(nsIURI *subject_uri, nsIURI *object_uri, PRBool *_retval); 
+  NS_IMETHOD SecurityCompareURIs(nsIURI *subject_uri, nsIURI *object_uri, PRBool *_retval);
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object. */
 #define NS_FORWARD_NSISCRIPTSECURITYMANAGER(_to) \
@@ -16471,7 +16471,7 @@ class NS_NO_VTABLE nsIScriptSecurityManager : public nsIXPCSecurityManager {
   NS_IMETHOD CheckSameOriginURI(nsIURI *source_uri, nsIURI *target_uri) { return _to CheckSameOriginURI(source_uri, target_uri); } \
   NS_IMETHOD CheckSameOriginPrincipal(nsIPrincipal *source_principal, nsIPrincipal *target_principal) { return _to CheckSameOriginPrincipal(source_principal, target_principal); } \
   NS_IMETHOD GetPrincipalFromContext(JSContext * cx, nsIPrincipal **_retval) { return _to GetPrincipalFromContext(cx, _retval); } \
-  NS_IMETHOD SecurityCompareURIs(nsIURI *subject_uri, nsIURI *object_uri, PRBool *_retval) { return _to SecurityCompareURIs(subject_uri, object_uri, _retval); } 
+  NS_IMETHOD SecurityCompareURIs(nsIURI *subject_uri, nsIURI *object_uri, PRBool *_retval) { return _to SecurityCompareURIs(subject_uri, object_uri, _retval); }
 
 /* Use this macro to declare functions that forward the behavior of this interface to another object in a safe way. */
 #define NS_FORWARD_SAFE_NSISCRIPTSECURITYMANAGER(_to) \
@@ -16499,7 +16499,7 @@ class NS_NO_VTABLE nsIScriptSecurityManager : public nsIXPCSecurityManager {
   NS_IMETHOD CheckSameOriginURI(nsIURI *source_uri, nsIURI *target_uri) { return !_to ? NS_ERROR_NULL_POINTER : _to->CheckSameOriginURI(source_uri, target_uri); } \
   NS_IMETHOD CheckSameOriginPrincipal(nsIPrincipal *source_principal, nsIPrincipal *target_principal) { return !_to ? NS_ERROR_NULL_POINTER : _to->CheckSameOriginPrincipal(source_principal, target_principal); } \
   NS_IMETHOD GetPrincipalFromContext(JSContext * cx, nsIPrincipal **_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->GetPrincipalFromContext(cx, _retval); } \
-  NS_IMETHOD SecurityCompareURIs(nsIURI *subject_uri, nsIURI *object_uri, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->SecurityCompareURIs(subject_uri, object_uri, _retval); } 
+  NS_IMETHOD SecurityCompareURIs(nsIURI *subject_uri, nsIURI *object_uri, PRBool *_retval) { return !_to ? NS_ERROR_NULL_POINTER : _to->SecurityCompareURIs(subject_uri, object_uri, _retval); }
 
 #if 0
 /* Use the code below as a template for the implementation class for this interface. */

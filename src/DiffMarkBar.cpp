@@ -10,7 +10,7 @@ END_EVENT_TABLE()
 
 DiffMarkBar::DiffMarkBar(wxWindow* parent, const vector<DiffBar::LineMatch>& lineMatches, EditorCtrl* editor, bool isLeft):
 	wxControl(parent, wxID_ANY, wxPoint(-100,-100), wxDefaultSize, wxNO_BORDER|wxCLIP_CHILDREN|wxNO_FULL_REPAINT_ON_RESIZE),
-	m_lineMatches(lineMatches), m_editor(editor), m_isLeft(isLeft) 
+	m_lineMatches(lineMatches), m_editor(editor), m_isLeft(isLeft)
 {
 	// Fix width
 	SetMinSize(wxSize(10, -1));
@@ -33,10 +33,10 @@ void DiffMarkBar::DrawLayout(wxDC& dc) {
 	// We have to adjust for the up and down buttons on the scrollbar
 	const unsigned int scrollArrowY = m_editor->HasScrollbar() ? wxSystemSettings::GetMetric(wxSYS_VSCROLL_ARROW_Y) : 0;
 	const unsigned int sizeY = size.y - (scrollArrowY * 2);
-	
+
 	dc.SetBackground(*wxWHITE_BRUSH);
 	dc.Clear();
-	
+
 	// Draw the markers
 	for (std::vector<DiffBar::LineMatch>::const_iterator p = m_lineMatches.begin(); p != m_lineMatches.end(); ++p) {
 		const unsigned int start = m_isLeft ? p->left_start : p->right_start;

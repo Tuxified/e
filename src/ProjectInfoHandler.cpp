@@ -83,7 +83,7 @@ void ProjectInfoHandler::GetFilters(const wxString& path, wxArrayString& incDirs
 		}
 
 		cxProjectInfo info;
-		
+
 		if (info.Load(m_prjPath, dirPath.GetPath(), true)) {
 			incDirs = info.includeDirs;
 			excDirs = info.excludeDirs;

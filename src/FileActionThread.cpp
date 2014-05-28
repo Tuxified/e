@@ -14,7 +14,7 @@
 #include "FileActionThread.h"
 
 FileActionThread::FileActionThread(FileAction action, const wxArrayString& sources, bool allowUndo):
-	m_action(action), m_paths(sources), m_allowUndo(allowUndo) 
+	m_action(action), m_paths(sources), m_allowUndo(allowUndo)
 {
 	wxASSERT(m_action == FILEACTION_DELETE || m_action == FILEACTION_DELETE_SILENT);
 	Create();
@@ -22,7 +22,7 @@ FileActionThread::FileActionThread(FileAction action, const wxArrayString& sourc
 }
 
 FileActionThread::FileActionThread(FileAction action, const wxArrayString& sources, const wxString& targetDir, bool allowUndo):
-m_action(action), m_paths(sources), m_targetDir(targetDir), m_allowUndo(allowUndo) 
+m_action(action), m_paths(sources), m_targetDir(targetDir), m_allowUndo(allowUndo)
 {
 	Create();
 	Run();

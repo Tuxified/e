@@ -36,7 +36,7 @@ public:
 	~EditorPrintout();
 
 	void OnPreparePrinting();
-	
+
 	bool HasPage(int pageNum) {return (int)m_pages.size() >= pageNum;};
 	void GetPageInfo(int *minPage, int *maxPage, int *pageFrom, int *pageTo);
 	bool OnPrintPage(int pageNum);

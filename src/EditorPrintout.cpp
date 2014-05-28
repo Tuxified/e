@@ -26,7 +26,7 @@ const unsigned int s_lastpos = 0;
 const bool s_isShadow = false;
 
 EditorPrintout::EditorPrintout(const IPrintableDocument& printDoc, const tmTheme& theme):
-	wxPrintout(printDoc.GetName()), 
+	wxPrintout(printDoc.GetName()),
 	m_printDoc(printDoc), m_theme(theme),
 	m_line(NULL), m_lineList(NULL) {}
 
@@ -82,7 +82,7 @@ void EditorPrintout::OnPreparePrinting() {
 			bottom_ypos = m_lineList->bottom(lastline) + m_page_height;
 		}
 
-		if (bottom_ypos > m_lineList->height()) 
+		if (bottom_ypos > m_lineList->height())
 			m_pages.push_back(m_lineList->last());
 	}
 }

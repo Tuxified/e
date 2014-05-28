@@ -52,7 +52,7 @@ public:
 	// Handle document changes
 	void Insert(unsigned int pos, unsigned int length);
 	void Delete(unsigned int start_pos, unsigned int end_pos);
-	
+
 	void ApplyStyle(StyleRun& sr, unsigned int start, unsigned int pos);
 	bool FilterMatch(search_result& result, const Document& doc);
 

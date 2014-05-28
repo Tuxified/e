@@ -980,7 +980,7 @@ cxFileResult Document::SaveText(const wxFileName& path, bool forceNativeEOL, con
 			permissions = eDocumentPath::GetPermissions(fullPath);
 			wxRemoveFile(fullPath);
 		}
-		
+
 		wxRenameFile(tmpPath, fullPath);
 
 		if (previous_file_exists)
@@ -1061,7 +1061,7 @@ void Document::GetLines(vector<unsigned int>& list) const {
 bool Document::HasProperty(const wxString& name) const {
 	wxASSERT(IsOk());
 	if (vHistory.GetSize() == 0) return false; // empty doc
-	
+
 	// Nothing to do if there are no properties
 	const node_ref propnode = GetPropnode();
 	if (!propnode.IsOk()) return false;
@@ -2047,7 +2047,7 @@ void Document::PartialDiff(const interval& range, vector<cxDiffEntry>& rangeHist
 vector<cxChange> Document::GetChanges(const doc_id& version1, const doc_id& version2) const {
 	// Calculate diff
 	const vector<match> matchlist = Diff(version1, version2);
-	
+
 	// Build list of changes
 	vector<cxChange> changeset;
 	unsigned int pos1 = 0;
@@ -2065,7 +2065,7 @@ vector<cxChange> Document::GetChanges(const doc_id& version1, const doc_id& vers
 		pos1 = m->iv1_end_pos;
 		pos2 = m->iv2_end_pos;
 	}
-	
+
 	return changeset;
 }
 

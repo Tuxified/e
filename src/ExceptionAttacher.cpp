@@ -27,9 +27,9 @@
 // This is the initial entry point into an MFC app. Normally this is in the
 // MFC library:  mfc\src\winmain.cpp
 
-int AFXAPI AfxWinMain(HINSTANCE hInstance, 
-					  HINSTANCE hPrevInstance,	
-					  LPTSTR lpCmdLine, 
+int AFXAPI AfxWinMain(HINSTANCE hInstance,
+					  HINSTANCE hPrevInstance,
+					  LPTSTR lpCmdLine,
 					  int nCmdShow)
 {
 	// Wrap WinMain in a structured exception handler (different from C++
@@ -44,7 +44,7 @@ int AFXAPI AfxWinMain(HINSTANCE hInstance,
 		// The code inside the __try block is the MFC version of AfxWinMain(),
 		// copied verbatim from the MFC source code.
 		ASSERT(hPrevInstance == NULL);
-		
+
 		int nReturnCode = -1;
 		CWinApp* pApp = AfxGetApp();
 
@@ -89,7 +89,7 @@ int AFXAPI AfxWinMain(HINSTANCE hInstance,
 		AfxWinTerm();
 		return nReturnCode;
 	}
-	__except(RecordExceptionInfo(GetExceptionInformation(), 
+	__except(RecordExceptionInfo(GetExceptionInformation(),
 				_T("ExceptionAttacher.cpp - AfxWinMain")))
 	{
 		// Do nothing here - RecordExceptionInfo() has already done

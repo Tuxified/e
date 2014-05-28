@@ -61,7 +61,7 @@ class tmDragCommand;
 class TmSyntaxHandler;
 
 
-class EditorCtrl : public KeyHookable<wxControl>, 
+class EditorCtrl : public KeyHookable<wxControl>,
 	public IFoldingEditor,
 	public IEditorDoAction,
 	public IPrintableDocument,
@@ -367,7 +367,7 @@ protected:
 	virtual bool OnPreKeyDown(wxKeyEvent& event);
 	virtual bool OnPreKeyUp(wxKeyEvent& event);
 
-	// Let the editor class load lines into the document, however it needs to 
+	// Let the editor class load lines into the document, however it needs to
 	// for the kind of thing being loaded.
 	virtual cxFileResult LoadLinesIntoDocument(const wxString& whence_to_load, wxFontEncoding enc, const RemoteProfile* rp, wxFileName& localPath);
 

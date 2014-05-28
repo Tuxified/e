@@ -37,7 +37,7 @@ END_EVENT_TABLE()
 
 RemoteProfileDlg::RemoteProfileDlg(wxWindow *parent, eSettings& settings):
 	wxDialog (parent, -1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER),
-	m_settings(settings), m_currentProfile(-1) 
+	m_settings(settings), m_currentProfile(-1)
 {
 	SetTitle (_("Remote Profiles"));
 

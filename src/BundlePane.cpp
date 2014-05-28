@@ -133,11 +133,11 @@ const char* BundlePane::s_commandsyntax = "# just to remind you of some useful e
 "echo Selection: \"$TM_SELECTED_TEXT\"";
 
 BundlePane::BundlePane(EditorFrame& parent, ITmLoadBundles* syntaxHandler):
-	wxPanel(&parent, wxID_ANY, wxPoint(-100,-100)), 
-	m_parentFrame(parent), 
+	wxPanel(&parent, wxID_ANY, wxPoint(-100,-100)),
+	m_parentFrame(parent),
 	m_imageList(16,16),
-	m_syntaxHandler(syntaxHandler), 
-	m_plistHandler(m_syntaxHandler->GetPListHandler()) 
+	m_syntaxHandler(syntaxHandler),
+	m_plistHandler(m_syntaxHandler->GetPListHandler())
 {
 	// Build Imagelist
 	m_imageList.Add(wxIcon(tmbundle_xpm));
@@ -378,7 +378,7 @@ void BundlePane::OnTreeBeginDrag(wxTreeEvent& event) {
 		return;
 	}
     const BundleItemData* data = (BundleItemData*)m_bundleTree->GetItemData( id );
-    
+
 	if (!data || data->m_type == BUNDLE_BUNDLE) {
 		wxLogDebug(wxT("Starting Drag: bundle or root menu"));
 		return; // bundles and menu roots cannot be dragged
@@ -417,7 +417,7 @@ void BundlePane::OnTreeEndDrag(wxTreeEvent& event) {
 
 	const unsigned int bundleId = srcData->m_bundleId;
 	PListDict infoDict = GetEditableMenuPlist(bundleId);
-	
+
 	// Insert the item
 	Freeze();
 	const wxString name = m_bundleTree->GetItemText(itemSrc);
@@ -474,7 +474,7 @@ unsigned int BundlePane::GetTreeItemIndex(const wxTreeItemId parent, const wxTre
 
 void BundlePane::OnIdle(wxIdleEvent& event) {
 	if (!m_bundleTree->IsEmpty()) return; // already updated
-	
+
 	// Keep waiting until all bundles are updated
 	if (!m_plistHandler.AllBundlesUpdated()) {
 		event.RequestMore();
@@ -487,7 +487,7 @@ void BundlePane::OnIdle(wxIdleEvent& event) {
 void BundlePane::OnTreeMenu(wxTreeEvent& event) {
 	const wxTreeItemId item = event.GetItem();
 	if (item.IsOk()) m_bundleTree->SelectItem(item);
-	
+
 	const bool inBundle = item.IsOk();
 	bool inMenu = false;
 	if (item.IsOk()) {
@@ -525,7 +525,7 @@ void BundlePane::OnTreeMenu(wxTreeEvent& event) {
 void BundlePane::OnButtonPlus(wxCommandEvent& WXUNUSED(event)) {
 	const wxTreeItemId selItem = m_bundleTree->GetSelection();
 	const bool inBundle = selItem.IsOk();
-	
+
 	bool inMenu = false;
 	if (selItem.IsOk()) {
 		const BundleItemData* data = (BundleItemData*)m_bundleTree->GetItemData(selItem);
@@ -568,7 +568,7 @@ void BundlePane::OnButtonPlus(wxCommandEvent& WXUNUSED(event)) {
 void BundlePane::OnMenuExport(wxCommandEvent& WXUNUSED(event)) {
 	const wxTreeItemId selItem = m_bundleTree->GetSelection();
 	if (!selItem.IsOk()) return;
-	
+
 	// Get the item name
 	const BundleItemData* data = (BundleItemData*)m_bundleTree->GetItemData(selItem);
 	wxString name;
@@ -655,7 +655,7 @@ void BundlePane::OnMenuNew(wxCommandEvent& event) {
 
 				const wxTreeItemId selItem = m_bundleTree->GetSelection();
 				const BundleItemData* data = (BundleItemData*)m_bundleTree->GetItemData(selItem);
-				
+
 				// Get a new uuid
 				const wxString newUuid = PListHandler::GetNewUuid();
 				const wxCharBuffer uuidBuf = newUuid.ToUTF8();
@@ -893,7 +893,7 @@ void BundlePane::CopySubItems(wxTreeItemId srcItem, wxTreeItemId dstItem) {
 	while (c.IsOk()) {
 		const BundleItemData* childData = (BundleItemData*)m_bundleTree->GetItemData(c);
 		const wxString subname = m_bundleTree->GetItemText(c);
-		
+
 		wxTreeItemId item = m_bundleTree->InsertItem(dstItem, ndx, subname, childData->GetImageId(), -1, new BundleItemData(*childData));
 
 		if (childData->m_type == BUNDLE_SUBDIR) CopySubItems(c, item);
@@ -939,7 +939,7 @@ wxTreeItemId BundlePane::FindItemInMenu(wxTreeItemId menuItem, BundleItemType ty
 
 		c = m_bundleTree->GetNextChild(menuItem, cookie);
 	}
-	
+
 	return wxTreeItemId(); // Not in menu
 }
 
@@ -1045,7 +1045,7 @@ void BundlePane::NewItem(BundleItemType type) {
 	// Create a new (unsaved) command item
 	const unsigned int bundleId = data->m_bundleId;
 	const unsigned int itemId = m_plistHandler.New(type, bundleId, name);
-	
+
 	// Set default values
 	PListDict itemDict = m_plistHandler.GetEditable(type, bundleId, itemId);
 	switch (type) {

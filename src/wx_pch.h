@@ -4,7 +4,7 @@
  * Author:    Alexander Stigsen ()
  * Created:   2008-03-31
  * Copyright: Alexander Stigsen ()
- * License:   
+ * License:
  **************************************************************/
 
 #ifndef WX_PCH_H_INCLUDED

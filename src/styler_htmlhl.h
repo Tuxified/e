@@ -40,7 +40,7 @@ public:
 	public:
 		unsigned int start, end, tagNameEnd;
 		bool isClosingTag, isSelfClosingTag;
-		
+
 		TagInterval(unsigned int start, unsigned int end, const Document& doc);
 	};
 
@@ -52,7 +52,7 @@ public:
 	void UpdateCursorPosition();
 	void SelectParentTag();
 	void Style(StyleRun& sr);
-	
+
 	bool ShouldStyle();
 	void Reparse();
 	bool IsValidTag(unsigned int start, unsigned int end, const Document& doc);

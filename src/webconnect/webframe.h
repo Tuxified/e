@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2007-04-23
-// RCS-ID:      
+// RCS-ID:
 // Copyright:   (C) Copyright 2006-2009, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -58,15 +58,15 @@ public:
     ~wxWebFrame();
 
     wxWebControl* GetWebControl();
-    
+
     bool ShouldPreventAppExit() const { return m_should_prevent_app_exit; }
     void SetShouldPreventAppExit(bool b) { m_should_prevent_app_exit = b; }
-    
+
 private:
-    
+
     wxWebControl* m_ctrl;
     bool m_should_prevent_app_exit;
-    
+
     DECLARE_EVENT_TABLE();
 };
 
@@ -112,11 +112,11 @@ public:
     ~wxWebDialog();
 
     wxWebControl* GetWebControl();
-    
+
 private:
-    
+
     wxWebControl* m_ctrl;
-    
+
     DECLARE_EVENT_TABLE();
 };
 

@@ -27,7 +27,7 @@ static const wxChar* writerTraceMask = _T("traceWriter");
  This class is a JSON document writer and it is used to write a
  wxJSONValue object to an output stream or to a string object
  of type wxString.
- The ctor accepts some parameters which can be used to 
+ The ctor accepts some parameters which can be used to
  change the style of the output.
  The default output is in human-readable format.
 
@@ -384,7 +384,7 @@ wxJSONWriter::DoWrite( const wxJSONValue& value, const wxString* key,
 
       map = value.AsMap();
       size = value.Size();
-      wxJSONInternalMap::const_iterator it; 
+      wxJSONInternalMap::const_iterator it;
       int i = 0;
       for ( it = map->begin(); it != map->end(); ++it )  {
         // get the key and the value
@@ -527,7 +527,7 @@ wxJSONWriter::WriteIndent( int num )
  in the provided string the function calls WriteChar() which does
  the actual character output.
 
- The function returns the last character written or -1 in case of errors. 
+ The function returns the last character written or -1 in case of errors.
 */
 int
 wxJSONWriter::WriteStringValue( const wxString& str )
@@ -577,7 +577,7 @@ wxJSONWriter::WriteStringValue( const wxString& str )
   if ( ( m_style & wxJSONWRITER_SPLIT_STRING) && ( m_style & wxJSONWRITER_STYLED) )   {
     multiLineIndent = ( m_level + 2 ) * m_step;
   }
-  
+
   // solidus only has to be escaped when embedding in html
   const int escapedStart = (m_style & wxJSONWRITER_ESCAPE_SOLIDUS) ? 0 : 1;
 

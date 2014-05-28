@@ -35,7 +35,7 @@ public:
 	~FindInProjectDlg();
 
 	void SetPattern(const wxString& pattern);
- 
+
 private:
 	void OnSearch(wxCommandEvent& event);
 	void OnIdle(wxIdleEvent& event);

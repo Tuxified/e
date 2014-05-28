@@ -56,14 +56,14 @@ void WordCell::DrawCell(int xoffset, int yoffset, const wxRect& WXUNUSED(rect)) 
 	mydc.SetTextForeground(fcolor);
     mydc.SetTextBackground(bgcolor);
     mydc.SetBackgroundMode(bgmode);
-        
+
     mydc.DrawText(word, xoffset, yoffset);
 }
 
 
 // ----- DiffLineCell -----------------------------------
 
-DiffLineCell::DiffLineCell(const wxDC& dc, const DocumentWrapper& dw) 
+DiffLineCell::DiffLineCell(const wxDC& dc, const DocumentWrapper& dw)
 : Cell(dc), m_doc(dw), line_width(0), char_width(0), subCells(), top_xpos() {
 	m_insertColour.Set(192, 255, 192); // PASTEL GREEN
 	m_deleteColour.Set(255, 192, 192); // PASTEL RED
@@ -118,7 +118,7 @@ void DiffLineCell::CalcLayout(const doc_id& rev1, const doc_id& rev2) {
 			unsigned int pos2 = 0;
 
 			unsigned int i = 0;
-			while (i < matchlist.size()) { 
+			while (i < matchlist.size()) {
 				if (line_width > width) {
 					// No need to parse something that won't be drawn
 					break;
@@ -208,7 +208,7 @@ void DiffLineCell::CalcLayoutRange(const doc_id& rev1, const doc_id& rev2, const
 				++i;
 			}
 
-			while (i < matchlist.size()) { 
+			while (i < matchlist.size()) {
 				if (line_width > width) break; // No need to parse something that won't be drawn
 
 				// Calculate how many chars there are room for in
@@ -242,7 +242,7 @@ void DiffLineCell::CalcLayoutRange(const doc_id& rev1, const doc_id& rev2, const
 						const unsigned int rest_end = wxMin(m.iv2_start_pos, doc.GetCharPos(rev2, rest_start, chars_left));
 						CalcSubCells(doc.GetTextPart(rev2, rest_start, rest_end), m_hiddenColour, bgcolor);
 					}
-					
+
 					change = true;
 				}
 				if (m.iv2_end_pos > 0 && m.iv2_end_pos > m.iv2_start_pos) {
@@ -321,7 +321,7 @@ void DiffLineCell::CalcSubCells(const wxString& text, const wxColour& fc, const 
 
 void DiffLineCell::DrawCell(int xoffset, int yoffset, const wxRect& rect) {
 	for(unsigned int i = 0; i < subCells.size(); ++i) {
-		(subCells[i])->DrawCell(xoffset + top_xpos[i], yoffset, rect); 
+		(subCells[i])->DrawCell(xoffset + top_xpos[i], yoffset, rect);
 	}
 }
 

@@ -37,8 +37,8 @@ class PListHandler;
 class EditorFrame;
 class AppVersion;
 
-class eApp : public wxApp, 
-	public IAppPaths, 
+class eApp : public wxApp,
+	public IAppPaths,
 	public IExecuteAppCommand
 {
 public:
@@ -81,7 +81,7 @@ public:
     virtual bool OnCmdLineHelp(wxCmdLineParser&) {return true;}
     virtual bool OnCmdLineError(wxCmdLineParser&) {return true;}
 #endif // wxUSE_CMDLINE_PARSER
-        
+
 #ifdef __WXDEBUG__
 	void OnAssertFailure(const wxChar *file, int line, const wxChar *cond, const wxChar *msg);
 #endif  //__WXDEBUG__

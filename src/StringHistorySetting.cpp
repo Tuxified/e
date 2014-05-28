@@ -2,7 +2,7 @@
 #include "jsonval.h"
 
 StringHistorySetting::StringHistorySetting(const wxString& key, size_t maxItems):
-	m_key(key), m_maxItems(maxItems) 
+	m_key(key), m_maxItems(maxItems)
 	{}
 
 size_t StringHistorySetting:: GetItemCount(const wxJSONValue& root) const {
@@ -27,7 +27,7 @@ bool StringHistorySetting::AddItem(wxJSONValue& root, const wxString& item) {
 		// If the last-added item is the same, then don't add to history.
 		const wxJSONValue last = items.ItemAt(0);
 		if (last.AsString() == item) return false;
-		
+
 		// If the same item exists further down the list, remove it
 		// since we will re-add it at the top.
 		for (int i = 1; i < items.Size(); ++i) {
@@ -37,10 +37,10 @@ bool StringHistorySetting::AddItem(wxJSONValue& root, const wxString& item) {
 			}
 		}
 	}
-	
+
 	// insert the new item
 	items.Insert(0, item);
-	if (items.Size() > (int)m_maxItems) 
+	if (items.Size() > (int)m_maxItems)
 		items.Remove(items.Size()-1);
 
 	return true;

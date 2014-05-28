@@ -66,7 +66,7 @@ EXCEPT = CygwinDlg.cpp \
          ShellContextMenu.cpp \
          wxactivex.cpp
 
-SRCS = $(filter-out $(EXCEPT), $(wildcard *.cpp)) 
+SRCS = $(filter-out $(EXCEPT), $(wildcard *.cpp))
 OBJS = $(SRCS:%.cpp=$(OUTDIR)/%.o)
 DEPS = $(SRCS:%.cpp=$(OUTDIR)/%.d)
 

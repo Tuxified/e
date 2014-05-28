@@ -440,7 +440,7 @@ void Styler_Syntax::DoSearch(unsigned int start, unsigned int end, unsigned int 
 	wxASSERT(start < end && end <= m_doc.GetLength());
 	wxASSERT(limit <= m_doc.GetLength());
 	wxASSERT(HaveActiveSyntax());
-	
+
 	// Don't try to parse if there is no valid parser
 	if (!HaveActiveSyntax()) {
 		m_syntax_end = m_lines.GetLength();
@@ -626,7 +626,7 @@ unsigned int Styler_Syntax::Search(submatch& submatches, SearchInfo& si, unsigne
 		}
 		else {
 			// Get match interval
-			const unsigned int callout_start = si.lineStart + ovector[0]; 
+			const unsigned int callout_start = si.lineStart + ovector[0];
 			const unsigned int callout_end = si.lineStart + ovector[1];
 
 			// Move pos to end of match
@@ -1031,8 +1031,8 @@ void Styler_Syntax::ApplyDiff(const vector<cxLineChange>& linechanges) {
 		vector<cxLineChange>::const_iterator nextchange = l+1;
 		if (nextchange != linechanges.end()) limit = nextchange->start;
 		else limit = m_lines.GetLineEndFromPos(change_end);
-		
-		if (l->start < limit) DoSearch(l->start, l->end, limit); 	
+
+		if (l->start < limit) DoSearch(l->start, l->end, limit);
 	}
 
 cleanup_and_return:
@@ -1273,7 +1273,7 @@ void Styler_Syntax::Verify() const {
 		Print();
 		wxASSERT(false);
 	}
-	
+
 	// Check that last match is within bounds
 	if (!matches.empty()) {
 		if (matches.back()->end > m_doc.GetLength()) {

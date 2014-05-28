@@ -116,24 +116,24 @@ begin
     if DirExists(path) then begin
       DelTree(path, True, True, True);
     end;
-    
+
     path := ExpandConstant('{app}\Support');
     if DirExists(path) then begin
       DelTree(path, True, True, True);
     end;
-    
+
     path := ExpandConstant('{app}\Themes');
     if DirExists(path) then begin
       DelTree(path, True, True, True);
     end;
   end;
-  
+
   if (CurStep = ssPostInstall) then begin
-  
+
 		// First update the path (environment)
     if IsTaskSelected('modifypath') then
 			ModPath();
-  
+
     // Move old settings to new location (appdata dir)
     if DirExists(ExpandConstant('{app}')) then begin
       // Create dir for User Application Data

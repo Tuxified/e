@@ -275,7 +275,7 @@ int match_matcher::Match(char* line, unsigned int start, unsigned int len, unsig
 	// Get search pattern from matcher
 	const pcre* re = GetMatchPattern();
 	const pcre_extra* study = GetPatternStudy();
-	
+
 	// Do the search
 	const int rc = pcre_exec(
 		re,                   // the compiled pattern
@@ -439,7 +439,7 @@ bool group_matcher::Init(bool WXUNUSED(deep)) {
 	// Initialize all members and use their patterns
 	for (std::vector<matcher*>::const_iterator m = m_members.begin(); m != m_members.end(); ++m) {
 		matcher* const member = *m;
-		
+
 		// Add all member sub-patterns and map new callout id's to old
 		member->GetMembers(m_refs);
 	}
@@ -491,7 +491,7 @@ size_t group_matcher::GetMembers(std::vector<calloutref>& refs) {
 
 	size_t ndx = refs.size();
 	const size_t end = ndx + m_refs.size();
-	
+
 	refs.resize(end);
 	for (unsigned int i = 0; i < m_refs.size(); ++i) {
 		const calloutref& r1 = m_refs[i];
@@ -534,7 +534,7 @@ int group_matcher::Match(char* line, unsigned int start, unsigned int len, unsig
 			const pcre* re = m.GetMatchPattern();
 			if (!re) return PCRE_ERROR_NULL;
 			const pcre_extra* study = m.GetPatternStudy();
-			
+
 			// Do the search
 			const int rc = pcre_exec(
 				re,                   // the compiled pattern

@@ -48,7 +48,7 @@ WXLRESULT eIpcWin::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam) 
 
 		if (cmd.StartsWith(wxT("OPEN_FILE")) ||
 			cmd == wxT("NEW_WINDOW") ||
-			cmd == wxT("VIEW_RAISE")) 
+			cmd == wxT("VIEW_RAISE"))
 		{
 			m_app.ExecuteCmd(cmd);
 		}

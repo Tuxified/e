@@ -25,13 +25,13 @@
 
 class MMapBuffer {
 public:
-	MMapBuffer() : m_bufptr(NULL) 
+	MMapBuffer() : m_bufptr(NULL)
 #if defined(__WXMSW__)
 		,m_hFile(0), m_hMMFile(0)
 #endif
 	{};
 
-	MMapBuffer(const wxFileName& path) : m_bufptr(NULL) 
+	MMapBuffer(const wxFileName& path) : m_bufptr(NULL)
 #if defined(__WXMSW__)
 		,m_hFile(0), m_hMMFile(0)
 #endif
@@ -59,10 +59,10 @@ public:
 		}
 #elif defined(__WXGTK__)
 		if (true == m_file.Open(path.GetFullPath(), wxFile::read_write)) {
-			if (MAP_FAILED == (m_bufptr = 
+			if (MAP_FAILED == (m_bufptr =
 				(char*)mmap(NULL, (size_t)Length(), PROT_READ|PROT_WRITE, MAP_SHARED, m_file.fd(), 0))) {
 				wxLogDebug(wxT("%s: Can't mmap file %s errno: %i (%s)"),
-	                                wxString(__FUNCTION__, wxConvUTF8).c_str(), path.GetFullPath().c_str(), errno, 
+	                                wxString(__FUNCTION__, wxConvUTF8).c_str(), path.GetFullPath().c_str(), errno,
 					wxString(strerror(errno), wxConvUTF8).c_str());
 				m_bufptr = NULL;
 			}
@@ -86,7 +86,7 @@ public:
 			if (NULL != m_bufptr) {
 				if (-1 == munmap((void*)m_bufptr, (size_t)Length())) {
 					wxLogDebug(wxT("%s: Can't do unmmap! errno: %i (%s)"),
-                	                        wxString(__FUNCTION__, wxConvUTF8).c_str(), errno, 
+                	                        wxString(__FUNCTION__, wxConvUTF8).c_str(), errno,
 						wxString(strerror(errno), wxConvUTF8).c_str());
 				}
 			}

@@ -33,7 +33,7 @@ public:
 	  m_dwBufferSize( dwBuffSize )
 	{
 		wxASSERT( lpFileNotifyInfoBuffer && dwBuffSize );
-		
+
 		m_pCurrentRecord = (PFILE_NOTIFY_INFORMATION) m_pBuffer;
 
 		// DEBUG: Make sure entry fits in buffer
@@ -43,19 +43,19 @@ public:
 	}
 
 	bool GetNextNotifyInformation();
-	
+
 	bool CopyCurrentRecordToBeginningOfBuffer(OUT DWORD & ref_dwSizeOfCurrentRecord);
 
 	DWORD	GetAction() const; // Gets the type of file change notifiation
 	wxString GetFileName() const; // Gets the file name from the FILE_NOTIFY_INFORMATION record
 	wxString GetFileNameWithPath(const wxString& strRootPath) const; // Same as GetFileName() only it prefixes the strRootPath into the file name
 
-	
+
 protected:
 	BYTE * m_pBuffer; // <-- all of the FILE_NOTIFY_INFORMATION records 'live' in the buffer this points to...
 	DWORD  m_dwBufferSize;
 	PFILE_NOTIFY_INFORMATION m_pCurrentRecord; // this points to the current FILE_NOTIFY_INFORMATION record in m_pBuffer
-	
+
 };
 #endif
 
@@ -189,7 +189,7 @@ void* DirWatcher::Entry() {
 								   (LPDWORD) &pdi, // <-- completion Key
 								   &lpOverlapped,
 								   INFINITE);
-		
+
 		if ( pdi ) { // pdi will be null if I call PostQueuedCompletionStatus(m_hCompPort, 0,0,NULL);
 			// The DirWatchInfo::m_runningState is pretty much the only member
 			// of DirWatchInfo that can be modified from the other thread.
@@ -232,11 +232,11 @@ void* DirWatcher::Entry() {
 				{
 					DWORD dwReadBuffer_Offset = 0UL;
 					pdi->ProcessNotification(dwReadBuffer_Offset);
-	
+
 					//	Changes have been processed,
 					//	Reissue the watch command
 					if( !ReadDirectoryChangesW( pdi->m_hDir,
-										  pdi->m_Buffer + dwReadBuffer_Offset,//<--FILE_NOTIFY_INFORMATION records are put into this buffer 
+										  pdi->m_Buffer + dwReadBuffer_Offset,//<--FILE_NOTIFY_INFORMATION records are put into this buffer
 								          READ_DIR_CHANGE_BUFFER_SIZE - dwReadBuffer_Offset,
 										  pdi->m_watchSubDir,
 										  pdi->m_changeFilter,
@@ -257,7 +257,7 @@ void* DirWatcher::Entry() {
 				{
 					//We want to shut down the monitoring of the directory
 					//that pdi is managing...
-					
+
 					if( pdi->m_hDir != INVALID_HANDLE_VALUE )
 					{
 					 //Since I've previously called ReadDirectoryChangesW() asynchronously, I am waiting
@@ -276,8 +276,8 @@ void* DirWatcher::Entry() {
 						//or we've already stopped monitoring it....
 						pdi->SignalStartStop();//set the event that ReadDirectoryChangesW has returned and no further calls to it will be made...
 					}
-					
-				
+
+
 				}
 				break;
 
@@ -290,17 +290,17 @@ void* DirWatcher::Entry() {
 					//ReadDirectoryChangesW will cause it to return via GetQueuedCompletionStatus()....
 					if( pdi->m_hDir == INVALID_HANDLE_VALUE )
 						pdi->SignalStartStop();//signal that no further calls to ReadDirectoryChangesW will be made
-														 //and this pdi can be deleted 
+														 //and this pdi can be deleted
 					else
 					{//for some reason, the handle is still open..
-											
+
 						pdi->CloseDirectoryHandle();
 
 						//wait for GetQueuedCompletionStatus() to return this pdi object again
 
 
 					}
-	
+
 				}
 				break;
 
@@ -353,8 +353,8 @@ void* DirWatcher::WatchDirectory(const wxString& path, wxEvtHandler& changeHandl
 	// Check that it is not already being watched
 
 	// Open the directory to watch....
-	HANDLE hDir = CreateFileW(path.c_str(), 
-								FILE_LIST_DIRECTORY, 
+	HANDLE hDir = CreateFileW(path.c_str(),
+								FILE_LIST_DIRECTORY,
 								FILE_SHARE_READ | FILE_SHARE_WRITE| FILE_SHARE_DELETE,								NULL, //security attributes
 								OPEN_EXISTING,
 								FILE_FLAG_BACKUP_SEMANTICS | //<- the required priviliges for this flag are: SE_BACKUP_NAME and SE_RESTORE_NAME.  CPrivilegeEnabler takes care of that.
@@ -363,13 +363,13 @@ void* DirWatcher::WatchDirectory(const wxString& path, wxEvtHandler& changeHandl
 	if( hDir == INVALID_HANDLE_VALUE ) return NULL;
 
 	const DWORD dwNotifyFilter = FILE_NOTIFY_CHANGE_FILE_NAME|FILE_NOTIFY_CHANGE_DIR_NAME|FILE_NOTIFY_CHANGE_SIZE; //|FILE_NOTIFY_CHANGE_ATTRIBUTES;
-	
+
 	DirWatchInfo * pDirInfo = new DirWatchInfo( hDir, path, changeHandler, dwNotifyFilter, watchSubDirs, wxEmptyString, wxEmptyString, 0);
 
 	// Create a IO completion port/or associate this key with
 	// the existing IO completion port
 	const bool isFirst = (m_hCompPort == NULL);
-	m_hCompPort = CreateIoCompletionPort(hDir, 
+	m_hCompPort = CreateIoCompletionPort(hDir,
 										m_hCompPort, //if m_hCompPort is NULL, hDir is associated with a NEW completion port,
 													 //if m_hCompPort is NON-NULL, hDir is associated with the existing completion port that the handle m_hCompPort references
 										(DWORD)pDirInfo, //the completion 'key'... this ptr is returned from GetQueuedCompletionStatus() when one of the events in the dwChangesToWatchFor filter takes place
@@ -475,7 +475,7 @@ void DirWatcher::UnwatchAllDirectories() {
 		}
 	}
 	m_dirsWatched.clear();
-	
+
 	// Kill off the thread
 	PostQueuedCompletionStatus(m_hCompPort, 0, 0, NULL);//The thread will catch this and exit the thread
 
@@ -514,9 +514,9 @@ DirWatcher::DirWatchInfo* DirWatcher::getDirWatchInfoByWD(int desc) {
 
 // ---- DirWatchInfo --------------------------------------------------------------------------------
 #ifdef __WXMSW__
-DirWatcher::DirWatchInfo::DirWatchInfo(HANDLE hDir, const wxString& directoryName, 
-					  wxEvtHandler& changeHandler, 
-					  DWORD dwChangeFilter, bool watchSubDir, 
+DirWatcher::DirWatchInfo::DirWatchInfo(HANDLE hDir, const wxString& directoryName,
+					  wxEvtHandler& changeHandler,
+					  DWORD dwChangeFilter, bool watchSubDir,
 					  const wxString& includeFilter,
 					  const wxString& excludeFilter,
 					  DWORD dwFilterFlags)
@@ -531,17 +531,17 @@ DirWatcher::DirWatchInfo::DirWatchInfo(HANDLE hDir, const wxString& directoryNam
 
 bool DirWatcher::DirWatchInfo::StartMonitor(HANDLE hCompPort) {
 
-	m_cs.Enter(); // Guard the properties of this object 
-		
+	m_cs.Enter(); // Guard the properties of this object
+
 	m_runningState = RUNNING_STATE_START_MONITORING;//set the state member to indicate that the object is to START monitoring the specified directory
 	PostQueuedCompletionStatus(hCompPort, sizeof(this), (DWORD)this, &m_Overlapped);//make the thread waiting on GetQueuedCompletionStatus() wake up
 
 	m_cs.Leave(); // unlock this object so that the thread can get at them...
 
-	// Wait for signal that the initial call 
+	// Wait for signal that the initial call
 	// to ReadDirectoryChanges has been made
 	if (m_startStopCond.WaitTimeout(10*10000) != wxCOND_NO_ERROR) return false;
-	
+
 	return m_readDirSuccess; // This value is set in the worker thread when it first calls ReadDirectoryChangesW().
 }
 
@@ -550,15 +550,15 @@ void DirWatcher::DirWatchInfo::UnwatchDirectory(HANDLE hCompPort) {
 
 	// Signal that the worker thread is to stop watching the directory
 	SignalShutdown(hCompPort);
-	
+
 	//and wait for the thread to signal that it has shutdown
 	m_startStopCond.Wait();
 }
 
 void DirWatcher::DirWatchInfo::SignalShutdown(HANDLE hCompPort) {
-	m_cs.Enter(); // Guard the properties of this object 
+	m_cs.Enter(); // Guard the properties of this object
 
-	// Set the state member to indicate that the object is to stop monitoring the 
+	// Set the state member to indicate that the object is to stop monitoring the
 	// directory that this CDirWatchInfo is responsible for...
 	m_runningState = RUNNING_STATE_STOP;
 	// Put this object in the I/O completion port... GetQueuedCompletionStatus() will return it inside the worker thread.
@@ -588,7 +588,7 @@ void DirWatcher::DirWatchInfo::ProcessNotification(DWORD& ref_dwReadBuffer_Offse
 	do
 	{
 		//The FileName member of the FILE_NOTIFY_INFORMATION
-		//structure contains the NAME of the file RELATIVE to the 
+		//structure contains the NAME of the file RELATIVE to the
 		//directory that is being watched...
 		//ie, if watching C:\Temp and the file C:\Temp\MyFile.txt is changed,
 		//the file name will be "MyFile.txt"
@@ -600,7 +600,7 @@ void DirWatcher::DirWatchInfo::ProcessNotification(DWORD& ref_dwReadBuffer_Offse
 		// Apply Filters
 
 		event.SetChangedFile(strFileName);
-		
+
 		switch( notify_info.GetAction() )
 		{
 		case FILE_ACTION_ADDED:		// a file was added!
@@ -635,11 +635,11 @@ void DirWatcher::DirWatchInfo::ProcessNotification(DWORD& ref_dwReadBuffer_Offse
 				else
 				{
 					//this OLD_NAME was the last record returned by ReadDirectoryChangesW
-					//I will have to call ReadDirectoryChangesW again so that I will get 
+					//I will have to call ReadDirectoryChangesW again so that I will get
 					//the record for FILE_ACTION_RENAMED_NEW_NAME
 
 					//Adjust an offset so that when I call ReadDirectoryChangesW again,
-					//the FILE_NOTIFY_INFORMATION will be placed after 
+					//the FILE_NOTIFY_INFORMATION will be placed after
 					//the record that we are currently working on.
 					notify_info.CopyCurrentRecordToBeginningOfBuffer( ref_dwReadBuffer_Offset );
 					wxASSERT(notify_info.GetNextNotifyInformation() == NULL);
@@ -654,16 +654,16 @@ void DirWatcher::DirWatchInfo::ProcessNotification(DWORD& ref_dwReadBuffer_Offse
 				wxASSERT( dwLastAction == FILE_ACTION_RENAMED_OLD_NAME );
 				wxASSERT( false );//this shouldn't get here
 			}
-		
+
 		default:
 			wxASSERT(false);
 		}
 
 		dwLastAction = notify_info.GetAction();
-		
+
 		// Send the event
 		m_changeHandler.AddPendingEvent(event);
-    
+
 	} while( notify_info.GetNextNotifyInformation() );
 }
 
@@ -671,7 +671,7 @@ void DirWatcher::DirWatchInfo::ProcessNotification(DWORD& ref_dwReadBuffer_Offse
 
 bool FileNotifyInformation::GetNextNotifyInformation()
 {
-	if( m_pCurrentRecord 
+	if( m_pCurrentRecord
 	&&	m_pCurrentRecord->NextEntryOffset != 0UL)//is there another record after this one?
 	{
 		//set the current record to point to the 'next' record
@@ -679,7 +679,7 @@ bool FileNotifyInformation::GetNextNotifyInformation()
 		m_pCurrentRecord = (PFILE_NOTIFY_INFORMATION) ((LPBYTE)m_pCurrentRecord + m_pCurrentRecord->NextEntryOffset);
 
 		wxASSERT( (DWORD)((BYTE*)m_pCurrentRecord - m_pBuffer) < m_dwBufferSize); // make sure we haven't gone too far
-		
+
 		// DEBUG: Make sure entry fits in buffer
 		if ((BYTE*)&m_pCurrentRecord->FileName + m_pCurrentRecord->FileNameLength > m_pBuffer + m_dwBufferSize) {
 			OutputDebugString(wxT("WARNING: DirBuffer overflow\n"));
@@ -692,7 +692,7 @@ bool FileNotifyInformation::GetNextNotifyInformation()
 			// This sometimes happens if the watched directory becomes deleted... remove the FILE_SHARE_DELETE flag when using CreateFile() to get the handle to the directory...
 			m_pCurrentRecord = pOld;
 		}
-					
+
 		return (m_pCurrentRecord != pOld);
 	}
 	return false;
@@ -710,7 +710,7 @@ bool FileNotifyInformation::CopyCurrentRecordToBeginningOfBuffer(OUT DWORD & ref
 	//subtract out sizeof FILE_NOTIFY_INFORMATION::FileName[1]
 	WCHAR FileName[1];//same as is defined for FILE_NOTIFY_INFORMATION::FileName
 	UNREFERENCED_PARAMETER(FileName);
-	ref_dwSizeOfCurrentRecord -= sizeof(FileName);   
+	ref_dwSizeOfCurrentRecord -= sizeof(FileName);
 	//and replace it w/ value of FILE_NOTIFY_INFORMATION::FileNameLength
 	ref_dwSizeOfCurrentRecord += m_pCurrentRecord->FileNameLength;
 
@@ -719,11 +719,11 @@ bool FileNotifyInformation::CopyCurrentRecordToBeginningOfBuffer(OUT DWORD & ref
 	wxASSERT( (void*)m_pBuffer != (void*)m_pCurrentRecord );//if this is the case, your buffer is way too small
 	if( (void*)m_pBuffer != (void*) m_pCurrentRecord ) {
 		wxASSERT( (DWORD)m_pCurrentRecord > (DWORD)m_pBuffer + ref_dwSizeOfCurrentRecord);//will it overlap?
-		
+
 		// Copy the m_pCurrentRecord to the beginning of m_pBuffer
 		memcpy(m_pBuffer, m_pCurrentRecord, ref_dwSizeOfCurrentRecord);
 		bRetVal = TRUE;
-		
+
 	}
 	//else
 	//there was only one record in this buffer, and m_pCurrentRecord is already at the beginning of the buffer
@@ -731,7 +731,7 @@ bool FileNotifyInformation::CopyCurrentRecordToBeginningOfBuffer(OUT DWORD & ref
 }
 
 DWORD FileNotifyInformation::GetAction() const
-{ 
+{
 	wxASSERT( m_pCurrentRecord );
 	if( m_pCurrentRecord )
 		return m_pCurrentRecord->Action;
@@ -745,7 +745,7 @@ wxString FileNotifyInformation::GetFileName() const
 		return wxString(m_pCurrentRecord->FileName, m_pCurrentRecord->FileNameLength / sizeof(WCHAR));
 	}
 	return wxString();
-}		
+}
 
 static inline bool HasTrailingBackslash(const wxString& str )
 {

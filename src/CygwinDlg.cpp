@@ -36,9 +36,9 @@ BEGIN_EVENT_TABLE(CygwinDlg, wxDialog)
 	EVT_BUTTON(wxID_OK, CygwinDlg::OnButtonOk)
 END_EVENT_TABLE()
 
-CygwinDlg::CygwinDlg(wxWindow *parent, cxCygwinDlgMode mode): 
-	wxDialog (parent, wxID_ANY, wxEmptyString, wxDefaultPosition), 
-	m_mode(mode) 
+CygwinDlg::CygwinDlg(wxWindow *parent, cxCygwinDlgMode mode):
+	wxDialog (parent, wxID_ANY, wxEmptyString, wxDefaultPosition),
+	m_mode(mode)
 {
 	SetTitle( m_mode == cxCYGWIN_INSTALL ? _("Cygwin not installed!") : _("Update Cygwin"));
 
@@ -77,8 +77,8 @@ void CygwinDlg::OnButtonOk(wxCommandEvent& WXUNUSED(event)) {
 // ---- CygwinInstallThread ------------------------------------------------------------
 
 CygwinInstallThread::CygwinInstallThread(cxCygwinInstallMode mode, const wxString& appPath):
-	m_mode(mode), 
-	m_appPath(appPath) 
+	m_mode(mode),
+	m_appPath(appPath)
 {
 	Create();
     Run();
@@ -90,7 +90,7 @@ void* CygwinInstallThread::Entry() {
 		// Get the base drive letter from the Windows system path, assuming C:
 		wxString driveLetter = wxT("C");
 		TCHAR szPath[MAX_PATH]; szPath[0]='\0';
-		if (SUCCEEDED(SHGetFolderPath(NULL, CSIDL_SYSTEM, NULL, 0, szPath)) && 
+		if (SUCCEEDED(SHGetFolderPath(NULL, CSIDL_SYSTEM, NULL, 0, szPath)) &&
 			szPath[0] != '\0') {
 				driveLetter = szPath[0];
 		}

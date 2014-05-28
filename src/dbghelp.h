@@ -804,7 +804,7 @@ typedef BOOL
 // This was taken from cvconst.h and should
 // not override any values found there.
 //
-// #define _NO_CVCONST_H_ if you don't 
+// #define _NO_CVCONST_H_ if you don't
 // have access to that file...
 
 #ifdef _NO_CVCONST_H
@@ -1146,8 +1146,8 @@ SymSetParentWindow(
     HWND hwnd
     );
 
-PCHAR 
-IMAGEAPI 
+PCHAR
+IMAGEAPI
 SymSetHomeDirectory(
     HANDLE hProcess,
     PCSTR  dir
@@ -1160,14 +1160,14 @@ SymGetHomeDirectory(
     PSTR   dir,
     size_t size
     );
-    
+
 typedef enum {
     hdBase = 0, // root directory for dbghelp
     hdSym,      // where symbols are stored
     hdSrc,      // where source is stored
     hdMax       // end marker
 };
-    
+
 //
 // options that are set/returned by SymSetOptions() & SymGetOptions()
 // these are used as a mask
@@ -1838,7 +1838,7 @@ SymFromToken(
     IN  DWORD               Token,
     IN OUT PSYMBOL_INFO     Symbol
     );
-    
+
 // While SymFromName will provide a symbol from a name,
 // SymEnumSymbols can provide the same matching information
 // for ALL symbols with a matching name, even regular
@@ -2253,7 +2253,7 @@ typedef struct _MINIDUMP_HEADER {
 } MINIDUMP_HEADER, *PMINIDUMP_HEADER;
 
 //
-// The MINIDUMP_HEADER field StreamDirectoryRva points to 
+// The MINIDUMP_HEADER field StreamDirectoryRva points to
 // an array of MINIDUMP_DIRECTORY structures.
 //
 
@@ -2307,7 +2307,7 @@ typedef enum _MINIDUMP_STREAM_TYPE {
 //
 // The minidump system information contains processor and
 // Operating System specific information.
-// 
+//
 
 //
 // CPU information is obtained from one of two places.
@@ -2325,34 +2325,34 @@ typedef union _CPU_INFORMATION {
     //
     // X86 platforms use CPUID function to obtain processor information.
     //
-    
+
     struct {
 
         //
         // CPUID Subfunction 0, register EAX (VendorId [0]),
         // EBX (VendorId [1]) and ECX (VendorId [2]).
         //
-        
+
         ULONG32 VendorId [ 3 ];
-        
+
         //
         // CPUID Subfunction 1, register EAX
         //
-        
+
         ULONG32 VersionInformation;
 
         //
         // CPUID Subfunction 1, register EDX
         //
-        
+
         ULONG32 FeatureInformation;
-        
+
 
         //
         // CPUID, Subfunction 80000001, register EBX. This will only
         // be obtained if the vendor id is "AuthenticAMD".
         //
-        
+
         ULONG32 AMDExtendedCpuFeatures;
 
     } X86CpuInfo;
@@ -2360,22 +2360,22 @@ typedef union _CPU_INFORMATION {
     //
     // Non-x86 platforms use processor feature flags.
     //
-    
+
     struct {
 
         ULONG64 ProcessorFeatures [ 2 ];
-        
+
     } OtherCpuInfo;
 
 } CPU_INFORMATION, *PCPU_INFORMATION;
-        
+
 typedef struct _MINIDUMP_SYSTEM_INFO {
 
     //
     // ProcessorArchitecture, ProcessorLevel and ProcessorRevision are all
     // taken from the SYSTEM_INFO structure obtained by GetSystemInfo( ).
     //
-    
+
     USHORT ProcessorArchitecture;
     USHORT ProcessorLevel;
     USHORT ProcessorRevision;
@@ -2393,7 +2393,7 @@ typedef struct _MINIDUMP_SYSTEM_INFO {
     // CSDVersion are all taken from the OSVERSIONINFO structure
     // returned by GetVersionEx( ).
     //
-    
+
     ULONG32 MajorVersion;
     ULONG32 MinorVersion;
     ULONG32 BuildNumber;
@@ -2402,7 +2402,7 @@ typedef struct _MINIDUMP_SYSTEM_INFO {
     //
     // RVA to a CSDVersion string in the string table.
     //
-    
+
     RVA CSDVersionRva;
 
     union {
@@ -2420,7 +2420,7 @@ typedef struct _MINIDUMP_SYSTEM_INFO {
 
 //
 // The minidump thread contains standard thread
-// information plus an RVA to the memory for this 
+// information plus an RVA to the memory for this
 // thread and an RVA to the CONTEXT structure for
 // this thread.
 //
@@ -2521,7 +2521,7 @@ typedef struct _MINIDUMP_MODULE {
     MINIDUMP_LOCATION_DESCRIPTOR MiscRecord;
     ULONG64 Reserved0;                          // Reserved for future use.
     ULONG64 Reserved1;                          // Reserved for future use.
-} MINIDUMP_MODULE, *PMINIDUMP_MODULE;   
+} MINIDUMP_MODULE, *PMINIDUMP_MODULE;
 
 
 //
@@ -2684,7 +2684,7 @@ typedef struct _MINIDUMP_MEMORY_INFO_LIST {
     ULONG64 NumberOfEntries;
 } MINIDUMP_MEMORY_INFO_LIST, *PMINIDUMP_MEMORY_INFO_LIST;
 
-    
+
 //
 // The memory information stream contains memory region
 // description information.  This stream corresponds to
@@ -2802,7 +2802,7 @@ typedef struct _MINIDUMP_MODULE_CALLBACK {
     ULONG CheckSum;
     ULONG TimeDateStamp;
     VS_FIXEDFILEINFO VersionInfo;
-    PVOID CvRecord; 
+    PVOID CvRecord;
     ULONG SizeOfCvRecord;
     PVOID MiscRecord;
     ULONG SizeOfMiscRecord;
@@ -2852,7 +2852,7 @@ typedef struct _MINIDUMP_CALLBACK_OUTPUT {
     };
 } MINIDUMP_CALLBACK_OUTPUT, *PMINIDUMP_CALLBACK_OUTPUT;
 
-        
+
 //
 // A normal minidump contains just the information
 // necessary to capture stack traces for all of the

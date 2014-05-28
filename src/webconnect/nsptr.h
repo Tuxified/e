@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2006-10-08
-// RCS-ID:      
+// RCS-ID:
 // Copyright:   (C) Copyright 2006-2009, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -42,7 +42,7 @@ public:
             p->AddRef();
         }
     }
-    
+
     ns_smartptr(const ns_smartptr<T>& c)
     {
         p = c.p;
@@ -51,12 +51,12 @@ public:
             p->AddRef();
         }
     }
-    
+
     ns_smartptr(const ns_smartptr_unknown& u)
     {
         u.qi(T::GetIID(), (void**)&p);
     }
-    
+
     ~ns_smartptr()
     {
         if (p)
@@ -69,7 +69,7 @@ public:
     {
         return static_cast<nsISupports*>(p);
     }
-    
+
     operator T*() const
     {
         return p;
@@ -104,12 +104,12 @@ public:
         }
 
         p = c.p;
-        
+
         if (p)
         {
             p->AddRef();
         }
-        
+
         return *this;
     }
 
@@ -137,9 +137,9 @@ public:
             p->Release();
             p = 0;
         }
-        
+
         u.qi(T::GetIID(), (void**)&p);
-        
+
         return *this;
     }
 
@@ -156,7 +156,7 @@ public:
         }
         p = 0;
     }
-    
+
     nsresult qi(const nsIID& iid, void** result) const
     {
         if (!p)
@@ -164,7 +164,7 @@ public:
             *result = 0;
             return NS_ERROR_NO_INTERFACE;
         }
-        
+
         return p->QueryInterface(iid, result);
     }
 };
@@ -179,13 +179,13 @@ public:
         ptr.p = p;
         p->AddRef();
     }
-    
+
     nsRequestInterface(ns_smartptr_unknown& u)
     {
         static nsIID nsISupportsIID = NS_ISUPPORTS_IID;
         u.qi(nsISupportsIID, (void**)&ptr.p);
     }
-    
+
     nsresult qi(const nsIID& iid, void** result) const
     {
         if (ptr)
@@ -202,9 +202,9 @@ public:
 
         return NS_ERROR_NULL_POINTER;
     }
-    
+
 public:
-    
+
     ns_smartptr<nsISupports> ptr;
 };
 
@@ -214,15 +214,15 @@ class nsToSmart : public ns_smartptr_unknown
 public:
 
     nsToSmart(nsISupports* _ptr) : ptr(_ptr) { }
-    
+
     nsresult qi(const nsIID& iid, void** result) const
     {
         if (!ptr)
             return NS_ERROR_NULL_POINTER;
-        
+
         return ptr->QueryInterface(iid, result);
     }
-    
+
 public:
 
     nsISupports* ptr;

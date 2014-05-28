@@ -85,7 +85,7 @@ void CompareDlg::OnButtonOk(wxCommandEvent& evt) {
 	m_settings.AddRecentDiff(rightPath, SP_RIGHT);
 
 	// If we get here the paths are valid
-	evt.Skip(); 
+	evt.Skip();
 }
 
 void CompareDlg::OnBrowseLeft(wxCommandEvent& WXUNUSED(evt)) {

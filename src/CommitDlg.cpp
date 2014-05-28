@@ -16,7 +16,7 @@
 CommitDlg::CommitDlg(wxWindow *parent)
 : wxDialog (parent, -1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER ) {
 	SetTitle (_("Make Milestone"));
-	
+
 	wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
 	// Description
@@ -33,7 +33,7 @@ CommitDlg::CommitDlg(wxWindow *parent)
 
 	// Buttons
 	sizer->Add(CreateButtonSizer(wxOK|wxCANCEL), 0, wxEXPAND|wxALL, 5);
-	
+
 	m_descCtrl->SetFocus();
 	SetSizerAndFit(sizer);
 	SetSize(350, 200);

@@ -125,7 +125,7 @@
 #endif
 
 #if !defined( LLONG_MIN )
-  #define LLONG_MIN     -9223372036854775808    
+  #define LLONG_MIN     -9223372036854775808
 #endif
 
 #endif // _WX_JSON_DEFS_H_

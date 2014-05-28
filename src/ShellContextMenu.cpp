@@ -18,7 +18,7 @@
 #define MAX_ID 10000
 
 // Some header does not define GUID
-struct __declspec(uuid("000214e6-0000-0000-c000-000000000046")) IShellFolder; 
+struct __declspec(uuid("000214e6-0000-0000-c000-000000000046")) IShellFolder;
 
 ShellContextMenu::ShellContextMenu()
 {
@@ -47,8 +47,8 @@ UINT ShellContextMenu::ShowContextMenu(wxWindow* pWnd, wxPoint pt, bool showExte
 {
 	int iMenuType = 0;	// to know which version of IContextMenu is supported
 	LPCONTEXTMENU pContextMenu;	// common pointer to IContextMenu and higher version interface
-   
-	if (!GetContextMenu ((void**) &pContextMenu, iMenuType))	
+
+	if (!GetContextMenu ((void**) &pContextMenu, iMenuType))
 		return (0);	// something went wrong
 
 	if (!m_Menu)
@@ -60,7 +60,7 @@ UINT ShellContextMenu::ShowContextMenu(wxWindow* pWnd, wxPoint pt, bool showExte
 		flags |= CMF_EXTENDEDVERBS;
 
 	pContextMenu->QueryContextMenu(GetHmenuOf(m_Menu), m_Menu->GetMenuItemCount(), MIN_ID, MAX_ID, flags);
- 
+
 	// set context menu
 	if (iMenuType > 1)	// only subclass if its version 2 or 3
 	{
@@ -78,7 +78,7 @@ UINT ShellContextMenu::ShowContextMenu(wxWindow* pWnd, wxPoint pt, bool showExte
 		InvokeCommand (pContextMenu, idCommand - MIN_ID);	// execute related command
 		idCommand = 0;
 	}
-	
+
 	pContextMenu->Release();
 	m_IContext2 = NULL;
 	m_IContext3 = NULL;
@@ -94,7 +94,7 @@ void ShellContextMenu::SetObjects(const wxArrayString &strArray)
 	m_psfFolder = NULL;
 	FreePIDLArray (m_pidlArray);
 	m_pidlArray = NULL;
-	
+
 	// get IShellFolder interface of Desktop (root of shell namespace)
 	IShellFolder * psfDesktop = NULL;
 	SHGetDesktopFolder (&psfDesktop);	// needed to obtain full qualified pidl
@@ -103,7 +103,7 @@ void ShellContextMenu::SetObjects(const wxArrayString &strArray)
 	// but since we use the Desktop as our interface and the Desktop is the namespace root
 	// that means that it's a fully qualified PIDL, which is what we need
 	LPITEMIDLIST pidl = NULL;
-	
+
 	psfDesktop->ParseDisplayName(NULL, 0, (LPOLESTR)strArray[0].c_str(), NULL, &pidl, NULL);
 
 	// now we need the parent IShellFolder interface of pidl, and the relative PIDL to that interface
@@ -119,7 +119,7 @@ void ShellContextMenu::SetObjects(const wxArrayString &strArray)
 	// now we have the IShellFolder interface to the parent folder specified in the first element in strArray
 	// since we assume that all objects are in the same folder (as it's stated in the MSDN)
 	// we now have the IShellFolder interface to every objects parent folder
-	
+
 	IShellFolder * psfFolder = NULL;
 	nItems = strArray.GetCount();
 	for (int i = 0; i < nItems; i++)
@@ -132,7 +132,7 @@ void ShellContextMenu::SetObjects(const wxArrayString &strArray)
 
 		m_pidlArray = (LPITEMIDLIST *) realloc (m_pidlArray, (i + 1) * sizeof (LPITEMIDLIST));
 		m_pidlArray[i] = CopyPIDL(pidlItem);	// copy relative pidl to pidlArray
-		
+
 		free (pidlItem);
 		if (lpMalloc) lpMalloc->Free(pidl);		// free pidl allocated by ParseDisplayName
 		if (psfFolder) psfFolder->Release();
@@ -169,8 +169,8 @@ LPITEMIDLIST ShellContextMenu::CopyPIDL (LPCITEMIDLIST pidl, int cb)
 
 
 UINT ShellContextMenu::GetPIDLSize (LPCITEMIDLIST pidl)
-{  
-	if (!pidl) 
+{
+	if (!pidl)
 		return 0;
 	int nSize = 0;
 	LPITEMIDLIST pidlTemp = (LPITEMIDLIST) pidl;
@@ -187,7 +187,7 @@ LPBYTE ShellContextMenu::GetPIDLPos (LPCITEMIDLIST pidl, int nPos)
 	if (!pidl)
 		return 0;
 	int nCount = 0;
-	
+
 	BYTE * pCur = (BYTE *) pidl;
 	while (((LPCITEMIDLIST) pCur)->mkid.cb)
 	{
@@ -196,7 +196,7 @@ LPBYTE ShellContextMenu::GetPIDLPos (LPCITEMIDLIST pidl, int nPos)
 		nCount++;
 		pCur += ((LPCITEMIDLIST) pCur)->mkid.cb;	// + sizeof(pidl->mkid.cb);
 	}
-	if (nCount == nPos) 
+	if (nCount == nPos)
 		return pCur;
 	return NULL;
 }
@@ -224,7 +224,7 @@ HRESULT ShellContextMenu::SHBindToParentEx (LPCITEMIDLIST pidl, REFIID riid, VOI
 	HRESULT hr = 0;
 	if (!pidl || !ppv)
 		return E_POINTER;
-	
+
 	int nCount = GetPIDLCount (pidl);
 	if (nCount == 0)	// desktop pidl of invalid pidl
 		return E_POINTER;
@@ -235,7 +235,7 @@ HRESULT ShellContextMenu::SHBindToParentEx (LPCITEMIDLIST pidl, REFIID riid, VOI
 	{
 		if ((hr = psfDesktop->QueryInterface(riid, ppv)) == S_OK)
 		{
-			if (ppidlLast) 
+			if (ppidlLast)
 				*ppidlLast = CopyPIDL (pidl);
 		}
 		psfDesktop->Release ();
@@ -246,7 +246,7 @@ HRESULT ShellContextMenu::SHBindToParentEx (LPCITEMIDLIST pidl, REFIID riid, VOI
 	LPITEMIDLIST pidlParent = NULL;
 	pidlParent = CopyPIDL (pidl, pRel - (LPBYTE) pidl);
 	IShellFolder * psfFolder = NULL;
-	
+
 	if ((hr = psfDesktop->BindToObject (pidlParent, NULL, __uuidof (psfFolder), (void **) &psfFolder)) != S_OK)
 	{
 		free (pidlParent);
@@ -270,7 +270,7 @@ BOOL ShellContextMenu::GetContextMenu (void ** ppContextMenu, int & iMenuType)
 {
 	*ppContextMenu = NULL;
 	LPCONTEXTMENU icm1 = NULL;
-	
+
 	// first we retrieve the normal IContextMenu interface (every object should have it)
 	if (!m_psfFolder) return (FALSE);
 	m_psfFolder->GetUIObjectOf (NULL, nItems, (LPCITEMIDLIST *) m_pidlArray, IID_IContextMenu, NULL, (void**) &icm1);
@@ -282,17 +282,17 @@ BOOL ShellContextMenu::GetContextMenu (void ** ppContextMenu, int & iMenuType)
 		else if (icm1->QueryInterface (IID_IContextMenu2, ppContextMenu) == NOERROR)
 			iMenuType = 2;
 
-		if (*ppContextMenu) 
+		if (*ppContextMenu)
 			icm1->Release(); // we can now release version 1 interface, cause we got a higher one
-		else 
-		{	
+		else
+		{
 			iMenuType = 1;
 			*ppContextMenu = icm1;	// since no higher versions were found
 		}							// redirect ppContextMenu to version 1 interface
 	}
 	else
 		return (FALSE);	// something went wrong
-	
+
 	return (TRUE); // success
 }
 
@@ -302,7 +302,7 @@ void ShellContextMenu::InvokeCommand (LPCONTEXTMENU pContextMenu, UINT idCommand
 	cmi.cbSize = sizeof (CMINVOKECOMMANDINFO);
 	cmi.lpVerb = (LPSTR) MAKEINTRESOURCE (idCommand);
 	cmi.nShow = SW_SHOWNORMAL;
-	
+
 	pContextMenu->InvokeCommand (&cmi);
 }
 
@@ -310,9 +310,9 @@ void ShellContextMenu::InvokeCommand (LPCONTEXTMENU pContextMenu, UINT idCommand
 bool ShellContextMenu::HookWndProc(UINT message, WPARAM wParam, LPARAM lParam, LRESULT& res)
 {
 	if (!m_IContext2 && !m_IContext3) return false;
-	
+
 	switch (message)
-	{ 
+	{
 	case WM_MENUCHAR:	// only supported by IContextMenu3
 		if (m_IContext3)
 		{
@@ -325,9 +325,9 @@ bool ShellContextMenu::HookWndProc(UINT message, WPARAM wParam, LPARAM lParam, L
 
 	case WM_DRAWITEM:
 	case WM_MEASUREITEM:
-		if (wParam) 
+		if (wParam)
 			break; // if wParam != 0 then the message is not menu-related
-  
+
 	case WM_INITMENUPOPUP:
 		if (m_IContext2) {
 			if (SUCCEEDED((m_IContext2->HandleMenuMsg (message, wParam, lParam)))) {

@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2006-09-30
-// RCS-ID:      
+// RCS-ID:
 // Copyright:   (C) Copyright 2006-2009, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -34,7 +34,7 @@ struct wxDOMNodeData
         select_ptr = supports;
         textarea_ptr = supports;
     }
-    
+
     ns_smartptr<nsIDOMNode> node_ptr;
     ns_smartptr<nsIDOMAttr> attr_ptr;
     ns_smartptr<nsIDOMText> text_ptr;
@@ -72,7 +72,7 @@ struct wxDOMEventData
         event_ptr = supports;
         mouseevent_ptr = supports;
     }
-    
+
     ns_smartptr<nsIDOMNode> event_ptr;
     ns_smartptr<nsIDOMAttr> mouseevent_ptr;
 };

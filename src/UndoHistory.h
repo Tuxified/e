@@ -36,7 +36,7 @@ public:
 	void SetDocument(const doc_id& di, bool doCenter=false);
 
 	bool IsSelectionMode() const {return !m_rangeHistory.empty();};
-	
+
 	bool Show(bool show);
 
 private:

@@ -10,10 +10,10 @@ void Styler_Users::Style(StyleRun& sr) {
 	const unsigned int rstart =  sr.GetRunStart();
 	const unsigned int rend = sr.GetRunEnd();
 	unsigned int pos = rstart;
-	
+
 	cxLOCKDOC_READ(m_doc)
 		const Catalyst& catalyst = m_catalyst.GetCatalyst();
-		
+
 		while (pos < rend) {
 			const cxNodeInfo ni = doc.GetNodeInfo(pos);
 

@@ -231,7 +231,7 @@ int DiffDirPane::GetFileIcon(const wxString& path) {
 	SHGFI_ICON|SHGFI_SMALLICON|SHGFI_USEFILEATTRIBUTES);
 
 	if (result == 0) return wxNOT_FOUND;
-	
+
 	icon.SetHICON(shfi.hIcon);
 #endif
 
@@ -256,9 +256,9 @@ wxString DiffDirPane::GetRightPath(const wxTreeItemId& item) const {
 
 void DiffDirPane::GetItemPath(const wxTreeItemId& item, wxString& path) const {
 	if (item == m_tree->GetRootItem()) return;
-	
+
 	GetItemPath(m_tree->GetItemParent(item), path);
-	
+
 	path += wxFILE_SEP_PATH;
 	path += m_tree->GetItemText(item);
 }

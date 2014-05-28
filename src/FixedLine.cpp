@@ -25,20 +25,20 @@ wxString FixedLine::s_text;
 
 FixedLine::FixedLine(wxDC& dc, const DocumentWrapper& dw, const vector<interval>& sel, const BracketHighlight& brackets,
 					 const unsigned int& lastpos, const bool& isShadow, const tmTheme& theme):
-	dc((FastDC&)dc), 
-	m_doc(dw), 
-	textstart(0), textend(0), 
-	m_lineLen(0), m_lineBufferLen(0), 
-	width(0), old_width(0), 
-	m_tabChars(4), 
-	lastpos(lastpos), 
-	m_isSelShadow(isShadow), 
-	selections(sel), 
+	dc((FastDC&)dc),
+	m_doc(dw),
+	textstart(0), textend(0),
+	m_lineLen(0), m_lineBufferLen(0),
+	width(0), old_width(0),
+	m_tabChars(4),
+	lastpos(lastpos),
+	m_isSelShadow(isShadow),
+	selections(sel),
 	m_brackets(brackets),
-	m_theme(theme), 
+	m_theme(theme),
 	m_sr(m_theme, (FastDC&)dc),
-	m_wrapMode(cxWRAP_NONE), 
-	m_showIndent(false), 
+	m_wrapMode(cxWRAP_NONE),
+	m_showIndent(false),
 	m_indentWidth(0),
 	bmFold(1, 1), bmNewline(1, 1), bmSpace(1, 1), bmTab(1, 1)
 {
@@ -713,7 +713,7 @@ unsigned int FixedLine::DrawText(int xoffset, int x, int y, unsigned int start, 
 	const char* const buf = (const char*)m_lineBuffer.data();
 	const unsigned int full_extent = start ? m_extents[end-1] - m_extents[start-1] : m_extents[end-1];
 	const int xpos = xoffset + x;
-	
+
 	// if we do not word wrap, the line can be *very* long (long enough that DrawText won't draw it)
 	// so we strip it to the visible part (may also improve performance).
 	if (m_wrapMode == cxWRAP_NONE && xpos + (int)full_extent > width) {

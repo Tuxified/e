@@ -4,7 +4,7 @@
 // Author:      Benjamin I. Williams
 // Modified by:
 // Created:     2007-04-23
-// RCS-ID:      
+// RCS-ID:
 // Copyright:   (C) Copyright 2006-2009, Kirix Corporation, All Rights Reserved.
 // Licence:     wxWindows Library Licence, Version 3.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -32,34 +32,34 @@ bool wxWebPreferences::GetBoolPref(const wxString& name)
     wxASSERT(!prefs.empty());
     if (prefs.empty())
         return false;
-        
+
     PRBool val;
     if (NS_FAILED(prefs->GetBoolPref((const char*)name.mbc_str(), &val)))
         return false;
-        
+
     return (val == PR_TRUE ? true : false);
 }
 
 wxString wxWebPreferences::GetStringPref(const wxString& name)
 {
     wxString val;
-    
+
     ns_smartptr<nsIPref> prefs = nsGetPrefService();
     wxASSERT(!prefs.empty());
     if (prefs.empty())
         return val;
 
     char* cstr = NULL;
-    
+
     if (NS_FAILED(prefs->GetCharPref((const char*)name.mbc_str(), &cstr)))
         return val;
-    
+
     if (cstr)
     {
         val = wxString::FromAscii(cstr);
         NS_Free(cstr);
     }
-    
+
     return val;
 }
 
@@ -69,12 +69,12 @@ int wxWebPreferences::GetIntPref(const wxString& name)
     wxASSERT(!prefs.empty());
     if (prefs.empty())
         return 0;
-    
+
     int val = 0;
-    
+
     if (NS_FAILED(prefs->GetIntPref((const char*)name.mbc_str(), &val)))
         return 0;
-        
+
     return val;
 }
 
@@ -83,7 +83,7 @@ void wxWebPreferences::SetIntPref(const wxString& name, int value)
     ns_smartptr<nsIPref> prefs = nsGetPrefService();
     if (prefs.empty())
         return;
-        
+
     prefs->SetIntPref((const char*)name.mbc_str(), value);
 }
 

@@ -598,7 +598,7 @@ long hIE;
 	res = m_webBrowser->get_HWND(&hIE);
 	if(res != S_OK) return;
 
-	
+
 	//if (on) ::LockWindowUpdate(NULL);
 	//else ::LockWindowUpdate(GetHwnd());
 	::SendMessage((HWND)hIE, WM_SETREDRAW, (WPARAM)on, 0);

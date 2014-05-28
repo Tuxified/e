@@ -26,8 +26,8 @@ TEST_P(TmKeyTest, KeyBinding) {
 	EXPECT_STREQ(expected_binding, actual_binding);
 }
 
-INSTANTIATE_TEST_CASE_P(TmKeyBindingTest, 
-	TmKeyTest, 
+INSTANTIATE_TEST_CASE_P(TmKeyBindingTest,
+	TmKeyTest,
 	Values(
 		CONFIG('a', wxMOD_ALT, _("^a")),
 		CONFIG('a', wxMOD_CONTROL, _("@a")),

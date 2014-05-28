@@ -22,16 +22,16 @@ The libraries can be manually downloaded from the following sites:
 
   libtommath-0.39
   http://libtom.org/?page=download&newsitems=5&whatfile=ltm
-  
+
   metakit
   http://www.equi4.com/metakit/overview.html
-  
+
   pcre-7.6
   http://pcre.org/
-  
+
   tinyxml
   http://sourceforge.net/projects/tinyxml
-  
+
 They all need to be built as static libraries.
 
 There are project files for Visual C++ in the subdir "build_msvc".
@@ -41,7 +41,7 @@ directories of the individual projects.
 A few libaries need to be patched to be used in e. The patches can be
 found in the "patches" subdirectory.
 
-When building the libraries you need to build the following solution files 
+When building the libraries you need to build the following solution files
 (make sure to select Debug or Release configuration):
 
 curl\lib\curllib.sln (curllib)
@@ -53,7 +53,7 @@ tinyxml\tinyxml.sln (tinyxml)
 
 = OS notes =
 
-On 64-bit versions of Windows, the folders created by cygwin can have 
+On 64-bit versions of Windows, the folders created by cygwin can have
 incorrect permissions. `get_externals_win.sh` may also be run from a
 msysgit bash prompt, but you need to first manually install the `mktemp`
 utility into git's bin folder.
